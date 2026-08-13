@@ -11,7 +11,9 @@
     "check": "astro check",
     "astro": "astro",
     "shots": "node scripts/build-placeholders.mjs",
-    "fonts": "python3 scripts/build-fonts.py"
+    "fonts": "python3 scripts/build-fonts.py",
+    "audit": "node scripts/audit.mjs",
+    "shot": "node scripts/screenshot.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",
@@ -26,8 +28,10 @@
     "yaml": "^2.8.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
     "@types/react": "^19.2.2",
     "@types/react-dom": "^19.2.2",
+    "playwright": "^1.62.1",
     "typescript": "^5.9.3"
   }
 }

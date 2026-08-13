@@ -1,0 +1,55 @@
+/*
+ * Self-hosted. No Google Fonts request, no third party learning who reads the
+ * site. Both faces are subset to Latin plus the punctuation and units we
+ * actually set, and both are committed to the repository.
+ *
+ *   Young Serif        15.0 kB   display, one weight
+ *   Schibsted Grotesk  41.4 kB   text, variable 400-900
+ *
+ * Regenerate with `npm run fonts`.
+ *
+ * The *-fallback faces carry ascent/descent/line-gap overrides measured from
+ * the real font files, so the fallback occupies exactly the same vertical
+ * space while the web font loads. That removes the vertical reflow that
+ * otherwise shows up as cumulative layout shift on a slow connection.
+ */
+
+/* Display — Young Serif, SIL OFL 1.1, Uplaod.
+   One weight only. Hierarchy is carried by size and space, not by weight. */
+@font-face {
+  font-family: 'Young Serif';
+  src: url('/fonts/young-serif-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Measured from YoungSerif-Regular.ttf: ascent 1046, descent -366,
+   lineGap 0, unitsPerEm 1000. */
+@font-face {
+  font-family: 'Young Serif Fallback';
+  src: local('Georgia'), local('Times New Roman'), local('Times');
+  ascent-override: 104.6%;
+  descent-override: 36.6%;
+  line-gap-override: 0%;
+}
+
+/* Text — Schibsted Grotesk, SIL OFL 1.1, Schibsted.
+   Drawn for a news publisher, so it holds up at 14px on a phone. */
+@font-face {
+  font-family: 'Schibsted Grotesk';
+  src: url('/fonts/schibsted-grotesk-variable.woff2') format('woff2-variations');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Measured from SchibstedGrotesk[wght].ttf: ascent 2000, descent -528,
+   lineGap 0, unitsPerEm 2048. */
+@font-face {
+  font-family: 'Schibsted Grotesk Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+  ascent-override: 97.66%;
+  descent-override: 25.78%;
+  line-gap-override: 0%;
+}

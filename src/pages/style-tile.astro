@@ -1,0 +1,1081 @@
+---
+import Base from '../layouts/Base.astro';
+import ScrollRegion from '../components/ScrollRegion.astro';
+import { contrastRatio, formatRatio, meetsAA, type ContrastUse } from '../lib/contrast';
+import { business } from '../lib/business';
+import { band } from '../lib/format';
+
+/**
+ * The style tile. Internal design reference, noindex, excluded from the
+ * sitemap. It exists so the type scale, the palette and the grid can be
+ * reviewed and signed off before any page is built on top of them.
+ *
+ * Every contrast ratio on this page is measured from the token values at
+ * build time. If a token changes and a pairing stops meeting WCAG 2.2 AA,
+ * this page says so rather than quietly continuing to claim it passes.
+ */
+
+const PALETTE = {
+  paper: '#f7f3ec',
+  'paper-raised': '#fdfbf7',
+  'paper-sunk': '#efe9df',
+  ink: '#1f1d1a',
+  'ink-muted': '#5c554c',
+  'ink-faint': '#6f675d',
+  brick: '#9a4a2c',
+  'brick-deep': '#7a3822',
+  'brick-bright': '#cc8665',
+  gum: '#b69160',
+  'gum-deep': '#8a6739',
+  monument: '#2b2e2f',
+  'monument-deep': '#1c1f20',
+  line: '#ddd4c6',
+  'line-strong': '#8d8375',
+  focus: '#7a3822',
+} as const;
+
+const MATERIALS = [
+  {
+    group: 'Render',
+    note: 'Cement render and mortar. The page itself. Warm rather than grey, because nothing on these houses is neutral.',
+    swatches: ['paper', 'paper-raised', 'paper-sunk'],
+  },
+  {
+    group: 'Ink',
+    note: 'Warm near-black, never pure black. Three weights of voice: the text, the aside, the caption.',
+    swatches: ['ink', 'ink-muted', 'ink-faint'],
+  },
+  {
+    group: 'Brick',
+    note: 'Face brick from a 1970s wall. The accent, and the only colour that ever means "act".',
+    swatches: ['brick', 'brick-deep', 'brick-bright'],
+  },
+  {
+    group: 'Spotted gum',
+    note: 'Timber. Rules, marks, quiet emphasis. Never used for a call to action.',
+    swatches: ['gum', 'gum-deep'],
+  },
+  {
+    group: 'Powder coated aluminium',
+    note: 'Window frames in Monument. Dark surfaces where photography needs to sit against something.',
+    swatches: ['monument', 'monument-deep'],
+  },
+  {
+    group: 'Rules',
+    note: 'Hairlines that separate, and the heavier line that bounds a control.',
+    swatches: ['line', 'line-strong', 'focus'],
+  },
+] as const;
+
+type Pairing = { fg: keyof typeof PALETTE; bg: keyof typeof PALETTE; use: ContrastUse; what: string };
+
+const PAIRINGS: Pairing[] = [
+  { fg: 'ink', bg: 'paper', use: 'body', what: 'Body text' },
+  { fg: 'ink', bg: 'paper-sunk', use: 'body', what: 'Body text on a sunk panel' },
+  { fg: 'ink-muted', bg: 'paper', use: 'body', what: 'Secondary text' },
+  { fg: 'ink-muted', bg: 'paper-sunk', use: 'body', what: 'Secondary text on a sunk panel' },
+  { fg: 'ink-faint', bg: 'paper', use: 'body', what: 'Captions and metadata' },
+  { fg: 'ink-faint', bg: 'paper-sunk', use: 'body', what: 'Captions on a sunk panel' },
+  { fg: 'brick', bg: 'paper', use: 'body', what: 'Links' },
+  { fg: 'brick', bg: 'paper-sunk', use: 'body', what: 'Links on a sunk panel' },
+  { fg: 'brick-deep', bg: 'paper', use: 'body', what: 'Link, hover' },
+  { fg: 'gum-deep', bg: 'paper', use: 'body', what: 'Spotted gum as text' },
+  { fg: 'paper', bg: 'brick', use: 'body', what: 'Text on a brick fill (primary button)' },
+  { fg: 'paper', bg: 'monument', use: 'body', what: 'Reversed body text' },
+  { fg: 'paper', bg: 'monument-deep', use: 'body', what: 'Reversed on the deepest surface' },
+  { fg: 'brick-bright', bg: 'monument', use: 'body', what: 'Reversed links' },
+  { fg: 'gum', bg: 'monument', use: 'body', what: 'Reversed spotted gum' },
+  { fg: 'line-strong', bg: 'paper', use: 'non-text', what: 'Input border' },
+  { fg: 'line-strong', bg: 'paper-sunk', use: 'non-text', what: 'Input border on a sunk panel' },
+  { fg: 'focus', bg: 'paper', use: 'non-text', what: 'Focus ring' },
+  { fg: 'focus', bg: 'paper-sunk', use: 'non-text', what: 'Focus ring on a sunk panel' },
+  { fg: 'gum', bg: 'monument', use: 'non-text', what: 'Focus ring on a dark surface' },
+];
+
+const results = PAIRINGS.map((p) => ({
+  ...p,
+  ratio: contrastRatio(PALETTE[p.fg], PALETTE[p.bg]),
+  label: formatRatio(PALETTE[p.fg], PALETTE[p.bg]),
+  passes: meetsAA(PALETTE[p.fg], PALETTE[p.bg], p.use),
+}));
+
+const failures = results.filter((r) => !r.passes);
+
+const TYPE_SCALE = [
+  { token: 'display-l', step: 7, px: 85.8, face: 'display', use: 'The one thing on the page', sample: 'Fixed price before demolition' },
+  { token: 'display-m', step: 6, px: 68.7, face: 'display', use: 'Page opener', sample: 'Renovating a 1974 brick veneer' },
+  { token: 'display-s', step: 5, px: 54.9, face: 'display', use: 'Section opener', sample: 'What the money does' },
+  { token: 'title-l', step: 4, px: 43.9, face: 'display', use: 'Page heading', sample: 'Carlingford Brick Veneer' },
+  { token: 'title-m', step: 3, px: 35.2, face: 'display', use: 'Section heading', sample: 'The constraint' },
+  { token: 'title-s', step: 2, px: 28.1, face: 'display', use: 'Sub heading', sample: 'Where the money went' },
+  { token: 'lead', step: 1, px: 22.5, face: 'text', use: 'Lead paragraph', sample: 'A sewer main ran diagonally under the only place the room could go.' },
+  { token: 'body', step: 0, px: 18, face: 'text', use: 'Body copy', sample: 'Sydney Water permits building over a main under a build-over application where the structure keeps the main accessible.' },
+  { token: 'caption', step: -1, px: 14.4, face: 'text', use: 'Captions, metadata', sample: 'Both frames 10:40am, overcast. 24mm, f/8.' },
+];
+
+const SPACE = [
+  { token: '3xs', rem: 0.25 },
+  { token: '2xs', rem: 0.5 },
+  { token: 'xs', rem: 0.75 },
+  { token: 's', rem: 1.25 },
+  { token: 'm', rem: 2 },
+  { token: 'l', rem: 3.25 },
+  { token: 'xl', rem: 5.25 },
+  { token: '2xl', rem: 8.5 },
+  { token: '3xl', rem: 13.75 },
+];
+
+const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
+---
+
+<Base
+  title="Style tile — Stonelane Renovations"
+  description="Internal design reference: type scale, palette, grid and motion tokens."
+  indexable={false}
+>
+  <main id="main">
+    <!-- ================================================================ -->
+    <header class="masthead grid-editorial">
+      <div class="col-wide masthead__inner">
+        <p class="label">Design system · Step 2 of 7 · Internal reference</p>
+        <h1 class="masthead__title">Style&nbsp;tile</h1>
+        <p class="masthead__lede measure">
+          Type, colour, space, grid and motion for Stonelane Renovations. Every value on this
+          page is a token, and nothing on the site is allowed to use a colour or a size that
+          is not here.
+        </p>
+        <dl class="masthead__meta">
+          <div><dt>Display</dt><dd>Young Serif</dd></div>
+          <div><dt>Text</dt><dd>Schibsted Grotesk</dd></div>
+          <div><dt>Scale</dt><dd>1.25 from 18px</dd></div>
+          <div><dt>Grid</dt><dd>12 columns, text on 7</dd></div>
+        </dl>
+      </div>
+    </header>
+
+    <!-- ================================================================ -->
+    <section class="grid-editorial section" aria-labelledby="s-faces">
+      <div class="col-wide">
+        <p class="label">01</p>
+        <h2 id="s-faces" class="section__title">The two faces</h2>
+      </div>
+
+      <div class="col-half specimen">
+        <p class="specimen__name">Young Serif</p>
+        <p class="specimen__meta">Display · SIL OFL 1.1 · one weight · 15.0&nbsp;kB subset</p>
+        <p class="specimen__alphabet" lang="en">ABCDEFGHIJKLM<br />NOPQRSTUVWXYZ</p>
+        <p class="specimen__alphabet specimen__alphabet--lower">abcdefghijklm<br />nopqrstuvwxyz</p>
+        <p class="specimen__alphabet specimen__alphabet--figures">0123456789 $ &amp; ² °</p>
+        <p class="specimen__note measure">
+          Heavy old-style forms with flared, slightly agricultural terminals. It reads as
+          built rather than branded, which is the register a builder wants and an
+          architecture practice does not. It ships in a single weight, and we are treating
+          that as a discipline: hierarchy is carried by size and space, never by reaching
+          for a bolder cut.
+        </p>
+      </div>
+
+      <div class="col-half-end specimen">
+        <p class="specimen__name specimen__name--text">Schibsted Grotesk</p>
+        <p class="specimen__meta">Text · SIL OFL 1.1 · variable 400–900 · 41.4&nbsp;kB subset</p>
+        <p class="specimen__alphabet specimen__alphabet--text">ABCDEFGHIJKLM<br />NOPQRSTUVWXYZ</p>
+        <p class="specimen__alphabet specimen__alphabet--text specimen__alphabet--lower">
+          abcdefghijklm<br />nopqrstuvwxyz
+        </p>
+        <p class="specimen__alphabet specimen__alphabet--text specimen__alphabet--figures">
+          0123456789 $ &amp; ² °
+        </p>
+        <p class="specimen__note measure">
+          Drawn for a news publisher, so it is engineered for long-form reading at small
+          sizes on a phone. That matters here more than it looks like it should: the most
+          valuable page on this site is a plain-language explanation of when a lot qualifies
+          for a complying development certificate, and somebody is going to read all of it
+          standing in their kitchen.
+        </p>
+        <div class="weights">
+          <span style="font-weight:400">400 Regular</span>
+          <span style="font-weight:500">500 Medium</span>
+          <span style="font-weight:600">600 Semibold</span>
+          <span style="font-weight:700">700 Bold</span>
+        </div>
+      </div>
+
+      <aside class="col-wide callout">
+        <p class="measure-wide">
+          <strong>Both are self-hosted.</strong> No request leaves the reader's browser for a
+          font, so nobody outside this business learns who is reading about renovation costs
+          at 11pm. Together they are 56&nbsp;kB, subset to the Latin characters and the
+          punctuation and units we actually set — including <span class="mono">m²</span>,
+          <span class="mono">°</span> and <span class="mono">×</span> for dimensions.
+        </p>
+      </aside>
+    </section>
+
+    <!-- ================================================================ -->
+    <section class="grid-editorial section" aria-labelledby="s-scale">
+      <div class="col-wide">
+        <p class="label">02</p>
+        <h2 id="s-scale" class="section__title">One scale, held</h2>
+        <p class="measure section__intro">
+          Base 18px, ratio 1.25. Every size on the site is a step on this scale. There is no
+          15px and no 32px — where two things need to differ but sit on the same step, they
+          differ by weight, colour or tracking instead. The three display sizes interpolate
+          between steps across the viewport, anchored in <span class="mono">rem</span> so the
+          scale still answers to the reader's own text size setting and still reflows at 200%
+          zoom.
+        </p>
+      </div>
+
+      <div class="col-wide scale">
+        {
+          TYPE_SCALE.map((s) => (
+            <div class="scale__row">
+              <div class="scale__meta">
+                <span class="mono scale__token">--text-{s.token}</span>
+                <span class="scale__step">step {s.step > 0 ? `+${s.step}` : s.step}</span>
+                <span class="scale__px">{s.px}px</span>
+                <span class="scale__use">{s.use}</span>
+              </div>
+              <p
+                class:list={['scale__sample', `scale__sample--${s.token}`, s.face === 'text' && 'scale__sample--text']}
+              >
+                {s.sample}
+              </p>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <section class="grid-editorial section" aria-labelledby="s-colour">
+      <div class="col-wide">
+        <p class="label">03</p>
+        <h2 id="s-colour" class="section__title">Drawn from the houses</h2>
+        <p class="measure section__intro">
+          Warm brick, cement render, spotted gum, powder coated aluminium. Tailwind's default
+          palette is cleared rather than extended, so nothing can reach for a colour that was
+          not chosen. There is no brand blue because there is no blue on a 1980s brick veneer.
+        </p>
+      </div>
+
+      {
+        MATERIALS.map((m) => (
+          <div class="col-wide material">
+            <div class="material__head">
+              <h3 class="material__name">{m.group}</h3>
+              <p class="material__note measure">{m.note}</p>
+            </div>
+            <ul class="material__swatches" role="list">
+              {m.swatches.map((name) => (
+                <li class="swatch">
+                  <div class="swatch__chip" style={`background:${PALETTE[name]}`} />
+                  <p class="swatch__name mono">--color-{name}</p>
+                  <p class="swatch__hex mono">{PALETTE[name].toUpperCase()}</p>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+
+      <div class="col-wide">
+        <h3 class="material__name" id="contrast">Every pairing, measured</h3>
+        <p class="measure section__intro">
+          These ratios are calculated from the token values when this page is built, not
+          typed in. If a colour changes and a pairing stops meeting WCAG 2.2 AA, this table
+          says so.
+        </p>
+        <ScrollRegion label="Contrast ratios for every colour pairing">
+          <table class="table">
+            <caption class="visually-hidden">
+              Contrast ratios for every text and non-text colour pairing
+            </caption>
+            <thead>
+              <tr>
+                <th scope="col">Use</th>
+                <th scope="col">Foreground</th>
+                <th scope="col">Background</th>
+                <th scope="col">Ratio</th>
+                <th scope="col">Required</th>
+                <th scope="col">Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              {
+                results.map((r) => (
+                  <tr>
+                    <td>{r.what}</td>
+                    <td class="mono">{r.fg}</td>
+                    <td class="mono">{r.bg}</td>
+                    <td class="mono" data-numeric>
+                      {r.label}
+                    </td>
+                    <td class="mono" data-numeric>
+                      {r.use === 'non-text' ? '3:1' : '4.5:1'}
+                    </td>
+                    <td>
+                      <span class:list={['verdict', r.passes ? 'verdict--pass' : 'verdict--fail']}>
+                        {r.passes ? 'Pass' : 'Fail'}
+                      </span>
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </ScrollRegion>
+        <p class:list={['result-line', failures.length > 0 && 'result-line--fail']}>
+          {
+            failures.length === 0
+              ? `All ${results.length} pairings meet WCAG 2.2 AA.`
+              : `${failures.length} of ${results.length} pairings fail. Fix the tokens before building on them.`
+          }
+        </p>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <section class="grid-editorial section" aria-labelledby="s-space">
+      <div class="col-wide">
+        <p class="label">04</p>
+        <h2 id="s-space" class="section__title">Space</h2>
+        <p class="measure section__intro">
+          A golden ratio progression, deliberately a different system from the 1.25 type
+          scale. Two scales that do not share a ratio stay distinguishable, so spacing never
+          looks like an accident of type size.
+        </p>
+      </div>
+      <ul class="col-wide space" role="list">
+        {
+          SPACE.map((s) => (
+            <li class="space__row">
+              <span class="mono space__token">--space-{s.token}</span>
+              <span class="mono space__value" data-numeric>
+                {s.rem}rem
+              </span>
+              <span class="mono space__px" data-numeric>
+                {s.rem * 16}px
+              </span>
+              <span class="space__bar" style={`inline-size:${s.rem}rem`} />
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <!-- ================================================================ -->
+    <section class="grid-editorial section" aria-labelledby="s-grid">
+      <div class="col-wide">
+        <p class="label">05</p>
+        <h2 id="s-grid" class="section__title">An asymmetric grid</h2>
+        <p class="measure section__intro">
+          Twelve columns between two gutters. Body copy sits on the first seven, left of
+          centre, and the remaining five carry notes, metadata and pull quotes. The asymmetry
+          is held everywhere except where a block is meant to break it — and when something
+          breaks out, it should be because it earned it.
+        </p>
+      </div>
+
+      <div class="col-wide grid-demo" aria-hidden="true">
+        <div class="grid-demo__cols">
+          {Array.from({ length: 12 }, (_, i) => <span class="grid-demo__col">{i + 1}</span>)}
+        </div>
+      </div>
+
+      <div class="col-text demo-block demo-block--text">
+        <span class="mono">.col-text</span> — columns 1–7
+      </div>
+      <div class="col-aside demo-block demo-block--aside">
+        <span class="mono">.col-aside</span> — 9–12
+      </div>
+      <div class="col-half demo-block demo-block--half">
+        <span class="mono">.col-half</span> — 1–6
+      </div>
+      <div class="col-half-end demo-block demo-block--half">
+        <span class="mono">.col-half-end</span> — 7–12
+      </div>
+      <div class="col-wide demo-block demo-block--wide">
+        <span class="mono">.col-wide</span> — the full content width
+      </div>
+      <div class="col-bleed demo-block demo-block--bleed">
+        <span class="mono">.col-bleed</span> — through the gutters
+      </div>
+      <div class="col-full demo-block demo-block--full">
+        <span class="mono">.col-full</span> — edge to edge
+      </div>
+
+      <p class="col-wide section__note measure">
+        Below 48rem the grid collapses to a single column. Asymmetry on a 375px screen is
+        just a narrow column, and pretending otherwise costs legibility for no gain.
+      </p>
+    </section>
+
+    <!-- ================================================================ -->
+    <section class="grid-editorial section" aria-labelledby="s-parts">
+      <div class="col-wide">
+        <p class="label">06</p>
+        <h2 id="s-parts" class="section__title">Parts</h2>
+        <p class="measure section__intro">
+          Enough of the system doing real work to judge it. Everything below is keyboard
+          operable — tab through it and watch the focus ring, which is never removed and
+          never subtle.
+        </p>
+      </div>
+
+      <div class="col-half parts">
+        <h3 class="parts__label label">Actions</h3>
+        <div class="parts__row">
+          <a class="button button--primary" href="#s-parts">Book a site consultation</a>
+          <a class="button button--secondary" href="#s-parts">Send an enquiry</a>
+        </div>
+        <p class="parts__caption">
+          Booking is the primary action everywhere. The enquiry form is the fallback, not the
+          headline — and never "Get a Free Quote".
+        </p>
+
+        <h3 class="parts__label label">A link in a sentence</h3>
+        <p class="measure">
+          Most Carlingford lots meet the requirements for <a href="#s-parts">complying
+          development</a>, which means a certifier can approve the work rather than the
+          council.
+        </p>
+
+        <h3 class="parts__label label">A field, with focus</h3>
+        <div class="field">
+          <label class="field__label" for="demo-suburb">Your suburb</label>
+          <input class="field__input" id="demo-suburb" name="suburb" type="text" autocomplete="address-level2" />
+          <p class="field__hint" id="demo-suburb-hint">Tab into this to see the focus ring.</p>
+        </div>
+      </div>
+
+      <div class="col-half-end parts">
+        <h3 class="parts__label label">A cost band</h3>
+        <div class="band">
+          <p class="band__name">{bathroom.name}</p>
+          <p class="band__range" data-numeric>{band(bathroom.low, bathroom.high)}</p>
+          <p class="band__gst">GST inclusive · indicative, not a quote</p>
+          <p class="band__summary measure-narrow">{bathroom.summary}</p>
+        </div>
+
+        <h3 class="parts__label label">Metadata</h3>
+        <dl class="meta">
+          <div><dt>Cost band</dt><dd data-numeric>$260k to $290k</dd></div>
+          <div><dt>Duration</dt><dd data-numeric>24 weeks</dd></div>
+          <div><dt>Approval</dt><dd>Complying development</dd></div>
+          <div><dt>House</dt><dd>Brick veneer, 1974</dd></div>
+        </dl>
+
+        <h3 class="parts__label label">A quote</h3>
+        <blockquote class="quote">
+          <p>What we noticed was that the number never moved.</p>
+          <footer>Priya M. · Carlingford <span class="quote__flag">placeholder</span></footer>
+        </blockquote>
+      </div>
+
+      <div class="col-wide surface-dark parts parts--dark">
+        <h3 class="parts__label label parts__label--dark">On a dark surface</h3>
+        <p class="measure">
+          Photography sits against Monument. Reversed body text clears
+          <span class="mono">{formatRatio(PALETTE.paper, PALETTE.monument)}</span>, links use
+          brick-bright at <span class="mono">{formatRatio(PALETTE['brick-bright'], PALETTE.monument)}</span>,
+          and the focus ring switches to <a href="#s-parts">spotted gum</a> because brick does
+          not carry against this background.
+        </p>
+      </div>
+    </section>
+
+    <!-- ================================================================ -->
+    <section class="grid-editorial section" aria-labelledby="s-motion">
+      <div class="col-wide">
+        <p class="label">07</p>
+        <h2 id="s-motion" class="section__title">Motion, declared</h2>
+        <p class="measure section__intro">
+          Nothing moves yet — motion is step 4, and the static site has to pass its budgets
+          before anything is layered on top. These are the tokens it will use. One entrance
+          curve, one exit curve, defined once and never redeclared inline.
+        </p>
+      </div>
+      <ScrollRegion class="col-wide" label="Motion tokens and their values">
+        <table class="table">
+          <tbody>
+            <tr><td class="mono">--ease-primary</td><td class="mono">cubic-bezier(0.16, 1, 0.3, 1)</td><td>Everything that enters</td></tr>
+            <tr><td class="mono">--ease-exit</td><td class="mono">cubic-bezier(0.4, 0, 1, 1)</td><td>Everything that leaves</td></tr>
+            <tr><td class="mono">--ease-inout</td><td class="mono">cubic-bezier(0.65, 0, 0.35, 1)</td><td>State changes</td></tr>
+            <tr><td class="mono">--duration-fast</td><td class="mono" data-numeric>180ms</td><td>Hover, focus, colour</td></tr>
+            <tr><td class="mono">--duration-base</td><td class="mono" data-numeric>420ms</td><td>Reveals</td></tr>
+            <tr><td class="mono">--duration-slow</td><td class="mono" data-numeric>720ms</td><td>Page transitions</td></tr>
+            <tr><td class="mono">--stagger-step</td><td class="mono" data-numeric>70ms</td><td>Between items, capped at 6</td></tr>
+            <tr><td class="mono">--reveal-distance</td><td class="mono" data-numeric>1.25rem</td><td>Travel on a reveal</td></tr>
+          </tbody>
+        </table>
+      </ScrollRegion>
+      <p class="col-wide section__note measure">
+        Under <span class="mono">prefers-reduced-motion</span> the reveal distance and the
+        stagger both drop to zero, which turns every reveal into a plain cross-fade rather
+        than removing the feedback entirely. Nothing animates twice, and nothing animates on
+        scroll up.
+      </p>
+    </section>
+
+    <footer class="grid-editorial footer">
+      <p class="col-wide">
+        Internal reference · not indexed · step 2 of the build order. Next: static page
+        shells, no motion, passing budgets.
+      </p>
+    </footer>
+  </main>
+</Base>
+
+<style>
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  /* .mono lives in base.css so the dark-surface override can reach it. */
+
+  /* ---------------------------------------------------------- masthead */
+  .masthead {
+    padding-block: var(--space-xl) var(--space-l);
+    border-block-end: var(--border-rule) solid var(--color-ink);
+  }
+
+  .masthead__title {
+    font-size: var(--text-display-l);
+    line-height: 1.02;
+    letter-spacing: -0.022em;
+    margin-block: var(--space-s) var(--space-m);
+  }
+
+  .masthead__lede {
+    font-size: var(--text-lead);
+    line-height: 1.5;
+    color: var(--color-ink-muted);
+  }
+
+  .masthead__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-m);
+    margin-block-start: var(--space-l);
+    padding-block-start: var(--space-s);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .masthead__meta dt {
+    font-size: var(--text-caption);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+    margin-block-end: var(--space-3xs);
+  }
+
+  .masthead__meta dd {
+    font-family: var(--font-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+  }
+
+  /* ---------------------------------------------------------- sections */
+  .section {
+    padding-block: var(--space-section);
+    border-block-end: var(--border-hairline) solid var(--color-line);
+    row-gap: var(--space-m);
+  }
+
+  .section__title {
+    font-size: var(--text-display-s);
+    line-height: 1.1;
+    letter-spacing: -0.018em;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .section__intro {
+    color: var(--color-ink-muted);
+  }
+
+  .section__note {
+    color: var(--color-ink-muted);
+    font-size: var(--text-caption);
+    margin-block-start: var(--space-s);
+  }
+
+  /* ---------------------------------------------------------- specimen */
+  .specimen__name {
+    font-family: var(--font-display);
+    font-size: var(--text-title-l);
+    line-height: 1.15;
+  }
+
+  .specimen__name--text {
+    font-family: var(--font-text);
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: -0.015em;
+  }
+
+  .specimen__meta {
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .specimen__alphabet {
+    font-family: var(--font-display);
+    font-size: var(--text-title-m);
+    line-height: 1.15;
+    letter-spacing: -0.01em;
+    margin-block-end: var(--space-2xs);
+  }
+
+  .specimen__alphabet--text {
+    font-family: var(--font-text);
+  }
+
+  .specimen__alphabet--lower {
+    color: var(--color-ink-muted);
+  }
+
+  .specimen__alphabet--figures {
+    color: var(--color-gum-deep);
+  }
+
+  /* Thirteen capitals at step +3 are wider than a phone. The specimen drops a
+     step rather than the page gaining a horizontal scrollbar. */
+  @media (width < 34rem) {
+    .specimen__alphabet {
+      font-size: var(--text-title-s);
+    }
+  }
+
+  .specimen__note {
+    margin-block-start: var(--space-s);
+    color: var(--color-ink-muted);
+  }
+
+  .weights {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    margin-block-start: var(--space-s);
+    font-size: var(--text-caption);
+  }
+
+  .callout {
+    margin-block-start: var(--space-m);
+    padding: var(--space-s) var(--space-m);
+    background: var(--color-paper-sunk);
+    border-inline-start: var(--border-rule) solid var(--color-gum);
+  }
+
+  /* ------------------------------------------------------------- scale */
+  .scale__row {
+    padding-block: var(--space-s);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .scale__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+    margin-block-end: var(--space-2xs);
+  }
+
+  .scale__token {
+    color: var(--color-ink-muted);
+    min-inline-size: 12ch;
+  }
+
+  .scale__use {
+    color: var(--color-gum-deep);
+  }
+
+  .scale__sample {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  .scale__sample--text {
+    font-family: var(--font-text);
+  }
+
+  .scale__sample--display-l { font-size: var(--text-display-l); line-height: 1.02; letter-spacing: -0.022em; }
+  .scale__sample--display-m { font-size: var(--text-display-m); line-height: 1.06; letter-spacing: -0.02em; }
+  .scale__sample--display-s { font-size: var(--text-display-s); line-height: 1.1; letter-spacing: -0.018em; }
+  .scale__sample--title-l { font-size: var(--text-title-l); line-height: 1.15; letter-spacing: -0.015em; }
+  .scale__sample--title-m { font-size: var(--text-title-m); line-height: 1.22; letter-spacing: -0.012em; }
+  .scale__sample--title-s { font-size: var(--text-title-s); line-height: 1.3; letter-spacing: -0.01em; }
+  .scale__sample--lead { font-size: var(--text-lead); line-height: 1.5; max-width: var(--measure); }
+  .scale__sample--body { font-size: var(--text-body); line-height: 1.65; max-width: var(--measure); }
+  .scale__sample--caption { font-size: var(--text-caption); line-height: 1.45; color: var(--color-ink-faint); }
+
+  /* ---------------------------------------------------------- material */
+  .material {
+    margin-block-start: var(--space-m);
+  }
+
+  .material__name {
+    font-size: var(--text-title-s);
+    line-height: 1.3;
+    margin-block-end: var(--space-2xs);
+  }
+
+  .material__note {
+    color: var(--color-ink-muted);
+    font-size: var(--text-caption);
+  }
+
+  .material__swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    margin-block-start: var(--space-s);
+    padding: 0;
+    list-style: none;
+  }
+
+  .swatch {
+    inline-size: 12rem;
+    flex: 0 0 auto;
+  }
+
+  .swatch__chip {
+    block-size: 5rem;
+    border: var(--border-hairline) solid var(--color-line-strong);
+  }
+
+  .swatch__name {
+    margin-block-start: var(--space-2xs);
+    font-size: 0.78rem;
+  }
+
+  .swatch__hex {
+    color: var(--color-ink-faint);
+    font-size: 0.78rem;
+  }
+
+  /* ------------------------------------------------------------- table */
+  .table {
+    inline-size: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-caption);
+    margin-block-start: var(--space-s);
+    min-inline-size: 42rem;
+  }
+
+  .table th {
+    text-align: start;
+    font-weight: var(--font-weight-semibold);
+    border-block-end: var(--border-rule) solid var(--color-ink);
+    padding: var(--space-2xs) var(--space-s) var(--space-2xs) 0;
+    white-space: nowrap;
+  }
+
+  .table td {
+    border-block-end: var(--border-hairline) solid var(--color-line);
+    padding: var(--space-2xs) var(--space-s) var(--space-2xs) 0;
+    vertical-align: top;
+  }
+
+  .verdict {
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .verdict--pass { color: var(--color-gum-deep); }
+  .verdict--fail { color: var(--color-brick-deep); }
+
+  .result-line {
+    margin-block-start: var(--space-s);
+    padding: var(--space-xs) var(--space-s);
+    background: var(--color-paper-sunk);
+    border-inline-start: var(--border-rule) solid var(--color-gum-deep);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .result-line--fail {
+    border-inline-start-color: var(--color-brick);
+    color: var(--color-brick-deep);
+  }
+
+  /* ------------------------------------------------------------- space */
+  .space {
+    list-style: none;
+    padding: 0;
+  }
+
+  .space__row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-s);
+    padding-block: var(--space-2xs);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+    font-size: var(--text-caption);
+  }
+
+  .space__token { min-inline-size: 11ch; }
+  .space__value { min-inline-size: 6ch; color: var(--color-ink-faint); }
+  .space__px { min-inline-size: 6ch; color: var(--color-ink-faint); }
+
+  .space__bar {
+    block-size: 1rem;
+    background: var(--color-gum);
+    flex: 0 0 auto;
+    max-inline-size: 100%;
+  }
+
+  /* On a narrow screen the bar cannot sit beside its labels without pushing
+     the page wider than the viewport, so it drops to its own line. The bar
+     widths stay true to the token values, so the comparison still reads. */
+  @media (width < 34rem) {
+    .space__row {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--space-3xs) var(--space-s);
+      align-items: baseline;
+    }
+
+    .space__px {
+      display: none;
+    }
+
+    .space__bar {
+      grid-column: 1 / -1;
+    }
+  }
+
+  /* -------------------------------------------------------------- grid */
+  .grid-demo {
+    margin-block-end: var(--space-2xs);
+  }
+
+  .grid-demo__cols {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: var(--grid-gap);
+  }
+
+  .grid-demo__col {
+    background: color-mix(in srgb, var(--color-gum) 22%, transparent);
+    border-block-start: var(--border-rule) solid var(--color-gum-deep);
+    padding-block: var(--space-2xs);
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--color-ink-muted);
+  }
+
+  .demo-block {
+    padding: var(--space-xs) var(--space-s);
+    margin-block-end: var(--space-3xs);
+    background: var(--color-paper-sunk);
+    border-inline-start: var(--border-rule) solid var(--color-ink);
+    font-size: var(--text-caption);
+  }
+
+  .demo-block--aside { background: color-mix(in srgb, var(--color-gum) 18%, var(--color-paper)); }
+  .demo-block--bleed { background: color-mix(in srgb, var(--color-brick) 12%, var(--color-paper)); }
+  .demo-block--full {
+    background: var(--color-monument);
+    color: var(--color-paper);
+    border-inline-start: none;
+    border-block: var(--border-rule) solid var(--color-gum);
+  }
+  .demo-block--full .mono { color: var(--color-gum); }
+
+  /* ------------------------------------------------------------- parts */
+  .parts__label {
+    margin-block: var(--space-m) var(--space-xs);
+  }
+
+  .parts > .parts__label:first-child {
+    margin-block-start: 0;
+  }
+
+  .parts__row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .parts__caption {
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+    margin-block-start: var(--space-2xs);
+    max-width: var(--measure-narrow);
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-block-size: 44px;
+    padding: var(--space-2xs) var(--space-s);
+    font-size: var(--text-body);
+    font-weight: var(--font-weight-semibold);
+    text-decoration: none;
+    border-radius: var(--radius-xs);
+    border: var(--border-rule) solid transparent;
+    transition:
+      background-color var(--duration-fast) var(--ease-inout),
+      border-color var(--duration-fast) var(--ease-inout),
+      color var(--duration-fast) var(--ease-inout);
+  }
+
+  .button--primary {
+    background: var(--color-brick);
+    color: var(--color-paper);
+    border-color: var(--color-brick);
+  }
+
+  .button--primary:hover {
+    background: var(--color-brick-deep);
+    border-color: var(--color-brick-deep);
+    color: var(--color-paper);
+  }
+
+  .button--secondary {
+    background: transparent;
+    color: var(--color-ink);
+    border-color: var(--color-line-strong);
+  }
+
+  .button--secondary:hover {
+    border-color: var(--color-ink);
+    color: var(--color-ink);
+  }
+
+  .field {
+    max-width: 22rem;
+  }
+
+  .field__label {
+    display: block;
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-semibold);
+    margin-block-end: var(--space-3xs);
+  }
+
+  .field__input {
+    inline-size: 100%;
+    min-block-size: 44px;
+    padding: var(--space-2xs) var(--space-xs);
+    background: var(--color-paper-raised);
+    border: var(--border-hairline) solid var(--color-line-strong);
+    border-radius: var(--radius-xs);
+    color: var(--color-ink);
+  }
+
+  .field__hint {
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+    margin-block-start: var(--space-3xs);
+  }
+
+  .band {
+    padding: var(--space-s);
+    background: var(--color-paper-raised);
+    border: var(--border-hairline) solid var(--color-line);
+    border-block-start: var(--border-rule) solid var(--color-brick);
+  }
+
+  .band__name {
+    font-family: var(--font-display);
+    font-size: var(--text-title-s);
+    line-height: 1.3;
+  }
+
+  .band__range {
+    font-family: var(--font-display);
+    font-size: var(--text-title-l);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    color: var(--color-brick-deep);
+    margin-block: var(--space-3xs);
+  }
+
+  .band__gst {
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+    margin-block-end: var(--space-2xs);
+  }
+
+  .band__summary {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    gap: var(--space-s);
+    padding-block: var(--space-xs);
+    border-block: var(--border-hairline) solid var(--color-line);
+  }
+
+  .meta dt {
+    font-size: var(--text-caption);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+    margin-block-end: var(--space-3xs);
+  }
+
+  .meta dd {
+    font-size: var(--text-body);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .quote {
+    border-inline-start: var(--border-rule) solid var(--color-gum);
+    padding-inline-start: var(--space-s);
+  }
+
+  .quote p {
+    font-family: var(--font-display);
+    font-size: var(--text-title-s);
+    line-height: 1.3;
+  }
+
+  .quote footer {
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+    margin-block-start: var(--space-2xs);
+  }
+
+  .quote__flag {
+    display: inline-block;
+    padding: 0 var(--space-3xs);
+    background: color-mix(in srgb, var(--color-brick) 15%, transparent);
+    color: var(--color-brick-deep);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .parts--dark {
+    margin-block-start: var(--space-l);
+    padding: var(--space-m);
+  }
+
+  .parts__label--dark {
+    color: var(--color-gum);
+    margin-block-start: 0;
+  }
+
+  /* ------------------------------------------------------------ footer */
+  .footer {
+    padding-block: var(--space-l) var(--space-xl);
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+  }
+</style>

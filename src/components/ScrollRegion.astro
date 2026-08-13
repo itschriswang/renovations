@@ -1,0 +1,26 @@
+---
+/**
+ * A horizontally scrolling box for content that is legitimately wider than the
+ * page — a wide table, a diagram, a code block.
+ *
+ * The tabindex and the accessible name are the point. A scrollable box that
+ * contains no focusable elements cannot be reached or scrolled by keyboard at
+ * all, which fails WCAG 2.2 2.1.1. Making it focusable and naming it means a
+ * keyboard user can tab to the table and scroll it with the arrow keys.
+ *
+ *   <ScrollRegion label="Contrast ratios for every colour pairing">
+ *     <table>...</table>
+ *   </ScrollRegion>
+ */
+interface Props {
+  /** What is inside. Read out when the region takes focus. */
+  label: string;
+  class?: string;
+}
+
+const { label, class: className } = Astro.props;
+---
+
+<div class:list={['scroll-x', className]} tabindex="0" role="region" aria-label={label}>
+  <slot />
+</div>
