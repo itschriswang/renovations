@@ -1,8 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-label="Placeholder awaiting photography: The back of the house from the garden, showing the original aluminium sliding door and the step down.">
-<rect width="1600" height="1200" fill="#B4AEA4"/>
-
-<rect x="0.5" y="0.5" width="1599" height="1199" fill="none" stroke="#1B1917" stroke-opacity="0.25"/>
-<text x="72" y="106" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="34" fill="#1B1917" opacity="0.75">carlingford-before-02</text>
-<text x="72" y="522" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#1B1917">The back of the house from the garden, showing</text><text x="72" y="600" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#1B1917">the original aluminium sliding door and the</text><text x="72" y="678" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#1B1917">step down.</text>
-<text x="72" y="1128" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="34" fill="#1B1917" opacity="0.75">4:3 · 1600×1200 · awaiting photography</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-label="Temporary placeholder awaiting photography: The back of the house from the garden, showing the original aluminium sliding door and the step down.">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bdc5c8"/>
+    <stop offset="1" stop-color="#dad8d1"/>
+  </linearGradient></defs>
+<rect x="0" y="0" width="1600" height="756" fill="url(#sky)"/>
+<rect x="0" y="756" width="1600" height="444" fill="#7c7e6b"/>
+<rect x="0" y="756" width="1600" height="62" fill="#95927c" opacity="0.5"/>
+<polygon points="90,333 600,180 1110,333" fill="#4e4b49"/>
+<rect x="122" y="333" width="956" height="423" fill="#8f6c5c"/>
+<rect x="1078" y="369" width="186" height="387" fill="#5b3e33"/>
+<rect x="218" y="435" width="228" height="178" fill="#32393b"/>
+<rect x="600" y="435" width="228" height="178" fill="#32393b"/>
+<rect x="0" y="1080" width="1600" height="120" fill="#1B1917" opacity="0.1"/>
+<rect x="0" y="1068" width="1600" height="132" fill="#1B1917" opacity="0.88"/>
+<text x="32" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F4EFE7">carlingford-before-02 · 4:3 · 1600×1200</text>
+<text x="32" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — The back of the house from the garden, showing the original aluminium sliding door and the s…</text>
+<rect x="0.5" y="0.5" width="1599" height="1199" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
 </svg>

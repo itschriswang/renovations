@@ -1,8 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" role="img" aria-label="Placeholder awaiting photography: A set-out on a slab, chalk lines and dimensions, before framing starts.">
-<rect width="1200" height="1500" fill="#B4AEA4"/>
-
-<rect x="0.5" y="0.5" width="1199" height="1499" fill="none" stroke="#1B1917" stroke-opacity="0.25"/>
-<text x="72" y="106" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="34" fill="#1B1917" opacity="0.75">estimator-opener</text>
-<text x="72" y="672" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#1B1917">A set-out on a slab, chalk lines</text><text x="72" y="750" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#1B1917">and dimensions, before framing</text><text x="72" y="828" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#1B1917">starts.</text>
-<text x="72" y="1428" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="34" fill="#1B1917" opacity="0.75">4:5 · 1200×1500 · awaiting photography</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" role="img" aria-label="Temporary placeholder awaiting photography: A set-out on a slab, chalk lines and dimensions, before framing starts.">
+<rect x="0" y="0" width="1200" height="1500" fill="#6c5236"/>
+<rect x="0" y="0" width="1200" height="450" fill="#979371"/>
+<rect x="0" y="420" width="1200" height="90" fill="#1B1917" opacity="0.12"/>
+<rect x="743" y="1261" width="406" height="45" fill="#1B1917" opacity="0.08"/>
+<rect x="490" y="1020" width="175" height="45" fill="#1B1917" opacity="0.08"/>
+<rect x="431" y="741" width="214" height="45" fill="#1B1917" opacity="0.08"/>
+<rect x="6" y="659" width="324" height="45" fill="#1B1917" opacity="0.08"/>
+<rect x="22" y="674" width="208" height="45" fill="#1B1917" opacity="0.08"/>
+<line x1="0" y1="725" x2="1200" y2="1111" stroke="#D2662E" stroke-width="27" stroke-dasharray="60 36"/>
+<rect x="0" y="1335" width="1200" height="165" fill="#1B1917" opacity="0.88"/>
+<text x="24" y="1381.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F4EFE7">estimator-opener · 4:5 · 1200×1500</text>
+<text x="24" y="1428" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — A set-out on a slab, chalk lines and dimensions, before framing starts.</text>
+<rect x="0.5" y="0.5" width="1199" height="1499" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
 </svg>

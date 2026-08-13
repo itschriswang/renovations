@@ -1,8 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-label="Placeholder awaiting photography: The finished house from the street, showing the second storey sitting on the original ground floor. Late afternoon, front light.">
-<rect width="1800" height="1200" fill="#8A4B33"/>
-
-<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#F4EFE7" stroke-opacity="0.25"/>
-<text x="72" y="106" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="34" fill="#F4EFE7" opacity="0.75">baulkham-hills-hero</text>
-<text x="72" y="522" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#F4EFE7">The finished house from the street, showing the</text><text x="72" y="600" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#F4EFE7">second storey sitting on the original ground floor.</text><text x="72" y="678" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#F4EFE7">Late afternoon, front light.</text>
-<text x="72" y="1128" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="34" fill="#F4EFE7" opacity="0.75">3:2 · 1800×1200 · awaiting photography</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-label="Temporary placeholder awaiting photography: The finished house from the street, showing the second storey sitting on the original ground floor. Late afternoon, front light.">
+<defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bac6cb"/>
+    <stop offset="1" stop-color="#dcd8cd"/>
+  </linearGradient></defs>
+<rect x="0" y="0" width="1800" height="744" fill="url(#sky2)"/>
+<rect x="0" y="744" width="1800" height="456" fill="#b4aea5"/>
+<rect x="0" y="949" width="1800" height="251" fill="#343639"/>
+<polygon points="-90,460 124,388 339,460" fill="#4f4b47"/>
+<rect x="-90" y="460" width="429" height="284" fill="#9e674d"/>
+<rect x="-4" y="545" width="94" height="85" fill="#303a3d"/>
+<polygon points="375,466 521,394 667,466" fill="#4f4b47"/>
+<rect x="375" y="466" width="293" height="278" fill="#e3dccf"/>
+<rect x="433" y="550" width="64" height="83" fill="#303a3d"/>
+<polygon points="703,478 875,406 1046,478" fill="#4f4b47"/>
+<rect x="703" y="478" width="343" height="266" fill="#9e674d"/>
+<rect x="772" y="558" width="75" height="80" fill="#303a3d"/>
+<polygon points="1082,526 1290,454 1497,526" fill="#4f4b47"/>
+<rect x="1082" y="526" width="415" height="218" fill="#9e674d"/>
+<rect x="1165" y="592" width="91" height="65" fill="#303a3d"/>
+<polygon points="1533,558 1681,486 1829,558" fill="#4f4b47"/>
+<rect x="1533" y="558" width="295" height="186" fill="#9e674d"/>
+<rect x="1593" y="614" width="65" height="56" fill="#303a3d"/>
+<rect x="0" y="1104" width="1800" height="96" fill="#1B1917" opacity="0.1"/>
+<rect x="0" y="1068" width="1800" height="132" fill="#1B1917" opacity="0.88"/>
+<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F4EFE7">baulkham-hills-hero · 3:2 · 1800×1200</text>
+<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — The finished house from the street, showing the second storey sitting on the original ground…</text>
+<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
 </svg>

@@ -1,8 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" role="img" aria-label="Placeholder awaiting photography: A quote document on a site table with a tape measure and a pencil. Close, shallow depth of field, no branding legible. Shot on an actual job.">
-<rect width="1200" height="1500" fill="#D9CFBE"/>
-
-<rect x="0.5" y="0.5" width="1199" height="1499" fill="none" stroke="#1B1917" stroke-opacity="0.25"/>
-<text x="72" y="106" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="34" fill="#1B1917" opacity="0.75">home-differentiator</text>
-<text x="72" y="634" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#1B1917">A quote document on a site table</text><text x="72" y="712" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#1B1917">with a tape measure and a pencil.</text><text x="72" y="790" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#1B1917">Close, shallow depth of field, no</text><text x="72" y="868" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#1B1917">branding legible. Shot on an</text>
-<text x="72" y="1428" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="34" fill="#1B1917" opacity="0.75">4:5 · 1200×1500 · awaiting photography</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" role="img" aria-label="Temporary placeholder awaiting photography: A quote document on a site table with a tape measure and a pencil. Close, shallow depth of field, no branding legible. Shot on an actual job.">
+<rect x="0" y="0" width="1200" height="1065" fill="#e3dccf"/>
+<polygon points="0,0 1200,0 982,326 218,326" fill="#e3dcd1"/>
+<polygon points="0,0 218,326 218,988 0,1500" fill="#c4bcad"/>
+<polygon points="1200,0 982,326 982,988 1200,1500" fill="#f0eade"/>
+<rect x="218" y="326" width="764" height="662" fill="#e3dccf"/>
+<rect x="606" y="432" width="336" height="344" fill="#F2ECDF"/>
+<rect x="606" y="432" width="336" height="117" fill="#FFFFFF" opacity="0.4"/>
+<rect x="606" y="432" width="336" height="344" fill="none" stroke="#33363a" stroke-width="5"/>
+<polygon points="0,1500 218,988 982,988 1200,1500" fill="#a68052"/>
+<polygon points="606,988 942,988 1143,1500 471,1500" fill="#FFFFFF" opacity="0.13"/>
+<rect x="131" y="750" width="385" height="328" fill="#33363a"/>
+<rect x="131" y="750" width="385" height="24" fill="#b4aea5"/>
+<rect x="0" y="0" width="1200" height="75" fill="#1B1917" opacity="0.06"/>
+<rect x="0" y="1335" width="1200" height="165" fill="#1B1917" opacity="0.88"/>
+<text x="24" y="1381.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F4EFE7">home-differentiator · 4:5 · 1200×1500</text>
+<text x="24" y="1428" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — A quote document on a site table with a tape measure and a pencil. Close, shallow depth of f…</text>
+<rect x="0.5" y="0.5" width="1199" height="1499" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
 </svg>

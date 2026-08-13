@@ -145,7 +145,7 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
           is not here.
         </p>
         <dl class="masthead__meta">
-          <div><dt>Display</dt><dd>Young Serif</dd></div>
+          <div><dt>Display</dt><dd>Big Shoulders</dd></div>
           <div><dt>Text</dt><dd>Schibsted Grotesk</dd></div>
           <div><dt>Scale</dt><dd>1.25 from 18px</dd></div>
           <div><dt>Grid</dt><dd>12 columns, text on 7</dd></div>
@@ -161,18 +161,24 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
       </div>
 
       <div class="col-half specimen">
-        <p class="specimen__name">Young Serif</p>
-        <p class="specimen__meta">Display · SIL OFL 1.1 · one weight · 15.0&nbsp;kB subset</p>
+        <p class="specimen__name">Big Shoulders Display</p>
+        <p class="specimen__meta">Display · SIL OFL 1.1 · variable 100–900 · 32.0&nbsp;kB subset</p>
         <p class="specimen__alphabet" lang="en">ABCDEFGHIJKLM<br />NOPQRSTUVWXYZ</p>
         <p class="specimen__alphabet specimen__alphabet--lower">abcdefghijklm<br />nopqrstuvwxyz</p>
         <p class="specimen__alphabet specimen__alphabet--figures">0123456789 $ &amp; ² °</p>
         <p class="specimen__note measure">
-          Heavy old-style forms with flared, slightly agricultural terminals. It reads as
-          built rather than branded, which is the register a builder wants and an
-          architecture practice does not. It ships in a single weight, and we are treating
-          that as a discipline: hierarchy is carried by size and space, never by reaching
-          for a bolder cut.
+          A condensed grotesque drawn from signage. Both faces on this site are
+          grotesques, so the hierarchy between them is carried by width rather than by
+          style — this one is heavily condensed and the text face is normal width, and
+          that single difference is what makes a heading unmistakably a heading. It also
+          means the display face must never be set at body size, where the condensation
+          reads as cramped rather than as emphasis.
         </p>
+        <div class="weights">
+          <span style="font-family:var(--font-display); font-weight:500">500 Light</span>
+          <span style="font-family:var(--font-display); font-weight:600">600 Display</span>
+          <span style="font-family:var(--font-display); font-weight:700">700 Strong</span>
+        </div>
       </div>
 
       <div class="col-half-end specimen">
@@ -204,7 +210,7 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
         <p class="measure-wide">
           <strong>Both are self-hosted.</strong> No request leaves the reader's browser for a
           font, so nobody outside this business learns who is reading about renovation costs
-          at 11pm. Together they are 56&nbsp;kB, subset to the Latin characters and the
+          at 11pm. Together they are 73&nbsp;kB, subset to the Latin characters and the
           punctuation and units we actually set — including <span class="mono">m²</span>,
           <span class="mono">°</span> and <span class="mono">×</span> for dimensions.
         </p>

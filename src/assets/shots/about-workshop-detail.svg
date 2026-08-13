@@ -1,8 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1400" viewBox="0 0 1400 1400" role="img" aria-label="Placeholder awaiting photography: Something specific and true about how the business works — the job board, the selections samples wall, the set-out table.">
-<rect width="1400" height="1400" fill="#A97F4E"/>
-
-<rect x="0.5" y="0.5" width="1399" height="1399" fill="none" stroke="#F4EFE7" stroke-opacity="0.25"/>
-<text x="84" y="123" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="39" fill="#F4EFE7" opacity="0.75">about-workshop-detail</text>
-<text x="84" y="563" font-family="Georgia, 'Times New Roman', serif" font-size="73" fill="#F4EFE7">Something specific and true about</text><text x="84" y="654" font-family="Georgia, 'Times New Roman', serif" font-size="73" fill="#F4EFE7">how the business works — the job</text><text x="84" y="745" font-family="Georgia, 'Times New Roman', serif" font-size="73" fill="#F4EFE7">board, the selections samples</text><text x="84" y="836" font-family="Georgia, 'Times New Roman', serif" font-size="73" fill="#F4EFE7">wall, the set-out table.</text>
-<text x="84" y="1316" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="39" fill="#F4EFE7" opacity="0.75">1:1 · 1400×1400 · awaiting photography</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1400" viewBox="0 0 1400 1400" role="img" aria-label="Temporary placeholder awaiting photography: Something specific and true about how the business works — the job board, the selections samples wall, the set-out table.">
+<rect x="0" y="0" width="1400" height="1400" fill="#6c5236"/>
+<rect x="0" y="0" width="1400" height="420" fill="#979371"/>
+<rect x="0" y="392" width="1400" height="84" fill="#1B1917" opacity="0.12"/>
+<rect x="341" y="907" width="362" height="42" fill="#1B1917" opacity="0.08"/>
+<rect x="908" y="1179" width="157" height="42" fill="#1B1917" opacity="0.08"/>
+<rect x="83" y="1150" width="205" height="42" fill="#1B1917" opacity="0.08"/>
+<rect x="363" y="1088" width="219" height="42" fill="#1B1917" opacity="0.08"/>
+<rect x="308" y="840" width="152" height="42" fill="#1B1917" opacity="0.08"/>
+<line x1="0" y1="698" x2="1400" y2="1028" stroke="#D2662E" stroke-width="25" stroke-dasharray="70 42"/>
+<rect x="0" y="1246" width="1400" height="154" fill="#1B1917" opacity="0.88"/>
+<text x="28" y="1300" font-family="ui-monospace, Menlo, monospace" font-size="36" fill="#F4EFE7">about-workshop-detail · 1:1 · 1400×1400</text>
+<text x="28" y="1354" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — Something specific and true about how the business works — the job board, the selections sam…</text>
+<rect x="0.5" y="0.5" width="1399" height="1399" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
 </svg>

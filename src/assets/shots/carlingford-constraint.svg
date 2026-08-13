@@ -1,8 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" role="img" aria-label="Placeholder awaiting photography: The sewer main location marked out on the ground in spray paint before excavation. This is the shot that explains the whole job.">
-<rect width="1200" height="1500" fill="#6E5233"/>
-
-<rect x="0.5" y="0.5" width="1199" height="1499" fill="none" stroke="#F4EFE7" stroke-opacity="0.25"/>
-<text x="72" y="106" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="34" fill="#F4EFE7" opacity="0.75">carlingford-constraint</text>
-<text x="72" y="634" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#F4EFE7">The sewer main location marked out</text><text x="72" y="712" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#F4EFE7">on the ground in spray paint</text><text x="72" y="790" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#F4EFE7">before excavation. This is the</text><text x="72" y="868" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#F4EFE7">shot that explains the whole job.</text>
-<text x="72" y="1428" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="34" fill="#F4EFE7" opacity="0.75">4:5 · 1200×1500 · awaiting photography</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1500" viewBox="0 0 1200 1500" role="img" aria-label="Temporary placeholder awaiting photography: The sewer main location marked out on the ground in spray paint before excavation. This is the shot that explains the whole job.">
+<rect x="0" y="0" width="1200" height="1500" fill="#6c5236"/>
+<rect x="0" y="0" width="1200" height="450" fill="#979371"/>
+<rect x="0" y="420" width="1200" height="90" fill="#1B1917" opacity="0.12"/>
+<rect x="550" y="1105" width="209" height="45" fill="#1B1917" opacity="0.08"/>
+<rect x="13" y="1078" width="225" height="45" fill="#1B1917" opacity="0.08"/>
+<rect x="514" y="1275" width="307" height="45" fill="#1B1917" opacity="0.08"/>
+<rect x="402" y="666" width="266" height="45" fill="#1B1917" opacity="0.08"/>
+<rect x="297" y="948" width="420" height="45" fill="#1B1917" opacity="0.08"/>
+<line x1="0" y1="689" x2="1200" y2="1202" stroke="#D2662E" stroke-width="27" stroke-dasharray="60 36"/>
+<rect x="0" y="1335" width="1200" height="165" fill="#1B1917" opacity="0.88"/>
+<text x="24" y="1381.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F4EFE7">carlingford-constraint · 4:5 · 1200×1500</text>
+<text x="24" y="1428" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — The sewer main location marked out on the ground in spray paint before excavation. This is t…</text>
+<rect x="0.5" y="0.5" width="1199" height="1499" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
 </svg>

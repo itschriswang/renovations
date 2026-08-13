@@ -1,8 +1,23 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="2560" height="1097" viewBox="0 0 2560 1097" role="img" aria-label="Placeholder awaiting photography: A single rear extension photographed from one fixed tripod position as the light falls, from late afternoon to dusk with the interior lights coming on. 16 frames, locked off, no camera movement between frames. Interval shoot over roughly 40 minutes.">
-<rect width="2560" height="1097" fill="#81644a"/>
-<rect x="1331" y="461" width="768" height="373" fill="#F0C98A" opacity="0.34"/>
-<rect x="0.5" y="0.5" width="2559" height="1096" fill="none" stroke="#F4EFE7" stroke-opacity="0.25"/>
-<text x="66" y="97" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="31" fill="#F4EFE7" opacity="0.75">home-hero-sequence-07 · frame 7 of 16</text>
-<text x="66" y="442" font-family="Georgia, 'Times New Roman', serif" font-size="57" fill="#F4EFE7">A single rear extension photographed from one fixed tripod position as the light</text><text x="66" y="513" font-family="Georgia, 'Times New Roman', serif" font-size="57" fill="#F4EFE7">falls, from late afternoon to dusk with the interior lights coming on. 16 frames,</text><text x="66" y="584" font-family="Georgia, 'Times New Roman', serif" font-size="57" fill="#F4EFE7">locked off, no camera movement between frames. Interval shoot over roughly 40</text><text x="66" y="655" font-family="Georgia, 'Times New Roman', serif" font-size="57" fill="#F4EFE7">minutes.</text>
-<text x="66" y="1031" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="31" fill="#F4EFE7" opacity="0.75">21:9 · 2560×1097 · awaiting photography</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="2560" height="1097" viewBox="0 0 2560 1097" role="img" aria-label="Temporary placeholder awaiting photography: A single rear extension photographed from one fixed tripod position as the light falls, from late afternoon to dusk with the interior lights coming on. 16 frames, locked off, no camera movement between frames. Interval shoot over roughly 40 minutes.">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#879096"/>
+    <stop offset="1" stop-color="#bbac9a"/>
+  </linearGradient></defs>
+<rect x="0" y="0" width="2560" height="699" fill="url(#sky)"/>
+<rect x="0" y="699" width="2560" height="398" fill="#5b5f4a"/>
+<rect x="0" y="699" width="2560" height="56" fill="#979371" opacity="0.5"/>
+<polygon points="225,308 1079,212 1934,308" fill="#3d3c3b"/>
+<rect x="276" y="308" width="1607" height="391" fill="#b8b4ad"/>
+<rect x="1883" y="341" width="266" height="358" fill="#8c867b"/>
+<rect x="437" y="402" width="255" height="164" fill="#f0c98a"/>
+<rect x="437" y="566" width="408" height="33" fill="#F0C98A" opacity="0.18"/>
+<rect x="865" y="402" width="255" height="164" fill="#f0c98a"/>
+<rect x="865" y="566" width="408" height="33" fill="#F0C98A" opacity="0.18"/>
+<rect x="1294" y="402" width="255" height="164" fill="#f0c98a"/>
+<rect x="1294" y="566" width="408" height="33" fill="#F0C98A" opacity="0.18"/>
+<rect x="0" y="987" width="2560" height="110" fill="#1B1917" opacity="0.1"/>
+<rect x="0" y="976" width="2560" height="121" fill="#1B1917" opacity="0.88"/>
+<text x="51" y="1019.5" font-family="ui-monospace, Menlo, monospace" font-size="29" fill="#F4EFE7">home-hero-sequence-07 · frame 7 of 16 · 21:9 · 2560×1097</text>
+<text x="51" y="1063" font-family="ui-monospace, Menlo, monospace" font-size="25" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — A single rear extension photographed from one fixed tripod position as the light falls, from…</text>
+<rect x="0.5" y="0.5" width="2559" height="1096" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
 </svg>

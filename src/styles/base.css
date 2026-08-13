@@ -51,7 +51,10 @@
   h5,
   h6 {
     font-family: var(--font-display);
-    font-weight: var(--font-weight-regular);
+    /* The display face is condensed, so it carries less mass than the text
+       face at the same size. 600 restores that mass without inventing a new
+       step on the scale. */
+    font-weight: var(--font-weight-display);
     text-wrap: balance;
   }
 

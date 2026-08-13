@@ -8,8 +8,8 @@ Sources are fetched once into scripts/.font-cache/ and are not committed.
 The woff2 output IS committed, so a fresh clone does not need network access
 or Python to build the site.
 
-  Display : Young Serif        (SIL OFL 1.1, Uplaod)        - single weight
-  Text    : Schibsted Grotesk  (SIL OFL 1.1, Schibsted)     - variable 400-900
+  Display : Big Shoulders Display (SIL OFL 1.1, Patric King) - variable 100-900
+  Text    : Schibsted Grotesk     (SIL OFL 1.1, Schibsted)   - variable 400-900
 """
 
 import pathlib
@@ -26,10 +26,11 @@ GF = "https://raw.githubusercontent.com/google/fonts/main/ofl"
 
 FONTS = [
     {
-        "name": "young-serif-regular",
-        "url": f"{GF}/youngserif/YoungSerif-Regular.ttf",
-        "cache": "YoungSerif-Regular.ttf",
-        "extra": [],
+        "name": "big-shoulders-display-variable",
+        "url": f"{GF}/bigshouldersdisplay/BigShouldersDisplay%5Bwght%5D.ttf",
+        "cache": "BigShouldersDisplay-Variable.ttf",
+        # Keep the weight axis so one file covers 100-900.
+        "extra": ["--drop-tables+=DSIG"],
     },
     {
         "name": "schibsted-grotesk-variable",

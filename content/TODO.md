@@ -101,8 +101,14 @@ including for photographs that show the interior of their home.
 
 **No stock photography is to be used on this site under any circumstances.**
 
-Every image is currently a generated flat colour placeholder labelled with the
-shot it is waiting for. There are **65 placeholders across 50 briefed shots**.
+Every image is currently a generated temporary image — a scene drawn from the
+site's own material palette at the exact ratio the layout needs, captioned with
+the shot it is waiting for. There are **65 temporary images across 50 briefed
+shots**. Browse them all at `/shots`.
+
+They are drawn rather than sourced deliberately: a real photograph of another
+person's house on a builder's website reads as a claim about work we did, which
+is a misrepresentation risk even while it is only standing in.
 
 - The full brief is `content/shotlist.md` — send that file to the photographer as is.
 - 26 shots are marked Priority 1 and are needed for launch.
@@ -120,8 +126,8 @@ To swap a placeholder for a real photograph: drop the file into
 `src/assets/shots/` using the same shot ID and a real extension, then delete the
 `.svg`. Nothing in any content file changes.
 
-**Note on performance testing:** the placeholders are flat-colour SVGs of a few
-kilobytes each. Real photography is far heavier, so the LCP and total-weight
+**Note on performance testing:** the temporary images are drawn SVGs averaging
+under 2 kB each. Real photography is far heavier, so the LCP and total-weight
 numbers will move once real images land. Re-run the performance pass after the
 first real shoot rather than trusting the placeholder numbers.
 

@@ -1,8 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Placeholder awaiting photography: As above, Kellyville. Larger lots, newer project homes.">
-<rect width="1920" height="1080" fill="#D9CFBE"/>
-
-<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#1B1917" stroke-opacity="0.25"/>
-<text x="65" y="95" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="30" fill="#1B1917" opacity="0.75">suburb-kellyville</text>
-<text x="65" y="540" font-family="Georgia, 'Times New Roman', serif" font-size="56" fill="#1B1917">As above, Kellyville. Larger lots, newer project homes.</text>
-<text x="65" y="1015" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="30" fill="#1B1917" opacity="0.75">16:9 · 1920×1080 · awaiting photography</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Temporary placeholder awaiting photography: As above, Kellyville. Larger lots, newer project homes.">
+<defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bac6cb"/>
+    <stop offset="1" stop-color="#dcd8cd"/>
+  </linearGradient></defs>
+<rect x="0" y="0" width="1920" height="670" fill="url(#sky2)"/>
+<rect x="0" y="670" width="1920" height="410" fill="#b4aea5"/>
+<rect x="0" y="854" width="1920" height="226" fill="#343639"/>
+<polygon points="-96,370 58,305 212,370" fill="#4f4b47"/>
+<rect x="-96" y="370" width="308" height="299" fill="#e3dccf"/>
+<rect x="-34" y="460" width="68" height="90" fill="#303a3d"/>
+<polygon points="250,439 481,374 712,439" fill="#4f4b47"/>
+<rect x="250" y="439" width="462" height="231" fill="#9e674d"/>
+<rect x="343" y="508" width="102" height="69" fill="#303a3d"/>
+<polygon points="750,458 944,393 1138,458" fill="#4f4b47"/>
+<rect x="750" y="458" width="388" height="212" fill="#e3dccf"/>
+<rect x="828" y="521" width="85" height="64" fill="#303a3d"/>
+<polygon points="1177,435 1340,370 1504,435" fill="#4f4b47"/>
+<rect x="1177" y="435" width="327" height="235" fill="#9e674d"/>
+<rect x="1242" y="505" width="72" height="71" fill="#303a3d"/>
+<polygon points="1542,499 1763,435 1985,499" fill="#4f4b47"/>
+<rect x="1542" y="499" width="443" height="170" fill="#9e674d"/>
+<rect x="1631" y="550" width="97" height="51" fill="#303a3d"/>
+<rect x="0" y="994" width="1920" height="86" fill="#1B1917" opacity="0.1"/>
+<rect x="0" y="961" width="1920" height="119" fill="#1B1917" opacity="0.88"/>
+<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#F4EFE7">suburb-kellyville · 16:9 · 1920×1080</text>
+<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — As above, Kellyville. Larger lots, newer project homes.</text>
+<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
 </svg>

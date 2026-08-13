@@ -198,9 +198,19 @@ list them.
 
 ## 5. Swap in a real photograph
 
-Every image on the site is currently a flat colour placeholder labelled with
-the shot it is waiting for. **No stock photography is used anywhere, and none
-should be.**
+Every image on the site is currently a **temporary drawn image** — a scene
+composed from the same palette as the rest of the site, at the exact shape the
+layout needs, with a black bar across the bottom naming the shot it is waiting
+for. Before-and-after pairs are drawn as the same view, so the comparison
+slider can be built and judged before a camera comes out.
+
+They are drawn rather than sourced on purpose. **No stock photography is used
+anywhere, and none should be** — a real photograph of somebody else's house on
+a builder's website reads as a claim about work you did, which is a problem
+even as a placeholder.
+
+To see them all in one place, run the site and open `/shots`. That page is
+generated from the same shot list the photographer gets.
 
 To replace one:
 
@@ -265,5 +275,5 @@ npm run fonts     # re-download and re-subset the fonts (needs Python)
 | **Content in `/content`, not `/src`** | So the files you edit are separate from the code you do not. |
 | **MDX** | Plain text you can edit in any editor, with no CMS to log into, pay for or migrate off. |
 | **Tailwind 4, custom tokens only** | Every colour, size and space on the site is defined in one file. None of Tailwind's default palette or type scale is used. |
-| **Young Serif + Schibsted Grotesk** | Both open source, both served from our own domain — no Google Fonts request, no third party watching who reads the site. Together they are 56 kB. |
+| **Big Shoulders Display + Schibsted Grotesk** | Both open source, both served from our own domain — no Google Fonts request, no third party watching who reads the site. Together they are 73 kB. Both are sans; the headings are condensed and the body is normal width, and that width difference is what makes a heading read as a heading. |
 | **React only where needed** | The cost estimator and the before/after slider. Everything else is plain HTML that works with JavaScript turned off. |

@@ -24,7 +24,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? business.site.url);
     {!indexable && <meta name="robots" content="noindex, nofollow" />}
 
     {/*
-      Both faces are preloaded. They are small enough (15 kB and 41 kB) that
+      Both faces are preloaded. They are small enough (32 kB and 41 kB) that
       they arrive before first paint on anything but a poor connection, and
       the metric-matched fallbacks in fonts.css hold the layout steady when
       they do not.
@@ -38,7 +38,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? business.site.url);
     />
     <link
       rel="preload"
-      href="/fonts/young-serif-regular.woff2"
+      href="/fonts/big-shoulders-display-variable.woff2"
       as="font"
       type="font/woff2"
       crossorigin

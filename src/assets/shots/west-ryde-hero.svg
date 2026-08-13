@@ -1,8 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-label="Placeholder awaiting photography: The finished kitchen and living area from the far corner, showing the full run and the beam. Late morning.">
-<rect width="1800" height="1200" fill="#8A4B33"/>
-
-<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#F4EFE7" stroke-opacity="0.25"/>
-<text x="72" y="106" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="34" fill="#F4EFE7" opacity="0.75">west-ryde-hero</text>
-<text x="72" y="522" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#F4EFE7">The finished kitchen and living area from the far</text><text x="72" y="600" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#F4EFE7">corner, showing the full run and the beam. Late</text><text x="72" y="678" font-family="Georgia, 'Times New Roman', serif" font-size="62" fill="#F4EFE7">morning.</text>
-<text x="72" y="1128" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="34" fill="#F4EFE7" opacity="0.75">3:2 · 1800×1200 · awaiting photography</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-label="Temporary placeholder awaiting photography: The finished kitchen and living area from the far corner, showing the full run and the beam. Late morning.">
+<rect x="0" y="0" width="1800" height="878" fill="#e3dccf"/>
+<polygon points="0,0 1800,0 1373,256 427,256" fill="#e3dcd1"/>
+<polygon points="0,0 427,256 427,781 0,1200" fill="#c4bcad"/>
+<polygon points="1800,0 1373,256 1373,781 1800,1200" fill="#f0eade"/>
+<rect x="427" y="256" width="947" height="525" fill="#e3dccf"/>
+<rect x="528" y="340" width="360" height="273" fill="#F2ECDF"/>
+<rect x="528" y="340" width="360" height="93" fill="#FFFFFF" opacity="0.4"/>
+<rect x="528" y="340" width="360" height="273" fill="none" stroke="#33363a" stroke-width="7"/>
+<polygon points="0,1200 427,781 1373,781 1800,1200" fill="#a68052"/>
+<polygon points="528,781 887,781 1103,1200 384,1200" fill="#FFFFFF" opacity="0.13"/>
+<rect x="256" y="595" width="521" height="259" fill="#33363a"/>
+<rect x="256" y="595" width="521" height="19" fill="#b4aea5"/>
+<rect x="0" y="0" width="1800" height="60" fill="#1B1917" opacity="0.06"/>
+<rect x="0" y="1068" width="1800" height="132" fill="#1B1917" opacity="0.88"/>
+<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F4EFE7">west-ryde-hero · 3:2 · 1800×1200</text>
+<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — The finished kitchen and living area from the far corner, showing the full run and the beam.…</text>
+<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
 </svg>

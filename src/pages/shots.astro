@@ -1,0 +1,223 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import { shotlist, shotCount, launchCritical } from '../lib/shotlist';
+import { shot, isPlaceholder } from '../lib/shots';
+
+/**
+ * Internal contact sheet. Noindex, excluded from the sitemap.
+ *
+ * Every image on the site in one place, so the temporary imagery can be
+ * reviewed and the photographer can see what each frame has to do. Driven by
+ * the same table in content/shotlist.md that generates the images, so this
+ * page cannot drift out of step with what is actually on the site.
+ */
+
+const pendingCount = shotlist
+  .flatMap((s) => s.frameIds)
+  .filter((id) => isPlaceholder(id)).length;
+
+const groups = [
+  { title: 'Homepage', match: (id: string) => id.startsWith('home-') },
+  { title: 'Carlingford Brick Veneer', match: (id: string) => id.startsWith('carlingford-') },
+  { title: 'West Ryde Kitchen and Living', match: (id: string) => id.startsWith('west-ryde-') },
+  { title: 'Baulkham Hills Second Storey', match: (id: string) => id.startsWith('baulkham-hills-') },
+  { title: 'Suburb pages', match: (id: string) => id.startsWith('suburb-') },
+  { title: 'About and workshop', match: (id: string) => id.startsWith('team-') || id.startsWith('about-') },
+  {
+    title: 'Costs, approvals and conversion',
+    match: (id: string) =>
+      id.startsWith('costs-') ||
+      id.startsWith('approvals-') ||
+      id.startsWith('estimator-') ||
+      id.startsWith('checklist-') ||
+      id.startsWith('contact-'),
+  },
+];
+
+const grouped = groups.map((g) => ({ ...g, shots: shotlist.filter((s) => g.match(s.id)) }));
+const ungrouped = shotlist.filter((s) => !groups.some((g) => g.match(s.id)));
+if (ungrouped.length > 0) grouped.push({ title: 'Other', match: () => true, shots: ungrouped });
+---
+
+<Base
+  title="Contact sheet — Stonelane Renovations"
+  description="Internal reference: every image on the site and the shot it is waiting for."
+  indexable={false}
+>
+  <main id="main">
+    <header class="masthead grid-editorial">
+      <div class="col-wide">
+        <p class="label">Internal reference · not indexed</p>
+        <h1 class="masthead__title">Contact&nbsp;sheet</h1>
+        <p class="masthead__lede measure">
+          Every image on the site. All {pendingCount} of them are temporary — drawn from the
+          material palette at the exact ratio the layout needs, not photographs and not stock.
+          Send <span class="mono">content/shotlist.md</span> to the photographer as it is.
+        </p>
+        <dl class="masthead__meta">
+          <div><dt>Briefed shots</dt><dd>{shotlist.length}</dd></div>
+          <div><dt>Frames</dt><dd>{shotCount}</dd></div>
+          <div><dt>Needed for launch</dt><dd>{launchCritical.length}</dd></div>
+          <div><dt>Real photographs</dt><dd>{shotCount - pendingCount}</dd></div>
+        </dl>
+      </div>
+    </header>
+
+    {
+      grouped.map((group) => (
+        <section class="grid-editorial section">
+          <div class="col-wide">
+            <h2 class="section__title">{group.title}</h2>
+          </div>
+          <ul class="col-wide sheet" role="list">
+            {group.shots.map((s) => (
+              <li class="card">
+                <Image
+                  src={shot(s.frameIds[0]!)}
+                  alt={s.alt}
+                  widths={[320, 640]}
+                  sizes="(min-width: 64rem) 22rem, (min-width: 34rem) 45vw, 92vw"
+                  loading="lazy"
+                  class="card__image"
+                />
+                <div class="card__meta">
+                  <p class="mono card__id">{s.id}</p>
+                  <p class="card__ratio">
+                    {s.ratio}
+                    {s.frames > 1 && ` · ${s.frames} frames`}
+                    {s.priority === 1 && <span class="card__flag">launch</span>}
+                  </p>
+                  <p class="card__brief">{s.brief}</p>
+                  <p class="card__where">{s.usedOn}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </section>
+      ))
+    }
+
+    <footer class="grid-editorial footer">
+      <p class="col-wide measure">
+        To swap one in: drop the real file into <span class="mono">src/assets/shots/</span> using
+        the same id and a real extension, then delete the <span class="mono">.svg</span>. Nothing
+        in any content file changes.
+      </p>
+    </footer>
+  </main>
+</Base>
+
+<style>
+  .masthead {
+    padding-block: var(--space-xl) var(--space-l);
+    border-block-end: var(--border-rule) solid var(--color-ink);
+  }
+
+  .masthead__title {
+    font-size: var(--text-display-l);
+    line-height: 0.98;
+    letter-spacing: -0.006em;
+    margin-block: var(--space-s) var(--space-m);
+  }
+
+  .masthead__lede {
+    font-size: var(--text-lead);
+    line-height: 1.5;
+    color: var(--color-ink-muted);
+  }
+
+  .masthead__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-m);
+    margin-block-start: var(--space-l);
+    padding-block-start: var(--space-s);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .masthead__meta dt {
+    font-size: var(--text-caption);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--color-ink-faint);
+    margin-block-end: var(--space-3xs);
+  }
+
+  .masthead__meta dd {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+  }
+
+  .section {
+    padding-block: var(--space-section-tight);
+    border-block-end: var(--border-hairline) solid var(--color-line);
+    row-gap: var(--space-m);
+  }
+
+  .section__title {
+    font-size: var(--text-title-m);
+    line-height: 1.14;
+    margin-block-end: var(--space-s);
+  }
+
+  .sheet {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(22rem, 100%), 1fr));
+    gap: var(--space-m) var(--space-s);
+    list-style: none;
+    padding: 0;
+  }
+
+  .card__image {
+    inline-size: 100%;
+    block-size: auto;
+    border: var(--border-hairline) solid var(--color-line);
+  }
+
+  .card__meta {
+    margin-block-start: var(--space-2xs);
+  }
+
+  .card__id {
+    font-size: 0.8rem;
+    color: var(--color-ink);
+  }
+
+  .card__ratio {
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+    margin-block: var(--space-3xs);
+  }
+
+  .card__flag {
+    display: inline-block;
+    margin-inline-start: var(--space-3xs);
+    padding: 0 var(--space-3xs);
+    background: color-mix(in srgb, var(--color-brick) 15%, transparent);
+    color: var(--color-brick-deep);
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .card__brief {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .card__where {
+    font-size: var(--text-caption);
+    color: var(--color-gum-deep);
+    margin-block-start: var(--space-3xs);
+  }
+
+  .footer {
+    padding-block: var(--space-l) var(--space-xl);
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+  }
+</style>

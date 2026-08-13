@@ -30,8 +30,9 @@ export default defineConfig({
     mdx(),
     react(),
     sitemap({
-      // The style tile is an internal design reference, not a public page.
-      filter: (page) => !page.includes('/style-tile'),
+      // The style tile and the contact sheet are internal design references,
+      // not public pages.
+      filter: (page) => !/\/(style-tile|shots)$/.test(page.replace(/\/$/, '')),
     }),
   ],
   vite: {

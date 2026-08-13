@@ -1,8 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Placeholder awaiting photography: As above, Parramatta.">
-<rect width="1920" height="1080" fill="#D9CFBE"/>
-
-<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#1B1917" stroke-opacity="0.25"/>
-<text x="65" y="95" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="30" fill="#1B1917" opacity="0.75">suburb-parramatta</text>
-<text x="65" y="540" font-family="Georgia, 'Times New Roman', serif" font-size="56" fill="#1B1917">As above, Parramatta.</text>
-<text x="65" y="1015" font-family="ui-monospace, 'SF Mono', Menlo, monospace" font-size="30" fill="#1B1917" opacity="0.75">16:9 · 1920×1080 · awaiting photography</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Temporary placeholder awaiting photography: As above, Parramatta.">
+<defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bac6cb"/>
+    <stop offset="1" stop-color="#dcd8cd"/>
+  </linearGradient></defs>
+<rect x="0" y="0" width="1920" height="670" fill="url(#sky2)"/>
+<rect x="0" y="670" width="1920" height="410" fill="#b4aea5"/>
+<rect x="0" y="854" width="1920" height="226" fill="#343639"/>
+<polygon points="-96,409 108,344 312,409" fill="#4f4b47"/>
+<rect x="-96" y="409" width="408" height="261" fill="#9e674d"/>
+<rect x="-14" y="487" width="90" height="78" fill="#303a3d"/>
+<polygon points="351,441 569,376 788,441" fill="#4f4b47"/>
+<rect x="351" y="441" width="437" height="228" fill="#9e674d"/>
+<rect x="438" y="510" width="96" height="69" fill="#303a3d"/>
+<polygon points="826,404 1060,339 1294,404" fill="#4f4b47"/>
+<rect x="826" y="404" width="468" height="265" fill="#9e674d"/>
+<rect x="920" y="484" width="103" height="80" fill="#303a3d"/>
+<polygon points="1333,457 1558,392 1782,457" fill="#4f4b47"/>
+<rect x="1333" y="457" width="450" height="212" fill="#9e674d"/>
+<rect x="1423" y="521" width="99" height="64" fill="#303a3d"/>
+<polygon points="1821,486 2026,422 2232,486" fill="#4f4b47"/>
+<rect x="1821" y="486" width="411" height="183" fill="#e3dccf"/>
+<rect x="1903" y="541" width="90" height="55" fill="#303a3d"/>
+<rect x="0" y="994" width="1920" height="86" fill="#1B1917" opacity="0.1"/>
+<rect x="0" y="961" width="1920" height="119" fill="#1B1917" opacity="0.88"/>
+<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#F4EFE7">suburb-parramatta · 16:9 · 1920×1080</text>
+<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — As above, Parramatta.</text>
+<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
 </svg>

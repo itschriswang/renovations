@@ -3,8 +3,8 @@
  * site. Both faces are subset to Latin plus the punctuation and units we
  * actually set, and both are committed to the repository.
  *
- *   Young Serif        15.0 kB   display, one weight
- *   Schibsted Grotesk  41.4 kB   text, variable 400-900
+ *   Big Shoulders Display  32.0 kB   display, variable 100-900
+ *   Schibsted Grotesk      41.4 kB   text, variable 400-900
  *
  * Regenerate with `npm run fonts`.
  *
@@ -14,23 +14,30 @@
  * otherwise shows up as cumulative layout shift on a slow connection.
  */
 
-/* Display — Young Serif, SIL OFL 1.1, Uplaod.
-   One weight only. Hierarchy is carried by size and space, not by weight. */
+/* Display — Big Shoulders Display, SIL OFL 1.1, Patric King.
+   A condensed grotesque drawn from signage. Its narrow set width is what
+   separates it from the text face at a glance, which is the whole job of a
+   display face when the text face is also a grotesque. */
 @font-face {
-  font-family: 'Young Serif';
-  src: url('/fonts/young-serif-regular.woff2') format('woff2');
-  font-weight: 400;
+  font-family: 'Big Shoulders Display';
+  src: url('/fonts/big-shoulders-display-variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 
-/* Measured from YoungSerif-Regular.ttf: ascent 1046, descent -366,
-   lineGap 0, unitsPerEm 1000. */
+/* Measured from BigShouldersDisplay[wght].ttf: ascent 1968, descent -426,
+   lineGap 0, unitsPerEm 2000.
+
+   No metric-matched local() fallback is declared for the display face. Every
+   font on the machine is far wider than this one, so a substitute would reflow
+   headlines badly no matter what overrides we set. Headings fall back to the
+   text face instead, which is already loading and is closer in colour. */
 @font-face {
-  font-family: 'Young Serif Fallback';
-  src: local('Georgia'), local('Times New Roman'), local('Times');
-  ascent-override: 104.6%;
-  descent-override: 36.6%;
+  font-family: 'Big Shoulders Fallback';
+  src: local('Arial Narrow'), local('Helvetica Neue Condensed'), local('Arial');
+  ascent-override: 98.4%;
+  descent-override: 21.3%;
   line-gap-override: 0%;
 }
 
