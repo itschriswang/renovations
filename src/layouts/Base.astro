@@ -1,0 +1,53 @@
+---
+import '../styles/app.css';
+import { business } from '../lib/business';
+
+interface Props {
+  title: string;
+  description: string;
+  /** Set false on internal pages like the style tile. */
+  indexable?: boolean;
+}
+
+const { title, description, indexable = true } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site ?? business.site.url);
+---
+
+<!doctype html>
+<html lang="en-AU">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical.href} />
+    {!indexable && <meta name="robots" content="noindex, nofollow" />}
+
+    {/*
+      Both faces are preloaded. They are small enough (32 kB and 41 kB) that
+      they arrive before first paint on anything but a poor connection, and
+      the metric-matched fallbacks in fonts.css hold the layout steady when
+      they do not.
+    */}
+    <link
+      rel="preload"
+      href="/fonts/schibsted-grotesk-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/big-shoulders-display-variable.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <meta name="theme-color" content="#f7f3ec" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <slot />
+  </body>
+</html>

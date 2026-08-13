@@ -1,0 +1,62 @@
+/*
+ * Self-hosted. No Google Fonts request, no third party learning who reads the
+ * site. Both faces are subset to Latin plus the punctuation and units we
+ * actually set, and both are committed to the repository.
+ *
+ *   Big Shoulders Display  32.0 kB   display, variable 100-900
+ *   Schibsted Grotesk      41.4 kB   text, variable 400-900
+ *
+ * Regenerate with `npm run fonts`.
+ *
+ * The *-fallback faces carry ascent/descent/line-gap overrides measured from
+ * the real font files, so the fallback occupies exactly the same vertical
+ * space while the web font loads. That removes the vertical reflow that
+ * otherwise shows up as cumulative layout shift on a slow connection.
+ */
+
+/* Display — Big Shoulders Display, SIL OFL 1.1, Patric King.
+   A condensed grotesque drawn from signage. Its narrow set width is what
+   separates it from the text face at a glance, which is the whole job of a
+   display face when the text face is also a grotesque. */
+@font-face {
+  font-family: 'Big Shoulders Display';
+  src: url('/fonts/big-shoulders-display-variable.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Measured from BigShouldersDisplay[wght].ttf: ascent 1968, descent -426,
+   lineGap 0, unitsPerEm 2000.
+
+   No metric-matched local() fallback is declared for the display face. Every
+   font on the machine is far wider than this one, so a substitute would reflow
+   headlines badly no matter what overrides we set. Headings fall back to the
+   text face instead, which is already loading and is closer in colour. */
+@font-face {
+  font-family: 'Big Shoulders Fallback';
+  src: local('Arial Narrow'), local('Helvetica Neue Condensed'), local('Arial');
+  ascent-override: 98.4%;
+  descent-override: 21.3%;
+  line-gap-override: 0%;
+}
+
+/* Text — Schibsted Grotesk, SIL OFL 1.1, Schibsted.
+   Drawn for a news publisher, so it holds up at 14px on a phone. */
+@font-face {
+  font-family: 'Schibsted Grotesk';
+  src: url('/fonts/schibsted-grotesk-variable.woff2') format('woff2-variations');
+  font-weight: 400 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Measured from SchibstedGrotesk[wght].ttf: ascent 2000, descent -528,
+   lineGap 0, unitsPerEm 2048. */
+@font-face {
+  font-family: 'Schibsted Grotesk Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+  ascent-override: 97.66%;
+  descent-override: 25.78%;
+  line-gap-override: 0%;
+}

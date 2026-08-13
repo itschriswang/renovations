@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Temporary placeholder awaiting photography: As above, Northmead.">
+<defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bac6cb"/>
+    <stop offset="1" stop-color="#dcd8cd"/>
+  </linearGradient></defs>
+<rect x="0" y="0" width="1920" height="670" fill="url(#sky2)"/>
+<rect x="0" y="670" width="1920" height="410" fill="#b4aea5"/>
+<rect x="0" y="854" width="1920" height="226" fill="#343639"/>
+<polygon points="-96,377 98,312 291,377" fill="#4f4b47"/>
+<rect x="-96" y="377" width="387" height="293" fill="#9e674d"/>
+<rect x="-19" y="464" width="85" height="88" fill="#303a3d"/>
+<polygon points="330,423 553,358 776,423" fill="#4f4b47"/>
+<rect x="330" y="423" width="446" height="247" fill="#e3dccf"/>
+<rect x="419" y="497" width="98" height="74" fill="#303a3d"/>
+<polygon points="814,417 1032,352 1249,417" fill="#4f4b47"/>
+<rect x="814" y="417" width="435" height="253" fill="#9e674d"/>
+<rect x="901" y="493" width="96" height="76" fill="#303a3d"/>
+<polygon points="1288,464 1480,399 1672,464" fill="#4f4b47"/>
+<rect x="1288" y="464" width="384" height="206" fill="#9e674d"/>
+<rect x="1365" y="526" width="85" height="62" fill="#303a3d"/>
+<polygon points="1710,480 1939,415 2167,480" fill="#4f4b47"/>
+<rect x="1710" y="480" width="457" height="190" fill="#e3dccf"/>
+<rect x="1802" y="537" width="100" height="57" fill="#303a3d"/>
+<rect x="0" y="994" width="1920" height="86" fill="#1B1917" opacity="0.1"/>
+<rect x="0" y="961" width="1920" height="119" fill="#1B1917" opacity="0.88"/>
+<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#F4EFE7">suburb-northmead · 16:9 · 1920×1080</text>
+<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — As above, Northmead.</text>
+<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
+</svg>

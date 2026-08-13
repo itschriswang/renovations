@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Temporary placeholder awaiting photography: A site meeting in progress on a half-built extension. Builder and owners, plans on a trestle, frame visible behind.">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bac6cb"/>
+    <stop offset="1" stop-color="#dcd8cd"/>
+  </linearGradient></defs>
+<rect x="0" y="0" width="1920" height="657" fill="url(#sky)"/>
+<rect x="0" y="657" width="1920" height="423" fill="#7c8062"/>
+<rect x="0" y="657" width="1920" height="59" fill="#979371" opacity="0.5"/>
+<polygon points="259,326 852,174 1444,326" fill="#4f4b47"/>
+<rect x="298" y="326" width="1108" height="331" fill="#9e674d"/>
+<rect x="1405" y="359" width="211" height="299" fill="#683928"/>
+<rect x="408" y="406" width="132" height="139" fill="#303a3d"/>
+<rect x="630" y="406" width="132" height="139" fill="#303a3d"/>
+<rect x="852" y="406" width="132" height="139" fill="#303a3d"/>
+<rect x="1073" y="406" width="132" height="139" fill="#303a3d"/>
+<rect x="0" y="972" width="1920" height="108" fill="#1B1917" opacity="0.1"/>
+<rect x="0" y="961" width="1920" height="119" fill="#1B1917" opacity="0.88"/>
+<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#F4EFE7">home-process · 16:9 · 1920×1080</text>
+<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — A site meeting in progress on a half-built extension. Builder and owners, plans on a trestle…</text>
+<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
+</svg>

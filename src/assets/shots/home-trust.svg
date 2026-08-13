@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-label="Temporary placeholder awaiting photography: The workshop at Northmead. Wide, tidy but working, tools racked. Morning light.">
+<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bac6cb"/>
+    <stop offset="1" stop-color="#dcd8cd"/>
+  </linearGradient></defs>
+<rect x="0" y="0" width="1800" height="797" fill="url(#sky)"/>
+<rect x="0" y="797" width="1800" height="403" fill="#7c8062"/>
+<rect x="0" y="797" width="1800" height="56" fill="#979371" opacity="0.5"/>
+<polygon points="135,370 730,253 1325,370" fill="#4f4b47"/>
+<rect x="171" y="370" width="1118" height="427" fill="#f0eade"/>
+<rect x="1289" y="406" width="249" height="391" fill="#c5bcab"/>
+<rect x="283" y="472" width="266" height="179" fill="#303a3d"/>
+<rect x="730" y="472" width="266" height="179" fill="#303a3d"/>
+<rect x="0" y="1080" width="1800" height="120" fill="#1B1917" opacity="0.1"/>
+<rect x="0" y="1068" width="1800" height="132" fill="#1B1917" opacity="0.88"/>
+<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F4EFE7">home-trust · 3:2 · 1800×1200</text>
+<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — The workshop at Northmead. Wide, tidy but working, tools racked. Morning light.</text>
+<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
+</svg>

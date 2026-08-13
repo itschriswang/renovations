@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Temporary placeholder awaiting photography: As above, Epping.">
+<defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bac6cb"/>
+    <stop offset="1" stop-color="#dcd8cd"/>
+  </linearGradient></defs>
+<rect x="0" y="0" width="1920" height="670" fill="url(#sky2)"/>
+<rect x="0" y="670" width="1920" height="410" fill="#b4aea5"/>
+<rect x="0" y="854" width="1920" height="226" fill="#343639"/>
+<polygon points="-96,434 108,369 312,434" fill="#4f4b47"/>
+<rect x="-96" y="434" width="408" height="236" fill="#9e674d"/>
+<rect x="-14" y="504" width="90" height="71" fill="#303a3d"/>
+<polygon points="350,392 556,327 761,392" fill="#4f4b47"/>
+<rect x="350" y="392" width="411" height="278" fill="#e3dccf"/>
+<rect x="432" y="475" width="90" height="83" fill="#303a3d"/>
+<polygon points="799,453 1026,388 1252,453" fill="#4f4b47"/>
+<rect x="799" y="453" width="453" height="217" fill="#e3dccf"/>
+<rect x="890" y="518" width="100" height="65" fill="#303a3d"/>
+<polygon points="1291,432 1454,367 1618,432" fill="#4f4b47"/>
+<rect x="1291" y="432" width="327" height="237" fill="#9e674d"/>
+<rect x="1356" y="503" width="72" height="71" fill="#303a3d"/>
+<polygon points="1656,451 1894,386 2132,451" fill="#4f4b47"/>
+<rect x="1656" y="451" width="475" height="218" fill="#9e674d"/>
+<rect x="1751" y="517" width="105" height="65" fill="#303a3d"/>
+<rect x="0" y="994" width="1920" height="86" fill="#1B1917" opacity="0.1"/>
+<rect x="0" y="961" width="1920" height="119" fill="#1B1917" opacity="0.88"/>
+<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#F4EFE7">suburb-epping · 16:9 · 1920×1080</text>
+<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — As above, Epping.</text>
+<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
+</svg>

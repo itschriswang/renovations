@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Temporary placeholder awaiting photography: As above, Eastwood.">
+<defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bac6cb"/>
+    <stop offset="1" stop-color="#dcd8cd"/>
+  </linearGradient></defs>
+<rect x="0" y="0" width="1920" height="670" fill="url(#sky2)"/>
+<rect x="0" y="670" width="1920" height="410" fill="#b4aea5"/>
+<rect x="0" y="854" width="1920" height="226" fill="#343639"/>
+<polygon points="-96,443 85,378 266,443" fill="#4f4b47"/>
+<rect x="-96" y="443" width="362" height="227" fill="#9e674d"/>
+<rect x="-24" y="511" width="80" height="68" fill="#303a3d"/>
+<polygon points="304,460 522,396 739,460" fill="#4f4b47"/>
+<rect x="304" y="460" width="435" height="209" fill="#9e674d"/>
+<rect x="391" y="523" width="96" height="63" fill="#303a3d"/>
+<polygon points="778,449 1013,384 1249,449" fill="#4f4b47"/>
+<rect x="778" y="449" width="471" height="221" fill="#e3dccf"/>
+<rect x="872" y="515" width="104" height="66" fill="#303a3d"/>
+<polygon points="1287,472 1480,407 1673,472" fill="#4f4b47"/>
+<rect x="1287" y="472" width="386" height="198" fill="#e3dccf"/>
+<rect x="1364" y="531" width="85" height="59" fill="#303a3d"/>
+<polygon points="1711,478 1956,414 2201,478" fill="#4f4b47"/>
+<rect x="1711" y="478" width="489" height="191" fill="#9e674d"/>
+<rect x="1809" y="536" width="108" height="57" fill="#303a3d"/>
+<rect x="0" y="994" width="1920" height="86" fill="#1B1917" opacity="0.1"/>
+<rect x="0" y="961" width="1920" height="119" fill="#1B1917" opacity="0.88"/>
+<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#F4EFE7">suburb-eastwood · 16:9 · 1920×1080</text>
+<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — As above, Eastwood.</text>
+<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
+</svg>

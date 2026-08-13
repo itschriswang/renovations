@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Temporary placeholder awaiting photography: As above, Winston Hills.">
+<defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bac6cb"/>
+    <stop offset="1" stop-color="#dcd8cd"/>
+  </linearGradient></defs>
+<rect x="0" y="0" width="1920" height="670" fill="url(#sky2)"/>
+<rect x="0" y="670" width="1920" height="410" fill="#b4aea5"/>
+<rect x="0" y="854" width="1920" height="226" fill="#343639"/>
+<polygon points="-96,386 121,322 339,386" fill="#4f4b47"/>
+<rect x="-96" y="386" width="435" height="283" fill="#e3dccf"/>
+<rect x="-9" y="471" width="96" height="85" fill="#303a3d"/>
+<polygon points="377,421 582,356 786,421" fill="#4f4b47"/>
+<rect x="377" y="421" width="409" height="249" fill="#9e674d"/>
+<rect x="459" y="495" width="90" height="75" fill="#303a3d"/>
+<polygon points="824,425 1042,361 1260,425" fill="#4f4b47"/>
+<rect x="824" y="425" width="435" height="244" fill="#e3dccf"/>
+<rect x="911" y="499" width="96" height="73" fill="#303a3d"/>
+<polygon points="1298,455 1541,390 1783,455" fill="#4f4b47"/>
+<rect x="1298" y="455" width="485" height="215" fill="#e3dccf"/>
+<rect x="1395" y="519" width="107" height="64" fill="#303a3d"/>
+<polygon points="1822,496 2031,431 2240,496" fill="#4f4b47"/>
+<rect x="1822" y="496" width="418" height="173" fill="#9e674d"/>
+<rect x="1905" y="548" width="92" height="52" fill="#303a3d"/>
+<rect x="0" y="994" width="1920" height="86" fill="#1B1917" opacity="0.1"/>
+<rect x="0" y="961" width="1920" height="119" fill="#1B1917" opacity="0.88"/>
+<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#F4EFE7">suburb-winston-hills · 16:9 · 1920×1080</text>
+<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — As above, Winston Hills.</text>
+<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
+</svg>

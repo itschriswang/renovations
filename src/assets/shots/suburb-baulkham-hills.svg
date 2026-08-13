@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Temporary placeholder awaiting photography: As above, Baulkham Hills.">
+<defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#bac6cb"/>
+    <stop offset="1" stop-color="#dcd8cd"/>
+  </linearGradient></defs>
+<rect x="0" y="0" width="1920" height="670" fill="url(#sky2)"/>
+<rect x="0" y="670" width="1920" height="410" fill="#b4aea5"/>
+<rect x="0" y="854" width="1920" height="226" fill="#343639"/>
+<polygon points="-96,388 147,324 390,388" fill="#4f4b47"/>
+<rect x="-96" y="388" width="486" height="281" fill="#e3dccf"/>
+<rect x="1" y="473" width="107" height="84" fill="#303a3d"/>
+<polygon points="428,441 620,376 812,441" fill="#4f4b47"/>
+<rect x="428" y="441" width="384" height="229" fill="#9e674d"/>
+<rect x="505" y="510" width="84" height="69" fill="#303a3d"/>
+<polygon points="850,453 1023,388 1196,453" fill="#4f4b47"/>
+<rect x="850" y="453" width="345" height="217" fill="#9e674d"/>
+<rect x="919" y="518" width="76" height="65" fill="#303a3d"/>
+<polygon points="1234,441 1464,376 1695,441" fill="#4f4b47"/>
+<rect x="1234" y="441" width="461" height="229" fill="#e3dccf"/>
+<rect x="1326" y="510" width="101" height="69" fill="#303a3d"/>
+<polygon points="1733,448 1954,383 2175,448" fill="#4f4b47"/>
+<rect x="1733" y="448" width="442" height="222" fill="#e3dccf"/>
+<rect x="1821" y="514" width="97" height="67" fill="#303a3d"/>
+<rect x="0" y="994" width="1920" height="86" fill="#1B1917" opacity="0.1"/>
+<rect x="0" y="961" width="1920" height="119" fill="#1B1917" opacity="0.88"/>
+<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#F4EFE7">suburb-baulkham-hills · 16:9 · 1920×1080</text>
+<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — As above, Baulkham Hills.</text>
+<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
+</svg>
