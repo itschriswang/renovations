@@ -1,0 +1,692 @@
+# =============================================================================
+# STONELANE RENOVATIONS — single source of truth
+# =============================================================================
+# Change a value here and it updates everywhere on the site: header, footer,
+# trust strip, schema markup, enquiry confirmations, every suburb page.
+#
+# Every line marked "PLACEHOLDER" is unverified invented content. Each one is
+# also listed in content/TODO.md. Do not launch with any of them in place.
+#
+# All prices are GST inclusive. All measurements are metric.
+# =============================================================================
+
+identity:
+  # PLACEHOLDER: trading name not confirmed against ASIC business name register
+  name: Stonelane Renovations
+  # PLACEHOLDER: legal entity name and structure unconfirmed
+  legalName: Stonelane Renovations Pty Ltd
+  # PLACEHOLDER: ABN invented, must match ABN Lookup before launch
+  abn: "00 000 000 000"
+  # Shown under the logo and in the browser tab. Keep it under 60 characters.
+  descriptor: Design and construct renovations, Sydney
+  # The one sentence that answers "what do you do". Used in meta description
+  # and the footer. Plain language, no adjectives we cannot defend.
+  positioning: >-
+    Kitchens, bathrooms, extensions and whole home renovations for ordinary
+    Sydney houses. Brick veneer, weatherboard, fibro and project homes built
+    between the 1960s and the 1990s. Design and construct under one contract.
+  # The single reason to choose us over the builder down the road.
+  differentiator: >-
+    A fixed price contract before demolition starts. No provisional sums, no
+    allowances buried in the quote.
+  # Expanded version for the homepage. Two sentences maximum.
+  differentiatorLong: >-
+    We price the job properly before you commit, then hold that price. Most
+    renovation quotes carry provisional sums and allowances that move once the
+    walls are open. Ours do not, because we do the investigation work first.
+  # PLACEHOLDER: founding year invented
+  established: 1000
+  # PLACEHOLDER: invented
+  teamSize: 00
+
+# -----------------------------------------------------------------------------
+# CREDENTIALS — every item here appears in the trust strip and in schema markup.
+# Do not add anything we cannot evidence with a certificate or a policy number.
+# -----------------------------------------------------------------------------
+credentials:
+  licence:
+    # PLACEHOLDER: licence number is a dummy value
+    number: 000000C
+    authority: NSW Fair Trading
+    holder: Stonelane Renovations Pty Ltd
+    # Public verification link. Owners can and do check this.
+    verifyUrl: https://www.onegov.nsw.gov.au/publicregister/#/publicregister/search/Trades
+    label: NSW Fair Trading builder's licence
+  insurance:
+    - # PLACEHOLDER: HBCF cover is claimed but not evidenced
+      name: Home Building Compensation Fund
+      abbr: HBCF
+      detail: >-
+        Cover taken out per contract for work over the statutory threshold,
+        with the certificate issued to you before we take a deposit.
+      # PLACEHOLDER: verify the current threshold with icare before launch
+      note: Statutory threshold current at time of writing
+    - # PLACEHOLDER: sum insured invented, confirm against the policy schedule
+      name: Public liability
+      abbr: Public liability
+      detail: $20m public liability cover, certificate of currency on request.
+  memberships:
+    - # PLACEHOLDER: membership not verified, member number missing
+      name: Master Builders Association NSW
+      abbr: MBA NSW
+      memberNumber: "000000"
+    - # PLACEHOLDER: membership not verified, member number missing
+      name: Housing Industry Association
+      abbr: HIA
+      memberNumber: "000000"
+  warranty:
+    # PLACEHOLDER: confirm these match the contract and the Home Building Act
+    structuralYears: 6
+    defectsYears: 2
+    summary: >-
+      Six year structural warranty and a two year defects liability period,
+      both written into the contract rather than promised on a website.
+
+# -----------------------------------------------------------------------------
+# CONTACT
+# -----------------------------------------------------------------------------
+contact:
+  # PLACEHOLDER: dummy address
+  email: hello@example.com.au
+  # PLACEHOLDER: dummy number. Displayed and used in tel: links.
+  phone: "02 0000 0000"
+  phoneLink: "+61200000000"
+  # PLACEHOLDER: workshop address to be confirmed
+  address:
+    street: Address to be confirmed
+    suburb: Northmead
+    state: NSW
+    postcode: "2152"
+    country: AU
+  # PLACEHOLDER: coordinates are the Northmead suburb centroid, not the premises
+  geo:
+    latitude: -33.7900
+    longitude: 151.0000
+  # PLACEHOLDER: booking tool not yet chosen or configured
+  bookingUrl: "#"
+  # Where enquiries are delivered. Used by the serverless handler.
+  # PLACEHOLDER: routing address not confirmed
+  enquiryInbox: hello@example.com.au
+  hours:
+    - days: Monday to Friday
+      opens: "07:00"
+      closes: "16:00"
+    - days: Saturday
+      opens: "08:00"
+      closes: "12:00"
+  # What we promise on the confirmation page. This is a commitment, not copy.
+  # PLACEHOLDER: confirm the team can actually meet this window
+  responsePromise:
+    caller: Dave Stonelane
+    callerRole: Director
+    fromNumber: "02 0000 0000"
+    windowHours: 1
+    windowText: one business hour
+    afterHoursText: >-
+      Enquiries after 4pm are called back the next business morning.
+
+# -----------------------------------------------------------------------------
+# WHERE WE WORK
+# Each suburb here generates a landing page at /renovations/<slug>.
+# Add a suburb by adding an entry, then create content/suburbs/<slug>.mdx.
+# -----------------------------------------------------------------------------
+serviceArea:
+  # PLACEHOLDER: verify every LGA assignment against the council boundary
+  # viewer. Several of these suburbs are split across two LGAs and the
+  # assignment below is the best guess, not a checked fact.
+  suburbs:
+    - { name: Ryde, slug: ryde, postcode: "2112", council: city-of-ryde }
+    - { name: West Ryde, slug: west-ryde, postcode: "2114", council: city-of-ryde }
+    # PLACEHOLDER: Eastwood is split between Ryde and Parramatta LGAs
+    - { name: Eastwood, slug: eastwood, postcode: "2122", council: city-of-ryde }
+    - { name: Epping, slug: epping, postcode: "2121", council: city-of-parramatta }
+    - { name: Carlingford, slug: carlingford, postcode: "2118", council: city-of-parramatta }
+    - { name: Dundas, slug: dundas, postcode: "2117", council: city-of-parramatta }
+    - { name: Pennant Hills, slug: pennant-hills, postcode: "2120", council: hornsby }
+    - { name: Baulkham Hills, slug: baulkham-hills, postcode: "2153", council: the-hills-shire }
+    # PLACEHOLDER: Winston Hills is split between Parramatta and The Hills
+    - { name: Winston Hills, slug: winston-hills, postcode: "2153", council: the-hills-shire }
+    - { name: Northmead, slug: northmead, postcode: "2152", council: city-of-parramatta }
+    - { name: Castle Hill, slug: castle-hill, postcode: "2154", council: the-hills-shire }
+    # PLACEHOLDER: Kellyville is split between The Hills and Blacktown
+    - { name: Kellyville, slug: kellyville, postcode: "2155", council: the-hills-shire }
+    - { name: Parramatta, slug: parramatta, postcode: "2150", council: city-of-parramatta }
+
+# -----------------------------------------------------------------------------
+# COUNCILS — drives the approvals explainer and the per-suburb council notes.
+# Timeframes are indicative and must be re-checked before launch; councils
+# publish their own determination statistics and they move.
+# -----------------------------------------------------------------------------
+councils:
+  - id: city-of-ryde
+    name: City of Ryde
+    # PLACEHOLDER: every timeframe below is indicative and unverified
+    daWeeks: [10, 18]
+    cdcWeeks: [3, 6]
+    preDaMeeting: true
+    notes: >-
+      Ryde applies its own development control plan on top of the state
+      codes. Older brick veneer stock on the southern side of the LGA often
+      sits close to the minimum side setback, which is the single most common
+      reason a ground floor extension drops out of complying development.
+    url: https://www.ryde.nsw.gov.au
+  - id: city-of-parramatta
+    name: City of Parramatta
+    # PLACEHOLDER: unverified
+    daWeeks: [12, 20]
+    cdcWeeks: [3, 6]
+    preDaMeeting: true
+    notes: >-
+      Parramatta absorbed parts of Hornsby, The Hills and Auburn in 2016 and
+      the planning controls still vary by which former LGA your street sat in.
+      Check which development control plan applies to your block before you
+      assume anything about height or setbacks.
+    url: https://www.cityofparramatta.nsw.gov.au
+  - id: the-hills-shire
+    name: The Hills Shire
+    # PLACEHOLDER: unverified
+    daWeeks: [10, 16]
+    cdcWeeks: [3, 5]
+    preDaMeeting: true
+    notes: >-
+      Large lots and generous setbacks mean a high proportion of second storey
+      additions here qualify as complying development. Tree preservation is
+      the usual complication rather than bulk and scale.
+    url: https://www.thehills.nsw.gov.au
+  - id: hornsby
+    name: Hornsby Shire
+    # PLACEHOLDER: unverified
+    daWeeks: [12, 20]
+    cdcWeeks: [4, 6]
+    preDaMeeting: true
+    notes: >-
+      Bushfire prone land and significant tree cover affect a large share of
+      the shire. A bushfire attack level assessment is often the first report
+      you need, and it changes what you can build before design starts.
+    url: https://www.hornsby.nsw.gov.au
+  - id: cumberland
+    name: Cumberland City
+    # PLACEHOLDER: unverified
+    daWeeks: [12, 20]
+    cdcWeeks: [4, 6]
+    preDaMeeting: true
+    notes: >-
+      A high proportion of post-war fibro and brick veneer stock, much of it
+      on flood affected or overland flow paths. The flood certificate usually
+      determines your floor levels before design starts.
+    url: https://www.cumberland.nsw.gov.au
+  - id: blacktown
+    name: Blacktown City
+    # PLACEHOLDER: unverified
+    daWeeks: [12, 22]
+    cdcWeeks: [4, 6]
+    preDaMeeting: true
+    notes: >-
+      Large volumes of 1980s and 1990s project homes on regular lots, which is
+      the easiest stock in Sydney to take through complying development.
+      On-site stormwater detention is the usual cost surprise.
+    url: https://www.blacktown.nsw.gov.au
+
+# -----------------------------------------------------------------------------
+# PROJECT VALUE BAND
+# The enquiry qualifier uses minimum. Anything under it is routed to the
+# "here is who to call instead" response rather than into the pipeline.
+# -----------------------------------------------------------------------------
+projectValue:
+  minimum: 60000
+  maximum: 500000
+  # Shown when someone selects a band below the minimum. Written to be genuinely
+  # useful, because a good referral comes back as a bigger job in three years.
+  belowMinimumResponse:
+    heading: We are not the right builder for this one
+    body: >-
+      Under $60,000 you are better served by a specialist trade working
+      directly rather than a design and construct builder carrying the
+      overhead of a fixed price contract. You will pay less and it will happen
+      sooner.
+    suggestions:
+      - Single bathroom swap with no layout change — a bathroom renovation specialist
+      - Kitchen with the existing layout retained — a kitchen company with its own installers
+      - Repairs, decks and pergolas — a licensed carpenter
+      - Finding someone — the NSW Fair Trading licence check, then three written quotes
+    # PLACEHOLDER: decide whether we want to name actual referral partners here
+    referralNote: >-
+      Ask us anyway if you are stuck. We will usually name two or three people
+      we would use ourselves.
+
+# -----------------------------------------------------------------------------
+# COST BANDS
+# Published on /costs and reused by the estimator as its base ranges.
+# ALL FIGURES ARE PLACEHOLDERS AND MUST BE VERIFIED AGAINST REAL JOB COSTINGS.
+# GST inclusive. Update the reviewed date whenever you change a number.
+# -----------------------------------------------------------------------------
+costBands:
+  # PLACEHOLDER: date invented
+  reviewed: 2026-01-01
+  gstInclusive: true
+  disclaimer: >-
+    These are the bands our last three years of work actually fell into, not a
+    marketing range. They are indicative only. The number that matters is the
+    fixed price quote, and we cannot give you that until we have measured the
+    house and opened up enough of it to know what is behind the walls.
+  bands:
+    - id: bathroom
+      name: Bathroom
+      # PLACEHOLDER: figures invented
+      low: 28000
+      high: 55000
+      typicalWeeks: [5, 8]
+      summary: >-
+        A full strip out back to frame, rewaterproofed, retiled and refitted.
+        The band covers a standard three metre by two metre family bathroom.
+      movers:
+        - title: Moving the toilet or the floor waste
+          detail: >-
+            Relocating soil drainage means cutting the slab or working under
+            the floor. On a slab on ground house this is the single biggest
+            swing in the whole job.
+        - title: What the waterproofing is hiding
+          detail: >-
+            Bathrooms in houses of this era were often waterproofed with
+            nothing more than the tile bed. If the frame or the floor sheeting
+            has rotted we have to replace it, and we cannot see that until
+            demolition.
+        - title: Timber subfloor or slab on ground
+          detail: >-
+            A timber subfloor gives us easy service access but often needs
+            joist repair and a new sheeting substrate to meet current
+            deflection limits.
+        - title: Tile format and how high you tile
+          detail: >-
+            Large format tiles need a flatter substrate and more labour.
+            Tiling to the ceiling rather than to door height adds materials
+            and roughly a day and a half of trade time.
+        - title: Freestanding bath or built in
+          detail: >-
+            A freestanding bath needs floor mounted or wall mounted plumbing
+            set out exactly, which brings the plumber back an extra time.
+        - title: Whether the switchboard survives
+          detail: >-
+            Adding heat, light and exhaust to a 1970s switchboard with no
+            spare capacity usually triggers a board upgrade and a safety
+            switch.
+    - id: kitchen
+      name: Kitchen
+      # PLACEHOLDER: figures invented
+      low: 35000
+      high: 75000
+      typicalWeeks: [5, 9]
+      summary: >-
+        A new kitchen in the existing footprint, including cabinetry,
+        benchtops, splashback, appliances, electrical and plumbing.
+      movers:
+        - title: Benchtop material
+          detail: >-
+            The spread between a laminate benchtop and a natural stone or
+            porcelain one is the biggest single line item you control.
+        - title: Engineered stone is no longer an option
+          detail: >-
+            Engineered stone benchtops cannot lawfully be supplied or
+            installed in Australia. Porcelain, natural stone, timber, stainless
+            and solid surface are the replacements, and they price differently.
+        - title: Moving the sink, the gas or the range
+          detail: >-
+            Relocating services in a slab on ground kitchen means cutting and
+            making good. Keeping the wet wall where it is saves real money.
+        - title: Taking out a wall
+          detail: >-
+            If the wall is load bearing you need an engineer, a beam and
+            usually new footings for the posts at each end.
+        - title: Who supplies the appliances
+          detail: >-
+            Client supplied appliances lower our figure but move the delivery
+            risk to you. If an appliance arrives late the whole trade sequence
+            waits.
+        - title: The state of the wiring
+          detail: >-
+            Houses from this era often still have some original circuits.
+            Adding an induction cooktop alone can require a new dedicated
+            circuit and a board upgrade.
+    - id: kitchen-living
+      name: Kitchen and living reconfiguration
+      # PLACEHOLDER: figures invented
+      low: 90000
+      high: 180000
+      typicalWeeks: [10, 16]
+      summary: >-
+        Opening the kitchen to the living and dining areas within the existing
+        roofline. Structural work, new flooring throughout, ceilings and
+        lighting.
+      movers:
+        - title: What the beam has to carry
+          detail: >-
+            A beam holding up a ceiling is a modest item. A beam holding up a
+            roof, or a floor above, gets deeper, heavier and may need a crane
+            or a hand-built steel install.
+        - title: New footings for the posts
+          detail: >-
+            The load from a new beam has to reach the ground. That usually
+            means excavating and pouring pad footings inside the house.
+        - title: Levelling the floor across the whole area
+          detail: >-
+            Once you join three rooms, every hump and fall becomes visible in
+            one continuous floor. Self-levelling compound over a large area
+            adds cost that nobody budgets for.
+        - title: Asbestos in the ceilings and the eaves
+          detail: >-
+            Fibro sheeting, eaves linings, vinyl tiles and some textured
+            ceilings from this era contain asbestos. Licensed removal is a
+            fixed, quotable cost once we have a sample result, and we test
+            before we price rather than after.
+        - title: Ceiling height and where the ducts go
+          detail: >-
+            Removing a wall exposes whatever was running through it. Ducts and
+            pipes have to go somewhere, and a bulkhead is often the honest
+            answer.
+    - id: granny-flat
+      name: Granny flat or secondary dwelling
+      # PLACEHOLDER: figures invented
+      low: 180000
+      high: 280000
+      typicalWeeks: [16, 24]
+      summary: >-
+        A detached secondary dwelling up to 60 square metres, built under the
+        state secondary dwelling provisions where the lot qualifies.
+      movers:
+        - title: Whether a truck and a machine can get to the back
+          detail: >-
+            No side access means every cubic metre of spoil and every pack of
+            bricks is moved by hand or by crane. This is the biggest single
+            variable on a detached build.
+        - title: Where the sewer main runs
+          detail: >-
+            Building over or near a Sydney Water main means a build-over
+            application and often a pier and beam floor instead of a slab.
+        - title: The fall of the land
+          detail: >-
+            A cross fall of more than about half a metre across the building
+            envelope brings in retaining walls, drainage and a step in the
+            floor level.
+        - title: Whether the lot actually qualifies
+          detail: >-
+            The state provisions set a minimum lot size and a maximum floor
+            area. Miss either and you are into a development application with
+            a different cost and timeline.
+        - title: Separate metering and connections
+          detail: >-
+            A separate electrical supply, water meter and stormwater
+            connection are each individually modest and collectively material.
+    - id: rear-extension
+      name: Ground floor rear extension
+      # PLACEHOLDER: figures invented
+      low: 220000
+      high: 420000
+      typicalWeeks: [20, 30]
+      summary: >-
+        A single storey addition to the back of the house, typically a new
+        living area and kitchen opening to the garden.
+      movers:
+        - title: Matching the existing floor level
+          detail: >-
+            A new slab meeting an old timber floor is a detail that has to be
+            designed rather than improvised. Getting the levels flush costs
+            more than accepting a step.
+        - title: How the new roof meets the old one
+          detail: >-
+            A skillion tucked under the existing gutter line is the cheapest
+            answer. Anything that cuts into the existing roof structure means
+            re-framing and weather protection.
+        - title: Stormwater and on-site detention
+          detail: >-
+            Adding roof area increases run-off. Several councils require a
+            detention tank once you pass a threshold, which is a five figure
+            item that appears late if nobody checked.
+        - title: Glazing area and thermal performance
+          detail: >-
+            The BASIX certificate has to pass. A wall of glass to the north
+            usually pays for itself in the assessment. The same wall to the
+            west usually has to be bought back with better glass or shading.
+        - title: Excavation and retaining on a sloping block
+          detail: >-
+            Cut and fill, retaining walls and the drainage behind them are
+            invisible in the finished job and very visible in the price.
+    - id: second-storey
+      name: Second storey addition
+      # PLACEHOLDER: figures invented
+      low: 380000
+      high: 700000
+      typicalWeeks: [28, 40]
+      summary: >-
+        A new upper floor over some or all of the existing house, usually
+        three or four bedrooms and a bathroom, with a new internal stair.
+      movers:
+        - title: Whether the house below can carry it
+          detail: >-
+            An engineer inspects the existing footings and walls before we
+            price. Some houses of this era need underpinning or new internal
+            piers, and some cannot take a full second storey at all.
+        - title: How much roof comes off, and for how long
+          detail: >-
+            The house is open to the weather for a period. Scaffold, temporary
+            roofing and the labour to put it up and take it down are a real
+            line item, not an incidental.
+        - title: Where you live while it happens
+          detail: >-
+            Some second storey jobs can be staged so you stay in the house.
+            Most cannot. Budget for rent for the duration and treat it as part
+            of the project cost.
+        - title: Where the stair lands
+          detail: >-
+            A stair consumes around eight square metres of ground floor. Which
+            room loses it usually reshapes the ground floor plan as well.
+        - title: Height, setbacks and overshadowing
+          detail: >-
+            The upper floor has to sit inside the height limit and the
+            building envelope, and it cannot overshadow the neighbour beyond
+            what the controls allow. These constraints set the shape.
+    - id: whole-home
+      name: Whole home renovation
+      # PLACEHOLDER: figures invented
+      low: 300000
+      high: 600000
+      typicalWeeks: [30, 44]
+      summary: >-
+        Every room touched, services replaced, usually a reconfigured plan
+        within the existing envelope or with a modest addition.
+      movers:
+        - title: How much of the existing house stays
+          detail: >-
+            The more walls we retain, the more we work around. There is a
+            crossover point where demolishing and rebuilding an area is
+            cheaper than repairing it, and we will tell you where it is.
+        - title: Rewiring and replumbing
+          detail: >-
+            Galvanised water pipe and original wiring both reach end of life
+            around now. Replacing them while the walls are open costs a
+            fraction of doing it later.
+        - title: Asbestos through the house
+          detail: >-
+            In a fibro or part-fibro house, licensed removal is a substantial
+            and quotable line item. We test before we price.
+        - title: The roof
+          detail: >-
+            Concrete tile roofs from this era are often at end of life. If the
+            scaffold is already up, replacing it costs materially less than
+            doing it as a separate job later.
+        - title: Heritage and conservation area controls
+          detail: >-
+            A small number of streets in these suburbs sit in conservation
+            areas. It changes what you can do to the front of the house.
+
+# -----------------------------------------------------------------------------
+# PROCESS
+# Durations are working weeks and are indicative.
+# "owns" is what the CLIENT is responsible for at that stage. Being explicit
+# about this is what stops a job stalling.
+# -----------------------------------------------------------------------------
+process:
+  # PLACEHOLDER: all durations below are indicative and unverified against
+  # actual job records
+  stages:
+    - id: first-call
+      name: First call
+      duration: 20 minutes
+      weeks: 0
+      what: >-
+        We work out whether we are the right builder for the job before either
+        of us spends an afternoon on it.
+      owns: >-
+        A rough budget range and a sentence on what is driving the change.
+      deliverable: A yes or a referral to someone better suited.
+    - id: site-consultation
+      name: Site consultation
+      duration: 60 to 90 minutes on site
+      weeks: 1
+      what: >-
+        We measure, photograph, look under the house and in the roof, and talk
+        through what is possible. You get an honest read on feasibility and a
+        cost band on the day.
+      owns: >-
+        Access to the whole house including the roof space and subfloor, and
+        everyone who is part of the decision in the room.
+      deliverable: A written cost band and a feasibility summary within two days.
+    - id: feasibility
+      name: Feasibility and concept
+      duration: 2 to 3 weeks
+      weeks: 3
+      what: >-
+        Survey, a search of the planning controls on your lot, and a concept
+        plan tested against both the budget and the approval pathway.
+      owns: >-
+        Sign off on the concept, and a decision on the budget band before we
+        draw anything further.
+      deliverable: Concept plans, approval pathway advice, and a costed band.
+    - id: design-development
+      name: Design development
+      duration: 4 to 6 weeks
+      weeks: 8
+      what: >-
+        The design is resolved to the level where it can be priced exactly.
+        Structural engineering, BASIX and the full selections schedule.
+      owns: >-
+        Selections decided by the dates in the schedule. This is the stage
+        where projects slip, and it slips on decisions, not on drawings.
+      deliverable: Construction drawings, engineering, and a selections schedule.
+    - id: approval
+      name: Documentation and approval
+      duration: 3 to 6 weeks for a CDC, 10 to 20 weeks for a DA
+      weeks: 16
+      what: >-
+        We lodge, we respond to the certifier or the council, and we keep you
+        posted. Which pathway applies was determined back at feasibility.
+      owns: >-
+        Council and certifier fees, and any owner's consent signatures.
+      deliverable: A complying development certificate or a development consent.
+    - id: contract
+      name: Fixed price contract
+      duration: 1 to 2 weeks
+      weeks: 18
+      what: >-
+        A fixed price for the whole scope, with no provisional sums and no
+        allowances. The price is built from the drawings and the selections
+        schedule, both of which you have already signed off.
+      owns: >-
+        Reading it properly, getting independent advice if you want it, and
+        the deposit.
+      deliverable: A signed contract, HBCF certificate and a construction programme.
+    - id: pre-start
+      name: Pre-start and procurement
+      duration: 3 to 4 weeks
+      weeks: 22
+      what: >-
+        Long lead items ordered, trades locked in, site set up. Nothing starts
+        until the items with the longest lead time are on order.
+      owns: >-
+        Final selections locked, and moving out if the job requires it.
+      deliverable: A dated construction programme you can plan your life around.
+    - id: demolition
+      name: Demolition and structure
+      duration: 3 to 8 weeks
+      weeks: 28
+      what: >-
+        Strip out, any licensed asbestos removal, then footings, framing and
+        structural steel. This is the loudest and least photogenic stage.
+      owns: >-
+        Nothing. This stage is ours. You get photographs twice a week.
+      deliverable: A structurally complete shell, inspected and signed off.
+    - id: rough-in
+      name: Services rough-in
+      duration: 2 to 4 weeks
+      weeks: 32
+      what: >-
+        Plumbing, electrical, and heating and cooling run through the open
+        frame, then insulation and lining.
+      owns: >-
+        Walking the site with us to confirm every power point, tap and light
+        position while they can still be moved for nothing.
+      deliverable: Services inspected, walls lined and set.
+    - id: fit-off
+      name: Lock up and fit off
+      duration: 4 to 10 weeks
+      weeks: 40
+      what: >-
+        Cabinetry, benchtops, tiling, doors, painting, tapware and fittings.
+        The stage where it starts to look like the drawings.
+      owns: >-
+        Availability for two or three short decisions that can only be made
+        with the thing in front of you.
+      deliverable: A finished, cleaned, working house.
+    - id: handover
+      name: Handover and defects
+      duration: 1 day, then 24 months
+      weeks: 41
+      what: >-
+        We walk through together and write the defects list on the day. Items
+        are fixed within an agreed window, not whenever we are next nearby.
+      owns: >-
+        Telling us when something is not right. The defects liability period
+        runs for two years and we would rather hear about it.
+      deliverable: >-
+        Certificates, warranties, manuals, and a maintenance schedule for the
+        things that need it.
+
+# -----------------------------------------------------------------------------
+# REVIEWS
+# PLACEHOLDER: every review below is invented. Replace with a real pull from
+# the Google Business Profile before launch, and keep reviewer names and dates
+# exactly as published. Do not paraphrase a real review.
+# -----------------------------------------------------------------------------
+reviews:
+  # PLACEHOLDER: invented
+  googleRating: 0.0
+  # PLACEHOLDER: invented
+  googleReviewCount: 0
+  # PLACEHOLDER: profile URL not set up
+  googleProfileUrl: "#"
+  # PLACEHOLDER: verify whether we are pulling these live or pasting them in.
+  # If pasted, add a "lastSynced" date and keep it current.
+  lastSynced: 2026-01-01
+
+# -----------------------------------------------------------------------------
+# GATED ASSET — the only thing on the site behind an email field.
+# -----------------------------------------------------------------------------
+gatedAsset:
+  title: The renovation planning checklist
+  description: >-
+    The forty questions we ask on a site consultation, in the order we ask
+    them, so you can answer them before anybody turns up. Six pages, no
+    branding on the printable version.
+  # PLACEHOLDER: the PDF does not exist yet
+  file: /downloads/stonelane-renovation-planning-checklist.pdf
+  pages: 6
+
+# -----------------------------------------------------------------------------
+# SITE
+# -----------------------------------------------------------------------------
+site:
+  # PLACEHOLDER: domain not registered or confirmed
+  url: https://stonelane.example.com.au
+  locale: en-AU
+  # Used in the footer and the copyright line.
+  # PLACEHOLDER: confirm the correct entity for the copyright notice
+  copyrightHolder: Stonelane Renovations Pty Ltd

@@ -1,0 +1,23 @@
+# build output
+dist/
+.astro/
+.vercel/
+
+# dependencies
+node_modules/
+
+# downloaded font sources — the subset .woff2 files in public/fonts ARE
+# committed, so a fresh clone builds without network access or Python
+scripts/.font-cache/
+
+# environment
+.env
+.env.production
+.env*.local
+
+# editors and OS
+.DS_Store
+.vscode/
+.idea/
+*.log
+npm-debug.log*
