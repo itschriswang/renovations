@@ -11,8 +11,16 @@ import { parse } from 'yaml';
 // there is exactly one place to change it.
 const business = parse(fs.readFileSync('./content/business.yaml', 'utf8'));
 
+// A host can override the URL and mount the site in a subdirectory. GitHub
+// Pages serves a project site from /<repo>/ rather than a domain root, so the
+// preview deployment sets these; the real deployment sets neither and the
+// values from business.yaml apply unchanged.
+const site = process.env.SITE_URL ?? business.site.url;
+const base = process.env.BASE_PATH ?? undefined;
+
 export default defineConfig({
-  site: business.site.url,
+  site,
+  base,
   trailingSlash: 'never',
   build: {
     format: 'file',
@@ -31,8 +39,17 @@ export default defineConfig({
     react(),
     sitemap({
       // The style tile and the contact sheet are internal design references,
-      // not public pages.
-      filter: (page) => !/\/(style-tile|shots)$/.test(page.replace(/\/$/, '')),
+      // and the root is still a temporary build index rather than the
+      // homepage. All three are noindex, so none belongs in the sitemap.
+      // Remove the root from this list when step 3 replaces index.astro.
+      filter: (page) => {
+        const basePath = (base ?? '/').replace(/\/$/, '');
+        const path = new URL(page).pathname.replace(/\/$/, '');
+        // Compare paths relative to the base, so this holds whether the site
+        // is served from a domain root or a subdirectory.
+        const rel = path.startsWith(basePath) ? path.slice(basePath.length) : path;
+        return rel !== '' && !/\/(style-tile|shots)$/.test(rel);
+      },
     }),
   ],
   vite: {

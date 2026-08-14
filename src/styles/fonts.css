@@ -8,6 +8,11 @@
  *
  * Regenerate with `npm run fonts`.
  *
+ * They are imported through the bundler rather than served from /public, so
+ * the emitted URLs carry a content hash (cacheable forever) and resolve
+ * correctly under any base path — which is what makes the site deployable to
+ * a subdirectory as well as a domain root.
+ *
  * The *-fallback faces carry ascent/descent/line-gap overrides measured from
  * the real font files, so the fallback occupies exactly the same vertical
  * space while the web font loads. That removes the vertical reflow that
@@ -20,7 +25,7 @@
    display face when the text face is also a grotesque. */
 @font-face {
   font-family: 'Big Shoulders Display';
-  src: url('/fonts/big-shoulders-display-variable.woff2') format('woff2-variations');
+  src: url('../assets/fonts/big-shoulders-display-variable.woff2') format('woff2-variations');
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -45,7 +50,7 @@
    Drawn for a news publisher, so it holds up at 14px on a phone. */
 @font-face {
   font-family: 'Schibsted Grotesk';
-  src: url('/fonts/schibsted-grotesk-variable.woff2') format('woff2-variations');
+  src: url('../assets/fonts/schibsted-grotesk-variable.woff2') format('woff2-variations');
   font-weight: 400 900;
   font-style: normal;
   font-display: swap;

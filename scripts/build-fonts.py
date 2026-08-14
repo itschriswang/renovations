@@ -20,7 +20,7 @@ from fontTools.subset import main as subset_main
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CACHE = ROOT / "scripts" / ".font-cache"
-OUT = ROOT / "public" / "fonts"
+OUT = ROOT / "src" / "assets" / "fonts"
 
 GF = "https://raw.githubusercontent.com/google/fonts/main/ofl"
 
