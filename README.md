@@ -252,6 +252,20 @@ When that comes back empty, the content is ready.
 
 ---
 
+## Where it is
+
+**Preview:** <https://itschriswang.github.io/renovations/>
+
+It redeploys itself every time something lands on `main` — you do not have to
+do anything. This is a preview host, not the real one, and the site is not
+finished: there is no homepage yet, so the address above shows a build index
+with links to the design references.
+
+**Production will be Vercel.** When you are ready: go to
+[vercel.com/new](https://vercel.com/new), import this repository, and press
+deploy. It recognises the project on its own and needs nothing configured.
+Nothing about the preview gets in the way of that.
+
 ## Running it
 
 ```bash
