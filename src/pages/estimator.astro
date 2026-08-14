@@ -1,6 +1,7 @@
 ---
 import Site from '../layouts/Site.astro';
 import Estimator from '../components/Estimator.tsx';
+import StaticFormNotice from '../components/StaticFormNotice.astro';
 import { business } from '../lib/business';
 import { href, routes } from '../lib/links';
 import { band, weeks } from '../lib/format';
@@ -48,6 +49,8 @@ const estimatorBands = bands.map((b) => ({
         actually about to be seen. That keeps the first-load cost of this page
         near zero and leaves the rest of the site entirely static.
       */}
+      <StaticFormNotice />
+
       <Estimator
         client:visible
         bands={estimatorBands}

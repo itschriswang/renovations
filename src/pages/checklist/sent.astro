@@ -1,0 +1,49 @@
+---
+import Site from '../../layouts/Site.astro';
+import { business } from '../../lib/business';
+import { href, routes } from '../../lib/links';
+
+const asset = business.gatedAsset;
+---
+
+<Site
+  title="Checklist on its way — Stonelane Renovations"
+  description="What happens next."
+  indexable={false}
+>
+  <section class="grid-editorial section--tight">
+    <div class="col-text">
+      <p class="section__eyebrow">Done</p>
+      <h1 class="page-title">Check your inbox</h1>
+      <p class="section__lede">
+        {asset.title} is on its way. If it has not arrived in a few minutes, look in the spam
+        folder — and if it is not there either, ring us on
+        {' '}<a href={`tel:${business.contact.phoneLink}`}>{business.contact.phone}</a> and we
+        will send it again.
+      </p>
+      <p class="note">
+        That is the only email you will get. We do not run a mailing list.
+      </p>
+      <p class="next">
+        While you are here: <a href={href(routes.approvals)}>how approvals work</a> is the
+        thing most people know least about, and it shapes the budget most.
+      </p>
+    </div>
+  </section>
+</Site>
+
+<style>
+  .page-title {
+    font-size: var(--text-display-m);
+    line-height: 1.02;
+    letter-spacing: -0.004em;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .note,
+  .next {
+    margin-block-start: var(--space-s);
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+</style>

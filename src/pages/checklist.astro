@@ -1,6 +1,7 @@
 ---
 import Site from '../layouts/Site.astro';
 import Figure from '../components/Figure.astro';
+import StaticFormNotice from '../components/StaticFormNotice.astro';
 import { business } from '../lib/business';
 import { href, routes } from '../lib/links';
 import { breadcrumbSchema } from '../lib/schema';
@@ -40,6 +41,8 @@ const ready = !asset.file.includes('stonelane-renovation-planning-checklist') ||
         <li>Who decides what, and by when</li>
         <li>The questions to ask any builder before you sign anything</li>
       </ul>
+
+      <StaticFormNotice />
 
       <form class="gate" method="post" action={href('/api/checklist')}>
         <div class="field">

@@ -1,6 +1,7 @@
 ---
 import Site from '../layouts/Site.astro';
 import Figure from '../components/Figure.astro';
+import StaticFormNotice from '../components/StaticFormNotice.astro';
 import { business, budgetBands } from '../lib/business';
 import { href, routes } from '../lib/links';
 import { currency } from '../lib/format';
@@ -92,6 +93,8 @@ const bookingConfigured = business.contact.bookingUrl !== '#';
         without it. The budget question is there so we can tell you quickly if we are the wrong
         builder — that saves you more time than it saves us.
       </p>
+
+      <StaticFormNotice />
 
       <form
         class="enquiry"

@@ -13,7 +13,8 @@
     "shots": "node scripts/build-placeholders.mjs",
     "fonts": "python3 scripts/build-fonts.py",
     "audit": "node scripts/audit.mjs",
-    "shot": "node scripts/screenshot.mjs"
+    "shot": "node scripts/screenshot.mjs",
+    "build:static": "STATIC_ONLY=1 astro build"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.5",

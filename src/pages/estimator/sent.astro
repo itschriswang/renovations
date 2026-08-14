@@ -1,0 +1,46 @@
+---
+import Site from '../../layouts/Site.astro';
+import { business } from '../../lib/business';
+import { href, routes } from '../../lib/links';
+---
+
+<Site
+  title="Estimate sent — Stonelane Renovations"
+  description="What happens next."
+  indexable={false}
+>
+  <section class="grid-editorial section--tight">
+    <div class="col-text">
+      <p class="section__eyebrow">Done</p>
+      <h1 class="page-title">Estimate sent</h1>
+      <p class="section__lede">
+        A copy of the range and the breakdown is on its way to you. It is an estimate, not a
+        quote — a quote is a fixed price written into a contract, and that comes after we have
+        measured the house.
+      </p>
+      <p class="note">
+        Nobody will ring you about this. If you want a real number,
+        {' '}<a href={href(routes.contact)}>book a site consultation</a> or call
+        {' '}<a href={`tel:${business.contact.phoneLink}`}>{business.contact.phone}</a>.
+      </p>
+      <p class="note">
+        <a href={href(routes.estimator)}>Back to the estimator</a> to try a different scope.
+      </p>
+    </div>
+  </section>
+</Site>
+
+<style>
+  .page-title {
+    font-size: var(--text-display-m);
+    line-height: 1.02;
+    letter-spacing: -0.004em;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .note {
+    margin-block-start: var(--space-s);
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+</style>
