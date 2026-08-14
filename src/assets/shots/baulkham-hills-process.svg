@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-label="Temporary placeholder awaiting photography: The house under temporary roofing with scaffold up, taken during the wet week.">
 <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#bac6cb"/>
-    <stop offset="1" stop-color="#dcd8cd"/>
+    <stop offset="0" stop-color="#90a3ac"/>
+    <stop offset="1" stop-color="#e2cba7"/>
   </linearGradient></defs>
 <rect x="0" y="0" width="1800" height="779" fill="url(#sky)"/>
-<rect x="0" y="779" width="1800" height="421" fill="#7c8062"/>
-<rect x="0" y="779" width="1800" height="59" fill="#979371" opacity="0.5"/>
-<polygon points="199,471 787,310 1376,471" fill="#4f4b47"/>
-<rect x="235" y="471" width="1104" height="309" fill="#f0eade"/>
-<rect x="1340" y="507" width="301" height="273" fill="#c5bcab"/>
-<rect x="346" y="545" width="263" height="130" fill="#303a3d"/>
-<rect x="787" y="545" width="263" height="130" fill="#303a3d"/>
-<rect x="0" y="1080" width="1800" height="120" fill="#1B1917" opacity="0.1"/>
-<rect x="0" y="1068" width="1800" height="132" fill="#1B1917" opacity="0.88"/>
-<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F4EFE7">baulkham-hills-process · 3:2 · 1800×1200</text>
-<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — The house under temporary roofing with scaffold up, taken during the wet week.</text>
-<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
+<rect x="0" y="779" width="1800" height="421" fill="#7d7a4d"/>
+<rect x="0" y="779" width="1800" height="59" fill="#a79972" opacity="0.5"/>
+<polygon points="199,471 787,310 1376,471" fill="#32292a"/>
+<rect x="235" y="471" width="1104" height="309" fill="#fffcf6"/>
+<rect x="1340" y="507" width="301" height="273" fill="#c8b99e"/>
+<rect x="346" y="545" width="263" height="130" fill="#241e1c"/>
+<rect x="787" y="545" width="263" height="130" fill="#241e1c"/>
+<rect x="0" y="1080" width="1800" height="120" fill="#1A1512" opacity="0.1"/>
+<rect x="0" y="1068" width="1800" height="132" fill="#1A1512" opacity="0.88"/>
+<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F7F2E7">baulkham-hills-process · 3:2 · 1800×1200</text>
+<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — The house under temporary roofing with scaffold up, taken during the wet week.</text>
+<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
 </svg>

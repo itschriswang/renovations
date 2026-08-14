@@ -42,32 +42,32 @@ const RATIOS = {
   '1.91:1': [1200, 630],
 };
 
-/** Materials, straight from the design tokens. */
+/** Materials, straight from the design tokens. Warm, hot, and never grey. */
 const M = {
-  skyHigh: '#B9C6CC',
-  skyLow: '#DCD8CC',
-  duskHigh: '#3A4048',
-  duskLow: '#8C6A4A',
-  brick: '#8A4B33',
-  brickLit: '#A2664A',
-  brickShade: '#6B3826',
-  render: '#E4DCCE',
-  renderLit: '#F1EADD',
-  renderShade: '#C6BCA9',
-  roof: '#4F4B47',
-  roofLit: '#5E5954',
-  glass: '#2F3A3D',
-  glassLit: '#F0C98A',
-  lawn: '#7C8060',
-  lawnDry: '#98936E',
-  concrete: '#B4AEA4',
-  timber: '#A97F4E',
-  timberDark: '#7C5C38',
-  soil: '#6E5233',
-  monument: '#33363A',
-  ink: '#1B1917',
-  paper: '#F4EFE7',
-  marking: '#D2662E',
+  skyHigh: '#8FA3AD',
+  skyLow: '#E4CBA4',
+  duskHigh: '#241C1B',
+  duskLow: '#C4551F',
+  brick: '#A5432A',
+  brickLit: '#C4633C',
+  brickShade: '#6E2A1A',
+  render: '#EFE6D6',
+  renderLit: '#FFFCF5',
+  renderShade: '#C9B99C',
+  roof: '#33292A',
+  roofLit: '#463839',
+  glass: '#241E1C',
+  glassLit: '#F2B23C',
+  lawn: '#7E7A4A',
+  lawnDry: '#A8996F',
+  concrete: '#B9AC94',
+  timber: '#C08A4C',
+  timberDark: '#7C5024',
+  soil: '#6B4526',
+  bitumen: '#1A1512',
+  ink: '#1A1512',
+  paper: '#F7F2E7',
+  marking: '#E14E1D',
 };
 
 /* ------------------------------------------------------------------ utils */
@@ -195,8 +195,8 @@ function drawExterior(w, h, rnd, tone, dusk = false, t = 0) {
   let wallLit = isBrick ? M.brickLit : M.renderLit;
   let wallShade = isBrick ? M.brickShade : M.renderShade;
   if (dusk) {
-    wall = mix(wall, M.monument, t * 0.8);
-    wallLit = mix(wallLit, M.monument, t * 0.75);
+    wall = mix(wall, M.bitumen, t * 0.8);
+    wallLit = mix(wallLit, M.bitumen, t * 0.75);
     wallShade = mix(wallShade, '#1B1D1F', t * 0.85);
   }
 
@@ -269,7 +269,7 @@ function drawInterior(w, h, rnd, tone) {
   g.push(rect(wx, wy, ww, wh, dull ? '#C8CEC9' : '#F2ECDF'));
   g.push(rect(wx, wy, ww, wh * 0.34, '#FFFFFF', ' opacity="0.4"'));
   g.push(
-    `<rect x="${Math.round(wx)}" y="${Math.round(wy)}" width="${Math.round(ww)}" height="${Math.round(wh)}" fill="none" stroke="${desaturate(M.monument, tone.desat)}" stroke-width="${Math.max(2, Math.round(w * 0.004))}"/>`,
+    `<rect x="${Math.round(wx)}" y="${Math.round(wy)}" width="${Math.round(ww)}" height="${Math.round(wh)}" fill="none" stroke="${desaturate(M.bitumen, tone.desat)}" stroke-width="${Math.max(2, Math.round(w * 0.004))}"/>`,
   );
 
   // floor, and the light falling across it
@@ -285,7 +285,7 @@ function drawInterior(w, h, rnd, tone) {
   const bw = w * (0.26 + rnd() * 0.14);
   const bh = h * (0.14 + rnd() * 0.05);
   const bx = inset * 0.6;
-  g.push(rect(bx, backBot - bh, bw, bh + h * 0.06, desaturate(dull ? M.timberDark : M.monument, tone.desat)));
+  g.push(rect(bx, backBot - bh, bw, bh + h * 0.06, desaturate(dull ? M.timberDark : M.bitumen, tone.desat)));
   g.push(rect(bx, backBot - bh, bw, h * 0.016, desaturate(dull ? M.renderShade : M.concrete, tone.desat)));
 
   // the wall the whole job is usually about, only present in the "before"
@@ -327,7 +327,7 @@ function drawStreet(w, h, rnd, tone) {
   </linearGradient></defs>`);
   g.push(rect(0, 0, w, horizon, 'url(#sky2)'));
   g.push(rect(0, horizon, w, h - horizon, desaturate(M.concrete, tone.desat)));
-  g.push(rect(0, horizon + (h - horizon) * 0.45, w, (h - horizon) * 0.55, desaturate(M.monument, tone.desat + 0.2)));
+  g.push(rect(0, horizon + (h - horizon) * 0.45, w, (h - horizon) * 0.55, desaturate(M.bitumen, tone.desat + 0.2)));
 
   // houses receding along the street
   let x = -w * 0.05;
@@ -355,7 +355,7 @@ function drawPortrait(w, h, rnd, tone) {
   const cx = w * (0.44 + rnd() * 0.12);
   const headR = w * 0.11;
   const headY = h * 0.3;
-  g.push(rect(cx - w * 0.2, headY + headR * 1.3, w * 0.4, h, desaturate(M.monument, tone.desat)));
+  g.push(rect(cx - w * 0.2, headY + headR * 1.3, w * 0.4, h, desaturate(M.bitumen, tone.desat)));
   g.push(
     `<circle cx="${Math.round(cx)}" cy="${Math.round(headY)}" r="${Math.round(headR)}" fill="${desaturate(M.timber, tone.desat)}"/>`,
   );
@@ -372,7 +372,7 @@ function drawAbstract(w, h, rnd, tone) {
     const y = (h / bands) * i + h * rnd() * 0.08;
     g.push(rect(0, y, w, h / bands, i % 2 ? M.ink : M.paper, ` opacity="${(0.04 + rnd() * 0.07).toFixed(2)}"`));
   }
-  g.push(rect(w * 0.08, h * 0.18, w * 0.3, h * 0.64, desaturate(M.monument, tone.desat), ' opacity="0.55"'));
+  g.push(rect(w * 0.08, h * 0.18, w * 0.3, h * 0.64, desaturate(M.bitumen, tone.desat), ' opacity="0.55"'));
   return g.join('\n');
 }
 

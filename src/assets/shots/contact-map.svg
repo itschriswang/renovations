@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Temporary placeholder awaiting photography: The workshop entrance, so people can find it.">
 <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#bac6cb"/>
-    <stop offset="1" stop-color="#dcd8cd"/>
+    <stop offset="0" stop-color="#90a3ac"/>
+    <stop offset="1" stop-color="#e2cba7"/>
   </linearGradient></defs>
 <rect x="0" y="0" width="1920" height="672" fill="url(#sky)"/>
-<rect x="0" y="672" width="1920" height="408" fill="#7c8062"/>
-<rect x="0" y="672" width="1920" height="57" fill="#979371" opacity="0.5"/>
-<polygon points="152,309 853,218 1554,309" fill="#4f4b47"/>
-<rect x="190" y="309" width="1326" height="363" fill="#f0eade"/>
-<rect x="1516" y="341" width="343" height="331" fill="#c5bcab"/>
-<rect x="323" y="396" width="158" height="153" fill="#303a3d"/>
-<rect x="588" y="396" width="158" height="153" fill="#303a3d"/>
-<rect x="853" y="396" width="158" height="153" fill="#303a3d"/>
-<rect x="1118" y="396" width="158" height="153" fill="#303a3d"/>
-<rect x="0" y="972" width="1920" height="108" fill="#1B1917" opacity="0.1"/>
-<rect x="0" y="961" width="1920" height="119" fill="#1B1917" opacity="0.88"/>
-<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#F4EFE7">contact-map · 16:9 · 1920×1080</text>
-<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — The workshop entrance, so people can find it.</text>
-<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
+<rect x="0" y="672" width="1920" height="408" fill="#7d7a4d"/>
+<rect x="0" y="672" width="1920" height="57" fill="#a79972" opacity="0.5"/>
+<polygon points="152,309 853,218 1554,309" fill="#32292a"/>
+<rect x="190" y="309" width="1326" height="363" fill="#fffcf6"/>
+<rect x="1516" y="341" width="343" height="331" fill="#c8b99e"/>
+<rect x="323" y="396" width="158" height="153" fill="#241e1c"/>
+<rect x="588" y="396" width="158" height="153" fill="#241e1c"/>
+<rect x="853" y="396" width="158" height="153" fill="#241e1c"/>
+<rect x="1118" y="396" width="158" height="153" fill="#241e1c"/>
+<rect x="0" y="972" width="1920" height="108" fill="#1A1512" opacity="0.1"/>
+<rect x="0" y="961" width="1920" height="119" fill="#1A1512" opacity="0.88"/>
+<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#F7F2E7">contact-map · 16:9 · 1920×1080</text>
+<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — The workshop entrance, so people can find it.</text>
+<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
 </svg>

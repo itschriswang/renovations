@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-label="Temporary placeholder awaiting photography: A partly demolished bathroom with the frame exposed, showing what is actually behind the tiles. This page argues that price depends on what is behind the walls, so show it.">
-<rect x="0" y="0" width="1800" height="880" fill="#e3dccf"/>
-<polygon points="0,0 1800,0 1465,269 335,269" fill="#e3dcd1"/>
-<polygon points="0,0 335,269 335,770 0,1200" fill="#c4bcad"/>
-<polygon points="1800,0 1465,269 1465,770 1800,1200" fill="#f0eade"/>
-<rect x="335" y="269" width="1129" height="500" fill="#e3dccf"/>
+<rect x="0" y="0" width="1800" height="880" fill="#eee6d7"/>
+<polygon points="0,0 1800,0 1465,269 335,269" fill="#eee6d9"/>
+<polygon points="0,0 335,269 335,770 0,1200" fill="#c6b9a2"/>
+<polygon points="1800,0 1465,269 1465,770 1800,1200" fill="#fffcf6"/>
+<rect x="335" y="269" width="1129" height="500" fill="#eee6d7"/>
 <rect x="658" y="349" width="488" height="260" fill="#F2ECDF"/>
 <rect x="658" y="349" width="488" height="88" fill="#FFFFFF" opacity="0.4"/>
-<rect x="658" y="349" width="488" height="260" fill="none" stroke="#33363a" stroke-width="7"/>
-<polygon points="0,1200 335,770 1465,770 1800,1200" fill="#a68052"/>
+<rect x="658" y="349" width="488" height="260" fill="none" stroke="#1a1512" stroke-width="7"/>
+<polygon points="0,1200 335,770 1465,770 1800,1200" fill="#bc8b52"/>
 <polygon points="658,770 1147,770 1439,1200 463,1200" fill="#FFFFFF" opacity="0.13"/>
-<rect x="201" y="565" width="662" height="277" fill="#33363a"/>
-<rect x="201" y="565" width="662" height="19" fill="#b4aea5"/>
-<rect x="0" y="0" width="1800" height="60" fill="#1B1917" opacity="0.06"/>
-<rect x="0" y="1068" width="1800" height="132" fill="#1B1917" opacity="0.88"/>
-<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F4EFE7">costs-opener · 3:2 · 1800×1200</text>
-<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — A partly demolished bathroom with the frame exposed, showing what is actually behind the til…</text>
-<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
+<rect x="201" y="565" width="662" height="277" fill="#1a1512"/>
+<rect x="201" y="565" width="662" height="19" fill="#b8ac96"/>
+<rect x="0" y="0" width="1800" height="60" fill="#1A1512" opacity="0.06"/>
+<rect x="0" y="1068" width="1800" height="132" fill="#1A1512" opacity="0.88"/>
+<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F7F2E7">costs-opener · 3:2 · 1800×1200</text>
+<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — A partly demolished bathroom with the frame exposed, showing what is actually behind the til…</text>
+<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
 </svg>

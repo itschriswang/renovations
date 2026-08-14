@@ -91,19 +91,19 @@
   }
 
   a {
-    color: var(--color-brick);
+    color: var(--color-molten-ink);
     text-decoration-line: underline;
-    text-decoration-thickness: 1px;
-    text-underline-offset: 0.18em;
-    text-decoration-color: color-mix(in srgb, var(--color-brick) 45%, transparent);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.16em;
+    text-decoration-color: color-mix(in srgb, var(--color-molten) 55%, transparent);
     transition:
       color var(--duration-fast) var(--ease-inout),
       text-decoration-color var(--duration-fast) var(--ease-inout);
   }
 
   a:hover {
-    color: var(--color-brick-deep);
-    text-decoration-color: currentColor;
+    color: var(--color-ink);
+    text-decoration-color: var(--color-molten);
   }
 
   /*
@@ -126,11 +126,11 @@
 
   [data-surface='dark'] :focus-visible,
   .surface-dark :focus-visible {
-    outline-color: var(--color-gum);
+    outline-color: var(--color-focus-dark);
   }
 
   ::selection {
-    background-color: color-mix(in srgb, var(--color-gum) 40%, transparent);
+    background-color: color-mix(in srgb, var(--color-ochre) 40%, transparent);
     color: var(--color-ink);
   }
 
@@ -257,24 +257,25 @@
    * SURFACES
    * -------------------------------------------------------------------- */
   .surface-dark {
-    background-color: var(--color-monument);
+    background-color: var(--color-bitumen);
     color: var(--color-paper);
   }
 
   .surface-dark a {
-    color: var(--color-brick-bright);
-    text-decoration-color: color-mix(in srgb, var(--color-brick-bright) 50%, transparent);
+    color: var(--color-ochre);
+    text-decoration-color: color-mix(in srgb, var(--color-ochre) 60%, transparent);
   }
 
   .surface-dark a:hover {
-    color: var(--color-gum);
+    color: var(--color-paper);
+    text-decoration-color: var(--color-ochre);
   }
 
   /* Muted text keeps its role on a dark surface but has to change value to
      hold 4.5:1 against it. */
   .surface-dark .mono,
   .surface-dark .label {
-    color: var(--color-gum);
+    color: var(--color-ochre);
   }
 
   .surface-sunk {
@@ -302,7 +303,7 @@
 
   .skip-link:focus-visible {
     transform: translateY(0);
-    outline-color: var(--color-gum);
+    outline-color: var(--color-focus-dark);
   }
 
   /* -----------------------------------------------------------------------
@@ -335,69 +336,79 @@
     align-items: center;
     justify-content: center;
     gap: var(--space-2xs);
-    min-block-size: 44px;
-    padding: var(--space-2xs) var(--space-s);
-    font-family: var(--font-text);
-    font-size: var(--text-body);
-    font-weight: var(--font-weight-semibold);
-    line-height: 1.2;
+    min-block-size: 52px;
+    padding: var(--space-2xs) var(--space-m);
+    font-family: var(--font-display);
+    font-size: var(--text-title-s);
+    font-weight: var(--font-weight-display-strong);
+    line-height: 1;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
     text-align: center;
     text-decoration: none;
-    border-radius: var(--radius-xs);
-    border: var(--border-rule) solid transparent;
+    border-radius: 0;
+    border: 3px solid transparent;
     cursor: pointer;
     transition:
       background-color var(--duration-fast) var(--ease-inout),
       border-color var(--duration-fast) var(--ease-inout),
-      color var(--duration-fast) var(--ease-inout);
+      color var(--duration-fast) var(--ease-inout),
+      transform var(--duration-fast) var(--ease-inout);
   }
 
+  /* Molten fill with ink on top. The hot colour is the only thing on the site
+     that ever means "act", and it is never used for anything else. */
   .button--primary {
-    background: var(--color-brick);
-    color: var(--color-paper);
-    border-color: var(--color-brick);
+    background: var(--color-molten);
+    color: var(--color-ink);
+    border-color: var(--color-ink);
+    box-shadow: 4px 4px 0 var(--color-ink);
   }
 
   .button--primary:hover {
-    background: var(--color-brick-deep);
-    border-color: var(--color-brick-deep);
-    color: var(--color-paper);
+    background: var(--color-ochre);
+    color: var(--color-ink);
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--color-ink);
   }
 
   .button--secondary {
     background: transparent;
     color: var(--color-ink);
-    border-color: var(--color-line-strong);
+    border-color: var(--color-ink);
   }
 
   .button--secondary:hover {
-    border-color: var(--color-ink);
-    color: var(--color-ink);
+    background: var(--color-ink);
+    color: var(--color-paper);
   }
 
   .button--small {
-    min-block-size: 40px;
+    min-block-size: 44px;
     font-size: var(--text-caption);
-    padding: var(--space-3xs) var(--space-xs);
+    padding: var(--space-3xs) var(--space-s);
+    letter-spacing: 0.08em;
   }
 
-  /* `.surface-dark a` is (0,1,1) and beats `.button--primary` at (0,1,0), so
-     without this the button's label is recoloured to the reversed link colour
-     while keeping its brick fill — brick-bright on brick, which fails contrast.
-     Buttons are not links for colour purposes; they carry their own fill. */
   .surface-dark .button--primary,
   .surface-dark .button--primary:hover {
-    color: var(--color-paper);
+    color: var(--color-ink);
+    border-color: var(--color-paper);
+    box-shadow: 4px 4px 0 var(--color-paper);
+  }
+
+  .surface-dark .button--primary:hover {
+    box-shadow: 2px 2px 0 var(--color-paper);
   }
 
   .surface-dark .button--secondary {
     color: var(--color-paper);
-    border-color: rgb(244 239 231 / 0.45);
+    border-color: var(--color-paper);
   }
 
   .surface-dark .button--secondary:hover {
-    border-color: var(--color-paper);
-    color: var(--color-paper);
+    background: var(--color-paper);
+    color: var(--color-ink);
   }
 
   /* -----------------------------------------------------------------------
@@ -417,18 +428,44 @@
   }
 
   .section__eyebrow {
-    font-size: var(--text-caption);
+    display: inline-block;
+    padding: 0.25em 0.6em;
+    margin-block-end: var(--space-s);
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
     text-transform: uppercase;
-    letter-spacing: 0.09em;
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-ink-faint);
-    margin-block-end: var(--space-2xs);
+    letter-spacing: 0.16em;
+    font-weight: 700;
+  }
+
+  .surface-dark .section__eyebrow {
+    background: var(--color-ochre);
+    color: var(--color-ink);
+  }
+
+  /* The eyebrow is a dark chip, so a link inside it is on ink, not on paper,
+     and needs the reversed link colour rather than the inherited one. */
+  .section__eyebrow a {
+    color: var(--color-ochre);
+    text-decoration-color: color-mix(in srgb, var(--color-ochre) 60%, transparent);
+  }
+
+  .section__eyebrow a:hover {
+    color: var(--color-paper);
+  }
+
+  .surface-dark .section__eyebrow a {
+    color: var(--color-ink);
+    text-decoration-color: color-mix(in srgb, var(--color-ink) 60%, transparent);
   }
 
   .section__title {
     font-size: var(--text-display-s);
-    line-height: 1.04;
-    letter-spacing: -0.002em;
+    line-height: 0.96;
+    letter-spacing: -0.006em;
+    text-transform: uppercase;
     margin-block-end: var(--space-s);
   }
 
@@ -516,7 +553,7 @@
   }
 
   .prose blockquote {
-    border-inline-start: var(--border-rule) solid var(--color-gum);
+    border-inline-start: var(--border-rule) solid var(--color-ochre);
     padding-inline-start: var(--space-s);
     font-size: var(--text-lead);
     line-height: 1.5;
@@ -535,7 +572,7 @@
   }
 
   .surface-dark .mono {
-    color: var(--color-gum);
+    color: var(--color-ochre);
   }
 
   /* -----------------------------------------------------------------------
