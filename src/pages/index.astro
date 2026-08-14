@@ -1,0 +1,284 @@
+---
+import Base from '../layouts/Base.astro';
+import { business } from '../lib/business';
+import { shotCount } from '../lib/shotlist';
+
+/**
+ * TEMPORARY. This is a build index, not the homepage.
+ *
+ * It exists so a deployed preview has a front door instead of a 404 while the
+ * public pages are still being built. Step 3 replaces this file with the real
+ * homepage — delete everything here when that happens.
+ *
+ * It deliberately carries none of the licence, insurance or membership claims
+ * from business.yaml, because those are still placeholder values and this page
+ * is publicly reachable.
+ */
+
+// BASE_URL is "/" at a domain root and "/renovations" under a base path — with
+// no trailing slash, because trailingSlash is "never". Join with an explicit
+// separator and collapse the doubles rather than assuming either shape.
+const base = import.meta.env.BASE_URL;
+const link = (p: string) => `${base}/${p}`.replace(/\/{2,}/g, '/');
+
+const built = [
+  {
+    n: 1,
+    title: 'Content model and placeholder content',
+    detail:
+      'business.yaml as the single swap point, MDX collections for projects, suburbs and testimonials, three case studies, thirteen suburb pages, and a shot list that doubles as the photographer’s brief.',
+    done: true,
+  },
+  {
+    n: 2,
+    title: 'Design tokens, type scale, grid',
+    detail:
+      'Tailwind’s defaults cleared rather than extended. One modular scale at ratio 1.25 from 18px, a palette drawn from brick, render, spotted gum and powder coated aluminium, and a twelve column asymmetric grid.',
+    done: true,
+  },
+  { n: 3, title: 'Static page shells', detail: 'No motion, fully accessible, passing budgets.', done: false },
+  { n: 4, title: 'Motion layer', detail: 'Budgets re-verified afterwards.', done: false },
+  { n: 5, title: 'Forms, estimator, booking', detail: 'Serverless handlers and spam protection.', done: false },
+  { n: 6, title: 'Schema, sitemap, OG images', detail: 'Generated per project.', done: false },
+  { n: 7, title: 'Performance pass and accessibility audit', detail: 'Written up.', done: false },
+];
+
+const references = [
+  {
+    href: link('style-tile'),
+    title: 'Style tile',
+    detail:
+      'Type, colour, space, grid and motion. Every contrast ratio measured at build time rather than typed in.',
+  },
+  {
+    href: link('shots'),
+    title: 'Contact sheet',
+    detail: `All ${shotCount} temporary images and the shot each one is waiting for.`,
+  },
+];
+---
+
+<Base
+  title="Build preview — Stonelane Renovations"
+  description="Work in progress. Design references for a site that is still being built."
+  indexable={false}
+>
+  <main id="main">
+    <header class="masthead grid-editorial">
+      <div class="col-wide">
+        <p class="label">Work in progress · not the finished site</p>
+        <h1 class="masthead__title">Build&nbsp;preview</h1>
+        <p class="masthead__lede measure">
+          A website for {business.identity.name} is being built in seven steps. Two are done.
+          The pages below are internal design references, not the public site — there is no
+          homepage yet, and every business detail on the site is still a placeholder.
+        </p>
+      </div>
+    </header>
+
+    <section class="grid-editorial section" aria-labelledby="refs">
+      <div class="col-wide">
+        <h2 id="refs" class="section__title">Ready to review</h2>
+      </div>
+      <ul class="col-wide refs" role="list">
+        {
+          references.map((r) => (
+            <li>
+              <a class="ref" href={r.href}>
+                <span class="ref__title">{r.title}</span>
+                <span class="ref__detail">{r.detail}</span>
+                <span class="ref__go" aria-hidden="true">
+                  →
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="grid-editorial section" aria-labelledby="order">
+      <div class="col-wide">
+        <h2 id="order" class="section__title">Build order</h2>
+      </div>
+      <ol class="col-wide steps" role="list">
+        {
+          built.map((s) => (
+            <li class:list={['step', s.done && 'step--done']}>
+              <span class="step__n" aria-hidden="true">
+                {String(s.n).padStart(2, '0')}
+              </span>
+              <span class="step__body">
+                <span class="step__title">
+                  {s.title}
+                  <span class="step__state">{s.done ? 'Done' : 'To come'}</span>
+                </span>
+                <span class="step__detail">{s.detail}</span>
+              </span>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
+
+    <footer class="grid-editorial footer">
+      <p class="col-wide measure">
+        Nothing here is a claim about a real business. The licence number, insurance,
+        memberships, testimonials, prices and contact details in this repository are all
+        invented placeholders, listed in <span class="mono">content/TODO.md</span>, and must be
+        replaced before anything is published.
+      </p>
+    </footer>
+  </main>
+</Base>
+
+<style>
+  .masthead {
+    padding-block: var(--space-xl) var(--space-l);
+    border-block-end: var(--border-rule) solid var(--color-ink);
+  }
+
+  .masthead__title {
+    font-size: var(--text-display-l);
+    line-height: 0.98;
+    letter-spacing: -0.006em;
+    margin-block: var(--space-s) var(--space-m);
+  }
+
+  .masthead__lede {
+    font-size: var(--text-lead);
+    line-height: 1.5;
+    color: var(--color-ink-muted);
+  }
+
+  .section {
+    padding-block: var(--space-section-tight);
+    border-block-end: var(--border-hairline) solid var(--color-line);
+    row-gap: var(--space-m);
+  }
+
+  .section__title {
+    font-size: var(--text-title-m);
+    line-height: 1.14;
+    margin-block-end: var(--space-s);
+  }
+
+  .refs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+    gap: var(--space-s);
+    list-style: none;
+    padding: 0;
+  }
+
+  .ref {
+    display: grid;
+    gap: var(--space-3xs);
+    block-size: 100%;
+    padding: var(--space-s);
+    background: var(--color-paper-raised);
+    border: var(--border-hairline) solid var(--color-line);
+    border-block-start: var(--border-rule) solid var(--color-brick);
+    text-decoration: none;
+    color: var(--color-ink);
+    transition:
+      background-color var(--duration-fast) var(--ease-inout),
+      border-color var(--duration-fast) var(--ease-inout);
+  }
+
+  .ref:hover {
+    background: var(--color-paper-sunk);
+    border-block-start-color: var(--color-brick-deep);
+  }
+
+  .ref__title {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+  }
+
+  .ref__detail {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .ref__go {
+    margin-block-start: var(--space-2xs);
+    color: var(--color-brick);
+    font-size: var(--text-body);
+  }
+
+  .steps {
+    list-style: none;
+    padding: 0;
+    counter-reset: none;
+  }
+
+  .step {
+    display: grid;
+    grid-template-columns: 3.5rem 1fr;
+    gap: var(--space-s);
+    padding-block: var(--space-s);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .step__n {
+    font-family: var(--font-mono);
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+  }
+
+  .step--done .step__n {
+    color: var(--color-brick);
+  }
+
+  .step__body {
+    display: grid;
+    gap: var(--space-3xs);
+  }
+
+  .step__title {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2xs);
+  }
+
+  .step__state {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding: 0 var(--space-3xs);
+    color: var(--color-ink-faint);
+    border: var(--border-hairline) solid var(--color-line-strong);
+  }
+
+  .step--done .step__state {
+    color: var(--color-paper);
+    background: var(--color-brick);
+    border-color: var(--color-brick);
+  }
+
+  .step__detail {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+    max-width: var(--measure);
+  }
+
+  .step:not(.step--done) .step__title {
+    color: var(--color-ink-muted);
+  }
+
+  .footer {
+    padding-block: var(--space-l) var(--space-xl);
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+  }
+</style>

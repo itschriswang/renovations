@@ -2,6 +2,12 @@
 import '../styles/app.css';
 import { business } from '../lib/business';
 
+// Imported so the preloads below point at the same content-hashed files the
+// stylesheet requests. Hard-coding /fonts/... would preload a URL that does
+// not exist once the bundler hashes them, and would break under a base path.
+import displayFont from '../assets/fonts/big-shoulders-display-variable.woff2?url';
+import textFont from '../assets/fonts/schibsted-grotesk-variable.woff2?url';
+
 interface Props {
   title: string;
   description: string;
@@ -29,20 +35,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site ?? business.site.url);
       the metric-matched fallbacks in fonts.css hold the layout steady when
       they do not.
     */}
-    <link
-      rel="preload"
-      href="/fonts/schibsted-grotesk-variable.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/big-shoulders-display-variable.woff2"
-      as="font"
-      type="font/woff2"
-      crossorigin
-    />
+    <link rel="preload" href={textFont} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={displayFont} as="font" type="font/woff2" crossorigin />
 
     <meta name="theme-color" content="#f7f3ec" />
   </head>
