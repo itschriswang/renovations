@@ -1,0 +1,114 @@
+/*
+ * MOTION
+ *
+ * Rules this layer enforces, from the brief:
+ *   - one easing curve, defined once as a token and never redeclared
+ *   - nothing animates twice
+ *   - nothing animates on scroll up
+ *   - under prefers-reduced-motion it degrades to opacity only
+ *
+ * The first three are structural rather than stylistic: the reveal is a
+ * one-shot state change driven by a single `data-revealed` attribute, so
+ * there is no mechanism by which an element could animate a second time or
+ * animate in reverse.
+ *
+ * Everything here is inert until `data-motion="ready"` appears on the root,
+ * which an inline script sets before first paint. With JavaScript off, no
+ * element is ever hidden — the page simply renders.
+ */
+
+/* ---------------------------------------------------------------- reveals */
+
+[data-motion='ready'] [data-reveal] {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-distance), 0);
+  transition:
+    opacity var(--duration-base) var(--ease-primary),
+    transform var(--duration-base) var(--ease-primary);
+  /* Stagger is capped at six steps by the script, so a long list never ends
+     up with a two second delay on its last item. */
+  transition-delay: calc(var(--stagger-step) * var(--reveal-index, 0));
+  /* Promote only while the element is actually waiting to animate. */
+  will-change: opacity, transform;
+}
+
+[data-motion='ready'] [data-reveal][data-revealed] {
+  opacity: 1;
+  transform: none;
+  will-change: auto;
+}
+
+/* --------------------------------------------------------- hero sequence */
+
+.hero-seq {
+  position: relative;
+  display: grid;
+}
+
+/* Every frame stacks in the same grid cell so the box never changes size and
+   the sequence cannot cause layout shift. */
+.hero-seq__frame {
+  grid-area: 1 / 1;
+  inline-size: 100%;
+  block-size: auto;
+}
+
+/* Frames after the first are hidden until the sequence is actually running.
+   If it never runs — reduced motion, a slow connection, a narrow screen, or
+   no JavaScript — only the first frame is ever fetched or shown. */
+.hero-seq__frame + .hero-seq__frame {
+  opacity: 0;
+}
+
+.hero-seq[data-sequence='running'] .hero-seq__frame + .hero-seq__frame {
+  opacity: var(--frame-opacity, 0);
+}
+
+/* ------------------------------------------------------- page transitions */
+
+/*
+ * Cross-document view transitions, in CSS, with no JavaScript at all.
+ *
+ * A browser that supports this animates between pages; one that does not
+ * performs an ordinary navigation and nothing is lost. That is the considered
+ * fallback: the feature degrades to the platform default rather than to a
+ * polyfill, so nobody downloads a routing runtime to get a cross-fade.
+ */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation-duration: var(--duration-fast);
+  animation-timing-function: var(--ease-exit);
+}
+
+::view-transition-new(root) {
+  animation-duration: var(--duration-base);
+  animation-timing-function: var(--ease-primary);
+}
+
+/* The header is continuous between pages, so it should not cross-fade with
+   the rest of the document. */
+.site-header {
+  view-transition-name: site-header;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* Keep the transition — a cross-fade is not vestibular motion — but make it
+     short enough to read as an instant swap. */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 1ms;
+  }
+
+  [data-motion='ready'] [data-reveal] {
+    /* --reveal-distance is already 0 at this breakpoint, so the transform is
+       a no-op; naming opacity explicitly makes the intent unambiguous. */
+    transition-property: opacity;
+  }
+
+  .hero-seq[data-sequence='running'] .hero-seq__frame + .hero-seq__frame {
+    opacity: 0;
+  }
+}

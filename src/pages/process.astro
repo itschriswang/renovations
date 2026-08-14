@@ -47,7 +47,7 @@ const totalWeeks = stages.at(-1)?.weeks ?? 0;
       <ol class="timeline" role="list">
         {
           stages.map((s, i) => (
-            <li class="stage" id={s.id}>
+            <li class="stage" id={s.id} data-reveal>
               <div class="stage__marker" aria-hidden="true">
                 <span class="stage__number">{String(i + 1).padStart(2, '0')}</span>
               </div>

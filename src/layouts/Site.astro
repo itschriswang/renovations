@@ -21,3 +21,20 @@ const { title, description, indexable = true, schema } = Astro.props;
   </main>
   <Footer />
 </Base>
+
+<script>
+  import { initReveals, revealAboveTheFold } from '../scripts/reveal';
+  import { initHeroSequence } from '../scripts/hero-sequence';
+
+  initReveals();
+  revealAboveTheFold();
+
+  // The hero sequence waits for load so it never competes with LCP, and it
+  // checks connection, viewport and motion preference before importing
+  // anything. On most visits it imports nothing at all.
+  const startSequence = () => {
+    void initHeroSequence();
+  };
+  if (document.readyState === 'complete') startSequence();
+  else window.addEventListener('load', startSequence, { once: true });
+</script>

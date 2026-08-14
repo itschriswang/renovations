@@ -1,0 +1,78 @@
+---
+import { getImage } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import { shot, sequenceFrames } from '../lib/shots';
+
+interface Props {
+  /** Base shot ID; frames are `<id>-01`, `<id>-02`, … */
+  id: string;
+  alt: string;
+}
+
+const { id, alt } = Astro.props;
+
+const frameIds = sequenceFrames(id);
+const [firstId, ...restIds] = frameIds;
+
+const WIDTHS = [640, 1024, 1600, 2560];
+
+/**
+ * Resolves a frame for both states of this project's life.
+ *
+ * Today the frames are generated SVGs, which the image pipeline passes through
+ * unchanged — asking it for WebP would fail, and resizing a vector is
+ * pointless anyway. The day real photographs replace them the same call
+ * produces a resized, modern-format, responsive set. Neither this component
+ * nor any content file changes when that happens.
+ */
+async function frame(src: ImageMetadata) {
+  if (src.format === 'svg') {
+    const out = await getImage({ src, format: 'svg' });
+    return { src: out.src, srcset: '', width: src.width, height: src.height };
+  }
+  const out = await getImage({ src, widths: WIDTHS, format: 'webp' });
+  return {
+    src: out.src,
+    srcset: out.srcSet.attribute,
+    width: src.width,
+    height: src.height,
+  };
+}
+
+// The first frame is an ordinary responsive image and is the LCP element.
+const first = await frame(shot(firstId!));
+
+// The rest are resolved at build time but attached to data-* attributes, so
+// the browser never requests them unless the script decides this visitor
+// should have the sequence. An src that is present is an src that is fetched.
+const rest = await Promise.all(restIds.map(async (fid) => await frame(shot(fid))));
+---
+
+<div class="hero-seq" data-hero-sequence>
+  <img
+    class="hero-seq__frame"
+    src={first.src}
+    srcset={first.srcset || undefined}
+    sizes={first.srcset ? '100vw' : undefined}
+    width={first.width}
+    height={first.height}
+    alt={alt}
+    fetchpriority="high"
+    decoding="sync"
+  />
+  {
+    rest.map((f) => (
+      <img
+        class="hero-seq__frame"
+        data-src={f.src}
+        data-srcset={f.srcset || undefined}
+        sizes={f.srcset ? '100vw' : undefined}
+        width={f.width}
+        height={f.height}
+        alt=""
+        aria-hidden="true"
+        decoding="async"
+      />
+    ))
+  }
+</div>

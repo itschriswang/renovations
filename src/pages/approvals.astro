@@ -116,7 +116,7 @@ const councils = business.councils;
     <div class="col-wide standards">
       {
         standards.map((s) => (
-          <article class="standard" id={s.id}>
+          <article class="standard" id={s.id} data-reveal>
             <h3 class="standard__name">{s.name}</h3>
             <p class="standard__figure" data-numeric>
               {s.figure}
@@ -215,7 +215,7 @@ const councils = business.councils;
     <ol class="col-wide responsibilities" role="list">
       {
         responsibilities.map((r) => (
-          <li class="responsibility">
+          <li class="responsibility" data-reveal>
             <span class:list={['responsibility__who', r.who === 'You' && 'responsibility__who--you']}>
               {r.who}
             </span>

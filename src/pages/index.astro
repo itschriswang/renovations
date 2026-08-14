@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Site from '../layouts/Site.astro';
 import Figure from '../components/Figure.astro';
+import HeroSequence from '../components/HeroSequence.astro';
 import TrustStrip from '../components/TrustStrip.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import CallToAction from '../components/CallToAction.astro';
@@ -45,12 +46,9 @@ const suburbs = business.serviceArea.suburbs;
     </div>
 
     <div class="col-bleed hero__figure">
-      <Figure
-        id="home-hero-sequence-01"
-        alt="A rear extension at dusk with the interior lights on, opening onto a back garden"
-        priority
-        widths={[640, 1024, 1600, 2560]}
-        sizes="100vw"
+      <HeroSequence
+        id="home-hero-sequence"
+        alt="A rear extension at dusk, interior lights on, opening onto a back garden"
       />
     </div>
   </section>
@@ -90,7 +88,7 @@ const suburbs = business.serviceArea.suburbs;
     <ul class="col-wide bands" role="list">
       {
         bands.map((b) => (
-          <li class="bands__item">
+          <li class="bands__item" data-reveal>
             <a class="bands__link" href={`${href(routes.costs)}#${b.id}`}>
               <span class="bands__name">{b.name}</span>
               <span class="bands__range" data-numeric>
@@ -149,7 +147,7 @@ const suburbs = business.serviceArea.suburbs;
     <ol class="col-wide stages" role="list">
       {
         stages.slice(0, 6).map((s) => (
-          <li class="stages__item">
+          <li class="stages__item" data-reveal>
             <span class="stages__name">{s.name}</span>
             <span class="stages__duration" data-numeric>
               {s.duration}
@@ -175,7 +173,7 @@ const suburbs = business.serviceArea.suburbs;
       </p>
     </div>
     <div class="col-wide projects">
-      {projects.map((p) => <ProjectCard project={p} />)}
+      {projects.map((p) => <div data-reveal><ProjectCard project={p} /></div>)}
     </div>
   </section>
 

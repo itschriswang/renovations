@@ -95,7 +95,7 @@ const { bands, disclaimer, reviewed, gstInclusive } = business.costBands;
         <div class="col-wide">
           <ol class="movers" role="list">
             {b.movers.map((m) => (
-              <li class="movers__item">
+              <li class="movers__item" data-reveal>
                 <h3 class="movers__title">{m.title}</h3>
                 <p class="movers__detail">{m.detail}</p>
               </li>
