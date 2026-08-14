@@ -1,12 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-label="Temporary placeholder awaiting photography: The temporary propping in place while the beam was installed.">
-<rect x="0" y="0" width="1800" height="1200" fill="#be6541"/>
-<rect x="0" y="40" width="1800" height="300" fill="#F7F2E7" opacity="0.09"/>
-<rect x="0" y="307" width="1800" height="300" fill="#1A1512" opacity="0.10"/>
-<rect x="0" y="645" width="1800" height="300" fill="#F7F2E7" opacity="0.04"/>
-<rect x="0" y="908" width="1800" height="300" fill="#1A1512" opacity="0.05"/>
-<rect x="144" y="216" width="540" height="768" fill="#1a1512" opacity="0.55"/>
-<rect x="0" y="1068" width="1800" height="132" fill="#1A1512" opacity="0.88"/>
-<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F7F2E7">west-ryde-process · 3:2 · 1800×1200</text>
-<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — The temporary propping in place while the beam was installed.</text>
-<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
+<rect x="0" y="0" width="1800" height="1200" fill="#d87e5b"/>
+<rect x="0" y="40" width="1800" height="300" fill="#FCFAF7" opacity="0.09"/>
+<rect x="0" y="307" width="1800" height="300" fill="#221C19" opacity="0.10"/>
+<rect x="0" y="645" width="1800" height="300" fill="#FCFAF7" opacity="0.04"/>
+<rect x="0" y="908" width="1800" height="300" fill="#221C19" opacity="0.05"/>
+<rect x="144" y="216" width="540" height="768" fill="#221c19" opacity="0.55"/>
+<rect x="0" y="1068" width="1800" height="132" fill="#221C19" opacity="0.82"/>
+<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#FCFAF7">west-ryde-process · 3:2 · 1800×1200</text>
+<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#FCFAF7" opacity="0.72">AWAITING PHOTOGRAPHY — The temporary propping in place while the beam was installed.</text>
+<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#221C19" stroke-opacity="0.2"/>
 </svg>

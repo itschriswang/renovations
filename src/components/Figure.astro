@@ -68,6 +68,7 @@ const pending = isPlaceholder(id);
     inline-size: 100%;
     block-size: auto;
     background: var(--color-paper-sunk);
+    border-radius: var(--radius-m);
   }
 
   .figure__caption {
@@ -82,13 +83,14 @@ const pending = isPlaceholder(id);
   }
 
   .figure__pending {
-    padding: 0 var(--space-3xs);
-    background: var(--color-molten);
+    padding: 0.2em 0.7em;
+    border-radius: var(--radius-full);
+    background: var(--color-coral);
     color: var(--color-ink);
-    font-family: var(--font-mono);
     font-size: 0.72rem;
+    font-weight: var(--font-weight-bold);
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
   }
 
   :global(.surface-dark) .figure__caption {

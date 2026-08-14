@@ -51,10 +51,10 @@
   h5,
   h6 {
     font-family: var(--font-display);
-    /* The display face is condensed, so it carries less mass than the text
-       face at the same size. 600 restores that mass without inventing a new
-       step on the scale. */
+    /* Both faces are normal width, so the display face has to work harder to
+       separate from the text face. 600 plus tight tracking does it. */
     font-weight: var(--font-weight-display);
+    letter-spacing: -0.018em;
     text-wrap: balance;
   }
 
@@ -91,11 +91,11 @@
   }
 
   a {
-    color: var(--color-molten-ink);
+    color: var(--color-coral-ink);
     text-decoration-line: underline;
     text-decoration-thickness: 2px;
     text-underline-offset: 0.16em;
-    text-decoration-color: color-mix(in srgb, var(--color-molten) 55%, transparent);
+    text-decoration-color: color-mix(in srgb, var(--color-coral) 45%, transparent);
     transition:
       color var(--duration-fast) var(--ease-inout),
       text-decoration-color var(--duration-fast) var(--ease-inout);
@@ -103,7 +103,7 @@
 
   a:hover {
     color: var(--color-ink);
-    text-decoration-color: var(--color-molten);
+    text-decoration-color: var(--color-coral);
   }
 
   /*
@@ -115,8 +115,7 @@
    */
   :focus-visible {
     outline: 3px solid var(--color-focus);
-    outline-offset: 2px;
-    border-radius: var(--radius-xs);
+    outline-offset: 3px;
   }
 
   /* Only suppress the default ring where we replace it with our own. */
@@ -130,7 +129,7 @@
   }
 
   ::selection {
-    background-color: color-mix(in srgb, var(--color-ochre) 40%, transparent);
+    background-color: color-mix(in srgb, var(--color-amber) 55%, transparent);
     color: var(--color-ink);
   }
 
@@ -256,30 +255,21 @@
   /* -----------------------------------------------------------------------
    * SURFACES
    * -------------------------------------------------------------------- */
-  .surface-dark {
-    background-color: var(--color-bitumen);
-    color: var(--color-paper);
-  }
-
   .surface-dark a {
-    color: var(--color-ochre);
-    text-decoration-color: color-mix(in srgb, var(--color-ochre) 60%, transparent);
+    color: var(--color-amber);
+    text-decoration-color: color-mix(in srgb, var(--color-amber) 60%, transparent);
   }
 
   .surface-dark a:hover {
     color: var(--color-paper);
-    text-decoration-color: var(--color-ochre);
+    text-decoration-color: var(--color-amber);
   }
 
   /* Muted text keeps its role on a dark surface but has to change value to
      hold 4.5:1 against it. */
   .surface-dark .mono,
   .surface-dark .label {
-    color: var(--color-ochre);
-  }
-
-  .surface-sunk {
-    background-color: var(--color-paper-sunk);
+    color: var(--color-amber);
   }
 
   /* -----------------------------------------------------------------------
@@ -294,6 +284,7 @@
     padding: var(--space-xs) var(--space-s);
     background-color: var(--color-ink);
     color: var(--color-paper);
+    border-radius: var(--radius-full);
     text-decoration: none;
     font-size: var(--text-caption);
     font-weight: var(--font-weight-semibold);
@@ -339,76 +330,115 @@
     min-block-size: 52px;
     padding: var(--space-2xs) var(--space-m);
     font-family: var(--font-display);
-    font-size: var(--text-title-s);
+    font-size: 1.0625rem;
     font-weight: var(--font-weight-display-strong);
-    line-height: 1;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
+    line-height: 1.2;
+    letter-spacing: -0.005em;
     text-align: center;
     text-decoration: none;
-    border-radius: 0;
-    border: 3px solid transparent;
+    border-radius: var(--radius-full);
+    border: 1px solid transparent;
     cursor: pointer;
     transition:
       background-color var(--duration-fast) var(--ease-inout),
       border-color var(--duration-fast) var(--ease-inout),
+      box-shadow var(--duration-fast) var(--ease-inout),
       color var(--duration-fast) var(--ease-inout),
       transform var(--duration-fast) var(--ease-inout);
   }
 
-  /* Molten fill with ink on top. The hot colour is the only thing on the site
-     that ever means "act", and it is never used for anything else. */
+  .button:hover {
+    /* Small enough to read as responsive, small enough not to reflow anything
+       underneath. Dropped entirely under prefers-reduced-motion. */
+    transform: translateY(-2px);
+  }
+
+  /*
+   * Coral fill with ink on top, 4.83:1. The coral also clears 3:1 against every
+   * light surface on the site, so the button's own edge is a legal control
+   * boundary rather than relying on the label alone.
+   */
   .button--primary {
-    background: var(--color-molten);
+    background: var(--color-coral);
     color: var(--color-ink);
-    border-color: var(--color-ink);
-    box-shadow: 4px 4px 0 var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-coral-ink) 55%, transparent);
+    box-shadow: var(--shadow-soft);
   }
 
   .button--primary:hover {
-    background: var(--color-ochre);
-    color: var(--color-ink);
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 var(--color-ink);
+    background: var(--color-coral-ink);
+    color: var(--color-paper);
+    border-color: var(--color-coral-ink);
+    box-shadow: var(--shadow-raised);
   }
 
   .button--secondary {
-    background: transparent;
+    background: var(--color-paper-raised);
     color: var(--color-ink);
-    border-color: var(--color-ink);
+    border-color: var(--color-line-strong);
+    box-shadow: var(--shadow-soft);
   }
 
   .button--secondary:hover {
     background: var(--color-ink);
     color: var(--color-paper);
+    border-color: var(--color-ink);
+    box-shadow: var(--shadow-raised);
   }
 
   .button--small {
     min-block-size: 44px;
     font-size: var(--text-caption);
     padding: var(--space-3xs) var(--space-s);
-    letter-spacing: 0.08em;
   }
 
-  .surface-dark .button--primary,
+  .surface-dark .button--primary {
+    border-color: transparent;
+  }
+
   .surface-dark .button--primary:hover {
+    background: var(--color-amber);
     color: var(--color-ink);
-    border-color: var(--color-paper);
-    box-shadow: 4px 4px 0 var(--color-paper);
-  }
-
-  .surface-dark .button--primary:hover {
-    box-shadow: 2px 2px 0 var(--color-paper);
+    border-color: transparent;
   }
 
   .surface-dark .button--secondary {
+    background: transparent;
     color: var(--color-paper);
-    border-color: var(--color-paper);
+    border-color: color-mix(in srgb, var(--color-paper) 45%, transparent);
+    box-shadow: none;
   }
 
   .surface-dark .button--secondary:hover {
     background: var(--color-paper);
     color: var(--color-ink);
+    border-color: var(--color-paper);
+  }
+
+  /* On the hot panel the coral button would disappear into its own background,
+     so the primary flips to ink and the secondary borrows the panel's ink. */
+  .surface-hot .button--primary {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    border-color: transparent;
+  }
+
+  .surface-hot .button--primary:hover {
+    background: var(--color-ink-deep);
+    color: var(--color-paper);
+  }
+
+  .surface-hot .button--secondary {
+    background: transparent;
+    color: var(--color-ink);
+    border-color: color-mix(in srgb, var(--color-ink) 55%, transparent);
+    box-shadow: none;
+  }
+
+  .surface-hot .button--secondary:hover {
+    background: var(--color-ink);
+    color: var(--color-paper);
+    border-color: var(--color-ink);
   }
 
   /* -----------------------------------------------------------------------
@@ -419,6 +449,13 @@
     padding-block: var(--space-section);
   }
 
+  /* The footer has no top margin, because most pages end on the booking panel
+     and that panel should meet it. A page that ends on anything else supplies
+     the gap here instead. */
+  #main > :last-child:not(.cta) {
+    margin-block-end: var(--space-section);
+  }
+
   .section--tight {
     padding-block: var(--space-section-tight);
   }
@@ -427,45 +464,48 @@
     border-block-start: var(--border-hairline) solid var(--color-line);
   }
 
+  /* Sections that carry a wash need their padding to reach the tint edge, and
+     a rounded top so the colour block reads as a panel rather than a stripe. */
+  .section--wash {
+    border-block-start: 0;
+  }
+
+  /*
+   * The eyebrow. A tracked label in the accent colour with a short rule in
+   * front of it — no chip, no fill. The chip version put a dark block above
+   * every heading on the page, which is a large part of why the first pass
+   * read heavy.
+   */
   .section__eyebrow {
-    display: inline-block;
-    padding: 0.25em 0.6em;
+    display: flex;
+    align-items: center;
+    gap: 0.6em;
     margin-block-end: var(--space-s);
-    background: var(--color-ink);
-    color: var(--color-paper);
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
+    color: var(--color-coral-ink);
+    font-family: var(--font-text);
+    font-size: 0.8rem;
     text-transform: uppercase;
-    letter-spacing: 0.16em;
-    font-weight: 700;
+    letter-spacing: 0.14em;
+    font-weight: var(--font-weight-bold);
+  }
+
+  .section__eyebrow::before {
+    content: '';
+    flex: none;
+    inline-size: 1.75rem;
+    block-size: 3px;
+    border-radius: var(--radius-full);
+    background: currentColor;
   }
 
   .surface-dark .section__eyebrow {
-    background: var(--color-ochre);
-    color: var(--color-ink);
-  }
-
-  /* The eyebrow is a dark chip, so a link inside it is on ink, not on paper,
-     and needs the reversed link colour rather than the inherited one. */
-  .section__eyebrow a {
-    color: var(--color-ochre);
-    text-decoration-color: color-mix(in srgb, var(--color-ochre) 60%, transparent);
-  }
-
-  .section__eyebrow a:hover {
-    color: var(--color-paper);
-  }
-
-  .surface-dark .section__eyebrow a {
-    color: var(--color-ink);
-    text-decoration-color: color-mix(in srgb, var(--color-ink) 60%, transparent);
+    color: var(--color-amber);
   }
 
   .section__title {
     font-size: var(--text-display-s);
-    line-height: 0.96;
-    letter-spacing: -0.006em;
-    text-transform: uppercase;
+    line-height: 1.06;
+    letter-spacing: -0.02em;
     margin-block-end: var(--space-s);
   }
 
@@ -502,16 +542,16 @@
 
   .prose > h2 {
     font-size: var(--text-title-m);
-    line-height: 1.22;
-    letter-spacing: -0.012em;
+    line-height: 1.14;
+    letter-spacing: -0.018em;
     margin-block-start: var(--space-l);
     margin-block-end: calc(var(--space-s) * -0.25);
   }
 
   .prose > h3 {
     font-size: var(--text-title-s);
-    line-height: 1.3;
-    letter-spacing: -0.01em;
+    line-height: 1.2;
+    letter-spacing: -0.014em;
     margin-block-start: var(--space-m);
   }
 
@@ -541,7 +581,7 @@
   .prose th {
     text-align: start;
     font-weight: var(--font-weight-semibold);
-    border-block-end: var(--border-rule) solid var(--color-ink);
+    border-block-end: 2px solid var(--color-ink);
     padding-block: var(--space-2xs);
     padding-inline-end: var(--space-s);
   }
@@ -553,7 +593,8 @@
   }
 
   .prose blockquote {
-    border-inline-start: var(--border-rule) solid var(--color-ochre);
+    border-inline-start: 3px solid var(--color-coral);
+    border-radius: var(--radius-xs);
     padding-inline-start: var(--space-s);
     font-size: var(--text-lead);
     line-height: 1.5;
@@ -572,7 +613,7 @@
   }
 
   .surface-dark .mono {
-    color: var(--color-ochre);
+    color: var(--color-amber);
   }
 
   /* -----------------------------------------------------------------------
@@ -612,6 +653,10 @@
 
   html {
     scroll-behavior: auto;
+  }
+
+  .button:hover {
+    transform: none;
   }
 
   *,

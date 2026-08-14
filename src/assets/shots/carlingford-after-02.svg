@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-label="Temporary placeholder awaiting photography: Identical position, lens and time of day to before-02.">
 <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#8fa3ad"/>
-    <stop offset="1" stop-color="#e4cba4"/>
+    <stop offset="0" stop-color="#9ec6d4"/>
+    <stop offset="1" stop-color="#f3e2c6"/>
   </linearGradient></defs>
 <rect x="0" y="0" width="1600" height="756" fill="url(#sky)"/>
-<rect x="0" y="756" width="1600" height="444" fill="#7e7a4a"/>
-<rect x="0" y="756" width="1600" height="62" fill="#a8996f" opacity="0.5"/>
-<polygon points="90,333 600,180 1110,333" fill="#33292a"/>
-<rect x="122" y="333" width="956" height="423" fill="#c4633c"/>
-<rect x="1078" y="369" width="186" height="387" fill="#6e2a1a"/>
-<rect x="218" y="435" width="228" height="178" fill="#241e1c"/>
-<rect x="600" y="435" width="228" height="178" fill="#241e1c"/>
-<rect x="0" y="1080" width="1600" height="120" fill="#1A1512" opacity="0.1"/>
-<rect x="0" y="1068" width="1600" height="132" fill="#1A1512" opacity="0.88"/>
-<text x="32" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F7F2E7">carlingford-after-02 · 4:3 · 1600×1200</text>
-<text x="32" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — Identical position, lens and time of day to before-02.</text>
-<rect x="0.5" y="0.5" width="1599" height="1199" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
+<rect x="0" y="756" width="1600" height="444" fill="#8fa35c"/>
+<rect x="0" y="756" width="1600" height="62" fill="#bfb07f" opacity="0.5"/>
+<polygon points="90,333 600,180 1110,333" fill="#3b3336"/>
+<rect x="122" y="333" width="956" height="423" fill="#de7c56"/>
+<rect x="1078" y="369" width="186" height="387" fill="#8b3722"/>
+<rect x="218" y="435" width="228" height="178" fill="#2a3b3e"/>
+<rect x="600" y="435" width="228" height="178" fill="#2a3b3e"/>
+<rect x="0" y="1080" width="1600" height="120" fill="#221C19" opacity="0.1"/>
+<rect x="0" y="1068" width="1600" height="132" fill="#221C19" opacity="0.82"/>
+<text x="32" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#FCFAF7">carlingford-after-02 · 4:3 · 1600×1200</text>
+<text x="32" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#FCFAF7" opacity="0.72">AWAITING PHOTOGRAPHY — Identical position, lens and time of day to before-02.</text>
+<rect x="0.5" y="0.5" width="1599" height="1199" fill="none" stroke="#221C19" stroke-opacity="0.2"/>
 </svg>

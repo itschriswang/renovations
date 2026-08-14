@@ -250,7 +250,7 @@ const path = routes.project(project.id);
   .page-title {
     font-size: var(--text-display-m);
     line-height: 1.02;
-    letter-spacing: -0.004em;
+    letter-spacing: -0.025em;
     margin-block: var(--space-2xs) var(--space-s);
   }
 
@@ -259,7 +259,8 @@ const path = routes.project(project.id);
     display: grid;
     gap: var(--space-s);
     padding-inline-start: var(--space-s);
-    border-inline-start: var(--border-rule) solid var(--color-ochre);
+    border-inline-start: 3px solid var(--color-coral);
+    border-radius: var(--radius-m);
   }
 
   .key-facts dt {
@@ -274,6 +275,7 @@ const path = routes.project(project.id);
     font-weight: var(--font-weight-display);
     font-size: var(--text-title-s);
     line-height: 1.2;
+    letter-spacing: -0.014em;
   }
 
   .key-facts__note {
@@ -292,12 +294,13 @@ const path = routes.project(project.id);
   }
 
   .beat--warn {
-    color: var(--color-molten-ink);
+    color: var(--color-coral-ink);
   }
 
   .beat-title {
     font-size: var(--text-title-l);
     line-height: 1.08;
+    letter-spacing: -0.022em;
     margin-block: var(--space-2xs) var(--space-s);
   }
 
@@ -321,12 +324,14 @@ const path = routes.project(project.id);
 
   .resolution {
     background: var(--color-paper-sunk);
-    border-inline-start: var(--border-rule) solid var(--color-ochre);
+    border-inline-start: 3px solid var(--color-coral);
+    border-radius: var(--radius-m);
   }
 
   .cost-to-client {
     background: var(--color-paper-sunk);
-    border-inline-start: var(--border-rule) solid var(--color-brick);
+    border-inline-start: 3px solid var(--color-teal);
+    border-radius: var(--radius-m);
   }
 
   .resolution__label,
@@ -341,7 +346,7 @@ const path = routes.project(project.id);
   }
 
   .cost-to-client__label {
-    color: var(--color-molten-ink);
+    color: var(--color-coral-ink);
   }
 
   .trades {
@@ -379,6 +384,7 @@ const path = routes.project(project.id);
     font-weight: var(--font-weight-display);
     font-size: var(--text-title-s);
     line-height: 1.2;
+    letter-spacing: -0.014em;
     margin-block: var(--space-3xs);
   }
 
@@ -392,7 +398,8 @@ const path = routes.project(project.id);
   }
 
   .quote {
-    border-inline-start: var(--border-rule) solid var(--color-ochre);
+    border-inline-start: 3px solid var(--color-coral);
+    border-radius: var(--radius-m);
     padding-inline-start: var(--space-s);
   }
 
@@ -400,7 +407,8 @@ const path = routes.project(project.id);
     font-family: var(--font-display);
     font-weight: var(--font-weight-display-light);
     font-size: var(--text-title-m);
-    line-height: 1.2;
+    line-height: 1.14;
+    letter-spacing: -0.018em;
   }
 
   .quote__by {
@@ -412,13 +420,14 @@ const path = routes.project(project.id);
   .quote__flag {
     display: inline-block;
     margin-inline-start: var(--space-3xs);
-    padding: 0 var(--space-3xs);
-    background: var(--color-molten);
+    padding: 0.2em 0.7em;
+    border-radius: var(--radius-full);
+    background: var(--color-coral);
     color: var(--color-ink);
-    font-family: var(--font-mono);
     font-size: 0.72rem;
+    font-weight: var(--font-weight-bold);
     text-transform: uppercase;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.08em;
   }
 
   .band-link {

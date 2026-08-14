@@ -1,0 +1,286 @@
+/*
+ * MATERIAL
+ *
+ * The parts that give the page character: surfaces, chips, cards, big figures.
+ * Everything here is CSS — no images, no extra requests — because texture that
+ * costs a megabyte is not texture, it is a performance problem wearing a coat.
+ *
+ * The rule for using any of it: it has to encode something true. The stamped
+ * numbers are a real sequence. The measurement grid appears on the page that is
+ * actually about measuring. Decoration that means nothing is what makes a page
+ * look like a template.
+ *
+ * The first pass of this file was built out of hazard stripes, stencil marks,
+ * scanline grain and a near-black ground. That vocabulary is a 1970s site
+ * notice, and it read as retro rather than as confident. It has been replaced
+ * with light ground, tinted washes, soft radii and warm shadow — the surfaces
+ * of a finished room rather than of the hoarding outside it.
+ */
+
+@layer components {
+  /* ---------------------------------------------------------------- glow */
+
+  /*
+   * A soft warm bloom behind a hero or a feature panel. Two large radial
+   * gradients at very low opacity — it reads as light falling into the page
+   * rather than as a texture laid over it, and it costs nothing to paint.
+   */
+  .glow {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .glow::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      radial-gradient(
+        62rem 40rem at 8% -10%,
+        color-mix(in srgb, var(--color-coral) 22%, transparent),
+        transparent 62%
+      ),
+      radial-gradient(
+        50rem 34rem at 96% 4%,
+        color-mix(in srgb, var(--color-amber) 26%, transparent),
+        transparent 60%
+      ),
+      radial-gradient(
+        44rem 32rem at 62% 104%,
+        color-mix(in srgb, var(--color-teal) 12%, transparent),
+        transparent 58%
+      );
+  }
+
+  /* ------------------------------------------------------------ dot grid */
+
+  /* A setting-out grid, for panels that are about measuring and planning. Dots
+     rather than rules — a full grid of lines reads as graph paper. */
+  .blueprint {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .blueprint::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: radial-gradient(var(--color-teal) 1.5px, transparent 1.6px);
+    background-size: 1.75rem 1.75rem;
+    opacity: 0.14;
+  }
+
+  /* -------------------------------------------------------------- chips */
+
+  /*
+   * A soft chip. Used for the things we actually do, the stage a project is
+   * at, a cost band label. Mixed case, medium weight, generous corner — it
+   * reads as a tag rather than as something sprayed on a stud.
+   */
+  .stamp {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3xs);
+    padding: 0.34em 0.85em;
+    border-radius: var(--radius-full);
+    background: var(--color-wash-coral);
+    color: var(--color-coral-ink);
+    font-family: var(--font-text);
+    font-size: 0.85rem;
+    font-weight: var(--font-weight-semibold);
+    letter-spacing: 0.005em;
+    line-height: 1.35;
+  }
+
+  .stamp--ochre {
+    background: var(--color-wash-teal);
+    color: var(--color-teal-ink);
+  }
+
+  .stamp--outline {
+    background: transparent;
+    color: var(--color-ink-muted);
+    box-shadow: inset 0 0 0 1px var(--color-line-strong);
+  }
+
+  .stamp--solid {
+    background: var(--color-coral);
+    color: var(--color-ink);
+  }
+
+  .surface-dark .stamp {
+    background: rgb(255 255 255 / 0.1);
+    color: var(--color-amber);
+  }
+
+  .surface-dark .stamp--outline {
+    background: transparent;
+    color: var(--color-amber);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-amber) 55%, transparent);
+  }
+
+  /* --------------------------------------------------------- big numerals */
+
+  /*
+   * Prices and counts set as objects rather than as text. Tabular figures so
+   * columns of them line up, and tracked tight because a large number set at
+   * default tracking looks loose.
+   */
+  .figure-xl {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display-strong);
+    font-size: var(--text-display-m);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-coral-ink);
+  }
+
+  .surface-dark .figure-xl {
+    color: var(--color-amber);
+  }
+
+  .figure-l {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display-strong);
+    font-size: var(--text-title-l);
+    line-height: 1.08;
+    letter-spacing: -0.022em;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-coral-ink);
+  }
+
+  .surface-dark .figure-l {
+    color: var(--color-amber);
+  }
+
+  /* --------------------------------------------------------- index mark */
+
+  /*
+   * A sequence number in a soft disc. Only used where the order genuinely
+   * carries information — the process stages, the approval pathways — never as
+   * decoration on an unordered list.
+   */
+  .index-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2.75rem;
+    block-size: 2.75rem;
+    border-radius: var(--radius-full);
+    background: var(--color-coral);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display-strong);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    letter-spacing: -0.014em;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .surface-dark .index-mark {
+    background: var(--color-amber);
+    color: var(--color-ink);
+  }
+
+  /* ------------------------------------------------------------- cards */
+
+  /*
+   * A block that lifts off the page. Soft corner, hairline edge, warm shadow.
+   * The shadow is tinted brown rather than grey, because a grey shadow on a
+   * warm ground reads as dirt on the paper.
+   */
+  .plate {
+    background: var(--color-paper-raised);
+    border-radius: var(--radius-m);
+    box-shadow:
+      inset 0 0 0 1px var(--color-line),
+      var(--shadow-soft);
+  }
+
+  .plate--ochre {
+    background: var(--color-wash-teal);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-teal) 18%, transparent);
+  }
+
+  .plate--dark {
+    background: var(--color-ink-soft);
+    color: var(--color-paper);
+    box-shadow: inset 0 0 0 1px rgb(252 250 247 / 0.14);
+  }
+
+  /* ----------------------------------------------------------- surfaces */
+
+  .surface-dark {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .surface-darker {
+    background-color: var(--color-ink-deep);
+    color: var(--color-paper);
+  }
+
+  .surface-sunk {
+    background-color: var(--color-paper-sunk);
+  }
+
+  /* The two tinted washes. A section changes temperature rather than going
+     black — this is what carries the vertical rhythm now. */
+  .surface-wash-coral {
+    background-color: var(--color-wash-coral);
+  }
+
+  .surface-wash-teal {
+    background-color: var(--color-wash-teal);
+  }
+
+  /*
+   * The hot panel. Coral into amber, with ink on top. Verified across the whole
+   * ramp: the worst point is the coral end at 4.83:1, and every step towards
+   * amber is lighter than that, so ink never drops below AA anywhere on it.
+   *
+   * Used once per page at most, for the booking panel. It is the loudest thing
+   * on the site and it only ever means "act".
+   */
+  .surface-hot {
+    background-image: linear-gradient(
+      108deg,
+      var(--color-coral) 0%,
+      #f2822e 46%,
+      var(--color-amber) 100%
+    );
+    color: var(--color-ink);
+  }
+
+  .surface-hot a {
+    color: var(--color-ink);
+    text-decoration-color: color-mix(in srgb, var(--color-ink) 45%, transparent);
+  }
+
+  .surface-hot :focus-visible {
+    outline-color: var(--color-ink);
+  }
+
+  /* A full-bleed band that breaks the page rhythm on purpose. */
+  .band-full {
+    grid-column: full;
+    padding-block: var(--space-l);
+  }
+
+  /* ------------------------------------------------------------- media */
+
+  /*
+   * Every photograph on the site is cropped to a soft corner. It is the single
+   * cheapest signal that a page was designed after about 2015, and it costs one
+   * property.
+   */
+  .media-round {
+    border-radius: var(--radius-m);
+    overflow: hidden;
+  }
+}

@@ -11,7 +11,7 @@ import { href, isWithin, primaryNav, routes } from '../lib/links';
 const { pathname } = Astro.url;
 ---
 
-<header class="site-header surface-dark grain">
+<header class="site-header">
   <div class="site-header__inner grid-editorial">
     <div class="site-header__bar">
       <a class="wordmark" href={href(routes.home)}>
@@ -56,8 +56,26 @@ const { pathname } = Astro.url;
 </header>
 
 <style>
+  /*
+   * Light, not dark. The header was the first thing on every page and it was a
+   * near-black band with a hazard-orange edge — it set the tone for everything
+   * under it. It now sits on paper with a hairline, and the only colour in it
+   * is the booking button.
+   */
   .site-header {
-    border-block-end: 3px solid var(--color-molten);
+    background: color-mix(in srgb, var(--color-paper) 92%, transparent);
+    border-block-end: 1px solid var(--color-line);
+    position: sticky;
+    inset-block-start: 0;
+    z-index: var(--z-header);
+  }
+
+  /* Progressive enhancement: browsers without backdrop-filter keep the opaque
+     background above and lose nothing but the blur. */
+  @supports (backdrop-filter: blur(1px)) {
+    .site-header {
+      backdrop-filter: saturate(140%) blur(14px);
+    }
   }
 
   .site-header__bar {
@@ -73,29 +91,29 @@ const { pathname } = Astro.url;
   .wordmark {
     display: grid;
     text-decoration: none;
-    color: var(--color-paper);
+    color: var(--color-ink);
   }
 
   .wordmark:hover {
-    color: var(--color-ochre);
+    color: var(--color-coral-ink);
   }
 
   .wordmark__name {
     font-family: var(--font-display);
     font-weight: var(--font-weight-display-strong);
-    font-size: var(--text-title-m);
-    line-height: 1;
-    letter-spacing: 0.01em;
-    text-transform: uppercase;
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    letter-spacing: -0.014em;
   }
 
   .wordmark__descriptor {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    letter-spacing: 0.14em;
+    font-family: var(--font-text);
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: var(--color-ochre);
-    margin-block-start: 0.15em;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-coral-ink);
+    margin-block-start: 0.2em;
   }
 
   .nav__toggle {
@@ -107,8 +125,7 @@ const { pathname } = Astro.url;
     cursor: pointer;
     font-size: var(--text-caption);
     font-weight: var(--font-weight-semibold);
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
+    border-radius: var(--radius-full);
     list-style: none;
   }
 
@@ -146,19 +163,18 @@ const { pathname } = Astro.url;
     font-family: var(--font-display);
     font-weight: var(--font-weight-display-strong);
     font-size: var(--text-title-s);
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
-    color: var(--color-paper);
+    line-height: 1.2;
+    letter-spacing: -0.014em;
+    color: var(--color-ink);
     text-decoration: none;
   }
 
   .nav__link:hover {
-    color: var(--color-ochre);
+    color: var(--color-coral-ink);
   }
 
   .nav__link[aria-current='page'] {
-    color: var(--color-ochre);
-    box-shadow: inset 0 -3px 0 var(--color-molten);
+    color: var(--color-coral-ink);
   }
 
   .nav__actions {
@@ -168,16 +184,26 @@ const { pathname } = Astro.url;
     gap: var(--space-s);
     margin-block-start: var(--space-s);
     padding-block-start: var(--space-s);
-    border-block-start: 1px solid rgb(247 242 231 / 0.22);
+    border-block-start: 1px solid var(--color-line);
   }
 
   .nav__phone {
     font-family: var(--font-display);
     font-weight: var(--font-weight-display-strong);
     font-size: var(--text-title-s);
-    color: var(--color-ochre);
+    line-height: 1.2;
+    letter-spacing: -0.014em;
+    color: var(--color-ink);
     text-decoration: none;
     font-variant-numeric: tabular-nums;
+  }
+
+  .nav__phone {
+    white-space: nowrap;
+  }
+
+  .nav__phone:hover {
+    color: var(--color-coral-ink);
   }
 
   /* From the medium breakpoint the disclosure is redundant: the links have
@@ -186,6 +212,11 @@ const { pathname } = Astro.url;
   @media (width >= 64rem) {
     .site-header__bar {
       flex-wrap: nowrap;
+      gap: var(--space-m);
+    }
+
+    .wordmark__descriptor {
+      white-space: nowrap;
     }
 
     .nav__toggle {
@@ -210,23 +241,54 @@ const { pathname } = Astro.url;
       padding-block: 0;
     }
 
+    /*
+     * Chromium now wraps the non-summary children of a <details> in a
+     * ::details-content pseudo-element carrying content-visibility: hidden
+     * when the element is closed. Setting display on the panel no longer
+     * reaches past that, so the nav was laid out at zero width and its links
+     * overflowed off the right of the viewport. Unhiding the pseudo-element
+     * is what actually restores it. Browsers without ::details-content ignore
+     * the whole rule and keep working off the display rule above.
+     */
+    .nav::details-content {
+      content-visibility: visible;
+      block-size: auto;
+      overflow: visible;
+    }
+
     .nav__list {
       display: flex;
       align-items: center;
-      gap: var(--space-s);
+      gap: var(--space-3xs);
     }
 
     .nav__link {
       font-family: var(--font-text);
       font-size: var(--text-caption);
       font-weight: var(--font-weight-semibold);
+      letter-spacing: 0;
+      /* A two-line nav item reads as two items. */
+      white-space: nowrap;
       padding-block: var(--space-2xs);
+      padding-inline: 0.6rem;
+      border-radius: var(--radius-full);
+      transition: background-color var(--duration-fast) var(--ease-inout);
+    }
+
+    .nav__link:hover {
+      background: var(--color-wash-coral);
+    }
+
+    .nav__link[aria-current='page'] {
+      background: var(--color-wash-coral);
     }
 
     .nav__actions {
       margin-block-start: 0;
       padding-block-start: 0;
       border-block-start: none;
+      flex-wrap: nowrap;
+      gap: var(--space-s);
     }
 
     .nav__phone {

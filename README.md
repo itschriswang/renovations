@@ -341,12 +341,19 @@ Checks you can run yourself:
 npm run audit       # accessibility and layout, needs `npm run preview` running
 ```
 
-Two extra commands you will rarely need:
+Extra commands you will rarely need:
 
 ```bash
 npm run shots       # regenerate the temporary images after editing shotlist.md
 npm run fonts       # re-download and re-subset the fonts (needs Python)
+npm run serve:dist  # serve the build with gzip, the way a real host does
+npm run lighthouse -- / /costs   # performance sweep against that server
 ```
+
+Use `npm run serve:dist` rather than a plain file server when measuring
+performance. Lighthouse's simulated 4G model is bound by how many bytes go
+over the wire, so serving text uncompressed reports an LCP about 300ms worse
+than any host would — that measures the test rig, not the site.
 
 There is a written accessibility audit in `docs/accessibility-audit.md`,
 including a list of what has **not** been tested yet.
@@ -359,6 +366,6 @@ including a list of what has **not** been tested yet.
 | **Content in `/content`, not `/src`** | So the files you edit are separate from the code you do not. |
 | **MDX** | Plain text you can edit in any editor, with no CMS to log into, pay for or migrate off. |
 | **Tailwind 4, custom tokens only** | Every colour, size and space on the site is defined in one file. None of Tailwind's default palette or type scale is used. |
-| **Big Shoulders Display + Schibsted Grotesk** | Both open source, both served from our own domain — no Google Fonts request, no third party watching who reads the site. Together they are 73 kB. Both are sans; the headings are condensed and the body is normal width, and that width difference is what makes a heading read as a heading. |
+| **Gabarito + Schibsted Grotesk** | Both open source, both served from our own domain — no Google Fonts request, no third party watching who reads the site. Together they are 73 kB. Both are sans, and both are normal width, so the difference between a heading and body copy is shape rather than width: Gabarito's flat-sided bowls give headings a spring, and Schibsted Grotesk is deliberately quiet underneath. Headings are set mixed case — a display face in all caps reads as signage. |
 | **One interactive island** | Only the cost estimator. It is written as an ordinary React component and rendered with Preact, which is 10 kB instead of 57 kB — swapping it was the difference between meeting and missing the load-speed budget on that page. Everything else is plain HTML that works with JavaScript turned off, including the enquiry form. |
 | **No Lenis smooth scrolling** | The brief asked for it. It runs JavaScript on every frame you scroll, which works against the responsiveness budget, and it breaks native scrolling behaviour. Left out deliberately; it is one import to add back. |

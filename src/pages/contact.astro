@@ -49,7 +49,7 @@ const bookingConfigured = business.contact.bookingUrl !== '#';
               {/* PLACEHOLDER: no booking tool is configured. business.yaml →
                   contact.bookingUrl. This is the highest-value item on the
                   TODO list, because booking is the primary call to action. */}
-              <strong>Online booking is not set up yet.</strong> Ring us on
+              <strong>Online booking is not set up yet.</strong> Ring us on{' '}
               <a href={`tel:${business.contact.phoneLink}`}>{business.contact.phone}</a> or use
               the form below and we will call you.
             </p>
@@ -67,7 +67,7 @@ const bookingConfigured = business.contact.bookingUrl !== '#';
             <strong>{promise.caller}</strong>, {promise.callerRole}, reads it. Not a call centre.
           </li>
           <li>
-            He rings you from <strong data-numeric>{promise.fromNumber}</strong> within
+            He rings you from <strong data-numeric>{promise.fromNumber}</strong> within{' '}
             <strong>{promise.windowText}</strong>.
           </li>
           <li>{promise.afterHoursText}</li>
@@ -286,7 +286,7 @@ const bookingConfigured = business.contact.bookingUrl !== '#';
   .page-title {
     font-size: var(--text-display-m);
     line-height: 1.02;
-    letter-spacing: -0.004em;
+    letter-spacing: -0.025em;
     margin-block: var(--space-2xs) var(--space-s);
   }
 
@@ -302,7 +302,8 @@ const bookingConfigured = business.contact.bookingUrl !== '#';
     flex: 1 1 100%;
     padding: var(--space-s);
     background: var(--color-paper-sunk);
-    border-inline-start: var(--border-rule) solid var(--color-brick);
+    border-inline-start: 3px solid var(--color-teal);
+    border-radius: var(--radius-m);
     font-size: var(--text-caption);
   }
 
@@ -310,13 +311,15 @@ const bookingConfigured = business.contact.bookingUrl !== '#';
     margin-block-start: var(--space-m);
     padding: var(--space-s);
     background: var(--color-paper-sunk);
-    border-inline-start: var(--border-rule) solid var(--color-ochre);
+    border-inline-start: 3px solid var(--color-coral);
+    border-radius: var(--radius-m);
     max-width: var(--measure);
   }
 
   .promise__heading {
     font-size: var(--text-title-s);
     line-height: 1.2;
+    letter-spacing: -0.014em;
     margin-block-end: var(--space-2xs);
   }
 
@@ -382,7 +385,7 @@ const bookingConfigured = business.contact.bookingUrl !== '#';
   }
 
   .field__input:user-invalid {
-    border-color: var(--color-brick);
+    border-color: var(--color-teal);
     border-inline-start-width: var(--border-rule);
   }
 
@@ -414,7 +417,7 @@ const bookingConfigured = business.contact.bookingUrl !== '#';
   .radio__input {
     inline-size: 1.15rem;
     block-size: 1.15rem;
-    accent-color: var(--color-brick);
+    accent-color: var(--color-teal);
     flex: 0 0 auto;
   }
 
@@ -426,12 +429,14 @@ const bookingConfigured = business.contact.bookingUrl !== '#';
     margin-block-start: var(--space-s);
     padding: var(--space-s);
     background: var(--color-paper-sunk);
-    border-inline-start: var(--border-rule) solid var(--color-molten-ink);
+    border-inline-start: 3px solid var(--color-coral);
+    border-radius: var(--radius-m);
   }
 
   .referral__heading {
     font-size: var(--text-title-s);
     line-height: 1.2;
+    letter-spacing: -0.014em;
     margin-block-end: var(--space-2xs);
   }
 

@@ -70,7 +70,7 @@ const estimatorBands = bands.map((b) => ({
             it. Everything else — including the enquiry form — works without.
           </p>
           <p>
-            The published bands it works from are below, and the
+            The published bands it works from are below, and the{' '}
             <a href={href(routes.costs)}>full cost guide</a> lists what moves each one.
           </p>
           <ul class="noscript__bands" role="list">
@@ -118,7 +118,7 @@ const estimatorBands = bands.map((b) => ({
   .page-title {
     font-size: var(--text-display-m);
     line-height: 1.02;
-    letter-spacing: -0.004em;
+    letter-spacing: -0.025em;
     margin-block: var(--space-2xs) var(--space-s);
   }
 
@@ -134,13 +134,15 @@ const estimatorBands = bands.map((b) => ({
   .noscript {
     padding: var(--space-s);
     background: var(--color-paper-sunk);
-    border-inline-start: var(--border-rule) solid var(--color-brick);
+    border-inline-start: 3px solid var(--color-teal);
+    border-radius: var(--radius-m);
     max-width: var(--measure-wide);
   }
 
   .noscript__heading {
     font-size: var(--text-title-s);
     line-height: 1.2;
+    letter-spacing: -0.014em;
     margin-block-end: var(--space-2xs);
   }
 
@@ -200,6 +202,7 @@ const estimatorBands = bands.map((b) => ({
     font-weight: var(--font-weight-display);
     font-size: var(--text-title-s);
     line-height: 1.2;
+    letter-spacing: -0.014em;
     margin-block-end: var(--space-2xs);
     padding: 0;
   }
@@ -249,9 +252,9 @@ const estimatorBands = bands.map((b) => ({
   }
 
   .est__choice:has(input:checked) {
-    border-color: var(--color-brick);
+    border-color: var(--color-teal);
     border-inline-start-width: var(--border-rule);
-    background: color-mix(in srgb, var(--color-brick) 8%, transparent);
+    background: var(--color-wash-teal);
   }
 
   .est__choice:has(input:focus-visible) {
@@ -260,7 +263,7 @@ const estimatorBands = bands.map((b) => ({
   }
 
   .est__choice input {
-    accent-color: var(--color-brick);
+    accent-color: var(--color-teal);
     inline-size: 1.05rem;
     block-size: 1.05rem;
     flex: 0 0 auto;
@@ -285,7 +288,7 @@ const estimatorBands = bands.map((b) => ({
     display: block;
     padding: var(--space-s);
     background: var(--color-paper-sunk);
-    border-block-start: var(--border-rule) solid var(--color-brick);
+    border-block-start: var(--border-rule) solid var(--color-teal);
   }
 
   .est__out-label {
@@ -299,8 +302,9 @@ const estimatorBands = bands.map((b) => ({
     font-family: var(--font-display);
     font-weight: var(--font-weight-display-strong);
     font-size: var(--text-display-s);
-    line-height: 1.04;
-    color: var(--color-molten-ink);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    color: var(--color-coral-ink);
     margin-block: var(--space-3xs);
   }
 
@@ -322,6 +326,7 @@ const estimatorBands = bands.map((b) => ({
     font-weight: var(--font-weight-display);
     font-size: var(--text-title-s);
     line-height: 1.2;
+    letter-spacing: -0.014em;
     margin-block: var(--space-m) var(--space-2xs);
   }
 
@@ -352,13 +357,13 @@ const estimatorBands = bands.map((b) => ({
   .est__bar-track {
     display: block;
     block-size: 0.5rem;
-    background: color-mix(in srgb, var(--color-ink) 8%, transparent);
+    background: var(--color-paper-sunk);
   }
 
   .est__bar {
     display: block;
     block-size: 100%;
-    background: var(--color-ochre);
+    background: var(--color-amber);
   }
 
   .est__line-value {

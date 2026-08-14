@@ -23,6 +23,9 @@ import { chromium } from 'playwright';
 import { AxeBuilder } from '@axe-core/playwright';
 
 const BASE = process.env.PREVIEW_URL ?? 'http://localhost:4321';
+// A plain static file server has no extensionless routing; the real preview and
+// GitHub Pages both do. AUDIT_SUFFIX lets the audit drive either one.
+const SUFFIX = process.env.AUDIT_SUFFIX ?? '';
 const WIDTHS = [375, 640, 768, 1440];
 const TAGS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'];
 
@@ -38,6 +41,38 @@ if (!existsSync(chromium.executablePath())) {
     .find((p) => existsSync(p));
 }
 
+/**
+ * Scroll the whole page and wait for every scroll reveal to finish.
+ *
+ * Without this, axe samples elements mid-fade and reports a contrast failure
+ * against a partly transparent element — a measurement of the transition
+ * rather than of anything a reader ends up looking at. Scrolling first puts
+ * the page in the state it is actually read in, and the assertion at the end
+ * means a reveal that never completes still fails the audit rather than being
+ * quietly skipped.
+ */
+async function settleReveals(page) {
+  await page.evaluate(async () => {
+    // behavior:'instant' matters: the site sets scroll-behavior:smooth, and a
+    // smooth scroll that is interrupted every 90ms never actually reaches the
+    // bottom of the page, so most reveals would never be triggered at all.
+    const step = Math.round(window.innerHeight * 0.8);
+    for (let y = 0; y < document.body.scrollHeight; y += step) {
+      window.scrollTo({ top: y, behavior: 'instant' });
+      await new Promise((r) => setTimeout(r, 120));
+    }
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  });
+  await page.waitForFunction(
+    () =>
+      [...document.querySelectorAll('[data-reveal]')].every(
+        (el) => parseFloat(getComputedStyle(el).opacity) > 0.99,
+      ),
+    null,
+    { timeout: 8000 },
+  );
+}
+
 const browser = await chromium.launch(launch);
 let failures = 0;
 
@@ -48,8 +83,9 @@ for (const route of ROUTES) {
   for (const width of WIDTHS) {
     const context = await browser.newContext({ viewport: { width, height: 1000 } });
     const page = await context.newPage();
-    await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' });
+    await page.goto(`${BASE}${route}${route === "/" ? "" : SUFFIX}`, { waitUntil: 'networkidle' });
     await page.evaluate(() => document.fonts.ready);
+    await settleReveals(page);
 
     const overflow = await page.evaluate(() => ({
       scroll: document.documentElement.scrollWidth,
@@ -81,7 +117,7 @@ for (const route of ROUTES) {
   // Keyboard entry point
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
   const page = await context.newPage();
-  await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' });
+  await page.goto(`${BASE}${route}${route === "/" ? "" : SUFFIX}`, { waitUntil: 'networkidle' });
   await page.keyboard.press('Tab');
   const first = await page.evaluate(() => {
     const el = document.activeElement;

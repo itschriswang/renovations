@@ -18,7 +18,7 @@ const { reviews } = business;
 const hasReviews = reviews.googleReviewCount > 0;
 ---
 
-<section class="trust surface-dark grain" aria-labelledby="trust-heading">
+<section class="trust" aria-labelledby="trust-heading">
   <div class="grid-editorial">
     <div class="col-wide trust__inner">
       <h2 id="trust-heading" class="visually-hidden">Licensing, insurance and memberships</h2>
@@ -85,12 +85,17 @@ const hasReviews = reviews.googleReviewCount > 0;
 </section>
 
 <style>
+  /*
+   * Light, and set as a row of small facts rather than as a dark band. It is a
+   * strip of evidence, not a billboard — anything that shouts here reads as a
+   * badge we have not earned.
+   */
   .trust {
-    border-block-end: 3px solid var(--color-molten);
+    background: var(--color-paper-sunk);
   }
 
   .trust__inner {
-    padding-block: var(--space-s);
+    padding-block: var(--space-m);
   }
 
   .trust__list {
@@ -100,33 +105,31 @@ const hasReviews = reviews.googleReviewCount > 0;
   }
 
   .trust__item dt {
-    font-family: var(--font-mono);
     font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.14em;
-    font-weight: 700;
-    color: var(--color-ochre);
+    letter-spacing: 0.12em;
+    font-weight: var(--font-weight-bold);
+    color: var(--color-teal-ink);
     margin-block-end: var(--space-3xs);
   }
 
   .trust__item dd {
     font-size: var(--text-caption);
     line-height: 1.45;
-    color: color-mix(in srgb, var(--color-paper) 88%, transparent);
+    color: var(--color-ink-muted);
   }
 
   .trust__verify {
     display: block;
     font-size: 0.8rem;
-    color: var(--color-ochre);
   }
 
   .trust__pending {
     margin-block-start: var(--space-s);
     padding-block-start: var(--space-xs);
-    border-block-start: 1px solid rgb(247 242 231 / 0.22);
+    border-block-start: 1px solid var(--color-line);
     font-size: var(--text-caption);
-    color: color-mix(in srgb, var(--color-paper) 78%, transparent);
+    color: var(--color-ink-muted);
     max-width: var(--measure);
   }
 </style>

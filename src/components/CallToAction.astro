@@ -5,7 +5,10 @@ import { href, routes } from '../lib/links';
 interface Props {
   heading?: string;
   body?: string;
-  /** Dark panel by default; light for pages that already end on a dark note. */
+  /**
+   * The hot panel by default. `light` is for the two pages that already end on
+   * a strong colour and would otherwise stack two loud blocks in a row.
+   */
   tone?: 'dark' | 'light';
 }
 
@@ -20,8 +23,7 @@ const {
 // headline, and never "Get a Free Quote".
 ---
 
-<div class="hazard" role="presentation"></div>
-<section class:list={['cta', tone === 'dark' && 'surface-dark grain']} aria-labelledby="cta-heading">
+<section class:list={['cta', tone === 'dark' && 'surface-hot']} aria-labelledby="cta-heading">
   <div class="grid-editorial">
     <div class="col-wide cta__inner">
       <div class="cta__text">
@@ -39,6 +41,12 @@ const {
 </section>
 
 <style>
+  /*
+   * The loudest block on the site, and the only one that is. Coral running into
+   * amber with ink on top — verified across the whole ramp, worst point 4.83:1
+   * at the coral end. It replaced a near-black panel, which read as a warning
+   * rather than as an invitation.
+   */
   .cta {
     margin-block-start: 0;
   }
@@ -59,20 +67,23 @@ const {
 
   .cta__heading {
     font-size: var(--text-display-m);
-    line-height: 0.92;
-    text-transform: uppercase;
-    letter-spacing: -0.012em;
+    line-height: 1.02;
+    letter-spacing: -0.025em;
     margin-block-end: var(--space-s);
   }
 
   .cta__body {
     max-width: var(--measure);
-    color: color-mix(in srgb, currentColor 82%, transparent);
+    color: color-mix(in srgb, currentColor 86%, transparent);
   }
 
   .cta__actions {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-xs);
+  }
+
+  .cta__inner {
+    padding-block: var(--space-xl);
   }
 </style>

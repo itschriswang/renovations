@@ -1,29 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-label="Temporary placeholder awaiting photography: The finished house from the street, showing the second storey sitting on the original ground floor. Late afternoon, front light.">
 <defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#90a3ac"/>
-    <stop offset="1" stop-color="#e2cba7"/>
+    <stop offset="0" stop-color="#a0c5d2"/>
+    <stop offset="1" stop-color="#f2e2c8"/>
   </linearGradient></defs>
 <rect x="0" y="0" width="1800" height="744" fill="url(#sky2)"/>
-<rect x="0" y="744" width="1800" height="456" fill="#b8ac96"/>
-<rect x="0" y="949" width="1800" height="251" fill="#191513"/>
-<polygon points="-90,460 124,388 339,460" fill="#32292a"/>
-<rect x="-90" y="460" width="429" height="284" fill="#be6541"/>
-<rect x="-4" y="545" width="94" height="85" fill="#241e1c"/>
-<polygon points="375,466 521,394 667,466" fill="#32292a"/>
-<rect x="375" y="466" width="293" height="278" fill="#eee6d7"/>
-<rect x="433" y="550" width="64" height="83" fill="#241e1c"/>
-<polygon points="703,478 875,406 1046,478" fill="#32292a"/>
-<rect x="703" y="478" width="343" height="266" fill="#be6541"/>
-<rect x="772" y="558" width="75" height="80" fill="#241e1c"/>
-<polygon points="1082,526 1290,454 1497,526" fill="#32292a"/>
-<rect x="1082" y="526" width="415" height="218" fill="#be6541"/>
-<rect x="1165" y="592" width="91" height="65" fill="#241e1c"/>
-<polygon points="1533,558 1681,486 1829,558" fill="#32292a"/>
-<rect x="1533" y="558" width="295" height="186" fill="#be6541"/>
-<rect x="1593" y="614" width="65" height="56" fill="#241e1c"/>
-<rect x="0" y="1104" width="1800" height="96" fill="#1A1512" opacity="0.1"/>
-<rect x="0" y="1068" width="1800" height="132" fill="#1A1512" opacity="0.88"/>
-<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F7F2E7">baulkham-hills-hero · 3:2 · 1800×1200</text>
-<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — The finished house from the street, showing the second storey sitting on the original ground…</text>
-<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
+<rect x="0" y="744" width="1800" height="456" fill="#c5baa7"/>
+<rect x="0" y="949" width="1800" height="251" fill="#211c1a"/>
+<polygon points="-90,460 124,388 339,460" fill="#3b3336"/>
+<rect x="-90" y="460" width="429" height="284" fill="#d87e5b"/>
+<rect x="-4" y="545" width="94" height="85" fill="#2b3b3d"/>
+<polygon points="375,466 521,394 667,466" fill="#3b3336"/>
+<rect x="375" y="466" width="293" height="278" fill="#f4efe7"/>
+<rect x="433" y="550" width="64" height="83" fill="#2b3b3d"/>
+<polygon points="703,478 875,406 1046,478" fill="#3b3336"/>
+<rect x="703" y="478" width="343" height="266" fill="#d87e5b"/>
+<rect x="772" y="558" width="75" height="80" fill="#2b3b3d"/>
+<polygon points="1082,526 1290,454 1497,526" fill="#3b3336"/>
+<rect x="1082" y="526" width="415" height="218" fill="#d87e5b"/>
+<rect x="1165" y="592" width="91" height="65" fill="#2b3b3d"/>
+<polygon points="1533,558 1681,486 1829,558" fill="#3b3336"/>
+<rect x="1533" y="558" width="295" height="186" fill="#d87e5b"/>
+<rect x="1593" y="614" width="65" height="56" fill="#2b3b3d"/>
+<rect x="0" y="1104" width="1800" height="96" fill="#221C19" opacity="0.1"/>
+<rect x="0" y="1068" width="1800" height="132" fill="#221C19" opacity="0.82"/>
+<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#FCFAF7">baulkham-hills-hero · 3:2 · 1800×1200</text>
+<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#FCFAF7" opacity="0.72">AWAITING PHOTOGRAPHY — The finished house from the street, showing the second storey sitting on the original ground…</text>
+<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#221C19" stroke-opacity="0.2"/>
 </svg>

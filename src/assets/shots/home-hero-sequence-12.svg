@@ -1,21 +1,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="2560" height="1097" viewBox="0 0 2560 1097" role="img" aria-label="Temporary placeholder awaiting photography: A single rear extension photographed from one fixed tripod position as the light falls, from late afternoon to dusk with the interior lights coming on. 16 frames, locked off, no camera movement between frames. Interval shoot over roughly 40 minutes.">
 <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#414042"/>
-    <stop offset="1" stop-color="#c87648"/>
+    <stop offset="0" stop-color="#4c4f65"/>
+    <stop offset="1" stop-color="#e49165"/>
   </linearGradient></defs>
 <rect x="0" y="0" width="2560" height="732" fill="url(#sky)"/>
-<rect x="0" y="732" width="2560" height="365" fill="#404231"/>
-<rect x="0" y="732" width="2560" height="51" fill="#a79972" opacity="0.5"/>
-<polygon points="196,461 935,330 1674,461" fill="#272729"/>
-<rect x="247" y="461" width="1375" height="271" fill="#643927"/>
-<rect x="1623" y="494" width="437" height="238" fill="#39231e"/>
-<rect x="385" y="526" width="327" height="114" fill="#f2b23c"/>
-<rect x="385" y="640" width="524" height="33" fill="#F2B23C" opacity="0.18"/>
-<rect x="935" y="526" width="327" height="114" fill="#f2b23c"/>
-<rect x="935" y="640" width="524" height="33" fill="#F2B23C" opacity="0.18"/>
-<rect x="0" y="987" width="2560" height="110" fill="#1A1512" opacity="0.1"/>
-<rect x="0" y="976" width="2560" height="121" fill="#1A1512" opacity="0.88"/>
-<text x="51" y="1019.5" font-family="ui-monospace, Menlo, monospace" font-size="29" fill="#F7F2E7">home-hero-sequence-12 · frame 12 of 16 · 21:9 · 2560×1097</text>
-<text x="51" y="1063" font-family="ui-monospace, Menlo, monospace" font-size="25" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — A single rear extension photographed from one fixed tripod position as the light falls, from…</text>
-<rect x="0.5" y="0.5" width="2559" height="1096" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
+<rect x="0" y="732" width="2560" height="365" fill="#454d36"/>
+<rect x="0" y="732" width="2560" height="51" fill="#beb083" opacity="0.5"/>
+<polygon points="196,461 935,330 1674,461" fill="#29292c"/>
+<rect x="247" y="461" width="1375" height="271" fill="#744836"/>
+<rect x="1623" y="494" width="437" height="238" fill="#432821"/>
+<rect x="385" y="526" width="327" height="114" fill="#ffc259"/>
+<rect x="385" y="640" width="524" height="33" fill="#FFC259" opacity="0.18"/>
+<rect x="935" y="526" width="327" height="114" fill="#ffc259"/>
+<rect x="935" y="640" width="524" height="33" fill="#FFC259" opacity="0.18"/>
+<rect x="0" y="987" width="2560" height="110" fill="#221C19" opacity="0.1"/>
+<rect x="0" y="976" width="2560" height="121" fill="#221C19" opacity="0.82"/>
+<text x="51" y="1019.5" font-family="ui-monospace, Menlo, monospace" font-size="29" fill="#FCFAF7">home-hero-sequence-12 · frame 12 of 16 · 21:9 · 2560×1097</text>
+<text x="51" y="1063" font-family="ui-monospace, Menlo, monospace" font-size="25" fill="#FCFAF7" opacity="0.72">AWAITING PHOTOGRAPHY — A single rear extension photographed from one fixed tripod position as the light falls, from…</text>
+<rect x="0.5" y="0.5" width="2559" height="1096" fill="none" stroke="#221C19" stroke-opacity="0.2"/>
 </svg>

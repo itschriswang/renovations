@@ -93,7 +93,7 @@ const totalWeeks = stages.at(-1)?.weeks ?? 0;
   .page-title {
     font-size: var(--text-display-m);
     line-height: 1.02;
-    letter-spacing: -0.004em;
+    letter-spacing: -0.025em;
     margin-block: var(--space-2xs) var(--space-s);
   }
 
@@ -135,7 +135,7 @@ const totalWeeks = stages.at(-1)?.weeks ?? 0;
   .stage__number {
     font-family: var(--font-mono);
     font-size: var(--text-caption);
-    color: var(--color-brick);
+    color: var(--color-teal);
   }
 
   .stage__marker::after {
@@ -159,14 +159,15 @@ const totalWeeks = stages.at(-1)?.weeks ?? 0;
   .stage__name {
     font-size: var(--text-title-m);
     line-height: 1.14;
+    letter-spacing: -0.018em;
   }
 
   .stage__duration {
     font-size: var(--text-caption);
     font-weight: var(--font-weight-semibold);
-    color: var(--color-molten-ink);
+    color: var(--color-coral-ink);
     padding: var(--space-3xs) var(--space-2xs);
-    background: color-mix(in srgb, var(--color-brick) 10%, transparent);
+    background: var(--color-wash-teal);
   }
 
   .stage__what {
@@ -196,7 +197,7 @@ const totalWeeks = stages.at(-1)?.weeks ?? 0;
   }
 
   .stage__owns {
-    border-block-start-color: var(--color-brick);
+    border-block-start-color: var(--color-teal);
   }
 
   .stage__label {
@@ -209,6 +210,6 @@ const totalWeeks = stages.at(-1)?.weeks ?? 0;
   }
 
   .stage__owns .stage__label {
-    color: var(--color-molten-ink);
+    color: var(--color-coral-ink);
   }
 </style>

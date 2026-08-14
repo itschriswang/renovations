@@ -35,61 +35,81 @@
   /* ---------------------------------------------------------------------
    * 2. COLOUR
    *
-   * Warm brick, cement render, spotted gum, powder coated aluminium. The
-   * colours of the houses we work on. No brand blue.
+   * Light ground, warm accents, one cool counterpoint. The reference is still
+   * the material of these houses — render, terracotta, spotted gum, the
+   * powder-coated aluminium on a new window — but the ground is the render
+   * rather than the bitumen, which is what keeps the page open instead of
+   * heavy.
    *
-   * Every text pairing below is verified against WCAG 2.2 AA. The measured
-   * ratio is in the comment. Anything used for text clears 4.5:1 on every
-   * surface it can land on; anything used for a border or a focus ring
-   * clears 3:1 for non-text contrast.
+   * Every text pairing below is verified against WCAG 2.2 AA and the measured
+   * ratio is in the comment. There are five light surfaces a piece of text can
+   * land on, so every text tone is solved against the DARKEST of them
+   * (paper-sunk). One value is then safe everywhere and no surface needs its
+   * own override.
    * ------------------------------------------------------------------ */
 
-  /* Surfaces — lime plaster and warm bitumen. Nothing here is grey. */
-  --color-paper: #f7f2e7;
-  --color-paper-raised: #fffcf5;
-  --color-paper-sunk: #efe6d6;
+  /* Surfaces. Warm white, not grey, and never pure #fff except where a card
+     needs to lift off the page. */
+  --color-paper: #fcfaf7;
+  --color-paper-raised: #ffffff;
+  --color-paper-sunk: #f4efe6;
 
-  /* The dark surfaces. Warm black, the colour of bitumen and sooted steel,
-     never a cool charcoal — a cool dark would fight everything else. */
-  --color-bitumen: #1a1512; /* paper on this: 16.22:1 */
-  --color-bitumen-soft: #262019; /* paper on this: 14.43:1 */
-  --color-bitumen-deep: #0f0c0a; /* paper on this: 17.46:1 */
+  /* Two tinted washes. These are what carry the rhythm now — a section changes
+     temperature rather than going black. Both are pale enough that every text
+     tone above still clears AA on them. */
+  --color-wash-coral: #fdeee7;
+  --color-wash-teal: #e8f3f0;
 
-  /* Text on paper */
-  --color-ink: #1a1512; /* 16.22:1 on paper, 14.62:1 on sunk */
-  --color-ink-muted: #574d43; /*  7.40:1 on paper,  6.66:1 on sunk */
-  --color-ink-faint: #726557; /*  5.06:1 on paper,  4.57:1 on sunk */
+  /* The dark surfaces, used for the footer and one or two panels — punctuation
+     rather than structure. Warm black, never a cool charcoal. */
+  --color-ink: #221c19; /* paper on this: 16.15:1 */
+  --color-ink-soft: #2e2723; /* paper on this: 14.20:1 */
+  --color-ink-deep: #15110f; /* paper on this: 18.00:1 */
+
+  /* Text on the light surfaces */
+  --color-ink-muted: #5d524a; /* 7.27:1 paper, 6.62:1 sunk, 6.70:1 wash */
+  --color-ink-faint: #776a5f; /* 5.02:1 paper, 4.57:1 sunk, 4.61:1 wash */
 
   /*
-   * MOLTEN — the hot one. Safety orange pulled warm.
+   * CORAL — the hot one, and the only colour on the site that ever means
+   * "act". It has two values because it has two jobs, and mixing them up is
+   * how sites end up failing contrast on their loudest colour:
    *
-   * It has two values because it has two jobs, and mixing them is how sites
-   * end up failing contrast on their loudest colour:
+   *   --color-coral      a FILL. Ink goes on top of it (4.83:1), and it clears
+   *                      3:1 against every light surface, so it is also legal
+   *                      as the boundary of a control.
+   *   --color-coral-ink  the same hue deepened until it clears 4.5:1 on the
+   *                      darkest light surface. Links, small text, icons.
    *
-   *   --color-molten      a FILL, and large display type only. Ink goes on
-   *                       top of it (4.58:1). It clears 3:1 on paper, which
-   *                       is enough for display sizes and not enough for body.
-   *   --color-molten-ink  the same hue deepened until it clears 4.5:1 on the
-   *                       darkest paper surface. Links, small text, icons.
+   * On the dark surface --color-coral is a text colour in its own right
+   * (4.83:1 on ink, 5.38:1 on ink-deep).
    */
-  --color-molten: #e14e1d; /* fill; ink on it 4.58:1; large text on paper 3.54:1 */
-  --color-molten-ink: #b63f17; /*  5.09:1 on paper,  4.57:1 on sunk */
+  --color-coral: #e55f37; /* fill; ink on it 4.83:1; 3.04:1 on sunk */
+  --color-coral-ink: #b54b2b; /* 5.03:1 paper, 4.58:1 sunk, 4.62:1 wash */
 
-  /* Brick, clay and ochre — the warm range, from fired earth to raw timber */
-  --color-brick: #a5432a; /* paper on it: 5.47:1 */
-  --color-clay: #c96a3e; /* ink on it: 4.84:1 */
-  --color-ochre: #e8a33d; /* ink on it: 8.39:1; on bitumen 8.39:1 */
+  /*
+   * TEAL — the cool counterpoint, and the reason the page reads as fresh
+   * rather than as another warm-neutral builder site. Same two-value split.
+   */
+  --color-teal: #0e7c6b; /* fill; paper on it 4.90:1; 4.46:1 on sunk */
+  --color-teal-ink: #0e7a6a; /* 5.03:1 paper, 4.57:1 sunk, 4.62:1 wash */
+  --color-teal-bright: #3fbfa8; /* 7.39:1 on ink — dark surfaces only */
 
-  /* Steel, used sparingly and never for warmth */
-  --color-steel: #6e7378;
+  /*
+   * AMBER — the bright. Ink on it is 9.59:1 and it is 9.59:1 on ink, so it is
+   * the accent that works on the dark surface. It is only 1.53:1 against
+   * paper-sunk, so it is never the boundary of a control on a light surface —
+   * highlight, never outline.
+   */
+  --color-amber: #ffb627;
 
   /* Rules. The hairline is decorative; the strong one bounds a control. */
-  --color-line: #dcd0ba;
-  --color-line-strong: #8e8170; /*  3.40:1 on paper,  3.07:1 on sunk */
+  --color-line: #ebe3d8;
+  --color-line-strong: #92877b; /* 3.37:1 paper, 3.07:1 sunk */
 
   /* Focus. Never removed, never subtle. */
-  --color-focus: #b63f17; /*  5.09:1 on paper */
-  --color-focus-dark: #e8a33d; /*  8.39:1 on bitumen */
+  --color-focus: #b54b2b; /* 5.03:1 on paper */
+  --color-focus-dark: #ffb627; /* 9.59:1 on ink */
 
   --color-transparent: transparent;
   --color-current: currentColor;
@@ -119,24 +139,25 @@
    * properly at 200% zoom.
    * ------------------------------------------------------------------ */
 
-  --font-display:
-    'Big Shoulders Display', 'Big Shoulders Fallback', 'Arial Narrow', 'Schibsted Grotesk',
-    Arial, sans-serif;
+  --font-display: Gabarito, 'Gabarito Fallback', 'Schibsted Grotesk', Arial, sans-serif;
   --font-text: 'Schibsted Grotesk', 'Schibsted Grotesk Fallback', Arial, Helvetica, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, Menlo, Consolas, monospace;
 
   /*
-   * Both faces are grotesques, so the hierarchy between them is carried by
-   * WIDTH, not by style. The display face is heavily condensed; the text face
-   * is normal width. That is the whole contrast, and it is why the display
-   * face must never be used at body size, where the condensation reads as
-   * cramped rather than as emphasis.
+   * Both faces are sans, and both are normal width, so the hierarchy between
+   * them is carried by SHAPE. Gabarito's bowls are flat-sided and its joins are
+   * open — it has a spring to it that a neutral grotesque does not. Schibsted
+   * Grotesk underneath is quiet on purpose: it was drawn for a news publisher
+   * and it holds at 14px on a phone, which is the size most of this site is
+   * actually read at.
    *
-   * The display face carries a 100-900 weight axis. We use three of those
-   * weights and no others. A condensed face has less visual mass than a
-   * normal-width one at the same size, so display type is set at 600 rather
-   * than 400 to hold the page — that is weight compensating for width, not
-   * hierarchy being invented out of weight.
+   * Headings are set MIXED CASE and tracked tight. Setting a display face in
+   * all caps turns it into signage, and signage is the thing that made the
+   * first pass of this site look like a 1970s site notice rather than a
+   * builder people want in their house.
+   *
+   * The display face carries a 400-900 weight axis. We use three of those
+   * weights and no others.
    */
   --font-weight-display: 600;
   --font-weight-display-strong: 700;
@@ -156,27 +177,30 @@
 
   --text-title-s: 1.7578rem;
   --text-title-s--line-height: 1.2;
-  --text-title-s--letter-spacing: 0.004em;
+  --text-title-s--letter-spacing: -0.012em;
 
   --text-title-m: 2.1973rem;
   --text-title-m--line-height: 1.14;
-  --text-title-m--letter-spacing: 0.002em;
+  --text-title-m--letter-spacing: -0.018em;
 
   --text-title-l: 2.7466rem;
   --text-title-l--line-height: 1.02;
-  --text-title-l--letter-spacing: 0;
+  --text-title-l--letter-spacing: -0.022em;
 
-  --text-display-s: clamp(2.4rem, 1.85rem + 2.45vw, 4.0rem);
-  --text-display-s--line-height: 0.96;
-  --text-display-s--letter-spacing: -0.002em;
+  /* A normal-width face fits far fewer characters per line than a condensed
+     one, so the top of the scale comes down and the leading opens up. Mixed
+     case needs room for ascenders and descenders that all-caps did not. */
+  --text-display-s: clamp(2.05rem, 1.6rem + 2.0vw, 3.3rem);
+  --text-display-s--line-height: 1.06;
+  --text-display-s--letter-spacing: -0.02em;
 
-  --text-display-m: clamp(3.0rem, 2.15rem + 3.8vw, 5.6rem);
-  --text-display-m--line-height: 0.92;
-  --text-display-m--letter-spacing: -0.012em;
+  --text-display-m: clamp(2.45rem, 1.75rem + 3.1vw, 4.4rem);
+  --text-display-m--line-height: 1.02;
+  --text-display-m--letter-spacing: -0.025em;
 
-  --text-display-l: clamp(3.6rem, 2.3rem + 5.8vw, 7.6rem);
-  --text-display-l--line-height: 0.88;
-  --text-display-l--letter-spacing: -0.015em;
+  --text-display-l: clamp(2.9rem, 1.85rem + 4.6vw, 5.8rem);
+  --text-display-l--line-height: 0.98;
+  --text-display-l--letter-spacing: -0.032em;
 
   /* Uppercase metadata. Tracked out, because uppercase set solid is unreadable. */
   --text-label: 0.9rem;
@@ -259,19 +283,26 @@
   /* ---------------------------------------------------------------------
    * 7. EVERYTHING ELSE
    *
-   * These houses are brick. Almost nothing is rounded, and nothing floats.
-   * Depth is carried by tone and by rules, not by drop shadows.
+   * Radii are generous but not novelty — a 16px corner on a card, a full pill
+   * on a button. The reference is the eased edge on a new window reveal or a
+   * benchtop, not a toy. Depth is a soft warm shadow rather than a hard offset
+   * block, because a hard offset block is a poster effect.
    * ------------------------------------------------------------------ */
 
   --radius-none: 0;
-  --radius-xs: 2px;
-  --radius-s: 3px;
+  --radius-xs: 4px;
+  --radius-s: 8px;
+  --radius-m: 16px;
+  --radius-l: 26px;
   --radius-full: 9999px;
 
-  --shadow-raised: 0 1px 2px rgb(31 29 26 / 0.05), 0 8px 24px -12px rgb(31 29 26 / 0.12);
+  /* Warm-tinted, not neutral grey — a grey shadow on a warm ground reads dirty. */
+  --shadow-soft: 0 1px 2px rgb(72 46 30 / 0.04), 0 6px 16px -8px rgb(72 46 30 / 0.10);
+  --shadow-raised: 0 2px 4px rgb(72 46 30 / 0.05), 0 14px 34px -14px rgb(72 46 30 / 0.16);
+  --shadow-lifted: 0 4px 8px rgb(72 46 30 / 0.06), 0 26px 56px -22px rgb(72 46 30 / 0.22);
 
   --border-hairline: 1px;
-  --border-rule: 3px;
+  --border-rule: 2px;
 
   --breakpoint-sm: 34rem;
   --breakpoint-md: 48rem;
