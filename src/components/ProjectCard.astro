@@ -49,9 +49,20 @@ const d = project.data;
     gap: var(--space-2xs);
     align-content: start;
     background: var(--color-paper-raised);
-    border-block-start: 6px solid var(--color-molten);
-    box-shadow: inset 0 0 0 1px var(--color-line);
+    border-radius: var(--radius-m);
+    box-shadow:
+      inset 0 0 0 1px var(--color-line),
+      var(--shadow-soft);
     padding-block-end: var(--space-s);
+    overflow: hidden;
+    transition:
+      box-shadow var(--duration-base) var(--ease-inout),
+      transform var(--duration-base) var(--ease-inout);
+  }
+
+  .card:hover {
+    box-shadow: var(--shadow-lifted);
+    transform: translateY(-3px);
   }
 
   .card > *:not(.card__link) {
@@ -69,17 +80,23 @@ const d = project.data;
     inline-size: 100%;
     block-size: auto;
     background: var(--color-paper-sunk);
+    transition: scale var(--duration-slow) var(--ease-primary);
+  }
+
+  .card:hover .card__image {
+    scale: 1.03;
   }
 
   .card__link:hover .card__title {
-    color: var(--color-molten-ink);
+    color: var(--color-coral-ink);
   }
 
   .card__title {
-    font-size: var(--text-title-m);
-    line-height: 1;
-    text-transform: uppercase;
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    letter-spacing: -0.014em;
     padding-inline: var(--space-s);
+    padding-block-start: var(--space-2xs);
     transition: color var(--duration-fast) var(--ease-inout);
   }
 
@@ -96,7 +113,7 @@ const d = project.data;
     gap: var(--space-s);
     margin-block-start: var(--space-2xs);
     padding-block-start: var(--space-s);
-    border-block-start: 2px solid var(--color-line);
+    border-block-start: 1px solid var(--color-line);
   }
 
   .card__meta dt {
@@ -109,8 +126,9 @@ const d = project.data;
   .card__meta dd {
     font-family: var(--font-display);
     font-weight: var(--font-weight-display-strong);
-    font-size: var(--text-title-s);
-    line-height: 1;
+    font-size: 1.125rem;
+    line-height: 1.2;
+    letter-spacing: -0.014em;
     font-variant-numeric: tabular-nums;
   }
 </style>

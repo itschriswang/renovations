@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-label="Temporary placeholder awaiting photography: The dining area looking back toward the kitchen, original ceiling and light fitting.">
-<rect x="0" y="0" width="1600" height="851" fill="#c3baa9"/>
-<polygon points="0,0 1600,0 1320,260 280,260" fill="#c1baac"/>
-<polygon points="0,0 280,260 280,748 0,1200" fill="#c1baac"/>
-<polygon points="1600,0 1320,260 1320,748 1600,1200" fill="#ece6dd"/>
-<rect x="280" y="260" width="1041" height="488" fill="#c3baa9"/>
-<rect x="728" y="338" width="364" height="254" fill="#C8CEC9"/>
+<rect x="0" y="0" width="1600" height="851" fill="#d1cabd"/>
+<polygon points="0,0 1600,0 1320,260 280,260" fill="#d0cac0"/>
+<polygon points="0,0 280,260 280,748 0,1200" fill="#d0cac0"/>
+<polygon points="1600,0 1320,260 1320,748 1600,1200" fill="#f2efea"/>
+<rect x="280" y="260" width="1041" height="488" fill="#d1cabd"/>
+<rect x="728" y="338" width="364" height="254" fill="#CFD8D5"/>
 <rect x="728" y="338" width="364" height="86" fill="#FFFFFF" opacity="0.4"/>
-<rect x="728" y="338" width="364" height="254" fill="none" stroke="#181514" stroke-width="6"/>
-<polygon points="0,1200 280,748 1320,748 1600,1200" fill="#b4ac9f"/>
+<rect x="728" y="338" width="364" height="254" fill="none" stroke="#201d1b" stroke-width="6"/>
+<polygon points="0,1200 280,748 1320,748 1600,1200" fill="#c1bbae"/>
 <polygon points="728,748 1091,748 1309,1200 582,1200" fill="#FFFFFF" opacity="0.05"/>
-<rect x="168" y="550" width="420" height="270" fill="#6d533a"/>
-<rect x="168" y="550" width="420" height="19" fill="#c3baa9"/>
-<rect x="915" y="260" width="256" height="488" fill="#c1baad"/>
-<rect x="0" y="0" width="1600" height="60" fill="#1A1512" opacity="0.06"/>
-<rect x="0" y="1068" width="1600" height="132" fill="#1A1512" opacity="0.88"/>
-<text x="32" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F7F2E7">west-ryde-before-02 · 4:3 · 1600×1200</text>
-<text x="32" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — The dining area looking back toward the kitchen, original ceiling and light fitting.</text>
-<rect x="0.5" y="0.5" width="1599" height="1199" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
+<rect x="168" y="550" width="420" height="270" fill="#7a6045"/>
+<rect x="168" y="550" width="420" height="19" fill="#d1cabd"/>
+<rect x="915" y="260" width="256" height="488" fill="#cfcac1"/>
+<rect x="0" y="0" width="1600" height="60" fill="#221C19" opacity="0.06"/>
+<rect x="0" y="1068" width="1600" height="132" fill="#221C19" opacity="0.82"/>
+<text x="32" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#FCFAF7">west-ryde-before-02 · 4:3 · 1600×1200</text>
+<text x="32" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#FCFAF7" opacity="0.72">AWAITING PHOTOGRAPHY — The dining area looking back toward the kitchen, original ceiling and light fitting.</text>
+<rect x="0.5" y="0.5" width="1599" height="1199" fill="none" stroke="#221C19" stroke-opacity="0.2"/>
 </svg>

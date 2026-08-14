@@ -13,6 +13,8 @@
     "shots": "node scripts/build-placeholders.mjs",
     "fonts": "python3 scripts/build-fonts.py",
     "audit": "node scripts/audit.mjs",
+    "serve:dist": "node scripts/serve.mjs dist 4321",
+    "lighthouse": "node scripts/lighthouse.mjs .lighthouse",
     "shot": "node scripts/screenshot.mjs",
     "build:static": "STATIC_ONLY=1 astro build"
   },

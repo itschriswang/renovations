@@ -3,8 +3,8 @@
  * site. Both faces are subset to Latin plus the punctuation and units we
  * actually set, and both are committed to the repository.
  *
- *   Big Shoulders Display  32.0 kB   display, variable 100-900
- *   Schibsted Grotesk      41.4 kB   text, variable 400-900
+ *   Gabarito           31.3 kB   display, variable 400-900
+ *   Schibsted Grotesk  41.4 kB   text, variable 400-900
  *
  * Regenerate with `npm run fonts`.
  *
@@ -19,30 +19,31 @@
  * otherwise shows up as cumulative layout shift on a slow connection.
  */
 
-/* Display — Big Shoulders Display, SIL OFL 1.1, Patric King.
-   A condensed grotesque drawn from signage. Its narrow set width is what
-   separates it from the text face at a glance, which is the whole job of a
-   display face when the text face is also a grotesque. */
+/* Display — Gabarito, SIL OFL 1.1, Naipe Foundry.
+   A warm geometric sans with flat-sided bowls and open joins. It is normal
+   width, so it does not separate from the text face by set width the way a
+   condensed face would — the separation is shape, size and tracking, and it is
+   why headings are set tight and large and never at body size. */
 @font-face {
-  font-family: 'Big Shoulders Display';
-  src: url('../assets/fonts/big-shoulders-display-variable.woff2') format('woff2-variations');
-  font-weight: 100 900;
+  font-family: Gabarito;
+  src: url('../assets/fonts/gabarito-variable.woff2') format('woff2-variations');
+  font-weight: 400 900;
   font-style: normal;
   font-display: swap;
 }
 
-/* Measured from BigShouldersDisplay[wght].ttf: ascent 1968, descent -426,
-   lineGap 0, unitsPerEm 2000.
+/* Measured from Gabarito[wght].ttf: ascent 940, descent -260, lineGap 0,
+   unitsPerEm 1000.
 
-   No metric-matched local() fallback is declared for the display face. Every
-   font on the machine is far wider than this one, so a substitute would reflow
-   headlines badly no matter what overrides we set. Headings fall back to the
-   text face instead, which is already loading and is closer in colour. */
+   Unlike the condensed face this replaced, Gabarito is close enough to Arial
+   in set width (n = 0.551 em against Arial's 0.556) that a metric-matched
+   local fallback genuinely holds the line breaks while the web font loads,
+   rather than only holding the line height. */
 @font-face {
-  font-family: 'Big Shoulders Fallback';
-  src: local('Arial Narrow'), local('Helvetica Neue Condensed'), local('Arial');
-  ascent-override: 98.4%;
-  descent-override: 21.3%;
+  font-family: 'Gabarito Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('Helvetica');
+  ascent-override: 94%;
+  descent-override: 26%;
   line-gap-override: 0%;
 }
 

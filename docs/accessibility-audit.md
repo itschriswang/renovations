@@ -69,17 +69,24 @@ index had the same problem via its card headings. Both sections now carry a
 visually hidden `h2`. Form fields use real `<label for>`; the budget question
 is a `<fieldset>` with a `<legend>`; related facts use `<dl>`.
 
-**1.4.3 Contrast (Minimum).** All 20 text and non-text colour pairings are
+**1.4.3 Contrast (Minimum).** All 55 text and non-text colour pairings are
 verified against the token values **at build time**, and the style tile prints
-the measured ratio for each. Four token values were solved numerically against
-the worst-case surface rather than adjusted by eye. Body text on paper is
-15.20:1; the lowest passing text pairing is 4.61:1 (captions on a sunk panel)
-against a 4.5:1 requirement.
+the measured ratio for each. Text can land on any of five light surfaces —
+paper, raised, sunk, and the two washes — so every text tone is solved
+numerically against the darkest of them rather than adjusted by eye against the
+lightest. One value is then safe everywhere and no surface needs an override.
+Body text on paper is 16.15:1; the lowest passing text pairing is 4.57:1
+(captions on a sunk panel) against a 4.5:1 requirement.
 
-One real defect was found here and fixed: `.surface-dark a` has specificity
+Three real defects were found here and fixed. `.surface-dark a` has specificity
 (0,1,1) and beat `.button--primary` at (0,1,0), so the primary call-to-action
-button rendered brick-bright text on a brick fill inside dark panels. Buttons
-now hold their own colour on dark surfaces.
+button rendered its fill colour as text on the same fill inside dark panels;
+buttons now hold their own colour on dark surfaces. Separately, four panels
+invented a tinted surface with `color-mix(... 8-10%, transparent)` — a value
+nobody had solved — and one of them dropped a duration label to below 4.5:1;
+those now use the two verified washes. The gradient on the booking panel is
+verified across its whole ramp, not only at its two ends: the worst point is
+the coral end at 4.83:1.
 
 **1.4.4 Resize Text / 1.4.10 Reflow.** The type scale interpolates in `rem`,
 not `px`, so it responds to the reader's own text-size setting. No horizontal
@@ -87,9 +94,12 @@ scrolling at 320px or at 200% zoom. Three overflow defects were found during
 the build and fixed: grid children defaulting to `min-width: auto` (110px of
 overflow at 375px), an oversized specimen line, and a fixed-width bar chart.
 
-**1.4.11 Non-text Contrast.** Input borders clear 3:1 on both paper surfaces
-(3.37:1 and 3.09:1). The focus ring clears 7.86:1 on paper and switches to
-spotted gum on dark surfaces, where brick would not carry.
+**1.4.11 Non-text Contrast.** Input borders clear 3:1 on every light surface
+(3.37:1 on paper, 3.07:1 on the sunk panel, which is the worst case). The
+primary button's coral fill is itself 3.04:1 against the sunk panel, so the
+control's own boundary is legible and not only its label. The focus ring clears
+5.03:1 on paper and switches to amber on dark surfaces, where the deep coral
+would not carry.
 
 **1.4.12 Text Spacing.** Line height 1.65 on body text, paragraph spacing from
 the space scale, and no fixed-height text containers, so user stylesheets that
@@ -175,7 +185,7 @@ looked at nothing.
 
 | # | Defect | Criterion | Status |
 | --- | --- | --- | --- |
-| 1 | Primary button rendered brick-bright text on a brick fill inside dark panels, from a specificity collision | 1.4.3 | Fixed |
+| 1 | Primary button rendered its fill colour as text on the same fill inside dark panels, from a specificity collision | 1.4.3 | Fixed |
 | 2 | Horizontally scrolling tables unreachable by keyboard | 2.1.1 | Fixed |
 | 3 | 110px horizontal overflow at 375px from grid children's default `min-width: auto` | 1.4.10 | Fixed |
 | 4 | Specimen line and space-scale bars overflowing at 375px | 1.4.10 | Fixed |
@@ -183,6 +193,9 @@ looked at nothing.
 | 6 | Estimator headings skipped from `h1` to `h3` | 1.3.1 | Fixed |
 | 7 | Projects index headings skipped from `h1` to `h3` | 1.3.1 | Fixed |
 | 8 | Navigation unreachable without JavaScript at wide widths, where the disclosure toggle is hidden | 2.1.1 | Fixed |
+| 9 | Primary navigation laid out at zero width and overflowed off the right of the viewport: Chromium now wraps a closed `<details>`'s children in `::details-content` with `content-visibility: hidden`, which `display: flex` on the panel no longer reaches past | 1.3.2, 2.4.3 | Fixed |
+| 10 | Four panels invented an unverified tinted surface with `color-mix`; one dropped a label to below 4.5:1 | 1.4.3 | Fixed |
+| 11 | Display headings inherited body leading (1.65) because Tailwind's paired `--text-*--line-height` only applies through the generated utility class, not through `var()` | — | Fixed |
 
 ---
 
@@ -197,19 +210,27 @@ disability more than the industry likes to admit.
 | Lighthouse performance, mobile throttled | 95+ | **100** |
 | Lighthouse accessibility | 95+ | **100** |
 | Lighthouse best practices | 95+ | **100** |
-| Largest Contentful Paint | < 1.8s | **1.67s** |
+| Largest Contentful Paint | < 1.8s | **1.66s** |
 | Cumulative Layout Shift | < 0.05 | **0.000** |
 | Total Blocking Time | — | **0ms** |
 | JavaScript on first load | < 150 kB gz | **2.8 kB** |
 
-Measured on 12 pages with Lighthouse's default mobile profile (simulated 4G,
-4× CPU throttle). CLS is zero because every image carries intrinsic dimensions
-and the font fallbacks carry ascent, descent and line-gap overrides measured
-from the real font files.
+Measured on 13 pages with Lighthouse's default mobile profile (simulated 4G,
+4× CPU throttle), served over gzip. The compression matters and is not a
+convenience: the same build measured off an uncompressed file server reports
+LCP at 1.96s, because Lighthouse's simulated 4G model is transfer-size bound
+and the HTML and CSS are 74 kB raw against roughly 18 kB gzipped. Every host
+this site would actually go on compresses text; a measurement that does not is
+measuring the test rig.
 
-`/contact/thank-you` scores 69 for SEO. That is the `noindex` penalty and it is
-correct: a confirmation page must not be indexed. It is not a defect and
-should not be "fixed".
+CLS is zero because every image carries intrinsic dimensions and the font
+fallbacks carry ascent, descent and line-gap overrides measured from the real
+font files.
+
+`/contact/thank-you` scores 69 for SEO and `/style-tile` scores 66. In both
+cases the only failing audit is `is-crawlable`: that is the `noindex` penalty
+and it is correct, because a confirmation page and an internal design reference
+must not be indexed. Neither is a defect and neither should be "fixed".
 
 ---
 
@@ -249,6 +270,16 @@ called complete.
    the most valuable page on the site and also the densest. Plain-language
    review with people who are not in the building industry would likely improve
    it more than any technical change.
+
+7. **The audit harness now scrolls the page before running axe.** Reveal
+   animations meant axe was sampling elements mid-fade and reporting contrast
+   failures against a partly transparent element — a measurement of the
+   transition rather than of anything a reader ends up looking at. The harness
+   now scrolls the whole page and waits for every reveal to reach full opacity,
+   and it fails if any reveal never gets there. That is a more honest test of
+   the state pages are read in, but it does mean the mid-transition state is no
+   longer checked: someone who starts reading during a fade is briefly looking
+   at lower contrast than the ratios above.
 
 ---
 

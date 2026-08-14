@@ -59,8 +59,14 @@ const suburbs = business.serviceArea.suburbs;
 </footer>
 
 <style>
+  /*
+   * No top margin. Every page ends on the booking panel, and a band of paper
+   * between that panel and the footer reads as a gap in the page rather than
+   * as breathing room. Pages that end on plain content get their own bottom
+   * padding from the section they end with.
+   */
   .site-footer {
-    margin-block-start: var(--space-section);
+    margin-block-start: 0;
   }
 
   .site-footer__inner {
@@ -83,6 +89,7 @@ const suburbs = business.serviceArea.suburbs;
     font-weight: var(--font-weight-display-strong);
     font-size: var(--text-title-s);
     line-height: 1.2;
+    letter-spacing: -0.014em;
   }
 
   .site-footer__positioning {
@@ -108,7 +115,7 @@ const suburbs = business.serviceArea.suburbs;
     letter-spacing: 0.09em;
     font-weight: var(--font-weight-semibold);
     font-family: var(--font-text);
-    color: var(--color-ochre);
+    color: var(--color-amber);
     margin-block-end: var(--space-2xs);
   }
 

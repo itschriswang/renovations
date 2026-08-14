@@ -8,7 +8,7 @@ Sources are fetched once into scripts/.font-cache/ and are not committed.
 The woff2 output IS committed, so a fresh clone does not need network access
 or Python to build the site.
 
-  Display : Big Shoulders Display (SIL OFL 1.1, Patric King) - variable 100-900
+  Display : Gabarito            (SIL OFL 1.1, Naipe Foundry) - variable 400-900
   Text    : Schibsted Grotesk     (SIL OFL 1.1, Schibsted)   - variable 400-900
 """
 
@@ -32,10 +32,10 @@ GF = "https://raw.githubusercontent.com/google/fonts/main/ofl"
 
 FONTS = [
     {
-        "name": "big-shoulders-display-variable",
-        "url": f"{GF}/bigshouldersdisplay/BigShouldersDisplay%5Bwght%5D.ttf",
-        "cache": "BigShouldersDisplay-Variable.ttf",
-        # Keep the weight axis so one file covers 100-900.
+        "name": "gabarito-variable",
+        "url": f"{GF}/gabarito/Gabarito%5Bwght%5D.ttf",
+        "cache": "Gabarito-Variable.ttf",
+        # Keep the weight axis so one file covers 400-900.
         "extra": ["--drop-tables+=DSIG"],
     },
     {
@@ -116,7 +116,7 @@ def main() -> int:
             ]
         )
         if "Variable" in font["cache"]:
-            weight = 600 if "big-shoulders" in font["name"] else 400
+            weight = 600 if "gabarito" in font["name"] else 400
             f = TTFont(og)
             instantiateVariableFont(f, {"wght": weight}, inplace=True, updateFontNames=False)
             f.save(og)

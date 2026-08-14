@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-label="Temporary placeholder awaiting photography: A survey plan and a council notice on a kitchen bench in a house that has not been renovated yet. Ordinary, un-styled.">
-<rect x="0" y="0" width="1800" height="884" fill="#eee6d7"/>
-<polygon points="0,0 1800,0 1425,284 375,284" fill="#eee6d9"/>
-<polygon points="0,0 375,284 375,791 0,1200" fill="#c6b9a2"/>
-<polygon points="1800,0 1425,284 1425,791 1800,1200" fill="#fffcf6"/>
-<rect x="375" y="284" width="1050" height="506" fill="#eee6d7"/>
-<rect x="799" y="365" width="517" height="263" fill="#F2ECDF"/>
+<rect x="0" y="0" width="1800" height="884" fill="#f4efe7"/>
+<polygon points="0,0 1800,0 1425,284 375,284" fill="#f3efe8"/>
+<polygon points="0,0 375,284 375,791 0,1200" fill="#d4c9b8"/>
+<polygon points="1800,0 1425,284 1425,791 1800,1200" fill="#ffffff"/>
+<rect x="375" y="284" width="1050" height="506" fill="#f4efe7"/>
+<rect x="799" y="365" width="517" height="263" fill="#F7F2E9"/>
 <rect x="799" y="365" width="517" height="90" fill="#FFFFFF" opacity="0.4"/>
-<rect x="799" y="365" width="517" height="263" fill="none" stroke="#1a1512" stroke-width="7"/>
-<polygon points="0,1200 375,791 1425,791 1800,1200" fill="#bc8b52"/>
+<rect x="799" y="365" width="517" height="263" fill="none" stroke="#221c19" stroke-width="7"/>
+<polygon points="0,1200 375,791 1425,791 1800,1200" fill="#cd9b62"/>
 <polygon points="799,791 1316,791 1626,1200 592,1200" fill="#FFFFFF" opacity="0.13"/>
-<rect x="225" y="610" width="620" height="253" fill="#1a1512"/>
-<rect x="225" y="610" width="620" height="19" fill="#b8ac96"/>
-<rect x="0" y="0" width="1800" height="60" fill="#1A1512" opacity="0.06"/>
-<rect x="0" y="1068" width="1800" height="132" fill="#1A1512" opacity="0.88"/>
-<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F7F2E7">home-approvals · 3:2 · 1800×1200</text>
-<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — A survey plan and a council notice on a kitchen bench in a house that has not been renovated…</text>
-<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
+<rect x="225" y="610" width="620" height="253" fill="#221c19"/>
+<rect x="225" y="610" width="620" height="19" fill="#c5baa7"/>
+<rect x="0" y="0" width="1800" height="60" fill="#221C19" opacity="0.06"/>
+<rect x="0" y="1068" width="1800" height="132" fill="#221C19" opacity="0.82"/>
+<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#FCFAF7">home-approvals · 3:2 · 1800×1200</text>
+<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#FCFAF7" opacity="0.72">AWAITING PHOTOGRAPHY — A survey plan and a council notice on a kitchen bench in a house that has not been renovated…</text>
+<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#221C19" stroke-opacity="0.2"/>
 </svg>

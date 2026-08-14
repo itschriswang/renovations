@@ -1,29 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Temporary placeholder awaiting photography: As above, Carlingford.">
 <defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#90a3ac"/>
-    <stop offset="1" stop-color="#e2cba7"/>
+    <stop offset="0" stop-color="#a0c5d2"/>
+    <stop offset="1" stop-color="#f2e2c8"/>
   </linearGradient></defs>
 <rect x="0" y="0" width="1920" height="670" fill="url(#sky2)"/>
-<rect x="0" y="670" width="1920" height="410" fill="#b8ac96"/>
-<rect x="0" y="854" width="1920" height="226" fill="#191513"/>
-<polygon points="-96,405 95,340 286,405" fill="#32292a"/>
-<rect x="-96" y="405" width="382" height="265" fill="#be6541"/>
-<rect x="-20" y="484" width="84" height="79" fill="#241e1c"/>
-<polygon points="325,442 560,377 796,442" fill="#32292a"/>
-<rect x="325" y="442" width="471" height="228" fill="#eee6d7"/>
-<rect x="419" y="510" width="104" height="68" fill="#241e1c"/>
-<polygon points="834,424 1024,360 1213,424" fill="#32292a"/>
-<rect x="834" y="424" width="379" height="245" fill="#be6541"/>
-<rect x="910" y="498" width="83" height="74" fill="#241e1c"/>
-<polygon points="1252,444 1409,379 1566,444" fill="#32292a"/>
-<rect x="1252" y="444" width="314" height="225" fill="#eee6d7"/>
-<rect x="1314" y="512" width="69" height="68" fill="#241e1c"/>
-<polygon points="1604,503 1786,439 1968,503" fill="#32292a"/>
-<rect x="1604" y="503" width="364" height="166" fill="#eee6d7"/>
-<rect x="1677" y="553" width="80" height="50" fill="#241e1c"/>
-<rect x="0" y="994" width="1920" height="86" fill="#1A1512" opacity="0.1"/>
-<rect x="0" y="961" width="1920" height="119" fill="#1A1512" opacity="0.88"/>
-<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#F7F2E7">suburb-carlingford · 16:9 · 1920×1080</text>
-<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — As above, Carlingford.</text>
-<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
+<rect x="0" y="670" width="1920" height="410" fill="#c5baa7"/>
+<rect x="0" y="854" width="1920" height="226" fill="#211c1a"/>
+<polygon points="-96,405 95,340 286,405" fill="#3b3336"/>
+<rect x="-96" y="405" width="382" height="265" fill="#d87e5b"/>
+<rect x="-20" y="484" width="84" height="79" fill="#2b3b3d"/>
+<polygon points="325,442 560,377 796,442" fill="#3b3336"/>
+<rect x="325" y="442" width="471" height="228" fill="#f4efe7"/>
+<rect x="419" y="510" width="104" height="68" fill="#2b3b3d"/>
+<polygon points="834,424 1024,360 1213,424" fill="#3b3336"/>
+<rect x="834" y="424" width="379" height="245" fill="#d87e5b"/>
+<rect x="910" y="498" width="83" height="74" fill="#2b3b3d"/>
+<polygon points="1252,444 1409,379 1566,444" fill="#3b3336"/>
+<rect x="1252" y="444" width="314" height="225" fill="#f4efe7"/>
+<rect x="1314" y="512" width="69" height="68" fill="#2b3b3d"/>
+<polygon points="1604,503 1786,439 1968,503" fill="#3b3336"/>
+<rect x="1604" y="503" width="364" height="166" fill="#f4efe7"/>
+<rect x="1677" y="553" width="80" height="50" fill="#2b3b3d"/>
+<rect x="0" y="994" width="1920" height="86" fill="#221C19" opacity="0.1"/>
+<rect x="0" y="961" width="1920" height="119" fill="#221C19" opacity="0.82"/>
+<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#FCFAF7">suburb-carlingford · 16:9 · 1920×1080</text>
+<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#FCFAF7" opacity="0.72">AWAITING PHOTOGRAPHY — As above, Carlingford.</text>
+<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#221C19" stroke-opacity="0.2"/>
 </svg>

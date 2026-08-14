@@ -28,18 +28,16 @@ const suburbs = business.serviceArea.suburbs;
   schema={[localBusinessSchema(), websiteSchema()]}
 >
   <!-- ================================================================ hero -->
-  <section class="hero surface-dark grain grid-editorial">
+  <section class="hero glow grid-editorial">
     <div class="col-wide hero__text">
       <p class="hero__kicker">
         <span class="stamp">Kitchens</span>
         <span class="stamp stamp--ochre">Bathrooms</span>
-        <span class="stamp stamp--outline">Extensions</span>
-        <span class="stamp stamp--outline">Whole homes</span>
+        <span class="stamp">Extensions</span>
+        <span class="stamp stamp--ochre">Whole homes</span>
       </p>
       <h1 class="hero__title">
-        Fixed price<br />
-        <span class="hero__hot">before</span><br />
-        demolition starts
+        A fixed price <span class="hero__hot">before</span> the first wall comes down
       </h1>
       <p class="hero__lede">{business.identity.differentiatorLong}</p>
       <div class="hero__actions">
@@ -50,7 +48,6 @@ const suburbs = business.serviceArea.suburbs;
           Work out a rough cost
         </a>
       </div>
-      <div class="ruler hero__ruler" aria-hidden="true"></div>
     </div>
 
     <div class="col-bleed hero__figure">
@@ -60,8 +57,6 @@ const suburbs = business.serviceArea.suburbs;
       />
     </div>
   </section>
-
-  <div class="hazard" role="presentation"></div>
 
   <TrustStrip />
 
@@ -84,7 +79,7 @@ const suburbs = business.serviceArea.suburbs;
   </section>
 
   <!-- ============================================================ costs -->
-  <section class="grid-editorial section section--ruled">
+  <section class="grid-editorial section surface-wash-teal">
     <div class="col-text">
       <p class="section__eyebrow">What it costs</p>
       <h2 class="section__title">The bands our work actually falls in</h2>
@@ -115,7 +110,7 @@ const suburbs = business.serviceArea.suburbs;
 
     <p class="col-text bands__note">
       GST inclusive. Indicative only — the number that matters is the fixed price quote, and we
-      cannot give you that until we have measured the house.
+      cannot give you that until we have measured the house.{' '}
       <a href={href(routes.costs)}>See what moves each band</a>.
     </p>
   </section>
@@ -212,8 +207,14 @@ const suburbs = business.serviceArea.suburbs;
 </Site>
 
 <style>
+  /*
+   * Light. The hero was a near-black band the height of the viewport, and it
+   * set the temperature for the whole site — every page under it then had to
+   * be dark to match. It is now paper with a warm bloom behind it, which is
+   * where the energy comes from instead.
+   */
   .hero {
-    padding-block-start: var(--space-l);
+    padding-block: var(--space-l) var(--space-xl);
     row-gap: var(--space-m);
   }
 
@@ -226,23 +227,25 @@ const suburbs = business.serviceArea.suburbs;
 
   .hero__title {
     font-size: var(--text-display-l);
-    line-height: 0.86;
-    letter-spacing: -0.015em;
-    text-transform: uppercase;
+    line-height: 0.98;
+    letter-spacing: -0.032em;
+    max-width: 15ch;
     margin-block: 0 var(--space-m);
-    text-wrap: initial;
   }
 
-  /* One word carries the whole idea, so one word carries the hot colour.
-     It is display-sized, which is why molten is legitimate here. */
+  /*
+   * One word carries the whole idea, so one word carries the accent. It is set
+   * in --color-coral-ink rather than --color-coral: this is text on paper, and
+   * coral is a fill colour, not a text colour, on a light surface.
+   */
   .hero__hot {
-    color: var(--color-molten);
+    color: var(--color-coral-ink);
   }
 
   .hero__lede {
     font-size: var(--text-lead);
     line-height: 1.45;
-    color: color-mix(in srgb, var(--color-paper) 84%, transparent);
+    color: var(--color-ink-muted);
     max-width: var(--measure);
   }
 
@@ -253,28 +256,31 @@ const suburbs = business.serviceArea.suburbs;
     margin-block-start: var(--space-m);
   }
 
-  .hero__ruler {
-    margin-block-start: var(--space-m);
+  .hero__figure {
+    margin-block-start: var(--space-l);
   }
 
-  .hero__figure {
-    margin-block-start: var(--space-m);
+  .hero__figure :global(img) {
+    border-radius: var(--radius-l);
   }
 
   .stat {
     align-self: end;
-    padding: var(--space-s);
-    background: var(--color-paper-sunk);
-    border-block-start: 6px solid var(--color-ochre);
+    padding: var(--space-m);
+    border-radius: var(--radius-m);
+    background: var(--color-paper-raised);
+    box-shadow:
+      inset 0 0 0 1px var(--color-line),
+      var(--shadow-soft);
   }
 
   .stat__value {
     font-family: var(--font-display);
     font-weight: var(--font-weight-display-strong);
     font-size: var(--text-display-s);
-    line-height: 0.9;
-    letter-spacing: -0.01em;
-    color: var(--color-molten-ink);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    color: var(--color-coral-ink);
     font-variant-numeric: tabular-nums;
   }
 
@@ -288,18 +294,24 @@ const suburbs = business.serviceArea.suburbs;
     list-style: none;
     padding: 0;
     margin-block-start: var(--space-m);
-    border-block-start: 3px solid var(--color-ink);
+    display: grid;
+    gap: var(--space-2xs);
   }
 
   .bands__link {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-3xs);
-    padding: var(--space-s);
-    border-block-end: 2px solid var(--color-line);
+    padding: var(--space-s) var(--space-m);
+    border-radius: var(--radius-m);
+    background: var(--color-paper-raised);
+    box-shadow: inset 0 0 0 1px var(--color-line);
     text-decoration: none;
     color: var(--color-ink);
-    transition: background-color var(--duration-fast) var(--ease-inout);
+    transition:
+      background-color var(--duration-fast) var(--ease-inout),
+      box-shadow var(--duration-fast) var(--ease-inout),
+      transform var(--duration-fast) var(--ease-inout);
   }
 
   @media (width >= 48rem) {
@@ -311,35 +323,29 @@ const suburbs = business.serviceArea.suburbs;
   }
 
   .bands__link:hover {
-    background: var(--color-ink);
-    color: var(--color-paper);
-  }
-
-  .bands__link:hover .bands__range {
-    color: var(--color-ochre);
-  }
-
-  .bands__link:hover .bands__weeks {
-    color: color-mix(in srgb, var(--color-paper) 78%, transparent);
+    box-shadow:
+      inset 0 0 0 1px var(--color-coral),
+      var(--shadow-raised);
+    transform: translateY(-2px);
   }
 
   .bands__name {
     font-family: var(--font-display);
     font-weight: var(--font-weight-display-strong);
-    font-size: var(--text-title-m);
-    line-height: 1;
-    text-transform: uppercase;
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    letter-spacing: -0.014em;
   }
 
   .bands__range {
     font-family: var(--font-display);
     font-weight: var(--font-weight-display-strong);
-    font-size: var(--text-title-l);
-    line-height: 1;
-    color: var(--color-molten-ink);
+    font-size: var(--text-title-m);
+    line-height: 1.14;
+    letter-spacing: -0.018em;
+    color: var(--color-coral-ink);
     min-inline-size: 11ch;
     font-variant-numeric: tabular-nums;
-    transition: color var(--duration-fast) var(--ease-inout);
   }
 
   .bands__weeks {
@@ -372,16 +378,19 @@ const suburbs = business.serviceArea.suburbs;
     display: grid;
     gap: var(--space-3xs);
     padding: var(--space-s);
-    background: var(--color-paper-sunk);
-    border-block-start: 5px solid var(--color-molten);
+    border-radius: var(--radius-m);
+    background: var(--color-paper-raised);
+    box-shadow:
+      inset 0 0 0 1px var(--color-line),
+      var(--shadow-soft);
   }
 
   .stages__name {
     font-family: var(--font-display);
     font-weight: var(--font-weight-display-strong);
     font-size: var(--text-title-s);
-    line-height: 1.05;
-    text-transform: uppercase;
+    line-height: 1.2;
+    letter-spacing: -0.014em;
   }
 
   .stages__duration {
@@ -390,16 +399,18 @@ const suburbs = business.serviceArea.suburbs;
   }
 
   .stages__item--more {
-    border-block-start-color: var(--color-ochre);
-    background: var(--color-ink);
+    background: var(--color-wash-teal);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-teal) 22%, transparent);
     align-content: center;
     font-family: var(--font-display);
+    font-weight: var(--font-weight-display-strong);
     font-size: var(--text-title-s);
-    text-transform: uppercase;
+    line-height: 1.2;
+    letter-spacing: -0.014em;
   }
 
   .stages__item--more a {
-    color: var(--color-ochre);
+    color: var(--color-teal-ink);
     text-decoration: none;
   }
 
@@ -422,18 +433,23 @@ const suburbs = business.serviceArea.suburbs;
   .suburbs a {
     display: inline-block;
     padding: var(--space-2xs) var(--space-s);
-    background: var(--color-paper-sunk);
-    border: 2px solid var(--color-ink);
+    border-radius: var(--radius-full);
+    background: var(--color-paper-raised);
+    box-shadow: inset 0 0 0 1px var(--color-line-strong);
     font-family: var(--font-display);
     font-weight: var(--font-weight-display-strong);
-    font-size: var(--text-title-s);
-    text-transform: uppercase;
+    font-size: 1.0625rem;
+    letter-spacing: -0.012em;
     text-decoration: none;
     color: var(--color-ink);
+    transition:
+      background-color var(--duration-fast) var(--ease-inout),
+      box-shadow var(--duration-fast) var(--ease-inout);
   }
 
   .suburbs a:hover {
-    background: var(--color-molten);
+    background: var(--color-coral);
     color: var(--color-ink);
+    box-shadow: inset 0 0 0 1px var(--color-coral-ink);
   }
 </style>

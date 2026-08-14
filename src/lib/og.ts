@@ -20,7 +20,7 @@ const WIDTH = 1200;
 const HEIGHT = 630;
 
 const fontDir = path.resolve(process.cwd(), 'src/assets/og-fonts');
-const display = fs.readFileSync(path.join(fontDir, 'big-shoulders-display-variable.ttf'));
+const display = fs.readFileSync(path.join(fontDir, 'gabarito-variable.ttf'));
 const text = fs.readFileSync(path.join(fontDir, 'schibsted-grotesk-variable.ttf'));
 
 const PAPER = '#f7f3ec';
@@ -75,7 +75,7 @@ export async function renderOgImage({ title, eyebrow, facts = [] }: OgOptions): 
               : null,
             el('div', {
               style: {
-                fontFamily: 'Big Shoulders Display',
+                fontFamily: 'Gabarito',
                 fontSize: title.length > 46 ? 84 : 104,
                 lineHeight: 1,
                 letterSpacing: '-0.005em',
@@ -117,7 +117,7 @@ export async function renderOgImage({ title, eyebrow, facts = [] }: OgOptions): 
                     }),
                     el('div', {
                       style: {
-                        fontFamily: 'Big Shoulders Display',
+                        fontFamily: 'Gabarito',
                         fontSize: 40,
                         color: INK,
                       },
@@ -129,7 +129,7 @@ export async function renderOgImage({ title, eyebrow, facts = [] }: OgOptions): 
             }),
             el('div', {
               style: {
-                fontFamily: 'Big Shoulders Display',
+                fontFamily: 'Gabarito',
                 fontSize: 40,
                 color: BRICK,
               },
@@ -143,7 +143,7 @@ export async function renderOgImage({ title, eyebrow, facts = [] }: OgOptions): 
       width: WIDTH,
       height: HEIGHT,
       fonts: [
-        { name: 'Big Shoulders Display', data: display, weight: 600, style: 'normal' },
+        { name: 'Gabarito', data: display, weight: 600, style: 'normal' },
         { name: 'Schibsted Grotesk', data: text, weight: 400, style: 'normal' },
       ],
     },

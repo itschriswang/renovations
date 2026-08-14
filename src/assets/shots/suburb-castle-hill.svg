@@ -1,29 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Temporary placeholder awaiting photography: As above, Castle Hill.">
 <defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#90a3ac"/>
-    <stop offset="1" stop-color="#e2cba7"/>
+    <stop offset="0" stop-color="#a0c5d2"/>
+    <stop offset="1" stop-color="#f2e2c8"/>
   </linearGradient></defs>
 <rect x="0" y="0" width="1920" height="670" fill="url(#sky2)"/>
-<rect x="0" y="670" width="1920" height="410" fill="#b8ac96"/>
-<rect x="0" y="854" width="1920" height="226" fill="#191513"/>
-<polygon points="-96,427 130,362 356,427" fill="#32292a"/>
-<rect x="-96" y="427" width="452" height="243" fill="#be6541"/>
-<rect x="-6" y="500" width="100" height="73" fill="#241e1c"/>
-<polygon points="395,442 572,377 748,442" fill="#32292a"/>
-<rect x="395" y="442" width="354" height="228" fill="#eee6d7"/>
-<rect x="466" y="510" width="78" height="68" fill="#241e1c"/>
-<polygon points="787,455 995,390 1204,455" fill="#32292a"/>
-<rect x="787" y="455" width="417" height="215" fill="#be6541"/>
-<rect x="870" y="519" width="92" height="64" fill="#241e1c"/>
-<polygon points="1242,478 1468,413 1695,478" fill="#32292a"/>
-<rect x="1242" y="478" width="452" height="192" fill="#eee6d7"/>
-<rect x="1333" y="535" width="100" height="57" fill="#241e1c"/>
-<polygon points="1733,468 1976,403 2219,468" fill="#32292a"/>
-<rect x="1733" y="468" width="485" height="201" fill="#be6541"/>
-<rect x="1830" y="529" width="107" height="60" fill="#241e1c"/>
-<rect x="0" y="994" width="1920" height="86" fill="#1A1512" opacity="0.1"/>
-<rect x="0" y="961" width="1920" height="119" fill="#1A1512" opacity="0.88"/>
-<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#F7F2E7">suburb-castle-hill · 16:9 · 1920×1080</text>
-<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — As above, Castle Hill.</text>
-<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
+<rect x="0" y="670" width="1920" height="410" fill="#c5baa7"/>
+<rect x="0" y="854" width="1920" height="226" fill="#211c1a"/>
+<polygon points="-96,427 130,362 356,427" fill="#3b3336"/>
+<rect x="-96" y="427" width="452" height="243" fill="#d87e5b"/>
+<rect x="-6" y="500" width="100" height="73" fill="#2b3b3d"/>
+<polygon points="395,442 572,377 748,442" fill="#3b3336"/>
+<rect x="395" y="442" width="354" height="228" fill="#f4efe7"/>
+<rect x="466" y="510" width="78" height="68" fill="#2b3b3d"/>
+<polygon points="787,455 995,390 1204,455" fill="#3b3336"/>
+<rect x="787" y="455" width="417" height="215" fill="#d87e5b"/>
+<rect x="870" y="519" width="92" height="64" fill="#2b3b3d"/>
+<polygon points="1242,478 1468,413 1695,478" fill="#3b3336"/>
+<rect x="1242" y="478" width="452" height="192" fill="#f4efe7"/>
+<rect x="1333" y="535" width="100" height="57" fill="#2b3b3d"/>
+<polygon points="1733,468 1976,403 2219,468" fill="#3b3336"/>
+<rect x="1733" y="468" width="485" height="201" fill="#d87e5b"/>
+<rect x="1830" y="529" width="107" height="60" fill="#2b3b3d"/>
+<rect x="0" y="994" width="1920" height="86" fill="#221C19" opacity="0.1"/>
+<rect x="0" y="961" width="1920" height="119" fill="#221C19" opacity="0.82"/>
+<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#FCFAF7">suburb-castle-hill · 16:9 · 1920×1080</text>
+<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#FCFAF7" opacity="0.72">AWAITING PHOTOGRAPHY — As above, Castle Hill.</text>
+<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#221C19" stroke-opacity="0.2"/>
 </svg>

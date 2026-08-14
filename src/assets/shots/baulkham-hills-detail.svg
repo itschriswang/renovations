@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1400" viewBox="0 0 1400 1400" role="img" aria-label="Temporary placeholder awaiting photography: The stair balustrade junction at the landing. Close.">
-<rect x="0" y="0" width="1400" height="987" fill="#eee6d7"/>
-<polygon points="0,0 1400,0 1111,304 289,304" fill="#eee6d9"/>
-<polygon points="0,0 289,304 289,892 0,1400" fill="#c6b9a2"/>
-<polygon points="1400,0 1111,304 1111,892 1400,1400" fill="#fffcf6"/>
-<rect x="289" y="304" width="822" height="589" fill="#eee6d7"/>
-<rect x="490" y="398" width="429" height="306" fill="#F2ECDF"/>
+<rect x="0" y="0" width="1400" height="987" fill="#f4efe7"/>
+<polygon points="0,0 1400,0 1111,304 289,304" fill="#f3efe8"/>
+<polygon points="0,0 289,304 289,892 0,1400" fill="#d4c9b8"/>
+<polygon points="1400,0 1111,304 1111,892 1400,1400" fill="#ffffff"/>
+<rect x="289" y="304" width="822" height="589" fill="#f4efe7"/>
+<rect x="490" y="398" width="429" height="306" fill="#F7F2E9"/>
 <rect x="490" y="398" width="429" height="104" fill="#FFFFFF" opacity="0.4"/>
-<rect x="490" y="398" width="429" height="306" fill="none" stroke="#1a1512" stroke-width="6"/>
-<polygon points="0,1400 289,892 1111,892 1400,1400" fill="#bc8b52"/>
+<rect x="490" y="398" width="429" height="306" fill="none" stroke="#221c19" stroke-width="6"/>
+<polygon points="0,1400 289,892 1111,892 1400,1400" fill="#cd9b62"/>
 <polygon points="490,892 919,892 1176,1400 318,1400" fill="#FFFFFF" opacity="0.13"/>
-<rect x="174" y="660" width="555" height="316" fill="#1a1512"/>
-<rect x="174" y="660" width="555" height="22" fill="#b8ac96"/>
-<rect x="0" y="0" width="1400" height="70" fill="#1A1512" opacity="0.06"/>
-<rect x="0" y="1246" width="1400" height="154" fill="#1A1512" opacity="0.88"/>
-<text x="28" y="1300" font-family="ui-monospace, Menlo, monospace" font-size="36" fill="#F7F2E7">baulkham-hills-detail · 1:1 · 1400×1400</text>
-<text x="28" y="1354" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — The stair balustrade junction at the landing. Close.</text>
-<rect x="0.5" y="0.5" width="1399" height="1399" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
+<rect x="174" y="660" width="555" height="316" fill="#221c19"/>
+<rect x="174" y="660" width="555" height="22" fill="#c5baa7"/>
+<rect x="0" y="0" width="1400" height="70" fill="#221C19" opacity="0.06"/>
+<rect x="0" y="1246" width="1400" height="154" fill="#221C19" opacity="0.82"/>
+<text x="28" y="1300" font-family="ui-monospace, Menlo, monospace" font-size="36" fill="#FCFAF7">baulkham-hills-detail · 1:1 · 1400×1400</text>
+<text x="28" y="1354" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#FCFAF7" opacity="0.72">AWAITING PHOTOGRAPHY — The stair balustrade junction at the landing. Close.</text>
+<rect x="0.5" y="0.5" width="1399" height="1399" fill="none" stroke="#221C19" stroke-opacity="0.2"/>
 </svg>

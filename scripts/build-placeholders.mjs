@@ -44,30 +44,30 @@ const RATIOS = {
 
 /** Materials, straight from the design tokens. Warm, hot, and never grey. */
 const M = {
-  skyHigh: '#8FA3AD',
-  skyLow: '#E4CBA4',
-  duskHigh: '#241C1B',
-  duskLow: '#C4551F',
-  brick: '#A5432A',
-  brickLit: '#C4633C',
-  brickShade: '#6E2A1A',
-  render: '#EFE6D6',
-  renderLit: '#FFFCF5',
-  renderShade: '#C9B99C',
-  roof: '#33292A',
-  roofLit: '#463839',
-  glass: '#241E1C',
-  glassLit: '#F2B23C',
-  lawn: '#7E7A4A',
-  lawnDry: '#A8996F',
-  concrete: '#B9AC94',
-  timber: '#C08A4C',
-  timberDark: '#7C5024',
-  soil: '#6B4526',
-  bitumen: '#1A1512',
-  ink: '#1A1512',
-  paper: '#F7F2E7',
-  marking: '#E14E1D',
+  skyHigh: '#9EC6D4',
+  skyLow: '#F3E2C6',
+  duskHigh: '#2E2440',
+  duskLow: '#E5713A',
+  brick: '#C05637',
+  brickLit: '#DE7C56',
+  brickShade: '#8B3722',
+  render: '#F4EFE6',
+  renderLit: '#FFFFFF',
+  renderShade: '#D6C9B4',
+  roof: '#3B3336',
+  roofLit: '#54484C',
+  glass: '#2A3B3E',
+  glassLit: '#FFC259',
+  lawn: '#8FA35C',
+  lawnDry: '#BFB07F',
+  concrete: '#C6BAA5',
+  timber: '#D19A5C',
+  timberDark: '#8A5C2E',
+  soil: '#7A5230',
+  bitumen: '#221C19',
+  ink: '#221C19',
+  paper: '#FCFAF7',
+  marking: '#E55F37',
 };
 
 /* ------------------------------------------------------------------ utils */
@@ -266,7 +266,7 @@ function drawInterior(w, h, rnd, tone) {
   const wx = inset + (w - inset * 2) * (0.1 + rnd() * 0.45);
   const wy = backTop + (backBot - backTop) * 0.16;
   const wh = (backBot - backTop) * 0.52;
-  g.push(rect(wx, wy, ww, wh, dull ? '#C8CEC9' : '#F2ECDF'));
+  g.push(rect(wx, wy, ww, wh, dull ? '#CFD8D5' : '#F7F2E9'));
   g.push(rect(wx, wy, ww, wh * 0.34, '#FFFFFF', ' opacity="0.4"'));
   g.push(
     `<rect x="${Math.round(wx)}" y="${Math.round(wy)}" width="${Math.round(ww)}" height="${Math.round(wh)}" fill="none" stroke="${desaturate(M.bitumen, tone.desat)}" stroke-width="${Math.max(2, Math.round(w * 0.004))}"/>`,
@@ -405,7 +405,7 @@ function svg({ id, ratio, w, h, brief, frame, frames, sceneBrief }) {
     `Temporary placeholder awaiting photography: ${brief}`,
   )}">
 ${body}
-<rect x="0" y="${h - barH}" width="${w}" height="${barH}" fill="${M.ink}" opacity="0.88"/>
+<rect x="0" y="${h - barH}" width="${w}" height="${barH}" fill="${M.ink}" opacity="0.82"/>
 <text x="${Math.round(w * 0.02)}" y="${h - barH + meta * 1.5}" font-family="ui-monospace, Menlo, monospace" font-size="${meta}" fill="${M.paper}">${escapeXml(label)} · ${ratio} · ${w}×${h}</text>
 <text x="${Math.round(w * 0.02)}" y="${h - barH + meta * 3}" font-family="ui-monospace, Menlo, monospace" font-size="${Math.round(meta * 0.85)}" fill="${M.paper}" opacity="0.72">AWAITING PHOTOGRAPHY — ${escapeXml(shortBrief)}</text>
 <rect x="0.5" y="0.5" width="${w - 1}" height="${h - 1}" fill="none" stroke="${M.ink}" stroke-opacity="0.2"/>

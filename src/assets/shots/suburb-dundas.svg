@@ -1,29 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080" role="img" aria-label="Temporary placeholder awaiting photography: As above, Dundas.">
 <defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#90a3ac"/>
-    <stop offset="1" stop-color="#e2cba7"/>
+    <stop offset="0" stop-color="#a0c5d2"/>
+    <stop offset="1" stop-color="#f2e2c8"/>
   </linearGradient></defs>
 <rect x="0" y="0" width="1920" height="670" fill="url(#sky2)"/>
-<rect x="0" y="670" width="1920" height="410" fill="#b8ac96"/>
-<rect x="0" y="854" width="1920" height="226" fill="#191513"/>
-<polygon points="-96,386 108,321 312,386" fill="#32292a"/>
-<rect x="-96" y="386" width="408" height="284" fill="#eee6d7"/>
-<rect x="-14" y="471" width="90" height="85" fill="#241e1c"/>
-<polygon points="351,413 568,348 786,413" fill="#32292a"/>
-<rect x="351" y="413" width="435" height="256" fill="#be6541"/>
-<rect x="438" y="490" width="96" height="77" fill="#241e1c"/>
-<polygon points="824,472 986,407 1148,472" fill="#32292a"/>
-<rect x="824" y="472" width="324" height="197" fill="#eee6d7"/>
-<rect x="889" y="531" width="71" height="59" fill="#241e1c"/>
-<polygon points="1187,479 1435,414 1683,479" fill="#32292a"/>
-<rect x="1187" y="479" width="497" height="191" fill="#eee6d7"/>
-<rect x="1286" y="536" width="109" height="57" fill="#241e1c"/>
-<polygon points="1722,461 1917,396 2112,461" fill="#32292a"/>
-<rect x="1722" y="461" width="391" height="209" fill="#be6541"/>
-<rect x="1800" y="524" width="86" height="63" fill="#241e1c"/>
-<rect x="0" y="994" width="1920" height="86" fill="#1A1512" opacity="0.1"/>
-<rect x="0" y="961" width="1920" height="119" fill="#1A1512" opacity="0.88"/>
-<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#F7F2E7">suburb-dundas · 16:9 · 1920×1080</text>
-<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — As above, Dundas.</text>
-<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
+<rect x="0" y="670" width="1920" height="410" fill="#c5baa7"/>
+<rect x="0" y="854" width="1920" height="226" fill="#211c1a"/>
+<polygon points="-96,386 108,321 312,386" fill="#3b3336"/>
+<rect x="-96" y="386" width="408" height="284" fill="#f4efe7"/>
+<rect x="-14" y="471" width="90" height="85" fill="#2b3b3d"/>
+<polygon points="351,413 568,348 786,413" fill="#3b3336"/>
+<rect x="351" y="413" width="435" height="256" fill="#d87e5b"/>
+<rect x="438" y="490" width="96" height="77" fill="#2b3b3d"/>
+<polygon points="824,472 986,407 1148,472" fill="#3b3336"/>
+<rect x="824" y="472" width="324" height="197" fill="#f4efe7"/>
+<rect x="889" y="531" width="71" height="59" fill="#2b3b3d"/>
+<polygon points="1187,479 1435,414 1683,479" fill="#3b3336"/>
+<rect x="1187" y="479" width="497" height="191" fill="#f4efe7"/>
+<rect x="1286" y="536" width="109" height="57" fill="#2b3b3d"/>
+<polygon points="1722,461 1917,396 2112,461" fill="#3b3336"/>
+<rect x="1722" y="461" width="391" height="209" fill="#d87e5b"/>
+<rect x="1800" y="524" width="86" height="63" fill="#2b3b3d"/>
+<rect x="0" y="994" width="1920" height="86" fill="#221C19" opacity="0.1"/>
+<rect x="0" y="961" width="1920" height="119" fill="#221C19" opacity="0.82"/>
+<text x="38" y="1003" font-family="ui-monospace, Menlo, monospace" font-size="28" fill="#FCFAF7">suburb-dundas · 16:9 · 1920×1080</text>
+<text x="38" y="1045" font-family="ui-monospace, Menlo, monospace" font-size="24" fill="#FCFAF7" opacity="0.72">AWAITING PHOTOGRAPHY — As above, Dundas.</text>
+<rect x="0.5" y="0.5" width="1919" height="1079" fill="none" stroke="#221C19" stroke-opacity="0.2"/>
 </svg>

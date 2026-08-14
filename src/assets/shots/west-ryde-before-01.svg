@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1200" viewBox="0 0 1600 1200" role="img" aria-label="Temporary placeholder awaiting photography: The kitchen from the living room doorway, wall still in place.">
-<rect x="0" y="0" width="1600" height="889" fill="#c3baa9"/>
-<polygon points="0,0 1600,0 1336,275 264,275" fill="#c1baac"/>
-<polygon points="0,0 264,275 264,782 0,1200" fill="#c1baac"/>
-<polygon points="1600,0 1336,275 1336,782 1600,1200" fill="#ece6dd"/>
-<rect x="264" y="275" width="1073" height="507" fill="#c3baa9"/>
-<rect x="371" y="356" width="474" height="264" fill="#C8CEC9"/>
+<rect x="0" y="0" width="1600" height="889" fill="#d1cabd"/>
+<polygon points="0,0 1600,0 1336,275 264,275" fill="#d0cac0"/>
+<polygon points="0,0 264,275 264,782 0,1200" fill="#d0cac0"/>
+<polygon points="1600,0 1336,275 1336,782 1600,1200" fill="#f2efea"/>
+<rect x="264" y="275" width="1073" height="507" fill="#d1cabd"/>
+<rect x="371" y="356" width="474" height="264" fill="#CFD8D5"/>
 <rect x="371" y="356" width="474" height="90" fill="#FFFFFF" opacity="0.4"/>
-<rect x="371" y="356" width="474" height="264" fill="none" stroke="#181514" stroke-width="6"/>
-<polygon points="0,1200 264,782 1336,782 1600,1200" fill="#b4ac9f"/>
+<rect x="371" y="356" width="474" height="264" fill="none" stroke="#201d1b" stroke-width="6"/>
+<polygon points="0,1200 264,782 1336,782 1600,1200" fill="#c1bbae"/>
 <polygon points="371,782 845,782 1129,1200 182,1200" fill="#FFFFFF" opacity="0.05"/>
-<rect x="158" y="613" width="516" height="241" fill="#6d533a"/>
-<rect x="158" y="613" width="516" height="19" fill="#c3baa9"/>
-<rect x="1005" y="275" width="256" height="507" fill="#c1baad"/>
-<rect x="0" y="0" width="1600" height="60" fill="#1A1512" opacity="0.06"/>
-<rect x="0" y="1068" width="1600" height="132" fill="#1A1512" opacity="0.88"/>
-<text x="32" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F7F2E7">west-ryde-before-01 · 4:3 · 1600×1200</text>
-<text x="32" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — The kitchen from the living room doorway, wall still in place.</text>
-<rect x="0.5" y="0.5" width="1599" height="1199" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
+<rect x="158" y="613" width="516" height="241" fill="#7a6045"/>
+<rect x="158" y="613" width="516" height="19" fill="#d1cabd"/>
+<rect x="1005" y="275" width="256" height="507" fill="#cfcac1"/>
+<rect x="0" y="0" width="1600" height="60" fill="#221C19" opacity="0.06"/>
+<rect x="0" y="1068" width="1600" height="132" fill="#221C19" opacity="0.82"/>
+<text x="32" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#FCFAF7">west-ryde-before-01 · 4:3 · 1600×1200</text>
+<text x="32" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#FCFAF7" opacity="0.72">AWAITING PHOTOGRAPHY — The kitchen from the living room doorway, wall still in place.</text>
+<rect x="0.5" y="0.5" width="1599" height="1199" fill="none" stroke="#221C19" stroke-opacity="0.2"/>
 </svg>
