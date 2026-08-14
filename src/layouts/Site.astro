@@ -7,14 +7,24 @@ interface Props {
   title: string;
   description: string;
   indexable?: boolean;
+  /** Sharing image URL. Generated at build time — see src/pages/og/. */
+  image?: string;
+  imageAlt?: string;
   /** Structured data objects, serialised into one JSON-LD graph. */
   schema?: unknown[];
 }
 
-const { title, description, indexable = true, schema } = Astro.props;
+const { title, description, indexable = true, image, imageAlt, schema } = Astro.props;
 ---
 
-<Base title={title} description={description} indexable={indexable} schema={schema}>
+<Base
+  title={title}
+  description={description}
+  indexable={indexable}
+  image={image}
+  imageAlt={imageAlt}
+  schema={schema}
+>
   <Header />
   <main id="main">
     <slot />

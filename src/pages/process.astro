@@ -3,6 +3,7 @@ import Site from '../layouts/Site.astro';
 import Figure from '../components/Figure.astro';
 import CallToAction from '../components/CallToAction.astro';
 import { business } from '../lib/business';
+import { href } from '../lib/links';
 import { breadcrumbSchema } from '../lib/schema';
 
 const stages = business.process.stages;
@@ -12,6 +13,8 @@ const totalWeeks = stages.at(-1)?.weeks ?? 0;
 <Site
   title="How a renovation runs, stage by stage — Stonelane Renovations"
   description="Eleven stages from first call to handover, with realistic durations and an explicit note of what the client owns at each one."
+  image={href("/og/process.png")}
+  imageAlt="Eleven stages of a renovation, and what the client owns at each"
   schema={[
     breadcrumbSchema([
       { name: 'Home', path: '/' },

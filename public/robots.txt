@@ -1,0 +1,13 @@
+User-agent: *
+Allow: /
+
+# Internal design references and post-submission pages. They carry noindex
+# too; this is belt and braces.
+Disallow: /style-tile
+Disallow: /shots
+Disallow: /contact/thank-you
+Disallow: /contact/not-a-fit
+Disallow: /checklist/sent
+Disallow: /estimator/sent
+
+Sitemap: https://stonelane.example.com.au/sitemap-index.xml
