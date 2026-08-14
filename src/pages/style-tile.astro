@@ -16,54 +16,57 @@ import { band } from '../lib/format';
  */
 
 const PALETTE = {
-  paper: '#f7f3ec',
-  'paper-raised': '#fdfbf7',
-  'paper-sunk': '#efe9df',
-  ink: '#1f1d1a',
-  'ink-muted': '#5c554c',
-  'ink-faint': '#6f675d',
-  brick: '#9a4a2c',
-  'brick-deep': '#7a3822',
-  'brick-bright': '#cc8665',
-  gum: '#b69160',
-  'gum-deep': '#8a6739',
-  monument: '#2b2e2f',
-  'monument-deep': '#1c1f20',
-  line: '#ddd4c6',
-  'line-strong': '#8d8375',
-  focus: '#7a3822',
+  paper: '#f7f2e7',
+  'paper-raised': '#fffcf5',
+  'paper-sunk': '#efe6d6',
+  ink: '#1a1512',
+  'ink-muted': '#574d43',
+  'ink-faint': '#726557',
+  molten: '#e14e1d',
+  'molten-ink': '#b63f17',
+  brick: '#a5432a',
+  clay: '#c96a3e',
+  ochre: '#e8a33d',
+  bitumen: '#1a1512',
+  'bitumen-soft': '#262019',
+  'bitumen-deep': '#0f0c0a',
+  steel: '#6e7378',
+  line: '#dcd0ba',
+  'line-strong': '#8e8170',
+  focus: '#b63f17',
+  'focus-dark': '#e8a33d',
 } as const;
 
 const MATERIALS = [
   {
-    group: 'Render',
-    note: 'Cement render and mortar. The page itself. Warm rather than grey, because nothing on these houses is neutral.',
+    group: 'Lime plaster',
+    note: 'The page itself. Warm off-white with the yellow left in, because a neutral grey would make everything else look dirty.',
     swatches: ['paper', 'paper-raised', 'paper-sunk'],
   },
   {
+    group: 'Bitumen',
+    note: 'The dark surfaces. Warm near-black, the colour of sooted steel and roofing tar — never a cool charcoal, which would fight the whole palette.',
+    swatches: ['bitumen', 'bitumen-soft', 'bitumen-deep'],
+  },
+  {
+    group: 'Molten',
+    note: 'The hot one, and the only colour on the site that ever means "act". Two values because it has two jobs: the bright one is a FILL and large display type, the deep one is small text and links. Mixing them is how a loud colour ends up failing contrast.',
+    swatches: ['molten', 'molten-ink'],
+  },
+  {
+    group: 'Fired earth',
+    note: 'Brick, clay and ochre. The warm range that keeps the dark panels from reading as cold, and the only colours allowed to sit next to the hot one.',
+    swatches: ['brick', 'clay', 'ochre'],
+  },
+  {
     group: 'Ink',
-    note: 'Warm near-black, never pure black. Three weights of voice: the text, the aside, the caption.',
+    note: 'Text on paper. Three weights of voice: the text, the aside, the caption.',
     swatches: ['ink', 'ink-muted', 'ink-faint'],
   },
   {
-    group: 'Brick',
-    note: 'Face brick from a 1970s wall. The accent, and the only colour that ever means "act".',
-    swatches: ['brick', 'brick-deep', 'brick-bright'],
-  },
-  {
-    group: 'Spotted gum',
-    note: 'Timber. Rules, marks, quiet emphasis. Never used for a call to action.',
-    swatches: ['gum', 'gum-deep'],
-  },
-  {
-    group: 'Powder coated aluminium',
-    note: 'Window frames in Monument. Dark surfaces where photography needs to sit against something.',
-    swatches: ['monument', 'monument-deep'],
-  },
-  {
-    group: 'Rules',
-    note: 'Hairlines that separate, and the heavier line that bounds a control.',
-    swatches: ['line', 'line-strong', 'focus'],
+    group: 'Rules and steel',
+    note: 'The hairline that separates, the heavier line that bounds a control, and the one cool tone in the palette, used sparingly and never for warmth.',
+    swatches: ['line', 'line-strong', 'steel'],
   },
 ] as const;
 
@@ -71,25 +74,31 @@ type Pairing = { fg: keyof typeof PALETTE; bg: keyof typeof PALETTE; use: Contra
 
 const PAIRINGS: Pairing[] = [
   { fg: 'ink', bg: 'paper', use: 'body', what: 'Body text' },
-  { fg: 'ink', bg: 'paper-sunk', use: 'body', what: 'Body text on a sunk panel' },
+  { fg: 'ink', bg: 'paper-sunk', use: 'body', what: 'Body on a sunk panel' },
+  { fg: 'ink', bg: 'paper-raised', use: 'body', what: 'Body on a raised panel' },
   { fg: 'ink-muted', bg: 'paper', use: 'body', what: 'Secondary text' },
-  { fg: 'ink-muted', bg: 'paper-sunk', use: 'body', what: 'Secondary text on a sunk panel' },
-  { fg: 'ink-faint', bg: 'paper', use: 'body', what: 'Captions and metadata' },
+  { fg: 'ink-muted', bg: 'paper-sunk', use: 'body', what: 'Secondary on a sunk panel' },
+  { fg: 'ink-faint', bg: 'paper', use: 'body', what: 'Captions' },
   { fg: 'ink-faint', bg: 'paper-sunk', use: 'body', what: 'Captions on a sunk panel' },
-  { fg: 'brick', bg: 'paper', use: 'body', what: 'Links' },
-  { fg: 'brick', bg: 'paper-sunk', use: 'body', what: 'Links on a sunk panel' },
-  { fg: 'brick-deep', bg: 'paper', use: 'body', what: 'Link, hover' },
-  { fg: 'gum-deep', bg: 'paper', use: 'body', what: 'Spotted gum as text' },
-  { fg: 'paper', bg: 'brick', use: 'body', what: 'Text on a brick fill (primary button)' },
-  { fg: 'paper', bg: 'monument', use: 'body', what: 'Reversed body text' },
-  { fg: 'paper', bg: 'monument-deep', use: 'body', what: 'Reversed on the deepest surface' },
-  { fg: 'brick-bright', bg: 'monument', use: 'body', what: 'Reversed links' },
-  { fg: 'gum', bg: 'monument', use: 'body', what: 'Reversed spotted gum' },
+  { fg: 'molten-ink', bg: 'paper', use: 'body', what: 'Links' },
+  { fg: 'molten-ink', bg: 'paper-sunk', use: 'body', what: 'Links on a sunk panel' },
+  { fg: 'molten-ink', bg: 'paper-raised', use: 'body', what: 'Links on a raised panel' },
+  { fg: 'molten', bg: 'paper', use: 'large', what: 'Molten as DISPLAY type only' },
+  { fg: 'ink', bg: 'molten', use: 'body', what: 'Ink on a molten fill (primary button)' },
+  { fg: 'ink', bg: 'ochre', use: 'body', what: 'Ink on an ochre fill' },
+  { fg: 'ink', bg: 'clay', use: 'body', what: 'Ink on a clay fill' },
+  { fg: 'paper', bg: 'brick', use: 'body', what: 'Paper on a brick fill' },
+  { fg: 'paper', bg: 'bitumen', use: 'body', what: 'Reversed body text' },
+  { fg: 'paper', bg: 'bitumen-soft', use: 'body', what: 'Reversed on the soft dark' },
+  { fg: 'paper', bg: 'bitumen-deep', use: 'body', what: 'Reversed on the deepest dark' },
+  { fg: 'ochre', bg: 'bitumen', use: 'body', what: 'Reversed links and labels' },
+  { fg: 'molten', bg: 'bitumen', use: 'body', what: 'Molten as text on dark' },
+  { fg: 'clay', bg: 'bitumen', use: 'body', what: 'Clay as text on dark' },
   { fg: 'line-strong', bg: 'paper', use: 'non-text', what: 'Input border' },
   { fg: 'line-strong', bg: 'paper-sunk', use: 'non-text', what: 'Input border on a sunk panel' },
   { fg: 'focus', bg: 'paper', use: 'non-text', what: 'Focus ring' },
   { fg: 'focus', bg: 'paper-sunk', use: 'non-text', what: 'Focus ring on a sunk panel' },
-  { fg: 'gum', bg: 'monument', use: 'non-text', what: 'Focus ring on a dark surface' },
+  { fg: 'focus-dark', bg: 'bitumen', use: 'non-text', what: 'Focus ring on a dark surface' },
 ];
 
 const results = PAIRINGS.map((p) => ({
@@ -257,7 +266,7 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
     <section class="grid-editorial section" aria-labelledby="s-colour">
       <div class="col-wide">
         <p class="label">03</p>
-        <h2 id="s-colour" class="section__title">Drawn from the houses</h2>
+        <h2 id="s-colour" class="section__title">Drawn from the site</h2>
         <p class="measure section__intro">
           Warm brick, cement render, spotted gum, powder coated aluminium. Tailwind's default
           palette is cleared rather than extended, so nothing can reach for a colour that was
@@ -483,10 +492,10 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
         <h3 class="parts__label label parts__label--dark">On a dark surface</h3>
         <p class="measure">
           Photography sits against Monument. Reversed body text clears
-          <span class="mono">{formatRatio(PALETTE.paper, PALETTE.monument)}</span>, links use
-          brick-bright at <span class="mono">{formatRatio(PALETTE['brick-bright'], PALETTE.monument)}</span>,
-          and the focus ring switches to <a href="#s-parts">spotted gum</a> because brick does
-          not carry against this background.
+          <span class="mono">{formatRatio(PALETTE.paper, PALETTE.bitumen)}</span>, links use
+          ochre at <span class="mono">{formatRatio(PALETTE.ochre, PALETTE.bitumen)}</span>,
+          and the focus ring switches to <a href="#s-parts">ochre</a> because the deep molten
+          does not carry against this background.
         </p>
       </div>
     </section>
@@ -650,7 +659,7 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
   }
 
   .specimen__alphabet--figures {
-    color: var(--color-gum-deep);
+    color: var(--color-molten-ink);
   }
 
   /* Thirteen capitals at step +3 are wider than a phone. The specimen drops a
@@ -678,7 +687,7 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
     margin-block-start: var(--space-m);
     padding: var(--space-s) var(--space-m);
     background: var(--color-paper-sunk);
-    border-inline-start: var(--border-rule) solid var(--color-gum);
+    border-inline-start: var(--border-rule) solid var(--color-ochre);
   }
 
   /* ------------------------------------------------------------- scale */
@@ -702,7 +711,7 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
   }
 
   .scale__use {
-    color: var(--color-gum-deep);
+    color: var(--color-molten-ink);
   }
 
   .scale__sample {
@@ -796,20 +805,20 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
     font-weight: var(--font-weight-semibold);
   }
 
-  .verdict--pass { color: var(--color-gum-deep); }
-  .verdict--fail { color: var(--color-brick-deep); }
+  .verdict--pass { color: var(--color-molten-ink); }
+  .verdict--fail { color: var(--color-molten-ink); }
 
   .result-line {
     margin-block-start: var(--space-s);
     padding: var(--space-xs) var(--space-s);
     background: var(--color-paper-sunk);
-    border-inline-start: var(--border-rule) solid var(--color-gum-deep);
+    border-inline-start: var(--border-rule) solid var(--color-molten-ink);
     font-weight: var(--font-weight-medium);
   }
 
   .result-line--fail {
     border-inline-start-color: var(--color-brick);
-    color: var(--color-brick-deep);
+    color: var(--color-molten-ink);
   }
 
   /* ------------------------------------------------------------- space */
@@ -833,7 +842,7 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
 
   .space__bar {
     block-size: 1rem;
-    background: var(--color-gum);
+    background: var(--color-ochre);
     flex: 0 0 auto;
     max-inline-size: 100%;
   }
@@ -870,8 +879,8 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
   }
 
   .grid-demo__col {
-    background: color-mix(in srgb, var(--color-gum) 22%, transparent);
-    border-block-start: var(--border-rule) solid var(--color-gum-deep);
+    background: color-mix(in srgb, var(--color-ochre) 22%, transparent);
+    border-block-start: var(--border-rule) solid var(--color-molten-ink);
     padding-block: var(--space-2xs);
     text-align: center;
     font-family: var(--font-mono);
@@ -887,15 +896,15 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
     font-size: var(--text-caption);
   }
 
-  .demo-block--aside { background: color-mix(in srgb, var(--color-gum) 18%, var(--color-paper)); }
-  .demo-block--bleed { background: color-mix(in srgb, var(--color-brick) 12%, var(--color-paper)); }
+  .demo-block--aside { background: var(--color-paper-sunk); }
+  .demo-block--bleed { background: var(--color-paper-sunk); }
   .demo-block--full {
-    background: var(--color-monument);
+    background: var(--color-bitumen);
     color: var(--color-paper);
     border-inline-start: none;
-    border-block: var(--border-rule) solid var(--color-gum);
+    border-block: var(--border-rule) solid var(--color-ochre);
   }
-  .demo-block--full .mono { color: var(--color-gum); }
+  .demo-block--full .mono { color: var(--color-ochre); }
 
   /* ------------------------------------------------------------- parts */
   .parts__label {
@@ -943,8 +952,8 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
   }
 
   .button--primary:hover {
-    background: var(--color-brick-deep);
-    border-color: var(--color-brick-deep);
+    background: var(--color-molten-ink);
+    border-color: var(--color-molten-ink);
     color: var(--color-paper);
   }
 
@@ -1004,7 +1013,7 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
     font-size: var(--text-title-l);
     line-height: 1.15;
     letter-spacing: -0.015em;
-    color: var(--color-brick-deep);
+    color: var(--color-molten-ink);
     margin-block: var(--space-3xs);
   }
 
@@ -1041,7 +1050,7 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
   }
 
   .quote {
-    border-inline-start: var(--border-rule) solid var(--color-gum);
+    border-inline-start: var(--border-rule) solid var(--color-ochre);
     padding-inline-start: var(--space-s);
   }
 
@@ -1060,8 +1069,8 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
   .quote__flag {
     display: inline-block;
     padding: 0 var(--space-3xs);
-    background: color-mix(in srgb, var(--color-brick) 15%, transparent);
-    color: var(--color-brick-deep);
+    background: var(--color-molten);
+    color: var(--color-ink);
     font-family: var(--font-mono);
     font-size: 0.72rem;
     text-transform: uppercase;
@@ -1074,7 +1083,7 @@ const bathroom = business.costBands.bands.find((b) => b.id === 'bathroom')!;
   }
 
   .parts__label--dark {
-    color: var(--color-gum);
+    color: var(--color-ochre);
     margin-block-start: 0;
   }
 

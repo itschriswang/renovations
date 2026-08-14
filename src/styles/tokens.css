@@ -44,36 +44,52 @@
    * clears 3:1 for non-text contrast.
    * ------------------------------------------------------------------ */
 
-  /* Surfaces — cement render, warm rather than grey */
-  --color-paper: #f7f3ec;
-  --color-paper-raised: #fdfbf7;
-  --color-paper-sunk: #efe9df;
+  /* Surfaces — lime plaster and warm bitumen. Nothing here is grey. */
+  --color-paper: #f7f2e7;
+  --color-paper-raised: #fffcf5;
+  --color-paper-sunk: #efe6d6;
 
-  /* Text — warm near-black, never pure #000 */
-  --color-ink: #1f1d1a; /* 15.20:1 on paper, 13.92:1 on sunk */
-  --color-ink-muted: #5c554c; /*  6.64:1 on paper,  6.08:1 on sunk */
-  --color-ink-faint: #6f675d; /*  5.03:1 on paper,  4.61:1 on sunk */
+  /* The dark surfaces. Warm black, the colour of bitumen and sooted steel,
+     never a cool charcoal — a cool dark would fight everything else. */
+  --color-bitumen: #1a1512; /* paper on this: 16.22:1 */
+  --color-bitumen-soft: #262019; /* paper on this: 14.43:1 */
+  --color-bitumen-deep: #0f0c0a; /* paper on this: 17.46:1 */
 
-  /* Brick — the accent. Links, emphasis, the primary action. */
-  --color-brick: #9a4a2c; /*  5.60:1 on paper,  5.13:1 on sunk */
-  --color-brick-deep: #7a3822; /*  7.86:1 on paper */
-  --color-brick-bright: #cc8665; /*  4.67:1 on monument, for reversed type */
+  /* Text on paper */
+  --color-ink: #1a1512; /* 16.22:1 on paper, 14.62:1 on sunk */
+  --color-ink-muted: #574d43; /*  7.40:1 on paper,  6.66:1 on sunk */
+  --color-ink-faint: #726557; /*  5.06:1 on paper,  4.57:1 on sunk */
 
-  /* Spotted gum — the secondary accent. Rules, marks, quiet highlights. */
-  --color-gum: #b69160; /*  4.70:1 on monument */
-  --color-gum-deep: #8a6739; /*  4.65:1 on paper */
+  /*
+   * MOLTEN — the hot one. Safety orange pulled warm.
+   *
+   * It has two values because it has two jobs, and mixing them is how sites
+   * end up failing contrast on their loudest colour:
+   *
+   *   --color-molten      a FILL, and large display type only. Ink goes on
+   *                       top of it (4.58:1). It clears 3:1 on paper, which
+   *                       is enough for display sizes and not enough for body.
+   *   --color-molten-ink  the same hue deepened until it clears 4.5:1 on the
+   *                       darkest paper surface. Links, small text, icons.
+   */
+  --color-molten: #e14e1d; /* fill; ink on it 4.58:1; large text on paper 3.54:1 */
+  --color-molten-ink: #b63f17; /*  5.09:1 on paper,  4.57:1 on sunk */
 
-  /* Powder coated aluminium — dark surfaces */
-  --color-monument: #2b2e2f; /* paper on this: 12.37:1 */
-  --color-monument-deep: #1c1f20; /* paper on this: 14.99:1 */
+  /* Brick, clay and ochre — the warm range, from fired earth to raw timber */
+  --color-brick: #a5432a; /* paper on it: 5.47:1 */
+  --color-clay: #c96a3e; /* ink on it: 4.84:1 */
+  --color-ochre: #e8a33d; /* ink on it: 8.39:1; on bitumen 8.39:1 */
 
-  /* Rules and borders */
-  --color-line: #ddd4c6; /* decorative hairlines only */
-  --color-line-strong: #8d8375; /*  3.37:1 on paper, 3.09:1 on sunk — inputs */
+  /* Steel, used sparingly and never for warmth */
+  --color-steel: #6e7378;
+
+  /* Rules. The hairline is decorative; the strong one bounds a control. */
+  --color-line: #dcd0ba;
+  --color-line-strong: #8e8170; /*  3.40:1 on paper,  3.07:1 on sunk */
 
   /* Focus. Never removed, never subtle. */
-  --color-focus: #7a3822; /*  7.86:1 on paper, 7.20:1 on sunk */
-  --color-focus-offset: #f7f3ec;
+  --color-focus: #b63f17; /*  5.09:1 on paper */
+  --color-focus-dark: #e8a33d; /*  8.39:1 on bitumen */
 
   --color-transparent: transparent;
   --color-current: currentColor;
@@ -147,20 +163,20 @@
   --text-title-m--letter-spacing: 0.002em;
 
   --text-title-l: 2.7466rem;
-  --text-title-l--line-height: 1.08;
+  --text-title-l--line-height: 1.02;
   --text-title-l--letter-spacing: 0;
 
-  --text-display-s: clamp(2.1973rem, 1.7853rem + 1.831vw, 3.4332rem);
-  --text-display-s--line-height: 1.04;
+  --text-display-s: clamp(2.4rem, 1.85rem + 2.45vw, 4.0rem);
+  --text-display-s--line-height: 0.96;
   --text-display-s--letter-spacing: -0.002em;
 
-  --text-display-m: clamp(2.7466rem, 2.2316rem + 2.289vw, 4.2915rem);
-  --text-display-m--line-height: 1.02;
-  --text-display-m--letter-spacing: -0.004em;
+  --text-display-m: clamp(3.0rem, 2.15rem + 3.8vw, 5.6rem);
+  --text-display-m--line-height: 0.92;
+  --text-display-m--letter-spacing: -0.012em;
 
-  --text-display-l: clamp(3.4332rem, 2.7895rem + 2.861vw, 5.3644rem);
-  --text-display-l--line-height: 0.98;
-  --text-display-l--letter-spacing: -0.006em;
+  --text-display-l: clamp(3.6rem, 2.3rem + 5.8vw, 7.6rem);
+  --text-display-l--line-height: 0.88;
+  --text-display-l--letter-spacing: -0.015em;
 
   /* Uppercase metadata. Tracked out, because uppercase set solid is unreadable. */
   --text-label: 0.9rem;
@@ -255,7 +271,7 @@
   --shadow-raised: 0 1px 2px rgb(31 29 26 / 0.05), 0 8px 24px -12px rgb(31 29 26 / 0.12);
 
   --border-hairline: 1px;
-  --border-rule: 2px;
+  --border-rule: 3px;
 
   --breakpoint-sm: 34rem;
   --breakpoint-md: 48rem;

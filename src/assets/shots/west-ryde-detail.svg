@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1400" viewBox="0 0 1400 1400" role="img" aria-label="Temporary placeholder awaiting photography: The benchtop edge and the join to the splashback. Close, raking light.">
-<rect x="0" y="0" width="1400" height="1005" fill="#e3dccf"/>
-<polygon points="0,0 1400,0 1110,304 290,304" fill="#e3dcd1"/>
-<polygon points="0,0 290,304 290,871 0,1400" fill="#c4bcad"/>
-<polygon points="1400,0 1110,304 1110,871 1400,1400" fill="#f0eade"/>
-<rect x="290" y="304" width="821" height="567" fill="#e3dccf"/>
+<rect x="0" y="0" width="1400" height="1005" fill="#eee6d7"/>
+<polygon points="0,0 1400,0 1110,304 290,304" fill="#eee6d9"/>
+<polygon points="0,0 290,304 290,871 0,1400" fill="#c6b9a2"/>
+<polygon points="1400,0 1110,304 1110,871 1400,1400" fill="#fffcf6"/>
+<rect x="290" y="304" width="821" height="567" fill="#eee6d7"/>
 <rect x="659" y="394" width="407" height="295" fill="#F2ECDF"/>
 <rect x="659" y="394" width="407" height="100" fill="#FFFFFF" opacity="0.4"/>
-<rect x="659" y="394" width="407" height="295" fill="none" stroke="#33363a" stroke-width="6"/>
-<polygon points="0,1400 290,871 1110,871 1400,1400" fill="#a68052"/>
+<rect x="659" y="394" width="407" height="295" fill="none" stroke="#1a1512" stroke-width="6"/>
+<polygon points="0,1400 290,871 1110,871 1400,1400" fill="#bc8b52"/>
 <polygon points="659,871 1066,871 1310,1400 496,1400" fill="#FFFFFF" opacity="0.13"/>
-<rect x="174" y="637" width="462" height="318" fill="#33363a"/>
-<rect x="174" y="637" width="462" height="22" fill="#b4aea5"/>
-<rect x="0" y="0" width="1400" height="70" fill="#1B1917" opacity="0.06"/>
-<rect x="0" y="1246" width="1400" height="154" fill="#1B1917" opacity="0.88"/>
-<text x="28" y="1300" font-family="ui-monospace, Menlo, monospace" font-size="36" fill="#F4EFE7">west-ryde-detail · 1:1 · 1400×1400</text>
-<text x="28" y="1354" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — The benchtop edge and the join to the splashback. Close, raking light.</text>
-<rect x="0.5" y="0.5" width="1399" height="1399" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
+<rect x="174" y="637" width="462" height="318" fill="#1a1512"/>
+<rect x="174" y="637" width="462" height="22" fill="#b8ac96"/>
+<rect x="0" y="0" width="1400" height="70" fill="#1A1512" opacity="0.06"/>
+<rect x="0" y="1246" width="1400" height="154" fill="#1A1512" opacity="0.88"/>
+<text x="28" y="1300" font-family="ui-monospace, Menlo, monospace" font-size="36" fill="#F7F2E7">west-ryde-detail · 1:1 · 1400×1400</text>
+<text x="28" y="1354" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — The benchtop edge and the join to the splashback. Close, raking light.</text>
+<rect x="0.5" y="0.5" width="1399" height="1399" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
 </svg>

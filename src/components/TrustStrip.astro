@@ -18,7 +18,7 @@ const { reviews } = business;
 const hasReviews = reviews.googleReviewCount > 0;
 ---
 
-<section class="trust" aria-labelledby="trust-heading">
+<section class="trust surface-dark grain" aria-labelledby="trust-heading">
   <div class="grid-editorial">
     <div class="col-wide trust__inner">
       <h2 id="trust-heading" class="visually-hidden">Licensing, insurance and memberships</h2>
@@ -86,8 +86,7 @@ const hasReviews = reviews.googleReviewCount > 0;
 
 <style>
   .trust {
-    background: var(--color-paper-sunk);
-    border-block: var(--border-hairline) solid var(--color-line);
+    border-block-end: 3px solid var(--color-molten);
   }
 
   .trust__inner {
@@ -101,32 +100,33 @@ const hasReviews = reviews.googleReviewCount > 0;
   }
 
   .trust__item dt {
-    font-size: var(--text-caption);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
     text-transform: uppercase;
-    letter-spacing: 0.09em;
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-ink-faint);
+    letter-spacing: 0.14em;
+    font-weight: 700;
+    color: var(--color-ochre);
     margin-block-end: var(--space-3xs);
   }
 
   .trust__item dd {
     font-size: var(--text-caption);
     line-height: 1.45;
-    color: var(--color-ink);
+    color: color-mix(in srgb, var(--color-paper) 88%, transparent);
   }
 
   .trust__verify {
     display: block;
     font-size: 0.8rem;
-    color: var(--color-ink-muted);
+    color: var(--color-ochre);
   }
 
   .trust__pending {
     margin-block-start: var(--space-s);
     padding-block-start: var(--space-xs);
-    border-block-start: var(--border-hairline) solid var(--color-line);
+    border-block-start: 1px solid rgb(247 242 231 / 0.22);
     font-size: var(--text-caption);
-    color: var(--color-ink-muted);
+    color: color-mix(in srgb, var(--color-paper) 78%, transparent);
     max-width: var(--measure);
   }
 </style>

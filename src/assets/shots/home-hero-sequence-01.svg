@@ -1,19 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="2560" height="1097" viewBox="0 0 2560 1097" role="img" aria-label="Temporary placeholder awaiting photography: A single rear extension photographed from one fixed tripod position as the light falls, from late afternoon to dusk with the interior lights coming on. 16 frames, locked off, no camera movement between frames. Interval shoot over roughly 40 minutes.">
 <defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#bac6cb"/>
-    <stop offset="1" stop-color="#dcd8cd"/>
+    <stop offset="0" stop-color="#90a3ac"/>
+    <stop offset="1" stop-color="#e2cba7"/>
   </linearGradient></defs>
 <rect x="0" y="0" width="2560" height="707" fill="url(#sky)"/>
-<rect x="0" y="707" width="2560" height="390" fill="#7c8062"/>
-<rect x="0" y="707" width="2560" height="55" fill="#979371" opacity="0.5"/>
-<polygon points="404,341 1266,253 2128,341" fill="#4f4b47"/>
-<rect x="455" y="341" width="1622" height="366" fill="#9e674d"/>
-<rect x="2077" y="374" width="341" height="333" fill="#683928"/>
-<rect x="617" y="429" width="386" height="154" fill="#303a3d"/>
-<rect x="1266" y="429" width="386" height="154" fill="#303a3d"/>
-<rect x="0" y="987" width="2560" height="110" fill="#1B1917" opacity="0.1"/>
-<rect x="0" y="976" width="2560" height="121" fill="#1B1917" opacity="0.88"/>
-<text x="51" y="1019.5" font-family="ui-monospace, Menlo, monospace" font-size="29" fill="#F4EFE7">home-hero-sequence-01 · frame 1 of 16 · 21:9 · 2560×1097</text>
-<text x="51" y="1063" font-family="ui-monospace, Menlo, monospace" font-size="25" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — A single rear extension photographed from one fixed tripod position as the light falls, from…</text>
-<rect x="0.5" y="0.5" width="2559" height="1096" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
+<rect x="0" y="707" width="2560" height="390" fill="#7d7a4d"/>
+<rect x="0" y="707" width="2560" height="55" fill="#a79972" opacity="0.5"/>
+<polygon points="404,341 1266,253 2128,341" fill="#32292a"/>
+<rect x="455" y="341" width="1622" height="366" fill="#be6541"/>
+<rect x="2077" y="374" width="341" height="333" fill="#6a2b1d"/>
+<rect x="617" y="429" width="386" height="154" fill="#241e1c"/>
+<rect x="1266" y="429" width="386" height="154" fill="#241e1c"/>
+<rect x="0" y="987" width="2560" height="110" fill="#1A1512" opacity="0.1"/>
+<rect x="0" y="976" width="2560" height="121" fill="#1A1512" opacity="0.88"/>
+<text x="51" y="1019.5" font-family="ui-monospace, Menlo, monospace" font-size="29" fill="#F7F2E7">home-hero-sequence-01 · frame 1 of 16 · 21:9 · 2560×1097</text>
+<text x="51" y="1063" font-family="ui-monospace, Menlo, monospace" font-size="25" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — A single rear extension photographed from one fixed tripod position as the light falls, from…</text>
+<rect x="0.5" y="0.5" width="2559" height="1096" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
 </svg>

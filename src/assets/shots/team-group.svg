@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-label="Temporary placeholder awaiting photography: The team at the workshop. Everyone who works on the tools. Morning.">
-<rect x="0" y="0" width="1800" height="1200" fill="#c5bcab"/>
-<rect x="0" y="0" width="720" height="1200" fill="#e3dccf"/>
-<rect x="500" y="617" width="720" height="1200" fill="#33363a"/>
-<circle cx="860" cy="360" r="198" fill="#a68052"/>
-<rect x="0" y="1056" width="1800" height="144" fill="#1B1917" opacity="0.1"/>
-<rect x="0" y="1068" width="1800" height="132" fill="#1B1917" opacity="0.88"/>
-<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F4EFE7">team-group · 3:2 · 1800×1200</text>
-<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — The team at the workshop. Everyone who works on the tools. Morning.</text>
-<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
+<rect x="0" y="0" width="1800" height="1200" fill="#c8b99e"/>
+<rect x="0" y="0" width="720" height="1200" fill="#eee6d7"/>
+<rect x="500" y="617" width="720" height="1200" fill="#1a1512"/>
+<circle cx="860" cy="360" r="198" fill="#bc8b52"/>
+<rect x="0" y="1056" width="1800" height="144" fill="#1A1512" opacity="0.1"/>
+<rect x="0" y="1068" width="1800" height="132" fill="#1A1512" opacity="0.88"/>
+<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F7F2E7">team-group · 3:2 · 1800×1200</text>
+<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — The team at the workshop. Everyone who works on the tools. Morning.</text>
+<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
 </svg>

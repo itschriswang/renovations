@@ -8,7 +8,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import CallToAction from '../components/CallToAction.astro';
 import { business } from '../lib/business';
 import { href, routes } from '../lib/links';
-import { band, weeks } from '../lib/format';
+import { band, compact, weeks } from '../lib/format';
 import { localBusinessSchema, websiteSchema } from '../lib/schema';
 
 const projects = (await getCollection('projects', (p) => !p.data.draft)).sort(
@@ -28,23 +28,29 @@ const suburbs = business.serviceArea.suburbs;
   schema={[localBusinessSchema(), websiteSchema()]}
 >
   <!-- ================================================================ hero -->
-  <section class="hero grid-editorial">
+  <section class="hero surface-dark grain grid-editorial">
     <div class="col-wide hero__text">
-      <p class="hero__eyebrow">
-        Kitchens · Bathrooms · Extensions · Whole home renovations
+      <p class="hero__kicker">
+        <span class="stamp">Kitchens</span>
+        <span class="stamp stamp--ochre">Bathrooms</span>
+        <span class="stamp stamp--outline">Extensions</span>
+        <span class="stamp stamp--outline">Whole homes</span>
       </p>
-      <h1 class="hero__title">Fixed price before demolition starts</h1>
-      <p class="hero__lede">
-        {business.identity.differentiatorLong}
-      </p>
+      <h1 class="hero__title">
+        Fixed price<br />
+        <span class="hero__hot">before</span><br />
+        demolition starts
+      </h1>
+      <p class="hero__lede">{business.identity.differentiatorLong}</p>
       <div class="hero__actions">
         <a class="button button--primary" href={href(routes.contact)}>
           Book a site consultation
         </a>
         <a class="button button--secondary" href={href(routes.estimator)}>
-          Work out a rough cost first
+          Work out a rough cost
         </a>
       </div>
+      <div class="ruler hero__ruler" aria-hidden="true"></div>
     </div>
 
     <div class="col-bleed hero__figure">
@@ -54,6 +60,8 @@ const suburbs = business.serviceArea.suburbs;
       />
     </div>
   </section>
+
+  <div class="hazard" role="presentation"></div>
 
   <TrustStrip />
 
@@ -69,8 +77,8 @@ const suburbs = business.serviceArea.suburbs;
         {band(business.projectValue.minimum, business.projectValue.maximum)}
       </p>
       <p class="stat__label">
-        The range our work falls in. Under {band(business.projectValue.minimum, business.projectValue.minimum)}
-        we will point you to someone better suited.
+        The range our work falls in. Under {compact(business.projectValue.minimum)} we will point
+        you to someone better suited.
       </p>
     </div>
   </section>
@@ -136,7 +144,7 @@ const suburbs = business.serviceArea.suburbs;
   </section>
 
   <!-- ========================================================== process -->
-  <section class="grid-editorial section section--ruled">
+  <section class="grid-editorial section surface-sunk">
     <div class="col-text">
       <p class="section__eyebrow">How it runs</p>
       <h2 class="section__title">Eleven stages, and what you own at each</h2>
@@ -180,7 +188,7 @@ const suburbs = business.serviceArea.suburbs;
   </section>
 
   <!-- ========================================================== suburbs -->
-  <section class="grid-editorial section section--ruled">
+  <section class="grid-editorial section surface-sunk">
     <div class="col-text">
       <p class="section__eyebrow">Where we work</p>
       <h2 class="section__title">Thirteen suburbs, six councils</h2>
@@ -209,33 +217,43 @@ const suburbs = business.serviceArea.suburbs;
     row-gap: var(--space-m);
   }
 
-  .hero__eyebrow {
-    font-size: var(--text-caption);
-    text-transform: uppercase;
-    letter-spacing: 0.09em;
-    font-weight: var(--font-weight-semibold);
-    color: var(--color-ink-faint);
+  .hero__kicker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3xs);
+    margin-block-end: var(--space-s);
   }
 
   .hero__title {
     font-size: var(--text-display-l);
-    line-height: 0.98;
-    letter-spacing: -0.006em;
-    margin-block: var(--space-2xs) var(--space-s);
-    max-width: 14ch;
+    line-height: 0.86;
+    letter-spacing: -0.015em;
+    text-transform: uppercase;
+    margin-block: 0 var(--space-m);
+    text-wrap: initial;
+  }
+
+  /* One word carries the whole idea, so one word carries the hot colour.
+     It is display-sized, which is why molten is legitimate here. */
+  .hero__hot {
+    color: var(--color-molten);
   }
 
   .hero__lede {
     font-size: var(--text-lead);
-    line-height: 1.5;
-    color: var(--color-ink-muted);
+    line-height: 1.45;
+    color: color-mix(in srgb, var(--color-paper) 84%, transparent);
     max-width: var(--measure);
   }
 
   .hero__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-xs);
+    gap: var(--space-s);
+    margin-block-start: var(--space-m);
+  }
+
+  .hero__ruler {
     margin-block-start: var(--space-m);
   }
 
@@ -245,16 +263,19 @@ const suburbs = business.serviceArea.suburbs;
 
   .stat {
     align-self: end;
-    padding-inline-start: var(--space-s);
-    border-inline-start: var(--border-rule) solid var(--color-gum);
+    padding: var(--space-s);
+    background: var(--color-paper-sunk);
+    border-block-start: 6px solid var(--color-ochre);
   }
 
   .stat__value {
     font-family: var(--font-display);
     font-weight: var(--font-weight-display-strong);
-    font-size: var(--text-title-l);
-    line-height: 1.08;
-    color: var(--color-brick-deep);
+    font-size: var(--text-display-s);
+    line-height: 0.9;
+    letter-spacing: -0.01em;
+    color: var(--color-molten-ink);
+    font-variant-numeric: tabular-nums;
   }
 
   .stat__label {
@@ -267,17 +288,18 @@ const suburbs = business.serviceArea.suburbs;
     list-style: none;
     padding: 0;
     margin-block-start: var(--space-m);
-    border-block-start: var(--border-hairline) solid var(--color-line);
+    border-block-start: 3px solid var(--color-ink);
   }
 
   .bands__link {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-3xs);
-    padding-block: var(--space-s);
-    border-block-end: var(--border-hairline) solid var(--color-line);
+    padding: var(--space-s);
+    border-block-end: 2px solid var(--color-line);
     text-decoration: none;
     color: var(--color-ink);
+    transition: background-color var(--duration-fast) var(--ease-inout);
   }
 
   @media (width >= 48rem) {
@@ -289,22 +311,35 @@ const suburbs = business.serviceArea.suburbs;
   }
 
   .bands__link:hover {
-    background: var(--color-paper-sunk);
+    background: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .bands__link:hover .bands__range {
+    color: var(--color-ochre);
+  }
+
+  .bands__link:hover .bands__weeks {
+    color: color-mix(in srgb, var(--color-paper) 78%, transparent);
   }
 
   .bands__name {
     font-family: var(--font-display);
-    font-weight: var(--font-weight-display);
-    font-size: var(--text-title-s);
-    line-height: 1.2;
+    font-weight: var(--font-weight-display-strong);
+    font-size: var(--text-title-m);
+    line-height: 1;
+    text-transform: uppercase;
   }
 
   .bands__range {
     font-family: var(--font-display);
     font-weight: var(--font-weight-display-strong);
-    font-size: var(--text-title-s);
-    color: var(--color-brick-deep);
+    font-size: var(--text-title-l);
+    line-height: 1;
+    color: var(--color-molten-ink);
     min-inline-size: 11ch;
+    font-variant-numeric: tabular-nums;
+    transition: color var(--duration-fast) var(--ease-inout);
   }
 
   .bands__weeks {
@@ -336,15 +371,17 @@ const suburbs = business.serviceArea.suburbs;
   .stages__item {
     display: grid;
     gap: var(--space-3xs);
-    padding-block-start: var(--space-2xs);
-    border-block-start: var(--border-rule) solid var(--color-ink);
+    padding: var(--space-s);
+    background: var(--color-paper-sunk);
+    border-block-start: 5px solid var(--color-molten);
   }
 
   .stages__name {
     font-family: var(--font-display);
-    font-weight: var(--font-weight-display);
+    font-weight: var(--font-weight-display-strong);
     font-size: var(--text-title-s);
-    line-height: 1.2;
+    line-height: 1.05;
+    text-transform: uppercase;
   }
 
   .stages__duration {
@@ -353,9 +390,17 @@ const suburbs = business.serviceArea.suburbs;
   }
 
   .stages__item--more {
-    border-block-start-color: var(--color-gum);
-    align-content: start;
-    font-weight: var(--font-weight-semibold);
+    border-block-start-color: var(--color-ochre);
+    background: var(--color-ink);
+    align-content: center;
+    font-family: var(--font-display);
+    font-size: var(--text-title-s);
+    text-transform: uppercase;
+  }
+
+  .stages__item--more a {
+    color: var(--color-ochre);
+    text-decoration: none;
   }
 
   .projects {
@@ -369,9 +414,26 @@ const suburbs = business.serviceArea.suburbs;
     list-style: none;
     padding: 0;
     margin-block-start: var(--space-m);
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr));
-    gap: var(--space-2xs) var(--space-s);
-    font-size: var(--text-body);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+  }
+
+  .suburbs a {
+    display: inline-block;
+    padding: var(--space-2xs) var(--space-s);
+    background: var(--color-paper-sunk);
+    border: 2px solid var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display-strong);
+    font-size: var(--text-title-s);
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+
+  .suburbs a:hover {
+    background: var(--color-molten);
+    color: var(--color-ink);
   }
 </style>

@@ -1,29 +1,29 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1200" viewBox="0 0 1800 1200" role="img" aria-label="Temporary placeholder awaiting photography: A standard suburban lot photographed from the street with the side setbacks visible. Ordinary house, ordinary block.">
 <defs><linearGradient id="sky2" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0" stop-color="#bac6cb"/>
-    <stop offset="1" stop-color="#dcd8cd"/>
+    <stop offset="0" stop-color="#90a3ac"/>
+    <stop offset="1" stop-color="#e2cba7"/>
   </linearGradient></defs>
 <rect x="0" y="0" width="1800" height="744" fill="url(#sky2)"/>
-<rect x="0" y="744" width="1800" height="456" fill="#b4aea5"/>
-<rect x="0" y="949" width="1800" height="251" fill="#343639"/>
-<polygon points="-90,427 109,355 308,427" fill="#4f4b47"/>
-<rect x="-90" y="427" width="398" height="317" fill="#9e674d"/>
-<rect x="-10" y="522" width="88" height="95" fill="#303a3d"/>
-<polygon points="344,461 546,389 749,461" fill="#4f4b47"/>
-<rect x="344" y="461" width="405" height="283" fill="#e3dccf"/>
-<rect x="425" y="546" width="89" height="85" fill="#303a3d"/>
-<polygon points="785,466 942,394 1098,466" fill="#4f4b47"/>
-<rect x="785" y="466" width="314" height="278" fill="#9e674d"/>
-<rect x="847" y="549" width="69" height="83" fill="#303a3d"/>
-<polygon points="1134,502 1341,430 1547,502" fill="#4f4b47"/>
-<rect x="1134" y="502" width="412" height="242" fill="#e3dccf"/>
-<rect x="1217" y="574" width="91" height="73" fill="#303a3d"/>
-<polygon points="1583,513 1810,441 2036,513" fill="#4f4b47"/>
-<rect x="1583" y="513" width="454" height="231" fill="#e3dccf"/>
-<rect x="1673" y="582" width="100" height="69" fill="#303a3d"/>
-<rect x="0" y="1104" width="1800" height="96" fill="#1B1917" opacity="0.1"/>
-<rect x="0" y="1068" width="1800" height="132" fill="#1B1917" opacity="0.88"/>
-<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F4EFE7">approvals-opener · 3:2 · 1800×1200</text>
-<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F4EFE7" opacity="0.72">AWAITING PHOTOGRAPHY — A standard suburban lot photographed from the street with the side setbacks visible. Ordinar…</text>
-<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#1B1917" stroke-opacity="0.2"/>
+<rect x="0" y="744" width="1800" height="456" fill="#b8ac96"/>
+<rect x="0" y="949" width="1800" height="251" fill="#191513"/>
+<polygon points="-90,427 109,355 308,427" fill="#32292a"/>
+<rect x="-90" y="427" width="398" height="317" fill="#be6541"/>
+<rect x="-10" y="522" width="88" height="95" fill="#241e1c"/>
+<polygon points="344,461 546,389 749,461" fill="#32292a"/>
+<rect x="344" y="461" width="405" height="283" fill="#eee6d7"/>
+<rect x="425" y="546" width="89" height="85" fill="#241e1c"/>
+<polygon points="785,466 942,394 1098,466" fill="#32292a"/>
+<rect x="785" y="466" width="314" height="278" fill="#be6541"/>
+<rect x="847" y="549" width="69" height="83" fill="#241e1c"/>
+<polygon points="1134,502 1341,430 1547,502" fill="#32292a"/>
+<rect x="1134" y="502" width="412" height="242" fill="#eee6d7"/>
+<rect x="1217" y="574" width="91" height="73" fill="#241e1c"/>
+<polygon points="1583,513 1810,441 2036,513" fill="#32292a"/>
+<rect x="1583" y="513" width="454" height="231" fill="#eee6d7"/>
+<rect x="1673" y="582" width="100" height="69" fill="#241e1c"/>
+<rect x="0" y="1104" width="1800" height="96" fill="#1A1512" opacity="0.1"/>
+<rect x="0" y="1068" width="1800" height="132" fill="#1A1512" opacity="0.88"/>
+<text x="36" y="1114.5" font-family="ui-monospace, Menlo, monospace" font-size="31" fill="#F7F2E7">approvals-opener · 3:2 · 1800×1200</text>
+<text x="36" y="1161" font-family="ui-monospace, Menlo, monospace" font-size="26" fill="#F7F2E7" opacity="0.72">AWAITING PHOTOGRAPHY — A standard suburban lot photographed from the street with the side setbacks visible. Ordinar…</text>
+<rect x="0.5" y="0.5" width="1799" height="1199" fill="none" stroke="#1A1512" stroke-opacity="0.2"/>
 </svg>

@@ -20,7 +20,8 @@ const {
 // headline, and never "Get a Free Quote".
 ---
 
-<section class:list={['cta', tone === 'dark' && 'surface-dark']} aria-labelledby="cta-heading">
+<div class="hazard" role="presentation"></div>
+<section class:list={['cta', tone === 'dark' && 'surface-dark grain']} aria-labelledby="cta-heading">
   <div class="grid-editorial">
     <div class="col-wide cta__inner">
       <div class="cta__text">
@@ -39,7 +40,7 @@ const {
 
 <style>
   .cta {
-    margin-block-start: var(--space-section);
+    margin-block-start: 0;
   }
 
   .cta__inner {
@@ -57,9 +58,11 @@ const {
   }
 
   .cta__heading {
-    font-size: var(--text-display-s);
-    line-height: 1.04;
-    margin-block-end: var(--space-2xs);
+    font-size: var(--text-display-m);
+    line-height: 0.92;
+    text-transform: uppercase;
+    letter-spacing: -0.012em;
+    margin-block-end: var(--space-s);
   }
 
   .cta__body {
