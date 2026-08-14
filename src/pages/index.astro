@@ -1,284 +1,377 @@
 ---
-import Base from '../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import Site from '../layouts/Site.astro';
+import Figure from '../components/Figure.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import CallToAction from '../components/CallToAction.astro';
 import { business } from '../lib/business';
-import { shotCount } from '../lib/shotlist';
+import { href, routes } from '../lib/links';
+import { band, weeks } from '../lib/format';
+import { localBusinessSchema, websiteSchema } from '../lib/schema';
 
-/**
- * TEMPORARY. This is a build index, not the homepage.
- *
- * It exists so a deployed preview has a front door instead of a 404 while the
- * public pages are still being built. Step 3 replaces this file with the real
- * homepage — delete everything here when that happens.
- *
- * It deliberately carries none of the licence, insurance or membership claims
- * from business.yaml, because those are still placeholder values and this page
- * is publicly reachable.
- */
+const projects = (await getCollection('projects', (p) => !p.data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
 
-// BASE_URL is "/" at a domain root and "/renovations" under a base path — with
-// no trailing slash, because trailingSlash is "never". Join with an explicit
-// separator and collapse the doubles rather than assuming either shape.
-const base = import.meta.env.BASE_URL;
-const link = (p: string) => `${base}/${p}`.replace(/\/{2,}/g, '/');
-
-const built = [
-  {
-    n: 1,
-    title: 'Content model and placeholder content',
-    detail:
-      'business.yaml as the single swap point, MDX collections for projects, suburbs and testimonials, three case studies, thirteen suburb pages, and a shot list that doubles as the photographer’s brief.',
-    done: true,
-  },
-  {
-    n: 2,
-    title: 'Design tokens, type scale, grid',
-    detail:
-      'Tailwind’s defaults cleared rather than extended. One modular scale at ratio 1.25 from 18px, a palette drawn from brick, render, spotted gum and powder coated aluminium, and a twelve column asymmetric grid.',
-    done: true,
-  },
-  { n: 3, title: 'Static page shells', detail: 'No motion, fully accessible, passing budgets.', done: false },
-  { n: 4, title: 'Motion layer', detail: 'Budgets re-verified afterwards.', done: false },
-  { n: 5, title: 'Forms, estimator, booking', detail: 'Serverless handlers and spam protection.', done: false },
-  { n: 6, title: 'Schema, sitemap, OG images', detail: 'Generated per project.', done: false },
-  { n: 7, title: 'Performance pass and accessibility audit', detail: 'Written up.', done: false },
-];
-
-const references = [
-  {
-    href: link('style-tile'),
-    title: 'Style tile',
-    detail:
-      'Type, colour, space, grid and motion. Every contrast ratio measured at build time rather than typed in.',
-  },
-  {
-    href: link('shots'),
-    title: 'Contact sheet',
-    detail: `All ${shotCount} temporary images and the shot each one is waiting for.`,
-  },
-];
+const bands = business.costBands.bands;
+const stages = business.process.stages;
+const suburbs = business.serviceArea.suburbs;
 ---
 
-<Base
-  title="Build preview — Stonelane Renovations"
-  description="Work in progress. Design references for a site that is still being built."
-  indexable={false}
+<Site
+  title={`${business.identity.name} — renovation builder, Sydney`}
+  description={business.identity.positioning}
+  schema={[localBusinessSchema(), websiteSchema()]}
 >
-  <main id="main">
-    <header class="masthead grid-editorial">
-      <div class="col-wide">
-        <p class="label">Work in progress · not the finished site</p>
-        <h1 class="masthead__title">Build&nbsp;preview</h1>
-        <p class="masthead__lede measure">
-          A website for {business.identity.name} is being built in seven steps. Two are done.
-          The pages below are internal design references, not the public site — there is no
-          homepage yet, and every business detail on the site is still a placeholder.
-        </p>
-      </div>
-    </header>
-
-    <section class="grid-editorial section" aria-labelledby="refs">
-      <div class="col-wide">
-        <h2 id="refs" class="section__title">Ready to review</h2>
-      </div>
-      <ul class="col-wide refs" role="list">
-        {
-          references.map((r) => (
-            <li>
-              <a class="ref" href={r.href}>
-                <span class="ref__title">{r.title}</span>
-                <span class="ref__detail">{r.detail}</span>
-                <span class="ref__go" aria-hidden="true">
-                  →
-                </span>
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </section>
-
-    <section class="grid-editorial section" aria-labelledby="order">
-      <div class="col-wide">
-        <h2 id="order" class="section__title">Build order</h2>
-      </div>
-      <ol class="col-wide steps" role="list">
-        {
-          built.map((s) => (
-            <li class:list={['step', s.done && 'step--done']}>
-              <span class="step__n" aria-hidden="true">
-                {String(s.n).padStart(2, '0')}
-              </span>
-              <span class="step__body">
-                <span class="step__title">
-                  {s.title}
-                  <span class="step__state">{s.done ? 'Done' : 'To come'}</span>
-                </span>
-                <span class="step__detail">{s.detail}</span>
-              </span>
-            </li>
-          ))
-        }
-      </ol>
-    </section>
-
-    <footer class="grid-editorial footer">
-      <p class="col-wide measure">
-        Nothing here is a claim about a real business. The licence number, insurance,
-        memberships, testimonials, prices and contact details in this repository are all
-        invented placeholders, listed in <span class="mono">content/TODO.md</span>, and must be
-        replaced before anything is published.
+  <!-- ================================================================ hero -->
+  <section class="hero grid-editorial">
+    <div class="col-wide hero__text">
+      <p class="hero__eyebrow">
+        Kitchens · Bathrooms · Extensions · Whole home renovations
       </p>
-    </footer>
-  </main>
-</Base>
+      <h1 class="hero__title">Fixed price before demolition starts</h1>
+      <p class="hero__lede">
+        {business.identity.differentiatorLong}
+      </p>
+      <div class="hero__actions">
+        <a class="button button--primary" href={href(routes.contact)}>
+          Book a site consultation
+        </a>
+        <a class="button button--secondary" href={href(routes.estimator)}>
+          Work out a rough cost first
+        </a>
+      </div>
+    </div>
+
+    <div class="col-bleed hero__figure">
+      <Figure
+        id="home-hero-sequence-01"
+        alt="A rear extension at dusk with the interior lights on, opening onto a back garden"
+        priority
+        widths={[640, 1024, 1600, 2560]}
+        sizes="100vw"
+      />
+    </div>
+  </section>
+
+  <TrustStrip />
+
+  <!-- ======================================================= what we do -->
+  <section class="grid-editorial section">
+    <div class="col-text">
+      <p class="section__eyebrow">What we do</p>
+      <h2 class="section__title">Ordinary Sydney houses, done properly</h2>
+      <p class="section__lede">{business.identity.positioning}</p>
+    </div>
+    <div class="col-aside stat">
+      <p class="stat__value" data-numeric>
+        {band(business.projectValue.minimum, business.projectValue.maximum)}
+      </p>
+      <p class="stat__label">
+        The range our work falls in. Under {band(business.projectValue.minimum, business.projectValue.minimum)}
+        we will point you to someone better suited.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============================================================ costs -->
+  <section class="grid-editorial section section--ruled">
+    <div class="col-text">
+      <p class="section__eyebrow">What it costs</p>
+      <h2 class="section__title">The bands our work actually falls in</h2>
+      <p class="section__lede">
+        Published, not hidden behind a form. Price opacity is the main reason people give up
+        on renovating, and a builder who will not talk about money until you are in the room
+        is telling you something.
+      </p>
+    </div>
+
+    <ul class="col-wide bands" role="list">
+      {
+        bands.map((b) => (
+          <li class="bands__item">
+            <a class="bands__link" href={`${href(routes.costs)}#${b.id}`}>
+              <span class="bands__name">{b.name}</span>
+              <span class="bands__range" data-numeric>
+                {band(b.low, b.high)}
+              </span>
+              <span class="bands__weeks" data-numeric>
+                {weeks(b.typicalWeeks)}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <p class="col-text bands__note">
+      GST inclusive. Indicative only — the number that matters is the fixed price quote, and we
+      cannot give you that until we have measured the house.
+      <a href={href(routes.costs)}>See what moves each band</a>.
+    </p>
+  </section>
+
+  <!-- ======================================================== approvals -->
+  <section class="grid-editorial section section--ruled">
+    <div class="col-half">
+      <p class="section__eyebrow">Approvals</p>
+      <h2 class="section__title">When you need council, and when you do not</h2>
+      <p class="section__lede">
+        A great deal of work on a standard lot never goes near a council. It is approved by a
+        private certifier in weeks under the state codes. Knowing which pathway your block
+        qualifies for changes your budget and your timeline more than any other single fact.
+      </p>
+      <p class="link-more">
+        <a href={href(routes.approvals)}>Read the approvals explainer</a>
+      </p>
+    </div>
+    <div class="col-half-end">
+      <Figure
+        id="approvals-opener"
+        alt="A standard suburban lot photographed from the street with the side setbacks visible either side of the house"
+        sizes="(min-width: 48rem) 45vw, 92vw"
+      />
+    </div>
+  </section>
+
+  <!-- ========================================================== process -->
+  <section class="grid-editorial section section--ruled">
+    <div class="col-text">
+      <p class="section__eyebrow">How it runs</p>
+      <h2 class="section__title">Eleven stages, and what you own at each</h2>
+      <p class="section__lede">
+        Renovation buyers fear chaos more than cost. Here is the whole sequence, with real
+        durations and an explicit note of what is yours to do — because a job stalls on
+        decisions far more often than it stalls on trades.
+      </p>
+    </div>
+    <ol class="col-wide stages" role="list">
+      {
+        stages.slice(0, 6).map((s) => (
+          <li class="stages__item">
+            <span class="stages__name">{s.name}</span>
+            <span class="stages__duration" data-numeric>
+              {s.duration}
+            </span>
+          </li>
+        ))
+      }
+      <li class="stages__item stages__item--more">
+        <a href={href(routes.process)}>and five more →</a>
+      </li>
+    </ol>
+  </section>
+
+  <!-- ========================================================= projects -->
+  <section class="grid-editorial section section--ruled">
+    <div class="col-text">
+      <p class="section__eyebrow">Recent work</p>
+      <h2 class="section__title">Three jobs, including what went wrong</h2>
+      <p class="section__lede">
+        Every case study names the constraint, the decision, one honest problem and what it
+        cost the client to fix. That last number is nothing in all three, because that is what
+        a fixed price contract means.
+      </p>
+    </div>
+    <div class="col-wide projects">
+      {projects.map((p) => <ProjectCard project={p} />)}
+    </div>
+  </section>
+
+  <!-- ========================================================== suburbs -->
+  <section class="grid-editorial section section--ruled">
+    <div class="col-text">
+      <p class="section__eyebrow">Where we work</p>
+      <h2 class="section__title">Thirteen suburbs, six councils</h2>
+      <p class="section__lede">
+        We stay inside an area we can service properly. Each suburb has its own page with the
+        housing stock, the council notes and what actually complicates a renovation there.
+      </p>
+    </div>
+    <ul class="col-wide suburbs" role="list">
+      {
+        suburbs.map((s) => (
+          <li>
+            <a href={href(routes.suburb(s.slug))}>{s.name}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <CallToAction />
+</Site>
 
 <style>
-  .masthead {
-    padding-block: var(--space-xl) var(--space-l);
-    border-block-end: var(--border-rule) solid var(--color-ink);
-  }
-
-  .masthead__title {
-    font-size: var(--text-display-l);
-    line-height: 0.98;
-    letter-spacing: -0.006em;
-    margin-block: var(--space-s) var(--space-m);
-  }
-
-  .masthead__lede {
-    font-size: var(--text-lead);
-    line-height: 1.5;
-    color: var(--color-ink-muted);
-  }
-
-  .section {
-    padding-block: var(--space-section-tight);
-    border-block-end: var(--border-hairline) solid var(--color-line);
+  .hero {
+    padding-block-start: var(--space-l);
     row-gap: var(--space-m);
   }
 
-  .section__title {
-    font-size: var(--text-title-m);
-    line-height: 1.14;
-    margin-block-end: var(--space-s);
-  }
-
-  .refs {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
-    gap: var(--space-s);
-    list-style: none;
-    padding: 0;
-  }
-
-  .ref {
-    display: grid;
-    gap: var(--space-3xs);
-    block-size: 100%;
-    padding: var(--space-s);
-    background: var(--color-paper-raised);
-    border: var(--border-hairline) solid var(--color-line);
-    border-block-start: var(--border-rule) solid var(--color-brick);
-    text-decoration: none;
-    color: var(--color-ink);
-    transition:
-      background-color var(--duration-fast) var(--ease-inout),
-      border-color var(--duration-fast) var(--ease-inout);
-  }
-
-  .ref:hover {
-    background: var(--color-paper-sunk);
-    border-block-start-color: var(--color-brick-deep);
-  }
-
-  .ref__title {
-    font-family: var(--font-display);
-    font-weight: var(--font-weight-display);
-    font-size: var(--text-title-s);
-    line-height: 1.2;
-  }
-
-  .ref__detail {
+  .hero__eyebrow {
     font-size: var(--text-caption);
-    color: var(--color-ink-muted);
-  }
-
-  .ref__go {
-    margin-block-start: var(--space-2xs);
-    color: var(--color-brick);
-    font-size: var(--text-body);
-  }
-
-  .steps {
-    list-style: none;
-    padding: 0;
-    counter-reset: none;
-  }
-
-  .step {
-    display: grid;
-    grid-template-columns: 3.5rem 1fr;
-    gap: var(--space-s);
-    padding-block: var(--space-s);
-    border-block-start: var(--border-hairline) solid var(--color-line);
-  }
-
-  .step__n {
-    font-family: var(--font-mono);
-    font-size: var(--text-caption);
-    color: var(--color-ink-faint);
-  }
-
-  .step--done .step__n {
-    color: var(--color-brick);
-  }
-
-  .step__body {
-    display: grid;
-    gap: var(--space-3xs);
-  }
-
-  .step__title {
-    font-family: var(--font-display);
-    font-weight: var(--font-weight-display);
-    font-size: var(--text-title-s);
-    line-height: 1.2;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: var(--space-2xs);
-  }
-
-  .step__state {
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    font-weight: 400;
     text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0 var(--space-3xs);
+    letter-spacing: 0.09em;
+    font-weight: var(--font-weight-semibold);
     color: var(--color-ink-faint);
-    border: var(--border-hairline) solid var(--color-line-strong);
   }
 
-  .step--done .step__state {
-    color: var(--color-paper);
-    background: var(--color-brick);
-    border-color: var(--color-brick);
+  .hero__title {
+    font-size: var(--text-display-l);
+    line-height: 0.98;
+    letter-spacing: -0.006em;
+    margin-block: var(--space-2xs) var(--space-s);
+    max-width: 14ch;
   }
 
-  .step__detail {
-    font-size: var(--text-caption);
+  .hero__lede {
+    font-size: var(--text-lead);
+    line-height: 1.5;
     color: var(--color-ink-muted);
     max-width: var(--measure);
   }
 
-  .step:not(.step--done) .step__title {
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-block-start: var(--space-m);
+  }
+
+  .hero__figure {
+    margin-block-start: var(--space-m);
+  }
+
+  .stat {
+    align-self: end;
+    padding-inline-start: var(--space-s);
+    border-inline-start: var(--border-rule) solid var(--color-gum);
+  }
+
+  .stat__value {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display-strong);
+    font-size: var(--text-title-l);
+    line-height: 1.08;
+    color: var(--color-brick-deep);
+  }
+
+  .stat__label {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+    margin-block-start: var(--space-2xs);
+  }
+
+  .bands {
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--space-m);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .bands__link {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3xs);
+    padding-block: var(--space-s);
+    border-block-end: var(--border-hairline) solid var(--color-line);
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+
+  @media (width >= 48rem) {
+    .bands__link {
+      grid-template-columns: 1fr auto auto;
+      align-items: baseline;
+      gap: var(--space-m);
+    }
+  }
+
+  .bands__link:hover {
+    background: var(--color-paper-sunk);
+  }
+
+  .bands__name {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+  }
+
+  .bands__range {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display-strong);
+    font-size: var(--text-title-s);
+    color: var(--color-brick-deep);
+    min-inline-size: 11ch;
+  }
+
+  .bands__weeks {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+    min-inline-size: 10ch;
+  }
+
+  .bands__note {
+    margin-block-start: var(--space-s);
+    font-size: var(--text-caption);
     color: var(--color-ink-muted);
   }
 
-  .footer {
-    padding-block: var(--space-l) var(--space-xl);
+  .link-more {
+    margin-block-start: var(--space-s);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .stages {
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--space-m);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+    gap: var(--space-s);
+  }
+
+  .stages__item {
+    display: grid;
+    gap: var(--space-3xs);
+    padding-block-start: var(--space-2xs);
+    border-block-start: var(--border-rule) solid var(--color-ink);
+  }
+
+  .stages__name {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+  }
+
+  .stages__duration {
     font-size: var(--text-caption);
-    color: var(--color-ink-faint);
+    color: var(--color-ink-muted);
+  }
+
+  .stages__item--more {
+    border-block-start-color: var(--color-gum);
+    align-content: start;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+    gap: var(--space-m) var(--space-s);
+    margin-block-start: var(--space-m);
+  }
+
+  .suburbs {
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--space-m);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr));
+    gap: var(--space-2xs) var(--space-s);
+    font-size: var(--text-body);
   }
 </style>

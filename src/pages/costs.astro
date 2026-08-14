@@ -1,0 +1,276 @@
+---
+import Site from '../layouts/Site.astro';
+import Figure from '../components/Figure.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { business } from '../lib/business';
+import { href, routes } from '../lib/links';
+import { band, currency, weeks, longDate } from '../lib/format';
+import { breadcrumbSchema, offerCatalogSchema } from '../lib/schema';
+
+const { bands, disclaimer, reviewed, gstInclusive } = business.costBands;
+---
+
+<Site
+  title="What a renovation costs in Sydney — Stonelane Renovations"
+  description="Published cost bands for bathrooms, kitchens, extensions, granny flats and second storeys, with the variables that move each one. GST inclusive."
+  schema={[
+    offerCatalogSchema(),
+    breadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'What it costs', path: '/costs' },
+    ]),
+  ]}
+>
+  <header class="grid-editorial section--tight">
+    <div class="col-half">
+      <p class="section__eyebrow">What it costs</p>
+      <h1 class="page-title">What a renovation actually costs</h1>
+      <p class="section__lede">{disclaimer}</p>
+      <p class="meta-line">
+        {gstInclusive ? 'All figures GST inclusive' : 'Figures exclude GST'} · Reviewed
+        {longDate(reviewed)}
+      </p>
+    </div>
+    <div class="col-half-end">
+      <Figure
+        id="costs-opener"
+        alt="A stripped bathroom with the wall frame and old waterproofing exposed"
+        sizes="(min-width: 48rem) 45vw, 92vw"
+      />
+    </div>
+  </header>
+
+  <!-- Summary table first, so someone who only wants the numbers can leave. -->
+  <section class="grid-editorial section" aria-labelledby="summary">
+    <div class="col-wide">
+      <h2 id="summary" class="section__title">The bands</h2>
+      <ul class="summary" role="list">
+        {
+          bands.map((b) => (
+            <li>
+              <a href={`#${b.id}`}>
+                <span class="summary__name">{b.name}</span>
+                <span class="summary__range" data-numeric>
+                  {band(b.low, b.high)}
+                </span>
+                <span class="summary__weeks" data-numeric>
+                  {weeks(b.typicalWeeks)}
+                </span>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <p class="estimator-nudge">
+        Want a figure for your own house?
+        <a href={href(routes.estimator)}>Use the cost estimator</a> — it asks six questions and
+        shows you where the money goes. Nothing is gated.
+      </p>
+    </div>
+  </section>
+
+  {
+    bands.map((b) => (
+      <section class="grid-editorial section section--ruled" id={b.id} aria-labelledby={`${b.id}-h`}>
+        <div class="col-text">
+          <h2 id={`${b.id}-h`} class="band-title">
+            {b.name}
+          </h2>
+          <p class="band-range" data-numeric>
+            {currency(b.low)} to {currency(b.high)}
+          </p>
+          <p class="band-meta">
+            GST inclusive · typically {weeks(b.typicalWeeks)} on site
+          </p>
+          <p class="band-summary">{b.summary}</p>
+        </div>
+
+        <div class="col-aside band-aside">
+          <p class="band-aside__label">What moves it</p>
+          <p class="band-aside__count" data-numeric>
+            {b.movers.length} things
+          </p>
+        </div>
+
+        <div class="col-wide">
+          <ol class="movers" role="list">
+            {b.movers.map((m) => (
+              <li class="movers__item">
+                <h3 class="movers__title">{m.title}</h3>
+                <p class="movers__detail">{m.detail}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+    ))
+  }
+
+  <section class="grid-editorial section section--ruled" aria-labelledby="under">
+    <div class="col-text">
+      <h2 id="under" class="section__title">{business.projectValue.belowMinimumResponse.heading}</h2>
+      <p class="section__lede">{business.projectValue.belowMinimumResponse.body}</p>
+      <ul class="referrals" role="list">
+        {business.projectValue.belowMinimumResponse.suggestions.map((s) => <li>{s}</li>)}
+      </ul>
+      <p class="referral-note">{business.projectValue.belowMinimumResponse.referralNote}</p>
+    </div>
+  </section>
+
+  <CallToAction
+    heading="Get a real number for your house"
+    body="A cost band is a starting point. A fixed price quote comes after we have measured the house and opened up enough of it to know what is behind the walls."
+  />
+</Site>
+
+<style>
+  .page-title {
+    font-size: var(--text-display-m);
+    line-height: 1.02;
+    letter-spacing: -0.004em;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .meta-line {
+    margin-block-start: var(--space-s);
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+  }
+
+  .summary {
+    list-style: none;
+    padding: 0;
+    border-block-start: var(--border-rule) solid var(--color-ink);
+  }
+
+  .summary a {
+    display: grid;
+    gap: var(--space-3xs);
+    padding-block: var(--space-s);
+    border-block-end: var(--border-hairline) solid var(--color-line);
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+
+  @media (width >= 48rem) {
+    .summary a {
+      grid-template-columns: 1fr auto auto;
+      align-items: baseline;
+      gap: var(--space-m);
+    }
+  }
+
+  .summary a:hover {
+    background: var(--color-paper-sunk);
+  }
+
+  .summary__name {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+  }
+
+  .summary__range {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display-strong);
+    font-size: var(--text-title-s);
+    color: var(--color-brick-deep);
+    min-inline-size: 13ch;
+  }
+
+  .summary__weeks {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+    min-inline-size: 10ch;
+  }
+
+  .estimator-nudge {
+    margin-block-start: var(--space-s);
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+
+  .band-title {
+    font-size: var(--text-title-l);
+    line-height: 1.08;
+  }
+
+  .band-range {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display-strong);
+    font-size: var(--text-display-s);
+    line-height: 1.04;
+    color: var(--color-brick-deep);
+    margin-block: var(--space-2xs) var(--space-3xs);
+  }
+
+  .band-meta {
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+    margin-block-end: var(--space-s);
+  }
+
+  .band-summary {
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+
+  .band-aside {
+    align-self: start;
+    padding-inline-start: var(--space-s);
+    border-inline-start: var(--border-rule) solid var(--color-gum);
+  }
+
+  .band-aside__label {
+    font-size: var(--text-caption);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--color-ink-faint);
+  }
+
+  .band-aside__count {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-m);
+    line-height: 1.14;
+  }
+
+  .movers {
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--space-m);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(18rem, 100%), 1fr));
+    gap: var(--space-m) var(--space-s);
+  }
+
+  .movers__item {
+    padding-block-start: var(--space-2xs);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .movers__title {
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    margin-block-end: var(--space-3xs);
+  }
+
+  .movers__detail {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .referrals {
+    margin-block: var(--space-s);
+    padding-inline-start: var(--space-s);
+    display: grid;
+    gap: var(--space-2xs);
+    max-width: var(--measure);
+  }
+
+  .referral-note {
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+    font-size: var(--text-caption);
+  }
+</style>

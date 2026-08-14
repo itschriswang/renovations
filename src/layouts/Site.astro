@@ -1,0 +1,23 @@
+---
+import Base from './Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  indexable?: boolean;
+  /** Structured data objects, serialised into one JSON-LD graph. */
+  schema?: unknown[];
+}
+
+const { title, description, indexable = true, schema } = Astro.props;
+---
+
+<Base title={title} description={description} indexable={indexable} schema={schema}>
+  <Header />
+  <main id="main">
+    <slot />
+  </main>
+  <Footer />
+</Base>

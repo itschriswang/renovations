@@ -1,0 +1,496 @@
+---
+import Site from '../layouts/Site.astro';
+import Figure from '../components/Figure.astro';
+import { business, budgetBands } from '../lib/business';
+import { href, routes } from '../lib/links';
+import { currency } from '../lib/format';
+import { breadcrumbSchema, localBusinessSchema } from '../lib/schema';
+
+const suburbs = business.serviceArea.suburbs;
+const bands = business.costBands.bands;
+const promise = business.contact.responsePromise;
+const belowMin = business.projectValue.belowMinimumResponse;
+
+// Booking is the primary action. The form is the fallback for people who would
+// rather write than talk — deliberately second on the page, not the headline.
+const bookingConfigured = business.contact.bookingUrl !== '#';
+---
+
+<Site
+  title="Book a site consultation — Stonelane Renovations"
+  description="Book a site consultation, or send an enquiry. We call back within one business hour."
+  schema={[
+    localBusinessSchema(),
+    breadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Contact', path: '/contact' },
+    ]),
+  ]}
+>
+  <header class="grid-editorial section--tight">
+    <div class="col-half">
+      <p class="section__eyebrow">Get started</p>
+      <h1 class="page-title">Book a site consultation</h1>
+      <p class="section__lede">
+        Sixty to ninety minutes on site. We measure, photograph, look under the house and in
+        the roof, and talk through what is possible. You get an honest read on feasibility and
+        a cost band on the day — not a sales visit.
+      </p>
+
+      <div class="primary-action">
+        {
+          bookingConfigured ? (
+            <a class="button button--primary" href={business.contact.bookingUrl}>
+              Pick a time
+            </a>
+          ) : (
+            <p class="booking-pending">
+              {/* PLACEHOLDER: no booking tool is configured. business.yaml →
+                  contact.bookingUrl. This is the highest-value item on the
+                  TODO list, because booking is the primary call to action. */}
+              <strong>Online booking is not set up yet.</strong> Ring us on
+              <a href={`tel:${business.contact.phoneLink}`}>{business.contact.phone}</a> or use
+              the form below and we will call you.
+            </p>
+          )
+        }
+        <a class="button button--secondary" href={`tel:${business.contact.phoneLink}`}>
+          Call {business.contact.phone}
+        </a>
+      </div>
+
+      <div class="promise">
+        <h2 class="promise__heading">What happens when you send this</h2>
+        <ol class="promise__list">
+          <li>
+            <strong>{promise.caller}</strong>, {promise.callerRole}, reads it. Not a call centre.
+          </li>
+          <li>
+            He rings you from <strong data-numeric>{promise.fromNumber}</strong> within
+            <strong>{promise.windowText}</strong>.
+          </li>
+          <li>{promise.afterHoursText}</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="col-half-end">
+      <Figure
+        id="team-director"
+        alt="Dave Stonelane on site during a second storey framing stage"
+        sizes="(min-width: 48rem) 45vw, 92vw"
+      />
+      <p class="who-calls">This is who rings you.</p>
+    </div>
+  </header>
+
+  <section class="grid-editorial section" aria-labelledby="enquiry">
+    <div class="col-text">
+      <h2 id="enquiry" class="section__title">Or send an enquiry</h2>
+      <p class="section__lede">
+        Everything marked required is required because we cannot give you a useful answer
+        without it. The budget question is there so we can tell you quickly if we are the wrong
+        builder — that saves you more time than it saves us.
+      </p>
+
+      <form
+        class="enquiry"
+        method="post"
+        action={href('/api/enquiry')}
+        novalidate={false}
+      >
+        {/*
+          A plain HTML form posting to a server endpoint. It works with
+          JavaScript disabled, which the brief requires and which also means it
+          works when a script fails, a browser extension interferes, or the
+          network drops the bundle. JavaScript only ever enhances it.
+        */}
+
+        <div class="field">
+          <label class="field__label" for="name">Your name <span class="req">required</span></label>
+          <input class="field__input" id="name" name="name" type="text" autocomplete="name" required />
+        </div>
+
+        <div class="field-row">
+          <div class="field">
+            <label class="field__label" for="email">Email <span class="req">required</span></label>
+            <input
+              class="field__input"
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            />
+          </div>
+          <div class="field">
+            <label class="field__label" for="phone">Phone <span class="req">required</span></label>
+            <input
+              class="field__input"
+              id="phone"
+              name="phone"
+              type="tel"
+              autocomplete="tel"
+              required
+              aria-describedby="phone-hint"
+            />
+            <p class="field__hint" id="phone-hint">Because we ring rather than email back.</p>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="suburb">Suburb <span class="req">required</span></label>
+          <select class="field__input" id="suburb" name="suburb" autocomplete="address-level2" required>
+            <option value="">Choose a suburb</option>
+            {suburbs.map((s) => <option value={s.name}>{s.name}</option>)}
+            <option value="other">Somewhere else</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="projectType">What are you thinking about?</label>
+          <select class="field__input" id="projectType" name="projectType">
+            <option value="">Not sure yet</option>
+            {bands.map((b) => <option value={b.id}>{b.name}</option>)}
+            <option value="other">Something else</option>
+          </select>
+        </div>
+
+        <fieldset class="field fieldset">
+          <legend class="field__label">
+            Roughly what is the budget? <span class="req">required</span>
+          </legend>
+          <p class="field__hint" id="budget-hint">
+            A range, not a commitment. We work between
+            {' '}{currency(business.projectValue.minimum)} and
+            {' '}{currency(business.projectValue.maximum)}, and if you are under that we will
+            say so and point you somewhere better.
+          </p>
+          <div class="radios" aria-describedby="budget-hint">
+            {
+              budgetBands.map((b, i) => (
+                <div class="radio">
+                  <input
+                    class="radio__input"
+                    type="radio"
+                    id={`budget-${b.id}`}
+                    name="budget"
+                    value={b.id}
+                    required={i === 0}
+                    data-qualified={String(b.qualified)}
+                  />
+                  <label class="radio__label" for={`budget-${b.id}`}>{b.label}</label>
+                </div>
+              ))
+            }
+          </div>
+
+          {/*
+            Shown immediately by script when an under-minimum band is chosen,
+            so nobody fills in a long form only to be told no. Without script it
+            is still reachable — the server returns the same message.
+          */}
+          <div class="referral" id="referral" hidden>
+            <h3 class="referral__heading">{belowMin.heading}</h3>
+            <p>{belowMin.body}</p>
+            <ul class="referral__list">
+              {belowMin.suggestions.map((s) => <li>{s}</li>)}
+            </ul>
+            <p class="referral__note">{belowMin.referralNote}</p>
+          </div>
+        </fieldset>
+
+        <div class="field">
+          <label class="field__label" for="message">Anything else worth knowing?</label>
+          <textarea
+            class="field__input field__input--area"
+            id="message"
+            name="message"
+            rows="5"
+            aria-describedby="message-hint"></textarea>
+          <p class="field__hint" id="message-hint">
+            What is driving the change is the most useful thing you can tell us.
+          </p>
+        </div>
+
+        {/*
+          Spam handling, in two parts, neither of which asks a human to solve a
+          puzzle. The honeypot is hidden from people and from screen readers and
+          only a bot fills it in; the timestamp catches submissions that arrive
+          impossibly fast. Both are checked server side. No third-party captcha,
+          because a captcha is an accessibility tax on the people we want.
+        */}
+        <div class="honeypot" aria-hidden="true">
+          <label for="company">Company (leave this blank)</label>
+          <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <input type="hidden" name="started" value={Date.now().toString()} />
+
+        <button class="button button--primary enquiry__submit" type="submit">
+          Send enquiry
+        </button>
+
+        <p class="enquiry__foot">
+          We do not add you to a mailing list, and we do not pass your details on.
+        </p>
+      </form>
+    </div>
+
+    <aside class="col-aside contact-aside">
+      <h2 class="contact-aside__heading">Direct</h2>
+      <p>
+        <a href={`tel:${business.contact.phoneLink}`}>{business.contact.phone}</a><br />
+        <a href={`mailto:${business.contact.email}`}>{business.contact.email}</a>
+      </p>
+      <h2 class="contact-aside__heading">Workshop</h2>
+      <address>
+        {business.contact.address.street}<br />
+        {business.contact.address.suburb} {business.contact.address.state}
+        {business.contact.address.postcode}
+      </address>
+      <h2 class="contact-aside__heading">Hours</h2>
+      <ul class="hours" role="list">
+        {business.contact.hours.map((h) => <li>{h.days}, {h.opens} to {h.closes}</li>)}
+      </ul>
+      <h2 class="contact-aside__heading">Not ready to talk?</h2>
+      <p>
+        <a href={href(routes.estimator)}>Work out a rough cost</a> first — no email required.
+        Or take the <a href={href(routes.checklist)}>planning checklist</a>.
+      </p>
+    </aside>
+  </section>
+</Site>
+
+<script>
+  // Progressive enhancement. Shows the referral response the moment an
+  // under-minimum budget is chosen, so nobody completes a long form only to be
+  // turned away at the end. The server enforces the same rule regardless.
+  const referral = document.getElementById('referral');
+  const radios = document.querySelectorAll<HTMLInputElement>('input[name="budget"]');
+
+  if (referral) {
+    for (const radio of radios) {
+      radio.addEventListener('change', () => {
+        const unqualified = radio.checked && radio.dataset.qualified === 'false';
+        referral.hidden = !unqualified;
+        if (unqualified) referral.setAttribute('tabindex', '-1');
+      });
+    }
+  }
+</script>
+
+<style>
+  .page-title {
+    font-size: var(--text-display-m);
+    line-height: 1.02;
+    letter-spacing: -0.004em;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .primary-action {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    align-items: center;
+    margin-block-start: var(--space-m);
+  }
+
+  .booking-pending {
+    flex: 1 1 100%;
+    padding: var(--space-s);
+    background: color-mix(in srgb, var(--color-brick) 10%, var(--color-paper));
+    border-inline-start: var(--border-rule) solid var(--color-brick);
+    font-size: var(--text-caption);
+  }
+
+  .promise {
+    margin-block-start: var(--space-m);
+    padding: var(--space-s);
+    background: var(--color-paper-sunk);
+    border-inline-start: var(--border-rule) solid var(--color-gum);
+    max-width: var(--measure);
+  }
+
+  .promise__heading {
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    margin-block-end: var(--space-2xs);
+  }
+
+  .promise__list {
+    display: grid;
+    gap: var(--space-2xs);
+    padding-inline-start: var(--space-s);
+    font-size: var(--text-caption);
+  }
+
+  .who-calls {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+  }
+
+  .enquiry {
+    display: grid;
+    gap: var(--space-s);
+    margin-block-start: var(--space-m);
+    max-width: 34rem;
+  }
+
+  .field-row {
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  @media (width >= 34rem) {
+    .field-row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .field__label {
+    display: block;
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-semibold);
+    margin-block-end: var(--space-3xs);
+  }
+
+  .req {
+    font-weight: 400;
+    color: var(--color-ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.72rem;
+  }
+
+  .field__input {
+    inline-size: 100%;
+    min-block-size: 44px;
+    padding: var(--space-2xs) var(--space-xs);
+    background: var(--color-paper-raised);
+    border: var(--border-hairline) solid var(--color-line-strong);
+    border-radius: var(--radius-xs);
+    color: var(--color-ink);
+  }
+
+  .field__input--area {
+    min-block-size: 8rem;
+    resize: vertical;
+  }
+
+  .field__input:user-invalid {
+    border-color: var(--color-brick);
+    border-inline-start-width: var(--border-rule);
+  }
+
+  .field__hint {
+    margin-block-start: var(--space-3xs);
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .fieldset {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .radios {
+    display: grid;
+    gap: var(--space-3xs);
+    margin-block-start: var(--space-2xs);
+  }
+
+  .radio {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    min-block-size: 44px;
+  }
+
+  .radio__input {
+    inline-size: 1.15rem;
+    block-size: 1.15rem;
+    accent-color: var(--color-brick);
+    flex: 0 0 auto;
+  }
+
+  .radio__label {
+    font-size: var(--text-body);
+  }
+
+  .referral {
+    margin-block-start: var(--space-s);
+    padding: var(--space-s);
+    background: color-mix(in srgb, var(--color-gum) 14%, var(--color-paper));
+    border-inline-start: var(--border-rule) solid var(--color-gum-deep);
+  }
+
+  .referral__heading {
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    margin-block-end: var(--space-2xs);
+  }
+
+  .referral__list {
+    margin-block: var(--space-2xs);
+    padding-inline-start: var(--space-s);
+    display: grid;
+    gap: var(--space-3xs);
+    font-size: var(--text-caption);
+  }
+
+  .referral__note {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  /* Off-screen rather than display:none — some bots skip hidden fields. */
+  .honeypot {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .enquiry__submit {
+    justify-self: start;
+  }
+
+  .enquiry__foot {
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+  }
+
+  .contact-aside {
+    align-self: start;
+    padding-inline-start: var(--space-s);
+    border-inline-start: var(--border-hairline) solid var(--color-line);
+    font-size: var(--text-caption);
+    line-height: 1.7;
+  }
+
+  .contact-aside__heading {
+    font-family: var(--font-text);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-faint);
+    margin-block: var(--space-s) var(--space-3xs);
+  }
+
+  .contact-aside__heading:first-child {
+    margin-block-start: 0;
+  }
+
+  .contact-aside address {
+    font-style: normal;
+  }
+
+  .hours {
+    list-style: none;
+    padding: 0;
+  }
+</style>

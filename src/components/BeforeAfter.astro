@@ -1,0 +1,136 @@
+---
+import { Image } from 'astro:assets';
+import { shot } from '../lib/shots';
+
+interface Props {
+  label: string;
+  before: string;
+  after: string;
+  beforeAlt: string;
+  afterAlt: string;
+  lens: string;
+  position: string;
+  timeOfDay: string;
+}
+
+const { label, before, after, beforeAlt, afterAlt, lens, position, timeOfDay } = Astro.props;
+
+/**
+ * Two frames of the same view.
+ *
+ * Without JavaScript this is what you get: both images, side by side, at the
+ * same size. That is a legitimate comparison, not a degraded one. A draggable
+ * slider is layered on top as an enhancement — it never replaces this, and if
+ * the script fails the comparison still works.
+ *
+ * The lens, position and time of day are published underneath on purpose. A
+ * before and after the reader cannot verify is a sales trick, and the fastest
+ * way to prove it is not one is to state the conditions and let them check.
+ */
+const sliderId = `ba-${before}`;
+---
+
+<figure class="ba" data-before-after data-slider-id={sliderId}>
+  <figcaption class="ba__label">{label}</figcaption>
+
+  <div class="ba__frames">
+    <div class="ba__frame ba__frame--before">
+      <span class="ba__tag">Before</span>
+      <Image
+        src={shot(before)}
+        alt={beforeAlt}
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 48rem) 45vw, 92vw"
+        loading="lazy"
+        class="ba__image"
+      />
+    </div>
+    <div class="ba__frame ba__frame--after">
+      <span class="ba__tag">After</span>
+      <Image
+        src={shot(after)}
+        alt={afterAlt}
+        widths={[480, 800, 1200]}
+        sizes="(min-width: 48rem) 45vw, 92vw"
+        loading="lazy"
+        class="ba__image"
+      />
+    </div>
+  </div>
+
+  <dl class="ba__provenance">
+    <div><dt>Lens</dt><dd>{lens}</dd></div>
+    <div><dt>Position</dt><dd>{position}</dd></div>
+    <div><dt>Light</dt><dd>{timeOfDay}</dd></div>
+  </dl>
+</figure>
+
+<style>
+  .ba {
+    margin: 0;
+  }
+
+  .ba__label {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    margin-block-end: var(--space-2xs);
+  }
+
+  .ba__frames {
+    display: grid;
+    gap: var(--space-2xs);
+  }
+
+  @media (width >= 48rem) {
+    .ba__frames {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .ba__frame {
+    position: relative;
+  }
+
+  .ba__tag {
+    position: absolute;
+    inset-block-start: var(--space-2xs);
+    inset-inline-start: var(--space-2xs);
+    z-index: 1;
+    padding: var(--space-3xs) var(--space-2xs);
+    background: var(--color-ink);
+    color: var(--color-paper);
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+  }
+
+  .ba__image {
+    inline-size: 100%;
+    block-size: auto;
+    background: var(--color-paper-sunk);
+  }
+
+  .ba__provenance {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(12rem, 100%), 1fr));
+    gap: var(--space-2xs) var(--space-s);
+    margin-block-start: var(--space-2xs);
+    padding-block-start: var(--space-2xs);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+    font-size: var(--text-caption);
+  }
+
+  .ba__provenance dt {
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-ink-faint);
+  }
+
+  .ba__provenance dd {
+    color: var(--color-ink-muted);
+  }
+</style>

@@ -39,16 +39,14 @@ export default defineConfig({
     react(),
     sitemap({
       // The style tile and the contact sheet are internal design references,
-      // and the root is still a temporary build index rather than the
-      // homepage. All three are noindex, so none belongs in the sitemap.
-      // Remove the root from this list when step 3 replaces index.astro.
+      // both noindex, so neither belongs in the sitemap. Everything else does.
       filter: (page) => {
         const basePath = (base ?? '/').replace(/\/$/, '');
         const path = new URL(page).pathname.replace(/\/$/, '');
         // Compare paths relative to the base, so this holds whether the site
         // is served from a domain root or a subdirectory.
         const rel = path.startsWith(basePath) ? path.slice(basePath.length) : path;
-        return rel !== '' && !/\/(style-tile|shots)$/.test(rel);
+        return !/\/(style-tile|shots)$/.test(rel);
       },
     }),
   ],

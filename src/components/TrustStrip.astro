@@ -1,0 +1,132 @@
+---
+import { business } from '../lib/business';
+
+/**
+ * Licence, insurance, memberships, warranty, reviews.
+ *
+ * Everything here is verifiable, and the licence links to the public register
+ * so an owner can check it in one click. Nothing goes in this strip that we
+ * cannot produce a certificate for — an unearned badge is worse than no badge,
+ * because the people who check are exactly the people who were going to hire
+ * you.
+ *
+ * PLACEHOLDER: every value below comes from business.yaml and is currently an
+ * invented placeholder. See content/TODO.md section 1.
+ */
+const { licence, insurance, memberships, warranty } = business.credentials;
+const { reviews } = business;
+const hasReviews = reviews.googleReviewCount > 0;
+---
+
+<section class="trust" aria-labelledby="trust-heading">
+  <div class="grid-editorial">
+    <div class="col-wide trust__inner">
+      <h2 id="trust-heading" class="visually-hidden">Licensing, insurance and memberships</h2>
+
+      <dl class="trust__list">
+        <div class="trust__item">
+          <dt>{licence.label}</dt>
+          <dd>
+            <a href={licence.verifyUrl} rel="noopener noreferrer" target="_blank">
+              {licence.number}
+              <span class="trust__verify">check the register</span>
+            </a>
+          </dd>
+        </div>
+
+        {
+          insurance.map((item) => (
+            <div class="trust__item">
+              <dt>{item.abbr}</dt>
+              <dd>{item.detail}</dd>
+            </div>
+          ))
+        }
+
+        <div class="trust__item">
+          <dt>Member</dt>
+          <dd>{memberships.map((m) => m.abbr).join(' · ')}</dd>
+        </div>
+
+        <div class="trust__item">
+          <dt>Warranty</dt>
+          <dd>
+            {warranty.structuralYears} year structural, {warranty.defectsYears} year defects
+          </dd>
+        </div>
+
+        {
+          hasReviews && (
+            <div class="trust__item">
+              <dt>Google reviews</dt>
+              <dd>
+                <a href={reviews.googleProfileUrl} rel="noopener noreferrer" target="_blank">
+                  {reviews.googleRating} from {reviews.googleReviewCount} reviews
+                </a>
+              </dd>
+            </div>
+          )
+        }
+      </dl>
+
+      {
+        !hasReviews && (
+          <p class="trust__pending">
+            {/* PLACEHOLDER: no Google Business Profile is connected yet. Rather
+                than print a fabricated rating, the block states the position
+                plainly. Remove this when reviews.googleReviewCount is real. */}
+            Google reviews are not connected yet. We would rather show nothing here than a
+            number we cannot evidence.
+          </p>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .trust {
+    background: var(--color-paper-sunk);
+    border-block: var(--border-hairline) solid var(--color-line);
+  }
+
+  .trust__inner {
+    padding-block: var(--space-s);
+  }
+
+  .trust__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(13rem, 100%), 1fr));
+    gap: var(--space-s) var(--space-m);
+  }
+
+  .trust__item dt {
+    font-size: var(--text-caption);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-ink-faint);
+    margin-block-end: var(--space-3xs);
+  }
+
+  .trust__item dd {
+    font-size: var(--text-caption);
+    line-height: 1.45;
+    color: var(--color-ink);
+  }
+
+  .trust__verify {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-ink-muted);
+  }
+
+  .trust__pending {
+    margin-block-start: var(--space-s);
+    padding-block-start: var(--space-xs);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+    max-width: var(--measure);
+  }
+</style>

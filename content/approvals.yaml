@@ -1,0 +1,326 @@
+# =============================================================================
+# THE APPROVALS EXPLAINER
+# =============================================================================
+# This is the most valuable page on the site and the one most likely to be
+# wrong, because planning rules change and almost every number below is a
+# threshold in a legal instrument.
+#
+# EVERY NUMERIC THRESHOLD IN THIS FILE IS UNVERIFIED. Before launch, check each
+# one against the current instrument, then record the instrument name and the
+# date you checked in `verified` at the bottom. If you cannot verify a number,
+# delete it rather than publish it — a wrong setback figure costs somebody real
+# money.
+#
+# Plain language throughout. The reader is a family, not a planner.
+# =============================================================================
+
+intro: >-
+  Most people assume a renovation means council, months of waiting and a fight.
+  For a lot of work on a standard suburban block, none of that is true. There
+  are three separate pathways, and which one applies to you is usually decided
+  by facts about your land that can be checked in an afternoon — before you
+  spend anything on a design.
+
+# -----------------------------------------------------------------------------
+# THE THREE PATHWAYS
+# -----------------------------------------------------------------------------
+pathways:
+  - id: exempt
+    name: Exempt development
+    who: No approval at all
+    # PLACEHOLDER: verify against the current Codes SEPP exempt development
+    # provisions before publishing.
+    timeframe: None
+    summary: >-
+      Minor work that meets a set of standards needs no approval of any kind.
+      You still have to comply with the Building Code and use licensed trades,
+      and the work still has to be done properly — "exempt" means exempt from
+      planning approval, not exempt from the rules.
+    typical:
+      - Internal alterations that do not touch a load bearing wall
+      - Replacing a kitchen or bathroom in the same footprint
+      - Most decks, pergolas and carports under the size and height limits
+      - Repairs and maintenance in the same materials
+    catch: >-
+      The moment the work becomes structural, changes the footprint, or exceeds
+      one of the size limits, it stops being exempt. This is the pathway people
+      most often assume they are on when they are not.
+
+  - id: cdc
+    name: Complying development
+    who: A private certifier, or the council if you prefer
+    # PLACEHOLDER: unverified, and it varies by certifier workload
+    timeframe: Typically 3 to 6 weeks
+    summary: >-
+      A fast-track approval for work that meets a fixed set of standards
+      written into state planning policy. A certifier checks your plans against
+      the standards and issues a certificate. There is no merit assessment, no
+      public notification and no negotiation — you either meet every standard
+      or you do not.
+    typical:
+      - Single storey rear extensions on a standard lot
+      - Second storey additions inside the height and envelope limits
+      - Secondary dwellings on a lot over the minimum size
+      - New dwellings on a regular block
+    catch: >-
+      It is all or nothing. Miss one standard by 100mm and the whole pathway
+      closes, and you are into a development application. This is why we check
+      the standards against your actual block before any design work, rather
+      than drawing something and hoping.
+
+  - id: da
+    name: Development application
+    who: Your council
+    # PLACEHOLDER: unverified; use each council's published determination times
+    timeframe: Typically 10 to 20 weeks, longer with referrals
+    summary: >-
+      A merit assessment by the council against its own planning controls. A
+      planner reads your proposal, neighbours are usually notified, and the
+      council can approve, refuse, or approve with conditions. It takes longer
+      and costs more, and it is the only pathway if your block or your design
+      falls outside the complying development standards.
+    typical:
+      - Anything on heritage listed land or in a conservation area
+      - Designs that exceed the height, setback or floor space standards
+      - Blocks that are irregular, battle-axe, or steeply sloping
+      - Work on flood affected or high bushfire risk land
+    catch: >-
+      A DA is not a failure and it is not something to avoid at all costs. It
+      buys you flexibility a certificate cannot: a good DA can get approval for
+      something the standards would never allow. What it costs you is time, and
+      time has to be in the plan from the start.
+
+# -----------------------------------------------------------------------------
+# THE STANDARDS, IN PLAIN LANGUAGE
+#
+# PLACEHOLDER: every figure in this section is indicative and unverified.
+# Check each against the current Codes SEPP and the LEP for the property.
+# -----------------------------------------------------------------------------
+standards:
+  - id: lot-size
+    name: Is the block big enough
+    plain: >-
+      Complying development sets a minimum lot size and a minimum width. Most
+      standard suburban blocks in our area clear both comfortably. Battle-axe
+      blocks are measured differently — the access handle usually does not
+      count toward the area, which catches people out.
+    figure: Commonly a minimum of 200 m² and 6 m wide for alterations
+    watch: >-
+      Check how your lot is measured, not how big it looks.
+
+  - id: setbacks
+    name: How far from the boundary
+    plain: >-
+      The distance your walls must sit from each boundary. Side setbacks are
+      the single most common reason a rear extension drops out of complying
+      development, because a lot of older houses already sit closer to the
+      boundary than the current standard allows. If the existing house is
+      non-compliant, extending along the same wall line usually is too.
+    figure: Commonly 0.9 m each side on a standard lot, more as the wall gets taller
+    watch: >-
+      Measure from the existing wall before you fall in love with a plan.
+
+  - id: rear-setback
+    name: How far from the back fence
+    plain: >-
+      How much open space has to stay between the new work and the rear
+      boundary. This is what limits how far back an extension can go.
+    figure: Commonly 3 m on a standard lot, increasing on larger lots
+    watch: >-
+      Deep, narrow blocks are usually fine. Short blocks run out of room fast.
+
+  - id: height
+    name: How tall
+    plain: >-
+      A maximum height measured from natural ground level, which matters on a
+      sloping block because the ground level is not the same at the front and
+      the back. There is usually a separate limit on how tall a wall can be
+      before it has to step in from the boundary.
+    figure: Commonly 8.5 m overall
+    watch: >-
+      On a sloping block the height limit can be reached at the low side of the
+      house well before you expect it.
+
+  - id: fsr
+    name: Floor space ratio
+    plain: >-
+      A cap on total floor area as a proportion of the land. An FSR of 0.5 on
+      a 600 m² block means 300 m² of floor area in total — including what is
+      already there. Garages and some other spaces may or may not count, which
+      is worth checking rather than assuming.
+    figure: Varies by council and by zone
+    watch: >-
+      Add up the existing house first. Most of your allowance is already spent.
+
+  - id: site-coverage
+    name: Site coverage
+    plain: >-
+      How much of the block the buildings can cover, looking straight down. It
+      is a different limit from floor space ratio and both apply at once — a
+      single storey extension eats site coverage quickly while barely touching
+      the floor space ratio.
+    figure: Commonly 50 to 60 per cent
+    watch: >-
+      Sheds, garages and covered outdoor areas usually count.
+
+  - id: landscaped-area
+    name: Landscaped area
+    plain: >-
+      A minimum area of soft, planted ground that has to remain. Paving,
+      driveways and decks generally do not count toward it.
+    figure: Commonly 20 to 25 per cent of the lot
+    watch: >-
+      Extending and then paving what is left over can fail this without anyone
+      noticing until the certifier does.
+
+  - id: overshadowing
+    name: Your neighbour's sunlight
+    plain: >-
+      A second storey has to leave the neighbouring properties a minimum amount
+      of direct sunlight to their living room windows and their private open
+      space, measured in mid winter. This is what shadow diagrams are for.
+    figure: Commonly 3 hours between 9am and 3pm on 21 June
+    watch: >-
+      This constraint shapes second storey designs more than any other.
+
+  - id: basix
+    name: The BASIX certificate
+    plain: >-
+      A NSW requirement covering water, energy and thermal comfort. Most
+      residential work over a cost threshold needs one, and the certificate
+      commits you to specific glazing, insulation and fittings that then have
+      to be built. It is not a formality — it can determine your window
+      specification and therefore your budget.
+    figure: Generally required for residential work over $50,000
+    watch: >-
+      A wall of glass to the north usually pays for itself in the assessment.
+      The same wall to the west has to be bought back with better glass or
+      shading.
+
+# -----------------------------------------------------------------------------
+# SECONDARY DWELLINGS
+# PLACEHOLDER: verify against the current Housing SEPP provisions.
+# -----------------------------------------------------------------------------
+secondaryDwelling:
+  intro: >-
+    A secondary dwelling — a granny flat — has its own set of state rules that
+    override a lot of what councils would otherwise require. On a lot that
+    qualifies, it is one of the more straightforward things to get approved.
+  rules:
+    - name: Minimum lot size
+      figure: Commonly 450 m²
+      plain: The lot has to be at least this big. There is no way around it.
+    - name: Maximum floor area
+      figure: Commonly 60 m², or a proportion of the lot if that is larger
+      plain: >-
+        The internal floor area of the secondary dwelling. Verandahs and decks
+        are usually treated separately.
+    - name: One only
+      figure: One secondary dwelling per lot
+      plain: >-
+        You cannot have two, and it has to be on the same lot as the principal
+        dwelling — it cannot be subdivided off later without a separate process.
+    - name: Parking
+      figure: Often no additional parking space is required
+      plain: >-
+        This varies and is worth checking, because it changes what the yard has
+        to accommodate.
+  practical: >-
+    The planning rules are usually the easy part. What actually decides a
+    granny flat is whether a truck and a machine can reach the back of the
+    block, and where the sewer main runs. Both are answered on a site visit in
+    about ten minutes.
+
+# -----------------------------------------------------------------------------
+# WHO DOES WHAT
+# -----------------------------------------------------------------------------
+responsibilities:
+  - step: Working out which pathway applies
+    who: Us
+    detail: >-
+      We obtain the planning certificate for the property, check the lot
+      against the standards, and tell you which pathway you are on before you
+      commission a design. This happens during feasibility and is included.
+  - step: Preparing the drawings and reports
+    who: Us
+    detail: >-
+      Architectural drawings, structural engineering, BASIX, and any specialist
+      report the pathway requires — survey, arborist, bushfire, flood or
+      heritage.
+  - step: Paying the fees
+    who: You
+    detail: >-
+      Council and certifier fees are paid by the owner and are not part of the
+      construction contract. We tell you the amount before you commit.
+  - step: Signing as owner
+    who: You
+    detail: >-
+      Some documents can only be signed by the owner of the land. We prepare
+      them; you sign them.
+  - step: Lodging and managing the application
+    who: Us
+    detail: >-
+      We lodge, we respond to requests for further information, and we chase
+      it. You do not deal with the council.
+  - step: Notifying the neighbours
+    who: The council
+    detail: >-
+      On a development application the council notifies adjoining owners. It is
+      worth talking to them yourself first — a neighbour who hears about it
+      from a council letter is more likely to object.
+  - step: Inspections during construction
+    who: The certifier
+    detail: >-
+      The certifier inspects at set stages and issues the occupation
+      certificate at the end. We book them; they work for the approval, not
+      for us.
+
+# -----------------------------------------------------------------------------
+# FAQs — these feed FAQPage structured data, so answer in the first sentence.
+# -----------------------------------------------------------------------------
+faqs:
+  - question: Do I need council approval to renovate my house in Sydney?
+    answer: >-
+      Often not. Internal work that does not change the footprint is usually
+      exempt from planning approval, and a great deal of extension work on a
+      standard lot can be approved by a private certifier as complying
+      development in three to six weeks. You only need a development
+      application if your block or your design falls outside the standards.
+  - question: What is the difference between a CDC and a DA?
+    answer: >-
+      A complying development certificate is a tick-box check against fixed
+      state standards, issued by a private certifier in weeks with no
+      negotiation. A development application is a merit assessment by your
+      council against its own controls, takes months, and allows for judgement
+      — which means it can approve things the standards never would.
+  - question: How long does council approval take?
+    answer: >-
+      A complying development certificate typically takes three to six weeks. A
+      development application typically takes ten to twenty weeks, and longer
+      if it needs referral for heritage, bushfire, flooding or trees. These are
+      indicative — every council publishes its own determination times.
+  - question: What stops a renovation qualifying as complying development?
+    answer: >-
+      Most commonly a side setback, because older houses often already sit
+      closer to the boundary than the standard allows. After that: heritage
+      listing or a conservation area, an irregular or battle-axe lot, flood or
+      high bushfire risk land, and designs that exceed the height, floor space
+      or site coverage limits.
+  - question: Can I build a granny flat on my block?
+    answer: >-
+      If your lot is over the minimum size — commonly 450 square metres — then
+      usually yes, and often as complying development. The planning rules are
+      rarely the hard part. Site access for machinery and the location of the
+      sewer main decide far more granny flats than the planning controls do.
+  - question: Who lodges the application, me or the builder?
+    answer: >-
+      We do. We prepare the drawings and reports, lodge the application, and
+      respond to the council or certifier. You pay the fees directly and sign
+      anything that can only be signed by the owner of the land.
+
+# PLACEHOLDER: nothing on this page has been verified against a current
+# instrument. Record the instrument and the date here once it has been.
+verified:
+  instrument: not yet checked
+  date: null
+  by: null

@@ -1,0 +1,430 @@
+---
+import Site from '../layouts/Site.astro';
+import Estimator from '../components/Estimator.tsx';
+import { business } from '../lib/business';
+import { href, routes } from '../lib/links';
+import { band, weeks } from '../lib/format';
+import { breadcrumbSchema } from '../lib/schema';
+
+const bands = business.costBands.bands;
+
+// Only the fields the island needs, so the serialised props stay small.
+const estimatorBands = bands.map((b) => ({
+  id: b.id,
+  name: b.name,
+  low: b.low,
+  high: b.high,
+  typicalWeeks: b.typicalWeeks,
+}));
+---
+
+<Site
+  title="Renovation cost estimator — Stonelane Renovations"
+  description="Six questions, a cost range and a breakdown of where the money goes. Nothing gated, no email required to see the result."
+  schema={[
+    breadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Cost estimator', path: '/estimator' },
+    ]),
+  ]}
+>
+  <header class="grid-editorial section--tight">
+    <div class="col-text">
+      <p class="section__eyebrow">Cost estimator</p>
+      <h1 class="page-title">Six questions, then a number</h1>
+      <p class="section__lede">
+        Nothing here is gated. The range appears as you answer, and you can leave with it. The
+        email field at the bottom is only there so you can keep a copy — it is not a condition
+        of seeing the result.
+      </p>
+    </div>
+  </header>
+
+  <section class="grid-editorial section" aria-label="Cost estimator">
+    <div class="col-wide">
+      {/*
+        client:visible rather than client:load — the estimator is below the
+        fold on most screens, so its JavaScript is not fetched until it is
+        actually about to be seen. That keeps the first-load cost of this page
+        near zero and leaves the rest of the site entirely static.
+      */}
+      <Estimator
+        client:visible
+        bands={estimatorBands}
+        action={href('/api/estimate')}
+        costsHref={href(routes.costs)}
+        contactHref={href(routes.contact)}
+      />
+
+      <noscript>
+        <div class="noscript">
+          <h2 class="noscript__heading">The estimator needs JavaScript</h2>
+          <p>
+            It is the one interactive thing on this site, so it is the one thing that needs
+            it. Everything else — including the enquiry form — works without.
+          </p>
+          <p>
+            The published bands it works from are below, and the
+            <a href={href(routes.costs)}>full cost guide</a> lists what moves each one.
+          </p>
+          <ul class="noscript__bands" role="list">
+            {
+              bands.map((b) => (
+                <li>
+                  <a href={`${href(routes.costs)}#${b.id}`}>
+                    <span>{b.name}</span>
+                    <span data-numeric>{band(b.low, b.high)}</span>
+                    <span data-numeric>{weeks(b.typicalWeeks)}</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </noscript>
+    </div>
+  </section>
+
+  <section class="grid-editorial section section--ruled" aria-labelledby="honest">
+    <div class="col-text">
+      <h2 id="honest" class="section__title">What this can and cannot tell you</h2>
+      <p class="beat-body">
+        It can tell you whether your project is a $90,000 conversation or a $400,000 one. That
+        is genuinely useful, and it is the thing most builders will not tell you until you are
+        sitting at your kitchen table.
+      </p>
+      <p class="beat-body">
+        It cannot tell you what your job costs. It does not know that your slab was poured in
+        two stages, that the eaves are asbestos, that a sewer main runs under the only place
+        the room can go, or that your block falls a metre from one side to the other. Those
+        things are worth tens of thousands and they are found on site, not in a form.
+      </p>
+      <p class="beat-body">
+        <strong>Every figure here is an estimate.</strong> A quote is a fixed price written
+        into a contract. We give you one of those after we have measured the house — and once
+        we do, it does not move.
+      </p>
+    </div>
+  </section>
+</Site>
+
+<style>
+  .page-title {
+    font-size: var(--text-display-m);
+    line-height: 1.02;
+    letter-spacing: -0.004em;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .beat-body {
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+
+  .beat-body + .beat-body {
+    margin-block-start: var(--space-s);
+  }
+
+  .noscript {
+    padding: var(--space-s);
+    background: var(--color-paper-sunk);
+    border-inline-start: var(--border-rule) solid var(--color-brick);
+    max-width: var(--measure-wide);
+  }
+
+  .noscript__heading {
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    margin-block-end: var(--space-2xs);
+  }
+
+  .noscript p + p {
+    margin-block-start: var(--space-2xs);
+  }
+
+  .noscript__bands {
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--space-s);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .noscript__bands a {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-s);
+    justify-content: space-between;
+    padding-block: var(--space-2xs);
+    border-block-end: var(--border-hairline) solid var(--color-line);
+    text-decoration: none;
+    color: var(--color-ink);
+    font-size: var(--text-caption);
+  }
+</style>
+
+<style is:global>
+  /* The estimator island's styles live here rather than in the component,
+     so the page ships them as CSS instead of shipping a styling runtime. */
+  .est {
+    display: grid;
+    gap: var(--space-l);
+  }
+
+  @media (width >= 64rem) {
+    .est {
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-l);
+      align-items: start;
+    }
+  }
+
+  .est__form {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  .est__group {
+    border: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .est__legend {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    margin-block-end: var(--space-2xs);
+    padding: 0;
+  }
+
+  .est__select {
+    inline-size: 100%;
+    min-block-size: 44px;
+    padding: var(--space-2xs) var(--space-xs);
+    background: var(--color-paper-raised);
+    border: var(--border-hairline) solid var(--color-line-strong);
+    border-radius: var(--radius-xs);
+    color: var(--color-ink);
+    font: inherit;
+  }
+
+  .est__row {
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  @media (width >= 34rem) {
+    .est__row {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .est__choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+  }
+
+  .est__choices--stacked {
+    flex-direction: column;
+  }
+
+  .est__choice {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    min-block-size: 44px;
+    padding: var(--space-3xs) var(--space-2xs);
+    border: var(--border-hairline) solid var(--color-line-strong);
+    border-radius: var(--radius-xs);
+    cursor: pointer;
+    font-size: var(--text-caption);
+  }
+
+  .est__choice:has(input:checked) {
+    border-color: var(--color-brick);
+    border-inline-start-width: var(--border-rule);
+    background: color-mix(in srgb, var(--color-brick) 8%, transparent);
+  }
+
+  .est__choice:has(input:focus-visible) {
+    outline: 3px solid var(--color-focus);
+    outline-offset: 2px;
+  }
+
+  .est__choice input {
+    accent-color: var(--color-brick);
+    inline-size: 1.05rem;
+    block-size: 1.05rem;
+    flex: 0 0 auto;
+  }
+
+  .est__choice--noted {
+    align-items: flex-start;
+    padding-block: var(--space-2xs);
+  }
+
+  .est__choice--noted span {
+    display: grid;
+    gap: var(--space-3xs);
+  }
+
+  .est__choice--noted small {
+    color: var(--color-ink-muted);
+    font-size: var(--text-caption);
+  }
+
+  .est__out {
+    display: block;
+    padding: var(--space-s);
+    background: var(--color-paper-sunk);
+    border-block-start: var(--border-rule) solid var(--color-brick);
+  }
+
+  .est__out-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-faint);
+  }
+
+  .est__range {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display-strong);
+    font-size: var(--text-display-s);
+    line-height: 1.04;
+    color: var(--color-brick-deep);
+    margin-block: var(--space-3xs);
+  }
+
+  .est__weeks {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .est__caveat {
+    margin-block-start: var(--space-s);
+    padding-block-start: var(--space-2xs);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .est__sub {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    margin-block: var(--space-m) var(--space-2xs);
+  }
+
+  .est__breakdown {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2xs);
+  }
+
+  .est__line {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-3xs);
+    font-size: var(--text-caption);
+    padding-block-end: var(--space-2xs);
+    border-block-end: var(--border-hairline) solid var(--color-line);
+  }
+
+  @media (width >= 34rem) {
+    .est__line {
+      grid-template-columns: 1fr 4rem auto 2.5rem;
+      align-items: center;
+      gap: var(--space-2xs);
+    }
+  }
+
+  .est__bar-track {
+    display: block;
+    block-size: 0.5rem;
+    background: color-mix(in srgb, var(--color-ink) 8%, transparent);
+  }
+
+  .est__bar {
+    display: block;
+    block-size: 100%;
+    background: var(--color-gum);
+  }
+
+  .est__line-value {
+    color: var(--color-ink-muted);
+  }
+
+  .est__line-share {
+    color: var(--color-ink-faint);
+    text-align: end;
+  }
+
+  .est__basis {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .est__applied {
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--space-2xs);
+    display: grid;
+    gap: var(--space-3xs);
+    font-size: var(--text-caption);
+  }
+
+  .est__applied li {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-s);
+    color: var(--color-ink-muted);
+  }
+
+  .est__email {
+    margin-block-start: var(--space-m);
+    padding-block-start: var(--space-s);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .est__email-note {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+    margin-block-end: var(--space-2xs);
+  }
+
+  .est__email-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2xs);
+  }
+
+  .est__input {
+    flex: 1 1 12rem;
+    min-block-size: 44px;
+    padding: var(--space-2xs) var(--space-xs);
+    background: var(--color-paper-raised);
+    border: var(--border-hairline) solid var(--color-line-strong);
+    border-radius: var(--radius-xs);
+    font: inherit;
+    color: var(--color-ink);
+  }
+
+  .est__honeypot {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .est__next {
+    margin-block-start: var(--space-s);
+    font-size: var(--text-caption);
+  }
+</style>

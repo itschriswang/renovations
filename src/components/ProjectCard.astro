@@ -1,0 +1,103 @@
+---
+import { Image } from 'astro:assets';
+import { shot } from '../lib/shots';
+import { href, routes } from '../lib/links';
+import { band, weeks } from '../lib/format';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  project: CollectionEntry<'projects'>;
+  priority?: boolean;
+}
+
+const { project, priority = false } = Astro.props;
+const d = project.data;
+---
+
+<article class="card">
+  <a class="card__link" href={href(routes.project(project.id))}>
+    <Image
+      src={shot(d.heroShot)}
+      alt={d.heroAlt}
+      widths={[400, 800, 1200]}
+      sizes="(min-width: 64rem) 30vw, (min-width: 48rem) 45vw, 92vw"
+      loading={priority ? 'eager' : 'lazy'}
+      class="card__image"
+    />
+    <h3 class="card__title">{d.title}</h3>
+  </a>
+  <p class="card__summary">{d.summary}</p>
+  <dl class="card__meta">
+    <div>
+      <dt>Cost band</dt>
+      <dd data-numeric>{band(d.costBand.low, d.costBand.high)}</dd>
+    </div>
+    <div>
+      <dt>On site</dt>
+      <dd data-numeric>{weeks([d.durationWeeks, d.durationWeeks])}</dd>
+    </div>
+    <div>
+      <dt>Approval</dt>
+      <dd>{d.approvalPath === 'cdc' ? 'Complying development' : d.approvalPath === 'da' ? 'Development application' : 'None required'}</dd>
+    </div>
+  </dl>
+</article>
+
+<style>
+  .card {
+    display: grid;
+    gap: var(--space-2xs);
+    align-content: start;
+  }
+
+  .card__link {
+    display: grid;
+    gap: var(--space-2xs);
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+
+  .card__image {
+    inline-size: 100%;
+    block-size: auto;
+    background: var(--color-paper-sunk);
+  }
+
+  .card__link:hover .card__title {
+    color: var(--color-brick);
+  }
+
+  .card__title {
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    transition: color var(--duration-fast) var(--ease-inout);
+  }
+
+  .card__summary {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+    max-width: var(--measure);
+  }
+
+  .card__meta {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: start;
+    gap: var(--space-s);
+    margin-block-start: var(--space-3xs);
+    padding-block-start: var(--space-2xs);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .card__meta dt {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-faint);
+  }
+
+  .card__meta dd {
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-medium);
+  }
+</style>

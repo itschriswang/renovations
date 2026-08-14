@@ -1,0 +1,230 @@
+---
+import { business } from '../lib/business';
+import { href, isWithin, primaryNav, routes } from '../lib/links';
+
+/**
+ * The mobile menu is a <details> disclosure, so it opens, closes and is
+ * keyboard operable with no JavaScript at all. That is the whole reason for
+ * the choice: the header is the first thing on every page and it cannot be
+ * the thing that breaks when a script fails to load.
+ */
+const { pathname } = Astro.url;
+---
+
+<header class="site-header">
+  <div class="site-header__inner grid-editorial">
+    <div class="site-header__bar">
+      <a class="wordmark" href={href(routes.home)}>
+        <span class="wordmark__name">{business.identity.name}</span>
+        <span class="wordmark__descriptor">{business.identity.descriptor}</span>
+      </a>
+
+      <details class="nav" name="site-nav">
+        <summary class="nav__toggle">
+          <span class="nav__toggle-label">Menu</span>
+          <span class="nav__toggle-icon" aria-hidden="true"></span>
+        </summary>
+
+        <nav class="nav__panel" aria-label="Primary">
+          <ul class="nav__list" role="list">
+            {
+              primaryNav.map((item) => (
+                <li>
+                  <a
+                    class="nav__link"
+                    href={href(item.path)}
+                    aria-current={isWithin(item.path, pathname) ? 'page' : undefined}
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+          <div class="nav__actions">
+            <a class="nav__phone" href={`tel:${business.contact.phoneLink}`}>
+              {business.contact.phone}
+            </a>
+            <a class="button button--primary button--small" href={href(routes.contact)}>
+              Book a site consultation
+            </a>
+          </div>
+        </nav>
+      </details>
+    </div>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--color-paper);
+    border-block-end: var(--border-hairline) solid var(--color-line);
+  }
+
+  .site-header__bar {
+    grid-column: content;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-s);
+    padding-block: var(--space-xs);
+  }
+
+  .wordmark {
+    display: grid;
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+
+  .wordmark__name {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display-strong);
+    font-size: var(--text-title-s);
+    line-height: 1.1;
+    letter-spacing: 0.004em;
+  }
+
+  .wordmark__descriptor {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .nav__toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    min-block-size: 44px;
+    padding-inline: var(--space-2xs);
+    cursor: pointer;
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    list-style: none;
+  }
+
+  .nav__toggle::-webkit-details-marker {
+    display: none;
+  }
+
+  .nav__toggle-icon {
+    inline-size: 1.25rem;
+    block-size: 2px;
+    background: currentColor;
+    box-shadow:
+      0 -6px 0 currentColor,
+      0 6px 0 currentColor;
+  }
+
+  .nav[open] .nav__toggle-icon {
+    box-shadow: 0 0 0 currentColor;
+  }
+
+  .nav__panel {
+    padding-block: var(--space-s);
+  }
+
+  .nav__list {
+    display: grid;
+    gap: var(--space-2xs);
+    list-style: none;
+    padding: 0;
+  }
+
+  .nav__link {
+    display: block;
+    padding-block: var(--space-2xs);
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  .nav__link:hover {
+    color: var(--color-brick);
+  }
+
+  .nav__link[aria-current='page'] {
+    color: var(--color-brick);
+    box-shadow: inset 0 -2px 0 var(--color-brick);
+  }
+
+  .nav__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-s);
+    margin-block-start: var(--space-s);
+    padding-block-start: var(--space-s);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .nav__phone {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  /* From the medium breakpoint the disclosure is redundant: the links have
+     room to sit in the bar, so the toggle is removed from the accessibility
+     tree entirely rather than merely hidden. */
+  @media (width >= 64rem) {
+    .site-header__bar {
+      flex-wrap: nowrap;
+    }
+
+    .nav__toggle {
+      display: none;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space-m);
+    }
+
+    /* The panel is shown whether or not the disclosure is open. A closed
+       <details> hides its content, and the toggle that would open it is
+       hidden at this width — so without this the navigation would be
+       unreachable with JavaScript disabled. */
+    .nav:not([open]) > .nav__panel,
+    .nav[open] > .nav__panel {
+      display: flex;
+      align-items: center;
+      gap: var(--space-m);
+      padding-block: 0;
+    }
+
+    .nav__list {
+      display: flex;
+      align-items: center;
+      gap: var(--space-s);
+    }
+
+    .nav__link {
+      font-family: var(--font-text);
+      font-size: var(--text-caption);
+      font-weight: var(--font-weight-semibold);
+      padding-block: var(--space-2xs);
+    }
+
+    .nav__actions {
+      margin-block-start: 0;
+      padding-block-start: 0;
+      border-block-start: none;
+    }
+
+    .nav__phone {
+      font-size: var(--text-caption);
+      font-family: var(--font-text);
+      font-weight: var(--font-weight-semibold);
+    }
+  }
+</style>
+
+{/* No script. The disclosure is native, and CSS exposes the panel at widths
+    where the toggle is hidden, so the header works with JavaScript off. */}

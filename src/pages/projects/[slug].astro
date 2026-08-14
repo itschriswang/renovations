@@ -1,0 +1,428 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, getEntry, render } from 'astro:content';
+import Site from '../../layouts/Site.astro';
+import Figure from '../../components/Figure.astro';
+import BeforeAfter from '../../components/BeforeAfter.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import { council, costBandById } from '../../lib/business';
+import { href, routes } from '../../lib/links';
+import { band, weeks, longDate, isoDate } from '../../lib/format';
+import { breadcrumbSchema, projectSchema } from '../../lib/schema';
+
+export const getStaticPaths = (async () => {
+  const projects = await getCollection('projects', (p) => !p.data.draft);
+  return projects.map((project) => ({ params: { slug: project.id }, props: { project } }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props;
+const d = project.data;
+const { Content } = await render(project);
+
+const suburb = await getEntry(d.suburb);
+const testimonial = d.testimonial ? await getEntry(d.testimonial) : undefined;
+const lga = council(d.council);
+const publishedBand = costBandById(d.projectType);
+
+const approvalLabel = {
+  cdc: 'Complying development certificate',
+  da: 'Development application',
+  exempt: 'No planning approval required',
+}[d.approvalPath];
+
+const path = routes.project(project.id);
+---
+
+<Site
+  title={`${d.title} — Stonelane Renovations`}
+  description={d.description}
+  image={`/og/${project.id}.png`}
+  imageAlt={d.heroAlt}
+  schema={[
+    projectSchema(project, path),
+    breadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Projects', path: '/projects' },
+      { name: d.title, path },
+    ]),
+  ]}
+>
+  <header class="grid-editorial section--tight">
+    <div class="col-text">
+      <p class="section__eyebrow">
+        <a href={href(routes.suburb(suburb!.id))}>{suburb!.data.name}</a> · {lga.name}
+      </p>
+      <h1 class="page-title">{d.title}</h1>
+      <p class="section__lede">{d.summary}</p>
+    </div>
+
+    <dl class="col-aside key-facts">
+      <div>
+        <dt>Cost band</dt>
+        <dd data-numeric>{band(d.costBand.low, d.costBand.high)}</dd>
+        <dd class="key-facts__note">{d.costBand.gstInclusive ? 'GST inclusive' : 'Excludes GST'}</dd>
+      </div>
+      <div>
+        <dt>On site</dt>
+        <dd data-numeric>{weeks([d.durationWeeks, d.durationWeeks])}</dd>
+      </div>
+      <div>
+        <dt>House</dt>
+        <dd>{d.houseType}, {d.eraBuilt}</dd>
+      </div>
+      <div>
+        <dt>Approval</dt>
+        <dd>{approvalLabel}</dd>
+      </div>
+    </dl>
+  </header>
+
+  <div class="grid-editorial">
+    <div class="col-bleed">
+      <Figure id={d.heroShot} alt={d.heroAlt} priority widths={[640, 1024, 1600, 1800]} sizes="100vw" />
+    </div>
+  </div>
+
+  <!-- ======================================================= constraint -->
+  <section class="grid-editorial section" aria-labelledby="constraint">
+    <div class="col-text">
+      <p class="beat">01 — The constraint</p>
+      <h2 id="constraint" class="beat-title">{d.constraint.heading}</h2>
+      <p class="beat-body">{d.constraint.body}</p>
+    </div>
+    {
+      d.constraintShot && (
+        <div class="col-aside">
+          <Figure
+            id={d.constraintShot}
+            alt={d.constraintAlt ?? d.heroAlt}
+            sizes="(min-width: 48rem) 30vw, 92vw"
+          />
+        </div>
+      )
+    }
+  </section>
+
+  <!-- ========================================================= decision -->
+  <section class="grid-editorial section section--ruled" aria-labelledby="decision">
+    <div class="col-text">
+      <p class="beat">02 — The decision</p>
+      <h2 id="decision" class="beat-title">{d.decision.heading}</h2>
+      <p class="beat-body">{d.decision.body}</p>
+    </div>
+  </section>
+
+  <!-- ================================================= before and after -->
+  {
+    d.comparisons.length > 0 && (
+      <section class="grid-editorial section section--ruled" aria-labelledby="comparisons">
+        <div class="col-text">
+          <p class="beat">03 — Before and after</p>
+          <h2 id="comparisons" class="beat-title">The same view, twice</h2>
+          <p class="beat-body">
+            Same lens, same tripod position, same time of day. The conditions are printed under
+            each pair so you can check them — a comparison you cannot verify is a sales trick.
+          </p>
+        </div>
+        <div class="col-wide comparisons">
+          {d.comparisons.map((c) => (
+            <BeforeAfter {...c} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <!-- ====================================================== went wrong -->
+  <section class="grid-editorial section section--ruled" aria-labelledby="wrong">
+    <div class="col-text">
+      <p class="beat beat--warn">04 — What went wrong</p>
+      <h2 id="wrong" class="beat-title">{d.wentWrong.heading}</h2>
+      <p class="beat-body">{d.wentWrong.body}</p>
+
+      <div class="resolution">
+        <h3 class="resolution__label">How we handled it</h3>
+        <p>{d.wentWrong.resolution}</p>
+      </div>
+
+      <div class="cost-to-client">
+        <h3 class="cost-to-client__label">What it cost you</h3>
+        <p>{d.wentWrong.costToClient}</p>
+      </div>
+    </div>
+    {
+      d.processShot && (
+        <div class="col-aside">
+          <Figure
+            id={d.processShot}
+            alt={d.processAlt ?? d.heroAlt}
+            sizes="(min-width: 48rem) 30vw, 92vw"
+          />
+        </div>
+      )
+    }
+  </section>
+
+  <!-- ========================================================== outcome -->
+  <section class="grid-editorial section section--ruled" aria-labelledby="outcome">
+    <div class="col-text">
+      <p class="beat">05 — The outcome</p>
+      <h2 id="outcome" class="beat-title">{d.outcome.heading}</h2>
+      <p class="beat-body">{d.outcome.body}</p>
+    </div>
+    {
+      d.detailShot && (
+        <div class="col-aside">
+          <Figure
+            id={d.detailShot}
+            alt={d.detailAlt ?? d.heroAlt}
+            sizes="(min-width: 48rem) 30vw, 92vw"
+          />
+        </div>
+      )
+    }
+  </section>
+
+  <!-- ============================================================ trades -->
+  <section class="grid-editorial section section--ruled" aria-labelledby="trades">
+    <div class="col-text">
+      <h2 id="trades" class="beat-title">Who was on this job</h2>
+      <p class="beat-body">
+        {d.trades.length} trades, all under one contract. You had one number to ring.
+      </p>
+      <ul class="trades" role="list">
+        {d.trades.map((t) => <li>{t}</li>)}
+      </ul>
+    </div>
+    <div class="col-aside approval-note">
+      <p class="approval-note__label">Approval pathway</p>
+      <p class="approval-note__value">{approvalLabel}</p>
+      {d.approvalNote && <p class="approval-note__detail">{d.approvalNote}</p>}
+      <p class="approval-note__link">
+        <a href={href(routes.approvals)}>How approvals work →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ======================================================= long form -->
+  <section class="grid-editorial section section--ruled">
+    <div class="col-text prose">
+      <Content />
+    </div>
+  </section>
+
+  <!-- ====================================================== testimonial -->
+  {
+    testimonial && (
+      <section class="grid-editorial section section--ruled" aria-label="What the owners said">
+        <blockquote class="col-text quote">
+          <p class="quote__text">{testimonial.data.quote}</p>
+          <footer class="quote__by">
+            {testimonial.data.name} · {testimonial.data.suburb} ·{' '}
+            <time datetime={isoDate(testimonial.data.date)}>
+              {longDate(testimonial.data.date)}
+            </time>
+            {!testimonial.data.verified && (
+              <span class="quote__flag" title="Not yet checked against the original">
+                placeholder
+              </span>
+            )}
+          </footer>
+        </blockquote>
+      </section>
+    )
+  }
+
+  <section class="grid-editorial section section--ruled">
+    <p class="col-text band-link">
+      Published band for this kind of work:
+      <a href={`${href(routes.costs)}#${publishedBand.id}`}>
+        {publishedBand.name}, {band(publishedBand.low, publishedBand.high)}
+      </a>
+      — and the {publishedBand.movers.length} things that move it.
+    </p>
+  </section>
+
+  <CallToAction />
+</Site>
+
+<style>
+  .page-title {
+    font-size: var(--text-display-m);
+    line-height: 1.02;
+    letter-spacing: -0.004em;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .key-facts {
+    align-self: end;
+    display: grid;
+    gap: var(--space-s);
+    padding-inline-start: var(--space-s);
+    border-inline-start: var(--border-rule) solid var(--color-gum);
+  }
+
+  .key-facts dt {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-faint);
+  }
+
+  .key-facts dd {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+  }
+
+  .key-facts__note {
+    font-family: var(--font-text) !important;
+    font-size: var(--text-caption) !important;
+    font-weight: 400 !important;
+    color: var(--color-ink-faint);
+  }
+
+  .beat {
+    font-size: var(--text-caption);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-ink-faint);
+  }
+
+  .beat--warn {
+    color: var(--color-brick-deep);
+  }
+
+  .beat-title {
+    font-size: var(--text-title-l);
+    line-height: 1.08;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .beat-body {
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+
+  .comparisons {
+    display: grid;
+    gap: var(--space-l);
+    margin-block-start: var(--space-m);
+  }
+
+  .resolution,
+  .cost-to-client {
+    margin-block-start: var(--space-m);
+    padding: var(--space-s);
+    max-width: var(--measure);
+  }
+
+  .resolution {
+    background: var(--color-paper-sunk);
+    border-inline-start: var(--border-rule) solid var(--color-gum);
+  }
+
+  .cost-to-client {
+    background: color-mix(in srgb, var(--color-brick) 8%, var(--color-paper));
+    border-inline-start: var(--border-rule) solid var(--color-brick);
+  }
+
+  .resolution__label,
+  .cost-to-client__label {
+    font-family: var(--font-text);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-ink-faint);
+    margin-block-end: var(--space-3xs);
+  }
+
+  .cost-to-client__label {
+    color: var(--color-brick-deep);
+  }
+
+  .trades {
+    margin-block-start: var(--space-s);
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3xs) var(--space-2xs);
+    max-width: var(--measure-wide);
+  }
+
+  .trades li {
+    padding: var(--space-3xs) var(--space-2xs);
+    background: var(--color-paper-sunk);
+    font-size: var(--text-caption);
+  }
+
+  .approval-note {
+    align-self: start;
+    padding-inline-start: var(--space-s);
+    border-inline-start: var(--border-hairline) solid var(--color-line);
+    font-size: var(--text-caption);
+  }
+
+  .approval-note__label {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+    color: var(--color-ink-faint);
+  }
+
+  .approval-note__value {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    margin-block: var(--space-3xs);
+  }
+
+  .approval-note__detail {
+    color: var(--color-ink-muted);
+  }
+
+  .approval-note__link {
+    margin-block-start: var(--space-2xs);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .quote {
+    border-inline-start: var(--border-rule) solid var(--color-gum);
+    padding-inline-start: var(--space-s);
+  }
+
+  .quote__text {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display-light);
+    font-size: var(--text-title-m);
+    line-height: 1.2;
+  }
+
+  .quote__by {
+    margin-block-start: var(--space-s);
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+  }
+
+  .quote__flag {
+    display: inline-block;
+    margin-inline-start: var(--space-3xs);
+    padding: 0 var(--space-3xs);
+    background: color-mix(in srgb, var(--color-brick) 15%, transparent);
+    color: var(--color-brick-deep);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .band-link {
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+</style>

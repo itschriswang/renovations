@@ -1,0 +1,75 @@
+---
+import { business } from '../lib/business';
+import { href, routes } from '../lib/links';
+
+interface Props {
+  heading?: string;
+  body?: string;
+  /** Dark panel by default; light for pages that already end on a dark note. */
+  tone?: 'dark' | 'light';
+}
+
+const {
+  heading = 'Book a site consultation',
+  body = 'Sixty to ninety minutes on site. We measure, look under the house and in the roof, and you get an honest read on feasibility and a cost band on the day.',
+  tone = 'dark',
+} = Astro.props;
+
+// Booking is the primary action everywhere on this site. The enquiry form is
+// the fallback for people who would rather write than talk — never the
+// headline, and never "Get a Free Quote".
+---
+
+<section class:list={['cta', tone === 'dark' && 'surface-dark']} aria-labelledby="cta-heading">
+  <div class="grid-editorial">
+    <div class="col-wide cta__inner">
+      <div class="cta__text">
+        <h2 id="cta-heading" class="cta__heading">{heading}</h2>
+        <p class="cta__body">{body}</p>
+      </div>
+      <div class="cta__actions">
+        <a class="button button--primary" href={href(routes.contact)}>Book a site consultation</a>
+        <a class="button button--secondary" href={`tel:${business.contact.phoneLink}`}>
+          Call {business.contact.phone}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta {
+    margin-block-start: var(--space-section);
+  }
+
+  .cta__inner {
+    display: grid;
+    gap: var(--space-m);
+    padding-block: var(--space-l);
+    align-items: end;
+  }
+
+  @media (width >= 48rem) {
+    .cta__inner {
+      grid-template-columns: 1fr auto;
+      gap: var(--space-l);
+    }
+  }
+
+  .cta__heading {
+    font-size: var(--text-display-s);
+    line-height: 1.04;
+    margin-block-end: var(--space-2xs);
+  }
+
+  .cta__body {
+    max-width: var(--measure);
+    color: color-mix(in srgb, currentColor 82%, transparent);
+  }
+
+  .cta__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+</style>

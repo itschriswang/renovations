@@ -1,0 +1,57 @@
+---
+import { getCollection } from 'astro:content';
+import Site from '../../layouts/Site.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import { breadcrumbSchema } from '../../lib/schema';
+
+const projects = (await getCollection('projects', (p) => !p.data.draft)).sort(
+  (a, b) => a.data.order - b.data.order,
+);
+---
+
+<Site
+  title="Renovation case studies — Stonelane Renovations"
+  description="Three Sydney renovations written up in full: the constraint, the decision, the cost band, the trades, and one honest problem per job."
+  schema={[
+    breadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Projects', path: '/projects' },
+    ]),
+  ]}
+>
+  <header class="grid-editorial section--tight">
+    <div class="col-text">
+      <p class="section__eyebrow">Recent work</p>
+      <h1 class="page-title">Case studies, including what went wrong</h1>
+      <p class="section__lede">
+        Every one of these names the constraint the site handed us, the decision we made about
+        it and what the alternatives would have cost, and one honest problem that came up
+        during the build. That last section is the one worth reading.
+      </p>
+    </div>
+  </header>
+
+  <section class="grid-editorial section" aria-label="Projects">
+    <div class="col-wide projects">
+      {projects.map((p, i) => <ProjectCard project={p} priority={i === 0} />)}
+    </div>
+  </section>
+
+  <CallToAction />
+</Site>
+
+<style>
+  .page-title {
+    font-size: var(--text-display-m);
+    line-height: 1.02;
+    letter-spacing: -0.004em;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+    gap: var(--space-l) var(--space-s);
+  }
+</style>
