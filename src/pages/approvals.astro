@@ -1,0 +1,566 @@
+---
+import Site from '../layouts/Site.astro';
+import Figure from '../components/Figure.astro';
+import CallToAction from '../components/CallToAction.astro';
+import ScrollRegion from '../components/ScrollRegion.astro';
+import { approvals } from '../lib/approvals';
+import { business } from '../lib/business';
+import { href, routes } from '../lib/links';
+import { weeks } from '../lib/format';
+import { breadcrumbSchema, faqSchema } from '../lib/schema';
+
+const { intro, pathways, standards, secondaryDwelling, responsibilities, faqs, verified } =
+  approvals;
+const councils = business.councils;
+---
+
+<Site
+  title="When you need council approval in Sydney, and when you do not"
+  description="Complying development versus a development application, in plain language. Setbacks, floor space ratio, site coverage, secondary dwelling rules and indicative timeframes for six Sydney councils."
+  image={href("/og/approvals.png")}
+  imageAlt="When you need council approval in Sydney, and when you do not"
+  schema={[
+    faqSchema(faqs),
+    breadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Approvals', path: '/approvals' },
+    ]),
+  ]}
+>
+  <header class="grid-editorial section--tight">
+    <div class="col-half">
+      <p class="section__eyebrow">Approvals</p>
+      <h1 class="page-title">When you need council, and when you do not</h1>
+      <p class="section__lede">{intro}</p>
+    </div>
+    <div class="col-half-end">
+      <Figure
+        id="approvals-opener"
+        alt="A standard suburban lot photographed from the street with the side setbacks visible either side of the house"
+        sizes="(min-width: 48rem) 45vw, 92vw"
+      />
+    </div>
+  </header>
+
+  {
+    !verified.date && (
+      <div class="grid-editorial">
+        <p class="col-wide unverified">
+          {/* PLACEHOLDER: this banner disappears the moment content/approvals.yaml
+              records a verification date. Do not remove it by hand. */}
+          <strong>Not yet verified.</strong> Every figure on this page is indicative and has not
+          been checked against the current planning instrument. Do not rely on it — ask us, or
+          check the planning certificate for your property.
+        </p>
+      </div>
+    )
+  }
+
+  <!-- ================================================== the three pathways -->
+  <section class="grid-editorial section" aria-labelledby="pathways">
+    <div class="col-text">
+      <h2 id="pathways" class="section__title">Three pathways, not one</h2>
+      <p class="section__lede">
+        Nearly every argument about renovation approvals comes from people assuming there is
+        one process. There are three, they are genuinely different, and which applies to you is
+        mostly decided by facts about your land rather than by what you want to build.
+      </p>
+    </div>
+
+    <ol class="col-wide pathways" role="list">
+      {
+        pathways.map((p, i) => (
+          <li class:list={['pathway', `pathway--${p.id}`]}>
+            <p class="pathway__step" aria-hidden="true">
+              {String(i + 1).padStart(2, '0')}
+            </p>
+            <div class="pathway__body">
+              <h3 class="pathway__name">{p.name}</h3>
+              <dl class="pathway__meta">
+                <div>
+                  <dt>Approved by</dt>
+                  <dd>{p.who}</dd>
+                </div>
+                <div>
+                  <dt>How long</dt>
+                  <dd data-numeric>{p.timeframe}</dd>
+                </div>
+              </dl>
+              <p class="pathway__summary">{p.summary}</p>
+              <p class="pathway__typical-label">Typically covers</p>
+              <ul class="pathway__typical" role="list">
+                {p.typical.map((t) => (
+                  <li>{t}</li>
+                ))}
+              </ul>
+              <p class="pathway__catch">
+                <span class="pathway__catch-label">The catch</span>
+                {p.catch}
+              </p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <!-- ========================================================= standards -->
+  <section class="grid-editorial section section--ruled" aria-labelledby="standards">
+    <div class="col-text">
+      <h2 id="standards" class="section__title">The standards, in plain language</h2>
+      <p class="section__lede">
+        These are the numbers that decide whether your design qualifies as complying
+        development. They are worth understanding before you pay anyone to draw anything,
+        because they shape what is worth drawing.
+      </p>
+    </div>
+
+    <div class="col-wide standards">
+      {
+        standards.map((s) => (
+          <article class="standard" id={s.id} data-reveal>
+            <h3 class="standard__name">{s.name}</h3>
+            <p class="standard__figure" data-numeric>
+              {s.figure}
+            </p>
+            <p class="standard__plain">{s.plain}</p>
+            <p class="standard__watch">
+              <span class="standard__watch-label">Watch for</span>
+              {s.watch}
+            </p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ================================================ secondary dwellings -->
+  <section class="grid-editorial section section--ruled" aria-labelledby="granny">
+    <div class="col-text">
+      <h2 id="granny" class="section__title">Granny flats have their own rules</h2>
+      <p class="section__lede">{secondaryDwelling.intro}</p>
+    </div>
+    <div class="col-wide">
+      <dl class="rules">
+        {
+          secondaryDwelling.rules.map((r) => (
+            <div class="rules__item">
+              <dt class="rules__name">{r.name}</dt>
+              <dd>
+                <p class="rules__figure" data-numeric>
+                  {r.figure}
+                </p>
+                <p class="rules__plain">{r.plain}</p>
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+      <p class="rules__practical">{secondaryDwelling.practical}</p>
+    </div>
+  </section>
+
+  <!-- ========================================================== councils -->
+  <section class="grid-editorial section section--ruled" aria-labelledby="councils">
+    <div class="col-text">
+      <h2 id="councils" class="section__title">The six councils we work across</h2>
+      <p class="section__lede">
+        Timeframes are indicative and move with each council's workload. Every council
+        publishes its own determination statistics, which is a better source than anything a
+        builder tells you.
+      </p>
+    </div>
+
+    <ScrollRegion class="col-wide" label="Indicative approval timeframes by council">
+      <table class="councils">
+        <caption class="visually-hidden">
+          Indicative complying development and development application timeframes for each
+          council
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Council</th>
+            <th scope="col">CDC</th>
+            <th scope="col">DA</th>
+            <th scope="col">What is specific here</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            councils.map((c) => (
+              <tr>
+                <th scope="row">
+                  <a href={c.url} rel="noopener noreferrer" target="_blank">
+                    {c.name}
+                  </a>
+                </th>
+                <td data-numeric>{weeks(c.cdcWeeks)}</td>
+                <td data-numeric>{weeks(c.daWeeks)}</td>
+                <td class="councils__notes">{c.notes}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </ScrollRegion>
+  </section>
+
+  <!-- ==================================================== who does what -->
+  <section class="grid-editorial section section--ruled" aria-labelledby="who">
+    <div class="col-text">
+      <h2 id="who" class="section__title">Who lodges what</h2>
+      <p class="section__lede">
+        The short version: we do the paperwork, you pay the fees and sign the things only an
+        owner can sign. You do not deal with the council.
+      </p>
+    </div>
+    <ol class="col-wide responsibilities" role="list">
+      {
+        responsibilities.map((r) => (
+          <li class="responsibility" data-reveal>
+            <span class:list={['responsibility__who', r.who === 'You' && 'responsibility__who--you']}>
+              {r.who}
+            </span>
+            <div>
+              <h3 class="responsibility__step">{r.step}</h3>
+              <p class="responsibility__detail">{r.detail}</p>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <!-- ============================================================== FAQs -->
+  <section class="grid-editorial section section--ruled" aria-labelledby="faqs">
+    <div class="col-text">
+      <h2 id="faqs" class="section__title">Common questions</h2>
+    </div>
+    <div class="col-wide faqs">
+      {
+        faqs.map((f) => (
+          <details class="faq">
+            <summary class="faq__q">{f.question}</summary>
+            <p class="faq__a">{f.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
+  <CallToAction
+    heading="We check this before you spend anything"
+    body="Working out which pathway applies to your block happens during feasibility, before any design work that depends on the answer. It is part of the job, not an extra."
+  />
+</Site>
+
+<style>
+  .page-title {
+    font-size: var(--text-display-m);
+    line-height: 1.02;
+    letter-spacing: -0.004em;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .unverified {
+    margin-block-start: var(--space-s);
+    padding: var(--space-s);
+    background: color-mix(in srgb, var(--color-brick) 10%, var(--color-paper));
+    border-inline-start: var(--border-rule) solid var(--color-brick);
+    max-width: var(--measure-wide);
+  }
+
+  .pathways {
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--space-m);
+    display: grid;
+    gap: var(--space-m);
+  }
+
+  @media (width >= 64rem) {
+    .pathways {
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-s);
+    }
+  }
+
+  .pathway {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: var(--space-s);
+    padding-block-start: var(--space-s);
+    border-block-start: var(--border-rule) solid var(--color-ink);
+  }
+
+  @media (width >= 64rem) {
+    .pathway {
+      grid-template-columns: 1fr;
+      gap: var(--space-2xs);
+    }
+  }
+
+  .pathway--cdc {
+    border-block-start-color: var(--color-brick);
+  }
+
+  .pathway__step {
+    font-family: var(--font-mono);
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+  }
+
+  .pathway__name {
+    font-size: var(--text-title-m);
+    line-height: 1.14;
+    margin-block-end: var(--space-2xs);
+  }
+
+  .pathway__meta {
+    display: grid;
+    gap: var(--space-2xs);
+    padding-block: var(--space-2xs);
+    border-block: var(--border-hairline) solid var(--color-line);
+    margin-block-end: var(--space-s);
+  }
+
+  .pathway__meta dt {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-faint);
+  }
+
+  .pathway__meta dd {
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-medium);
+  }
+
+  .pathway__summary {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .pathway__typical-label {
+    margin-block-start: var(--space-s);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-faint);
+  }
+
+  .pathway__typical {
+    margin-block-start: var(--space-3xs);
+    padding-inline-start: var(--space-s);
+    display: grid;
+    gap: var(--space-3xs);
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .pathway__catch {
+    margin-block-start: var(--space-s);
+    padding-block-start: var(--space-2xs);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .pathway__catch-label {
+    display: block;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-brick-deep);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+    margin-block-end: var(--space-3xs);
+  }
+
+  .standards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(19rem, 100%), 1fr));
+    gap: var(--space-m) var(--space-s);
+    margin-block-start: var(--space-m);
+  }
+
+  .standard {
+    padding-block-start: var(--space-2xs);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .standard__name {
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+  }
+
+  .standard__figure {
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-brick-deep);
+    margin-block: var(--space-3xs);
+  }
+
+  .standard__plain {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .standard__watch {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .standard__watch-label {
+    display: block;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-gum-deep);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .rules {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+    gap: var(--space-m) var(--space-s);
+    margin-block-start: var(--space-m);
+  }
+
+  .rules__item {
+    padding-block-start: var(--space-2xs);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .rules__name {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+  }
+
+  .rules__figure {
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-brick-deep);
+    margin-block: var(--space-3xs);
+  }
+
+  .rules__plain {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .rules__practical {
+    margin-block-start: var(--space-m);
+    padding: var(--space-s);
+    background: var(--color-paper-sunk);
+    border-inline-start: var(--border-rule) solid var(--color-gum);
+    max-width: var(--measure);
+  }
+
+  .councils {
+    inline-size: 100%;
+    border-collapse: collapse;
+    min-inline-size: 46rem;
+    margin-block-start: var(--space-m);
+    font-size: var(--text-caption);
+  }
+
+  .councils th {
+    text-align: start;
+    padding: var(--space-2xs) var(--space-s) var(--space-2xs) 0;
+    border-block-end: var(--border-rule) solid var(--color-ink);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .councils tbody th {
+    border-block-end: var(--border-hairline) solid var(--color-line);
+    white-space: nowrap;
+  }
+
+  .councils td {
+    padding: var(--space-2xs) var(--space-s) var(--space-2xs) 0;
+    border-block-end: var(--border-hairline) solid var(--color-line);
+    vertical-align: top;
+  }
+
+  .councils__notes {
+    color: var(--color-ink-muted);
+    min-inline-size: 22rem;
+  }
+
+  .responsibilities {
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--space-m);
+    display: grid;
+    gap: var(--space-s);
+  }
+
+  .responsibility {
+    display: grid;
+    grid-template-columns: 5rem 1fr;
+    gap: var(--space-s);
+    padding-block-start: var(--space-2xs);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .responsibility__who {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-ink-faint);
+  }
+
+  .responsibility__who--you {
+    color: var(--color-brick-deep);
+  }
+
+  .responsibility__step {
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+  }
+
+  .responsibility__detail {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+    max-width: var(--measure);
+    margin-block-start: var(--space-3xs);
+  }
+
+  .faqs {
+    margin-block-start: var(--space-m);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+    max-width: var(--measure-wide);
+  }
+
+  .faq {
+    border-block-end: var(--border-hairline) solid var(--color-line);
+  }
+
+  .faq__q {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    min-block-size: 44px;
+    padding-block: var(--space-2xs);
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+  }
+
+  .faq__q::marker,
+  .faq__q::-webkit-details-marker {
+    color: var(--color-brick);
+  }
+
+  .faq__a {
+    padding-block-end: var(--space-s);
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+</style>

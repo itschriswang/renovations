@@ -1,0 +1,345 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import Site from '../../layouts/Site.astro';
+import Figure from '../../components/Figure.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import CallToAction from '../../components/CallToAction.astro';
+import { business, council } from '../../lib/business';
+import { href, routes } from '../../lib/links';
+import { band, weeks } from '../../lib/format';
+import { breadcrumbSchema, faqSchema, localBusinessSchema, suburbSchema } from '../../lib/schema';
+
+export const getStaticPaths = (async () => {
+  const suburbs = await getCollection('suburbs', (s) => !s.data.draft);
+  const projects = await getCollection('projects', (p) => !p.data.draft);
+
+  return suburbs.map((suburb) => ({
+    params: { slug: suburb.id },
+    props: {
+      suburb,
+      // Projects are matched to their suburb automatically, so adding a
+      // project never means remembering to edit a suburb page.
+      projects: projects
+        .filter((p) => p.data.suburb.id === suburb.id)
+        .sort((a, b) => a.data.order - b.data.order),
+    },
+  }));
+}) satisfies GetStaticPaths;
+
+const { suburb, projects } = Astro.props;
+const d = suburb.data;
+const { Content } = await render(suburb);
+const lga = council(d.council);
+const path = routes.suburb(suburb.id);
+
+const nearby = business.serviceArea.suburbs.filter((s) => s.slug !== suburb.id).slice(0, 12);
+const bands = business.costBands.bands;
+---
+
+<Site
+  title={`Renovation builder in ${d.name} — Stonelane Renovations`}
+  description={d.description}
+  schema={[
+    localBusinessSchema(),
+    suburbSchema(suburb, path),
+    faqSchema(d.faqs),
+    breadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: d.name, path },
+    ]),
+  ]}
+>
+  <header class="grid-editorial section--tight">
+    <div class="col-half">
+      <p class="section__eyebrow">{lga.name} · {d.postcode}</p>
+      <h1 class="page-title">Renovation builder in {d.name}</h1>
+      <p class="section__lede">{d.intro}</p>
+    </div>
+    <div class="col-half-end">
+      <Figure id={d.shot} alt={d.shotAlt} priority sizes="(min-width: 48rem) 45vw, 92vw" />
+    </div>
+  </header>
+
+  <section class="grid-editorial section" aria-labelledby="stock">
+    <div class="col-text">
+      <h2 id="stock" class="section__title">The housing stock here</h2>
+      <p class="beat-body">{d.housingStock}</p>
+    </div>
+    <div class="col-aside council-card">
+      <p class="council-card__label">Your council</p>
+      <p class="council-card__name">
+        <a href={lga.url} rel="noopener noreferrer" target="_blank">{lga.name}</a>
+      </p>
+      <dl class="council-card__times">
+        <div>
+          <dt>Complying development</dt>
+          <dd data-numeric>{weeks(lga.cdcWeeks)}</dd>
+        </div>
+        <div>
+          <dt>Development application</dt>
+          <dd data-numeric>{weeks(lga.daWeeks)}</dd>
+        </div>
+      </dl>
+      <p class="council-card__notes">{lga.notes}</p>
+      <p class="council-card__link">
+        <a href={href(routes.approvals)}>How approvals work →</a>
+      </p>
+    </div>
+  </section>
+
+  <section class="grid-editorial section section--ruled" aria-labelledby="local">
+    <div class="col-text">
+      <h2 id="local" class="section__title">What actually complicates a renovation in {d.name}</h2>
+    </div>
+    <div class="col-wide local-notes">
+      {
+        d.localNotes.map((n) => (
+          <article class="local-note" data-reveal>
+            <h3 class="local-note__heading">{n.heading}</h3>
+            <p class="local-note__body">{n.body}</p>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  {
+    projects.length > 0 && (
+      <section class="grid-editorial section section--ruled" aria-labelledby="local-projects">
+        <div class="col-text">
+          <h2 id="local-projects" class="section__title">What we have built in {d.name}</h2>
+        </div>
+        <div class="col-wide projects">
+          {projects.map((p) => (
+            <ProjectCard project={p} />
+          ))}
+        </div>
+      </section>
+    )
+  }
+
+  <section class="grid-editorial section section--ruled" aria-labelledby="local-costs">
+    <div class="col-text">
+      <h2 id="local-costs" class="section__title">What it costs</h2>
+      <p class="beat-body">
+        The same bands apply across our whole service area. What changes between suburbs is
+        which end of each band you land in, and the local notes above are usually why.
+      </p>
+    </div>
+    <ul class="col-wide bands" role="list">
+      {
+        bands.map((b) => (
+          <li>
+            <a href={`${href(routes.costs)}#${b.id}`}>
+              <span class="bands__name">{b.name}</span>
+              <span class="bands__range" data-numeric>
+                {band(b.low, b.high)}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="grid-editorial section section--ruled" aria-labelledby="faqs">
+    <div class="col-text">
+      <h2 id="faqs" class="section__title">Questions people in {d.name} ask</h2>
+    </div>
+    <div class="col-wide faqs">
+      {
+        d.faqs.map((f) => (
+          <details class="faq">
+            <summary class="faq__q">{f.question}</summary>
+            <p class="faq__a">{f.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="grid-editorial section section--ruled">
+    <div class="col-text prose">
+      <Content />
+    </div>
+  </section>
+
+  <section class="grid-editorial section section--ruled" aria-labelledby="nearby">
+    <div class="col-text">
+      <h2 id="nearby" class="section__title">We also work in</h2>
+    </div>
+    <ul class="col-wide nearby" role="list">
+      {nearby.map((s) => <li><a href={href(routes.suburb(s.slug))}>{s.name}</a></li>)}
+    </ul>
+  </section>
+
+  <CallToAction
+    heading={`Book a site consultation in ${d.name}`}
+    body="Sixty to ninety minutes on site. We measure, look under the house and in the roof, and you get an honest read on feasibility and a cost band on the day."
+  />
+</Site>
+
+<style>
+  .page-title {
+    font-size: var(--text-display-m);
+    line-height: 1.02;
+    letter-spacing: -0.004em;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .beat-body {
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+
+  .council-card {
+    align-self: start;
+    padding-inline-start: var(--space-s);
+    border-inline-start: var(--border-rule) solid var(--color-gum);
+    font-size: var(--text-caption);
+  }
+
+  .council-card__label {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+    color: var(--color-ink-faint);
+  }
+
+  .council-card__name {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    margin-block: var(--space-3xs) var(--space-2xs);
+  }
+
+  .council-card__times {
+    display: grid;
+    gap: var(--space-2xs);
+    padding-block: var(--space-2xs);
+    border-block: var(--border-hairline) solid var(--color-line);
+    margin-block-end: var(--space-2xs);
+  }
+
+  .council-card__times dt {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-ink-faint);
+  }
+
+  .council-card__times dd {
+    font-weight: var(--font-weight-medium);
+  }
+
+  .council-card__notes {
+    color: var(--color-ink-muted);
+  }
+
+  .council-card__link {
+    margin-block-start: var(--space-2xs);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .local-notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+    gap: var(--space-m) var(--space-s);
+    margin-block-start: var(--space-m);
+  }
+
+  .local-note {
+    padding-block-start: var(--space-2xs);
+    border-block-start: var(--border-rule) solid var(--color-ink);
+  }
+
+  .local-note__heading {
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    margin-block-end: var(--space-3xs);
+  }
+
+  .local-note__body {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(20rem, 100%), 1fr));
+    gap: var(--space-m) var(--space-s);
+    margin-block-start: var(--space-m);
+  }
+
+  .bands {
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--space-m);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .bands a {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-s);
+    padding-block: var(--space-2xs);
+    border-block-end: var(--border-hairline) solid var(--color-line);
+    text-decoration: none;
+    color: var(--color-ink);
+  }
+
+  .bands a:hover {
+    background: var(--color-paper-sunk);
+  }
+
+  .bands__name {
+    font-weight: var(--font-weight-medium);
+  }
+
+  .bands__range {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display-strong);
+    color: var(--color-brick-deep);
+  }
+
+  .faqs {
+    margin-block-start: var(--space-m);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+    max-width: var(--measure-wide);
+  }
+
+  .faq {
+    border-block-end: var(--border-hairline) solid var(--color-line);
+  }
+
+  .faq__q {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2xs);
+    min-block-size: 44px;
+    padding-block: var(--space-2xs);
+    cursor: pointer;
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+  }
+
+  .faq__a {
+    padding-block-end: var(--space-s);
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+
+  .nearby {
+    list-style: none;
+    padding: 0;
+    margin-block-start: var(--space-s);
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(10rem, 100%), 1fr));
+    gap: var(--space-2xs) var(--space-s);
+  }
+</style>

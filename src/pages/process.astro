@@ -1,0 +1,214 @@
+---
+import Site from '../layouts/Site.astro';
+import Figure from '../components/Figure.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { business } from '../lib/business';
+import { href } from '../lib/links';
+import { breadcrumbSchema } from '../lib/schema';
+
+const stages = business.process.stages;
+const totalWeeks = stages.at(-1)?.weeks ?? 0;
+---
+
+<Site
+  title="How a renovation runs, stage by stage — Stonelane Renovations"
+  description="Eleven stages from first call to handover, with realistic durations and an explicit note of what the client owns at each one."
+  image={href("/og/process.png")}
+  imageAlt="Eleven stages of a renovation, and what the client owns at each"
+  schema={[
+    breadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'How it runs', path: '/process' },
+    ]),
+  ]}
+>
+  <header class="grid-editorial section--tight">
+    <div class="col-half">
+      <p class="section__eyebrow">How it runs</p>
+      <h1 class="page-title">Eleven stages, and what you own at each</h1>
+      <p class="section__lede">
+        Renovation buyers fear chaos more than they fear cost. So here is the whole sequence
+        with real durations, and — more usefully — an explicit note of what is yours to do.
+        Jobs stall on decisions far more often than they stall on trades.
+      </p>
+      <p class="meta-line" data-numeric>
+        About {totalWeeks} weeks end to end for a substantial job
+      </p>
+    </div>
+    <div class="col-half-end">
+      <Figure
+        id="home-process"
+        alt="Builder and owners reviewing plans on a trestle table during the framing stage"
+        sizes="(min-width: 48rem) 45vw, 92vw"
+      />
+    </div>
+  </header>
+
+  <section class="grid-editorial section" aria-labelledby="timeline">
+    <div class="col-wide">
+      <h2 id="timeline" class="visually-hidden">The stages</h2>
+      <ol class="timeline" role="list">
+        {
+          stages.map((s, i) => (
+            <li class="stage" id={s.id} data-reveal>
+              <div class="stage__marker" aria-hidden="true">
+                <span class="stage__number">{String(i + 1).padStart(2, '0')}</span>
+              </div>
+
+              <div class="stage__body">
+                <div class="stage__head">
+                  <h3 class="stage__name">{s.name}</h3>
+                  <p class="stage__duration" data-numeric>
+                    {s.duration}
+                  </p>
+                </div>
+
+                <p class="stage__what">{s.what}</p>
+
+                <div class="stage__grid">
+                  <div class="stage__owns">
+                    <p class="stage__label">What you own</p>
+                    <p>{s.owns}</p>
+                  </div>
+                  <div class="stage__deliverable">
+                    <p class="stage__label">What you get</p>
+                    <p>{s.deliverable}</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <CallToAction
+    heading="Stage one takes twenty minutes"
+    body="A short call to work out whether we are the right builder for the job, before either of us spends an afternoon on it. If we are not, we will tell you who is."
+  />
+</Site>
+
+<style>
+  .page-title {
+    font-size: var(--text-display-m);
+    line-height: 1.02;
+    letter-spacing: -0.004em;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .meta-line {
+    margin-block-start: var(--space-s);
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+  }
+
+  .timeline {
+    list-style: none;
+    padding: 0;
+  }
+
+  .stage {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: var(--space-s);
+    padding-block: var(--space-m);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  @media (width >= 48rem) {
+    .stage {
+      grid-template-columns: 4rem 1fr;
+      gap: var(--space-m);
+    }
+  }
+
+  /* The rule down the left is the timeline. It is drawn from the marker so it
+     connects the stages without needing an absolutely positioned pseudo
+     element that would drift when text reflows. */
+  .stage__marker {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-2xs);
+  }
+
+  .stage__number {
+    font-family: var(--font-mono);
+    font-size: var(--text-caption);
+    color: var(--color-brick);
+  }
+
+  .stage__marker::after {
+    content: '';
+    inline-size: 2px;
+    block-size: 100%;
+    background: var(--color-line);
+  }
+
+  .stage:last-child .stage__marker::after {
+    background: linear-gradient(var(--color-line), transparent);
+  }
+
+  .stage__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2xs) var(--space-s);
+  }
+
+  .stage__name {
+    font-size: var(--text-title-m);
+    line-height: 1.14;
+  }
+
+  .stage__duration {
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-brick-deep);
+    padding: var(--space-3xs) var(--space-2xs);
+    background: color-mix(in srgb, var(--color-brick) 10%, transparent);
+  }
+
+  .stage__what {
+    margin-block: var(--space-2xs) var(--space-s);
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+
+  .stage__grid {
+    display: grid;
+    gap: var(--space-s);
+    max-width: var(--measure-wide);
+  }
+
+  @media (width >= 48rem) {
+    .stage__grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .stage__owns,
+  .stage__deliverable {
+    padding-block-start: var(--space-2xs);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .stage__owns {
+    border-block-start-color: var(--color-brick);
+  }
+
+  .stage__label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-weight: var(--font-weight-semibold);
+    color: var(--color-ink-faint);
+    margin-block-end: var(--space-3xs);
+  }
+
+  .stage__owns .stage__label {
+    color: var(--color-brick-deep);
+  }
+</style>

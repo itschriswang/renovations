@@ -1,0 +1,206 @@
+---
+import Site from '../layouts/Site.astro';
+import Figure from '../components/Figure.astro';
+import TrustStrip from '../components/TrustStrip.astro';
+import CallToAction from '../components/CallToAction.astro';
+import { business } from '../lib/business';
+import { href, routes } from '../lib/links';
+import { breadcrumbSchema, localBusinessSchema } from '../lib/schema';
+
+const { identity, credentials } = business;
+---
+
+<Site
+  title="About Stonelane Renovations"
+  description={identity.positioning}
+  schema={[
+    localBusinessSchema(),
+    breadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'About', path: '/about' },
+    ]),
+  ]}
+>
+  <header class="grid-editorial section--tight">
+    <div class="col-half">
+      <p class="section__eyebrow">About</p>
+      <h1 class="page-title">We price the job properly, then hold the price</h1>
+      <p class="section__lede">{identity.differentiatorLong}</p>
+    </div>
+    <div class="col-half-end">
+      <Figure
+        id="team-group"
+        alt="The Stonelane team outside the Northmead workshop"
+        priority
+        sizes="(min-width: 48rem) 45vw, 92vw"
+      />
+    </div>
+  </header>
+
+  <TrustStrip />
+
+  <section class="grid-editorial section" aria-labelledby="how">
+    <div class="col-text">
+      <h2 id="how" class="section__title">How a fixed price is actually possible</h2>
+      <p class="beat-body">
+        Most renovation quotes carry provisional sums and allowances — a number pencilled in
+        for something nobody has looked at yet. When the walls open up, the number moves, and
+        it only ever moves one way. The industry treats this as normal.
+      </p>
+      <p class="beat-body">
+        It is normal because investigating properly costs money before anyone has signed
+        anything. We do it anyway: we test for asbestos before we price rather than after, we
+        put an engineer on the footings before quoting a second storey, and we open up behind
+        the appliances in any house built before 1990. It means we quote later than other
+        builders. It also means the number we quote is the number you pay.
+      </p>
+      <p class="beat-body">
+        When something genuinely unforeseeable turns up — rock two metres above where the
+        geotechnical report put it — we carry it. That is what the price is for.
+      </p>
+    </div>
+    <div class="col-aside">
+      <Figure
+        id="home-differentiator"
+        alt="A fixed price quote on a site table beside a tape measure and a pencil"
+        sizes="(min-width: 48rem) 30vw, 92vw"
+      />
+    </div>
+  </section>
+
+  <section class="grid-editorial section section--ruled" aria-labelledby="houses">
+    <div class="col-text">
+      <h2 id="houses" class="section__title">The houses we work on</h2>
+      <p class="beat-body">{identity.positioning}</p>
+      <p class="beat-body">
+        That is a narrower brief than most builders advertise, and deliberately so. Brick
+        veneer, weatherboard, fibro and project homes from the 1960s to the 1990s have a
+        predictable set of problems — original wiring at end of life, galvanised pipe,
+        asbestos in the eaves, concrete tile roofs with a decade left, slabs that were never
+        tied together. Knowing that stock well is what lets us price it without guessing.
+      </p>
+    </div>
+    <div class="col-aside">
+      <Figure
+        id="about-workshop-detail"
+        alt="The selections sample wall in the Northmead workshop"
+        sizes="(min-width: 48rem) 30vw, 92vw"
+      />
+    </div>
+  </section>
+
+  <section class="grid-editorial section section--ruled" aria-labelledby="credentials">
+    <div class="col-text">
+      <h2 id="credentials" class="section__title">Licensing and cover</h2>
+      <p class="beat-body">
+        Everything here can be checked, and the licence links to the public register so you can
+        check it in one click. We would rather you did.
+      </p>
+    </div>
+    <dl class="col-wide creds">
+      <div class="cred">
+        <dt>{credentials.licence.label}</dt>
+        <dd>
+          <a href={credentials.licence.verifyUrl} rel="noopener noreferrer" target="_blank">
+            {credentials.licence.number}
+          </a>
+          <span class="cred__note">Held by {credentials.licence.holder}</span>
+        </dd>
+      </div>
+      {
+        credentials.insurance.map((i) => (
+          <div class="cred">
+            <dt>{i.name}</dt>
+            <dd>
+              {i.detail}
+              {i.note && <span class="cred__note">{i.note}</span>}
+            </dd>
+          </div>
+        ))
+      }
+      {
+        credentials.memberships.map((m) => (
+          <div class="cred">
+            <dt>{m.name}</dt>
+            <dd>
+              Member {m.memberNumber}
+            </dd>
+          </div>
+        ))
+      }
+      <div class="cred">
+        <dt>Warranty</dt>
+        <dd>{credentials.warranty.summary}</dd>
+      </div>
+    </dl>
+  </section>
+
+  <section class="grid-editorial section section--ruled" aria-labelledby="not">
+    <div class="col-text">
+      <h2 id="not" class="section__title">What we are not</h2>
+      <p class="beat-body">
+        We are not the right builder for a single bathroom swap with no layout change, or a
+        kitchen where the existing layout is being kept. Under
+        {' '}<a href={href(routes.costs)}>our minimum</a>, a specialist trade working directly
+        will cost you less and happen sooner, and we will tell you that on the first call
+        rather than after a site visit.
+      </p>
+      <p class="beat-body">
+        We are also not a design practice. We do design and construct under one contract
+        because it removes the gap where responsibility usually gets lost — but if you want a
+        distinguished piece of architecture, engage an architect and we will happily build it.
+      </p>
+    </div>
+  </section>
+
+  <CallToAction />
+</Site>
+
+<style>
+  .page-title {
+    font-size: var(--text-display-m);
+    line-height: 1.02;
+    letter-spacing: -0.004em;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .beat-body {
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+
+  .beat-body + .beat-body {
+    margin-block-start: var(--space-s);
+  }
+
+  .creds {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(17rem, 100%), 1fr));
+    gap: var(--space-m) var(--space-s);
+    margin-block-start: var(--space-m);
+  }
+
+  .cred {
+    padding-block-start: var(--space-2xs);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .cred dt {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    margin-block-end: var(--space-3xs);
+  }
+
+  .cred dd {
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .cred__note {
+    display: block;
+    margin-block-start: var(--space-3xs);
+    color: var(--color-ink-faint);
+  }
+</style>

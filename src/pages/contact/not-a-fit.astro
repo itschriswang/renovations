@@ -1,0 +1,108 @@
+---
+import Site from '../../layouts/Site.astro';
+import { business } from '../../lib/business';
+import { href, routes } from '../../lib/links';
+import { currency } from '../../lib/format';
+
+/**
+ * Where an under-minimum enquiry lands.
+ *
+ * This exists as a real page rather than an inline message because the form
+ * works without JavaScript, and a no-script visitor has to arrive somewhere
+ * after the POST. It is written to be genuinely useful: a good referral comes
+ * back in three years as a much bigger job, and being told plainly beats being
+ * quoted a number designed to make you go away.
+ */
+const r = business.projectValue.belowMinimumResponse;
+---
+
+<Site
+  title="Not the right builder for this one — Stonelane Renovations"
+  description="Why we said no, and who to call instead."
+  indexable={false}
+>
+  <section class="grid-editorial section--tight">
+    <div class="col-text">
+      <p class="section__eyebrow">Thanks for the enquiry</p>
+      <h1 class="page-title">{r.heading}</h1>
+      <p class="section__lede">{r.body}</p>
+
+      <h2 class="sub">Who to call instead</h2>
+      <ul class="suggestions" role="list">
+        {r.suggestions.map((s) => <li>{s}</li>)}
+      </ul>
+
+      <p class="note">{r.referralNote}</p>
+
+      <div class="still">
+        <h2 class="sub">If the scope grows</h2>
+        <p>
+          We work between {currency(business.projectValue.minimum)} and
+          {' '}{currency(business.projectValue.maximum)}. If the job turns into something
+          larger — and they often do once somebody has priced the small version — come back.
+          Nothing is held against you.
+        </p>
+        <p>
+          In the meantime the <a href={href(routes.costs)}>cost guide</a> and the
+          {' '}<a href={href(routes.approvals)}>approvals explainer</a> are open to anybody,
+          whether we build for you or not.
+        </p>
+      </div>
+
+      <p class="read">
+        We have read your enquiry, and if there is somebody specific we would send you to, we
+        will ring and tell you.
+      </p>
+    </div>
+  </section>
+</Site>
+
+<style>
+  .page-title {
+    font-size: var(--text-display-m);
+    line-height: 1.02;
+    letter-spacing: -0.004em;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .sub {
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    margin-block: var(--space-m) var(--space-2xs);
+  }
+
+  .suggestions {
+    padding-inline-start: var(--space-s);
+    display: grid;
+    gap: var(--space-2xs);
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+
+  .note {
+    margin-block-start: var(--space-s);
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+
+  .still {
+    margin-block-start: var(--space-l);
+    padding: var(--space-s);
+    background: var(--color-paper-sunk);
+    border-inline-start: var(--border-rule) solid var(--color-gum);
+    max-width: var(--measure);
+    display: grid;
+    gap: var(--space-2xs);
+  }
+
+  .still .sub {
+    margin-block-start: 0;
+  }
+
+  .read {
+    margin-block-start: var(--space-m);
+    max-width: var(--measure);
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+  }
+</style>

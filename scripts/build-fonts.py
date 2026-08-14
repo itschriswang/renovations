@@ -17,10 +17,16 @@ import sys
 import urllib.request
 
 from fontTools.subset import main as subset_main
+from fontTools.ttLib import TTFont
+from fontTools.varLib.instancer import instantiateVariableFont
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 CACHE = ROOT / "scripts" / ".font-cache"
 OUT = ROOT / "src" / "assets" / "fonts"
+# Small TTF subsets used only to render the sharing images at build time.
+# The OG renderer needs a font it can parse directly, and it runs in CI where
+# Python is not available — so these are generated here and committed.
+OG_OUT = ROOT / "src" / "assets" / "og-fonts"
 
 GF = "https://raw.githubusercontent.com/google/fonts/main/ofl"
 
@@ -77,6 +83,7 @@ def fetch(url: str, dest: pathlib.Path) -> None:
 
 def main() -> int:
     OUT.mkdir(parents=True, exist_ok=True)
+    OG_OUT.mkdir(parents=True, exist_ok=True)
     for font in FONTS:
         src = CACHE / font["cache"]
         fetch(font["url"], src)
@@ -94,6 +101,27 @@ def main() -> int:
         before = src.stat().st_size / 1024
         after = dest.stat().st_size / 1024
         print(f"  subset  {dest.name}: {before:.0f} kB -> {after:.1f} kB woff2")
+
+        # TTF twin for the sharing-image renderer, pinned to a single weight so
+        # it stays small and needs no variable-font support downstream.
+        og = OG_OUT / f"{font['name']}.ttf"
+        subset_main(
+            [
+                str(src),
+                f"--unicodes={UNICODES}",
+                "--layout-features=kern,liga",
+                "--desubroutinize",
+                "--no-hinting",
+                f"--output-file={og}",
+            ]
+        )
+        if "Variable" in font["cache"]:
+            weight = 600 if "big-shoulders" in font["name"] else 400
+            f = TTFont(og)
+            instantiateVariableFont(f, {"wght": weight}, inplace=True, updateFontNames=False)
+            f.save(og)
+        print(f"  subset  {og.name}: {og.stat().st_size / 1024:.1f} kB ttf (sharing images)")
+
     return 0
 
 

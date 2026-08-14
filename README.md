@@ -8,8 +8,9 @@ you will actually want to do:
 3. [Add a project](#3-add-a-project)
 4. [Add a suburb](#4-add-a-suburb)
 
-Plus [swapping in real photographs](#5-swap-in-a-real-photograph) and
-[what to do before launch](#6-before-launch).
+Plus [swapping in real photographs](#5-swap-in-a-real-photograph),
+[the approvals page](#6-the-approvals-page), [where the enquiries go](#7-where-the-enquiries-go),
+and [what to do before launch](#8-before-launch).
 
 ---
 
@@ -23,6 +24,7 @@ content/
   business.yaml      ← name, licence, phone, cost bands, process, councils
   TODO.md            ← every invented placeholder still on the site
   shotlist.md        ← the photographer's brief
+  approvals.yaml     ← the approvals explainer: pathways, standards, FAQs
   projects/          ← one file per case study
   suburbs/           ← one file per suburb landing page
   testimonials/      ← one file per testimonial
@@ -236,7 +238,64 @@ npm run shots
 
 ---
 
-## 6. Before launch
+## 6. The approvals page
+
+`content/approvals.yaml` holds the whole of the approvals explainer — the three
+pathways, the standards in plain language, the granny flat rules, who lodges
+what, and the FAQs. It is the most valuable page on the site and the one most
+likely to go out of date, because nearly every number in it is a threshold in a
+law that changes.
+
+**Every figure in that file is currently unverified**, and the page carries a
+visible warning saying so. The warning disappears by itself the moment you fill
+in the `verified` block at the bottom of the file:
+
+```yaml
+verified:
+  instrument: SEPP (Exempt and Complying Development Codes) 2008
+  date: 2026-09-01
+  by: Dave
+```
+
+Do not remove the banner by hand. It is tied to that date so it cannot be
+switched off without somebody actually having done the checking.
+
+The council names and timeframes come from `business.yaml`, not this file.
+
+---
+
+## 7. Where the enquiries go
+
+Three forms — the enquiry, the checklist and "email me this estimate" — all
+post to a small function that runs on Vercel.
+
+**To make email work**, set two environment variables in the Vercel dashboard:
+
+| Variable | What it is |
+| --- | --- |
+| `RESEND_API_KEY` | An API key from resend.com |
+| `ENQUIRY_FROM` | The address the email is sent *from*, on a domain you have verified |
+
+Enquiries are delivered to `contact.enquiryInbox` in `business.yaml`.
+
+**If email is not set up, or it fails, nothing is lost.** Every enquiry is
+written to the deployment log as a CSV row *before* the email is attempted.
+Search the logs for `ENQUIRY_CSV` and you have the lot, in a form you can paste
+straight into a spreadsheet. `ENQUIRY_UNDELIVERED` marks the ones that need
+chasing by hand.
+
+**Spam** is handled by a hidden field and a timing check. There is no captcha,
+on purpose — it would make the form harder for the people you want and barely
+inconvenience a bot. Rejected submissions get the same response as accepted
+ones, so nobody learns what to change.
+
+**Under-budget enquiries** are answered by `/contact/not-a-fit`, which is
+written to be genuinely useful. They are still emailed to you, because a good
+referral tends to come back in a few years as a much bigger job.
+
+---
+
+## 8. Before launch
 
 `content/TODO.md` lists every invented claim currently on the site, grouped by
 how much trouble it causes if published — starting with the licence number,
@@ -252,20 +311,45 @@ When that comes back empty, the content is ready.
 
 ---
 
+## Where it is
+
+**Preview:** <https://itschriswang.github.io/renovations/>
+
+It redeploys itself every time something lands on `main` — you do not have to
+do anything. This is a preview host, not the real one, and the site is not
+finished: there is no homepage yet, so the address above shows a build index
+with links to the design references.
+
+**Production will be Vercel.** When you are ready: go to
+[vercel.com/new](https://vercel.com/new), import this repository, and press
+deploy. It recognises the project on its own and needs nothing configured.
+Nothing about the preview gets in the way of that.
+
 ## Running it
 
 ```bash
-npm install       # once
-npm run dev       # preview at localhost:4321, updates as you save
-npm run build     # production build
+npm install         # once
+npm run dev         # preview at localhost:4321, updates as you save
+npm run build       # production build, with the form handlers (Vercel)
+npm run build:static # production build with no server (GitHub Pages preview)
+npm run preview     # look at the built site
+```
+
+Checks you can run yourself:
+
+```bash
+npm run audit       # accessibility and layout, needs `npm run preview` running
 ```
 
 Two extra commands you will rarely need:
 
 ```bash
-npm run shots     # regenerate placeholders after editing shotlist.md
-npm run fonts     # re-download and re-subset the fonts (needs Python)
+npm run shots       # regenerate the temporary images after editing shotlist.md
+npm run fonts       # re-download and re-subset the fonts (needs Python)
 ```
+
+There is a written accessibility audit in `docs/accessibility-audit.md`,
+including a list of what has **not** been tested yet.
 
 ## What it is built with, and why
 
@@ -276,4 +360,5 @@ npm run fonts     # re-download and re-subset the fonts (needs Python)
 | **MDX** | Plain text you can edit in any editor, with no CMS to log into, pay for or migrate off. |
 | **Tailwind 4, custom tokens only** | Every colour, size and space on the site is defined in one file. None of Tailwind's default palette or type scale is used. |
 | **Big Shoulders Display + Schibsted Grotesk** | Both open source, both served from our own domain — no Google Fonts request, no third party watching who reads the site. Together they are 73 kB. Both are sans; the headings are condensed and the body is normal width, and that width difference is what makes a heading read as a heading. |
-| **React only where needed** | The cost estimator and the before/after slider. Everything else is plain HTML that works with JavaScript turned off. |
+| **One interactive island** | Only the cost estimator. It is written as an ordinary React component and rendered with Preact, which is 10 kB instead of 57 kB — swapping it was the difference between meeting and missing the load-speed budget on that page. Everything else is plain HTML that works with JavaScript turned off, including the enquiry form. |
+| **No Lenis smooth scrolling** | The brief asked for it. It runs JavaScript on every frame you scroll, which works against the responsiveness budget, and it breaks native scrolling behaviour. Left out deliberately; it is one import to add back. |

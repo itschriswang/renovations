@@ -1,0 +1,35 @@
+---
+import { business } from '../lib/business';
+
+/**
+ * Shown only on a STATIC_ONLY build — the GitHub Pages preview, which has no
+ * server and therefore no form handlers.
+ *
+ * A form that silently 404s is worse than no form. This says so plainly and
+ * gives a working alternative, and it disappears entirely on the real
+ * deployment because the handlers exist there.
+ */
+const formsLive = process.env.STATIC_ONLY !== '1';
+---
+
+{
+  !formsLive && (
+    <p class="static-notice">
+      <strong>This is a preview build with no server</strong>, so this form cannot submit.
+      Ring <a href={`tel:${business.contact.phoneLink}`}>{business.contact.phone}</a> or email{' '}
+      <a href={`mailto:${business.contact.email}`}>{business.contact.email}</a> instead. The
+      form works on the live site.
+    </p>
+  )
+}
+
+<style>
+  .static-notice {
+    margin-block: var(--space-s);
+    padding: var(--space-s);
+    background: color-mix(in srgb, var(--color-brick) 10%, var(--color-paper));
+    border-inline-start: var(--border-rule) solid var(--color-brick);
+    font-size: var(--text-caption);
+    max-width: var(--measure);
+  }
+</style>

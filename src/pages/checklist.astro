@@ -1,0 +1,212 @@
+---
+import Site from '../layouts/Site.astro';
+import Figure from '../components/Figure.astro';
+import StaticFormNotice from '../components/StaticFormNotice.astro';
+import { business } from '../lib/business';
+import { href, routes } from '../lib/links';
+import { breadcrumbSchema } from '../lib/schema';
+
+/**
+ * The only gated asset on the site.
+ *
+ * Everything else — the cost bands, the estimator, the approvals explainer —
+ * is open. Gating one genuinely useful thing works; gating everything trains
+ * people to leave.
+ */
+const asset = business.gatedAsset;
+const ready = !asset.file.includes('stonelane-renovation-planning-checklist') || false;
+---
+
+<Site
+  title={`${asset.title} — Stonelane Renovations`}
+  description={asset.description}
+  schema={[
+    breadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Planning checklist', path: '/checklist' },
+    ]),
+  ]}
+>
+  <header class="grid-editorial section--tight">
+    <div class="col-half">
+      <p class="section__eyebrow">Free, and the only thing we ask for an email in return for</p>
+      <h1 class="page-title">{asset.title}</h1>
+      <p class="section__lede">{asset.description}</p>
+
+      <ul class="contents" role="list">
+        <li>What is actually driving the change, and what you would accept instead</li>
+        <li>What you know about the house — era, construction, what has been done before</li>
+        <li>The questions about your land that decide your approval pathway</li>
+        <li>Where your budget really sits, including the costs people forget</li>
+        <li>Who decides what, and by when</li>
+        <li>The questions to ask any builder before you sign anything</li>
+      </ul>
+
+      <StaticFormNotice />
+
+      <form class="gate" method="post" action={href('/api/checklist')}>
+        <div class="field">
+          <label class="field__label" for="email">
+            Email <span class="req">required</span>
+          </label>
+          <input
+            class="field__input"
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            aria-describedby="email-hint"
+          />
+          <p class="field__hint" id="email-hint">
+            We send the checklist and nothing else. No mailing list, no follow-up sequence.
+          </p>
+        </div>
+
+        <div class="honeypot" aria-hidden="true">
+          <label for="company">Company (leave this blank)</label>
+          <input id="company" name="company" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+        <input type="hidden" name="started" value={Date.now().toString()} />
+
+        <button class="button button--primary" type="submit">Send me the checklist</button>
+      </form>
+
+      {
+        !ready && (
+          <p class="pending">
+            {/* PLACEHOLDER: the PDF does not exist yet. business.yaml →
+                gatedAsset.file. Until it does, the handler emails an
+                explanation rather than a broken link. */}
+            <strong>The PDF is not written yet.</strong> Until it is, this form tells us you
+            want it and we will send it the day it exists.
+          </p>
+        )
+      }
+    </div>
+
+    <div class="col-half-end">
+      <Figure
+        id="checklist-cover"
+        alt="The printed planning checklist on a kitchen table, marked up in pen"
+        priority
+        sizes="(min-width: 48rem) 45vw, 92vw"
+      />
+      <p class="caption" data-numeric>{asset.pages} pages · printable without branding</p>
+    </div>
+  </header>
+
+  <section class="grid-editorial section" aria-labelledby="why">
+    <div class="col-text">
+      <h2 id="why" class="section__title">Why this is the only thing behind a form</h2>
+      <p class="beat-body">
+        Gating a cost guide is a way of making somebody pay with their contact details for
+        information they should have been given freely. It works once, and it teaches people
+        that your website is a lead capture device rather than a useful thing.
+      </p>
+      <p class="beat-body">
+        So the <a href={href(routes.costs)}>cost bands</a>, the
+        {' '}<a href={href(routes.estimator)}>estimator</a> and the
+        {' '}<a href={href(routes.approvals)}>approvals explainer</a> are all open, with nothing
+        to fill in. This checklist is genuinely a piece of work — it is what we ask on a site
+        consultation, and answering it beforehand makes the consultation materially better —
+        so it seems fair to trade it for an email address.
+      </p>
+    </div>
+  </section>
+</Site>
+
+<style>
+  .page-title {
+    font-size: var(--text-display-m);
+    line-height: 1.02;
+    letter-spacing: -0.004em;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .contents {
+    margin-block-start: var(--space-m);
+    padding-inline-start: var(--space-s);
+    display: grid;
+    gap: var(--space-2xs);
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+
+  .gate {
+    display: grid;
+    gap: var(--space-s);
+    margin-block-start: var(--space-m);
+    padding: var(--space-s);
+    background: var(--color-paper-sunk);
+    border-inline-start: var(--border-rule) solid var(--color-brick);
+    max-width: 28rem;
+  }
+
+  .field__label {
+    display: block;
+    font-size: var(--text-caption);
+    font-weight: var(--font-weight-semibold);
+    margin-block-end: var(--space-3xs);
+  }
+
+  .req {
+    font-weight: 400;
+    color: var(--color-ink-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.72rem;
+  }
+
+  .field__input {
+    inline-size: 100%;
+    min-block-size: 44px;
+    padding: var(--space-2xs) var(--space-xs);
+    background: var(--color-paper-raised);
+    border: var(--border-hairline) solid var(--color-line-strong);
+    border-radius: var(--radius-xs);
+  }
+
+  .field__hint {
+    margin-block-start: var(--space-3xs);
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+  }
+
+  .honeypot {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .gate button {
+    justify-self: start;
+  }
+
+  .pending {
+    margin-block-start: var(--space-s);
+    padding: var(--space-s);
+    background: color-mix(in srgb, var(--color-brick) 10%, var(--color-paper));
+    border-inline-start: var(--border-rule) solid var(--color-brick);
+    font-size: var(--text-caption);
+    max-width: var(--measure);
+  }
+
+  .caption {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+  }
+
+  .beat-body {
+    max-width: var(--measure);
+    color: var(--color-ink-muted);
+  }
+
+  .beat-body + .beat-body {
+    margin-block-start: var(--space-s);
+  }
+</style>

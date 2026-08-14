@@ -1,0 +1,157 @@
+---
+import Site from '../../layouts/Site.astro';
+import Figure from '../../components/Figure.astro';
+import { business } from '../../lib/business';
+import { href, routes } from '../../lib/links';
+
+/**
+ * Speed to lead.
+ *
+ * The single job of this page is to remove uncertainty: who will ring, from
+ * what number, within what window. A vague "thanks, we'll be in touch" is where
+ * most enquiries start going cold, because the person immediately goes and
+ * enquires somewhere else.
+ */
+const promise = business.contact.responsePromise;
+---
+
+<Site
+  title="Enquiry received — Stonelane Renovations"
+  description="What happens next, and when."
+  indexable={false}
+>
+  <section class="grid-editorial section--tight">
+    <div class="col-half">
+      <p class="section__eyebrow">Enquiry received</p>
+      <h1 class="page-title">{promise.caller} will ring you</h1>
+
+      <ol class="next" role="list">
+        <li class="next__item">
+          <span class="next__n" aria-hidden="true">01</span>
+          <div>
+            <h2 class="next__title">Who</h2>
+            <p>
+              <strong>{promise.caller}</strong>, {promise.callerRole}. He reads every enquiry
+              himself — there is no call centre and no sales team.
+            </p>
+          </div>
+        </li>
+        <li class="next__item">
+          <span class="next__n" aria-hidden="true">02</span>
+          <div>
+            <h2 class="next__title">From what number</h2>
+            <p>
+              <a href={`tel:${business.contact.phoneLink}`} data-numeric>{promise.fromNumber}</a>.
+              Worth saving now so you know who it is.
+            </p>
+          </div>
+        </li>
+        <li class="next__item">
+          <span class="next__n" aria-hidden="true">03</span>
+          <div>
+            <h2 class="next__title">When</h2>
+            <p>
+              Within <strong>{promise.windowText}</strong>. {promise.afterHoursText}
+            </p>
+          </div>
+        </li>
+        <li class="next__item">
+          <span class="next__n" aria-hidden="true">04</span>
+          <div>
+            <h2 class="next__title">What the call is</h2>
+            <p>
+              Twenty minutes to work out whether we are the right builder for the job. If we
+              are not, he will tell you and point you to someone who is.
+            </p>
+          </div>
+        </li>
+      </ol>
+
+      <div class="meanwhile">
+        <h2 class="meanwhile__heading">While you wait</h2>
+        <p>
+          The <a href={href(routes.checklist)}>planning checklist</a> is the forty questions
+          he will ask, in the order he asks them. Answering a few of them before the call
+          makes it a much better twenty minutes.
+        </p>
+        <p>
+          Or read <a href={href(routes.approvals)}>how approvals work</a> — it is the thing
+          most people have the least information about and it shapes the budget most.
+        </p>
+      </div>
+    </div>
+
+    <div class="col-half-end">
+      <Figure
+        id="team-director"
+        alt="Dave Stonelane on site during a second storey framing stage"
+        priority
+        sizes="(min-width: 48rem) 45vw, 92vw"
+      />
+      <p class="caption">{promise.caller}, {promise.callerRole}</p>
+    </div>
+  </section>
+</Site>
+
+<style>
+  .page-title {
+    font-size: var(--text-display-m);
+    line-height: 1.02;
+    letter-spacing: -0.004em;
+    margin-block: var(--space-2xs) var(--space-m);
+  }
+
+  .next {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-s);
+    max-width: var(--measure);
+  }
+
+  .next__item {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: var(--space-s);
+    padding-block-start: var(--space-2xs);
+    border-block-start: var(--border-hairline) solid var(--color-line);
+  }
+
+  .next__item:first-child {
+    border-block-start-color: var(--color-brick);
+    border-block-start-width: var(--border-rule);
+  }
+
+  .next__n {
+    font-family: var(--font-mono);
+    font-size: var(--text-caption);
+    color: var(--color-brick);
+  }
+
+  .next__title {
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+    margin-block-end: var(--space-3xs);
+  }
+
+  .meanwhile {
+    margin-block-start: var(--space-l);
+    padding: var(--space-s);
+    background: var(--color-paper-sunk);
+    border-inline-start: var(--border-rule) solid var(--color-gum);
+    max-width: var(--measure);
+    display: grid;
+    gap: var(--space-2xs);
+  }
+
+  .meanwhile__heading {
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+  }
+
+  .caption {
+    margin-block-start: var(--space-2xs);
+    font-size: var(--text-caption);
+    color: var(--color-ink-faint);
+  }
+</style>

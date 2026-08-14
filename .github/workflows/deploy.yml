@@ -51,6 +51,9 @@ jobs:
         env:
           SITE_URL: ${{ steps.pages.outputs.origin }}
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
+          # Pages has no server, so the form handlers are omitted and the
+          # forms carry a notice saying so. Vercel builds without this.
+          STATIC_ONLY: '1'
         run: npm run build
 
       - uses: actions/upload-pages-artifact@v3

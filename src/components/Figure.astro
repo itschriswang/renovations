@@ -1,0 +1,97 @@
+---
+import { Image } from 'astro:assets';
+import { shot, isPlaceholder } from '../lib/shots';
+
+interface Props {
+  /** A shot ID from content/shotlist.md. */
+  id: string;
+  /**
+   * Alt text describing the WORK, not the room. "A rear extension in face
+   * brick meeting the original 1974 wall" beats "kitchen".
+   */
+  alt: string;
+  caption?: string;
+  /** Set on the LCP image only. Everything else stays lazy. */
+  priority?: boolean;
+  widths?: number[];
+  sizes?: string;
+  class?: string;
+}
+
+const {
+  id,
+  alt,
+  caption,
+  priority = false,
+  widths = [480, 800, 1200, 1800],
+  sizes = '(min-width: 64rem) 60vw, 92vw',
+  class: className,
+} = Astro.props;
+
+const src = shot(id);
+const pending = isPlaceholder(id);
+---
+
+<figure class:list={['figure', className]}>
+  <Image
+    src={src}
+    alt={alt}
+    widths={widths}
+    sizes={sizes}
+    loading={priority ? 'eager' : 'lazy'}
+    decoding={priority ? 'sync' : 'async'}
+    fetchpriority={priority ? 'high' : 'auto'}
+    class="figure__image"
+  />
+  {
+    (caption || pending) && (
+      <figcaption class="figure__caption">
+        {caption}
+        {pending && (
+          <span class="figure__pending" title={`Shot ID: ${id}`}>
+            temporary image
+          </span>
+        )}
+      </figcaption>
+    )
+  }
+</figure>
+
+<style>
+  .figure {
+    margin: 0;
+  }
+
+  /* Width and height come from the image itself, so the box is reserved
+     before the file arrives and nothing shifts. */
+  .figure__image {
+    inline-size: 100%;
+    block-size: auto;
+    background: var(--color-paper-sunk);
+  }
+
+  .figure__caption {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2xs);
+    margin-block-start: var(--space-2xs);
+    font-size: var(--text-caption);
+    color: var(--color-ink-muted);
+    max-width: var(--measure);
+  }
+
+  .figure__pending {
+    padding: 0 var(--space-3xs);
+    background: color-mix(in srgb, var(--color-brick) 14%, transparent);
+    color: var(--color-brick-deep);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  :global(.surface-dark) .figure__caption {
+    color: color-mix(in srgb, var(--color-paper) 82%, transparent);
+  }
+</style>

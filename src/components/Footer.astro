@@ -1,0 +1,139 @@
+---
+import { business } from '../lib/business';
+import { href, primaryNav, routes } from '../lib/links';
+
+const year = business.costBands.reviewed.getFullYear();
+const suburbs = business.serviceArea.suburbs;
+---
+
+<footer class="site-footer surface-dark">
+  <div class="grid-editorial">
+    <div class="col-wide site-footer__inner">
+      <div class="site-footer__cols">
+        <div class="site-footer__col site-footer__col--wide">
+          <p class="site-footer__name">{business.identity.name}</p>
+          <p class="site-footer__positioning">{business.identity.differentiator}</p>
+          <address class="site-footer__contact">
+            <a href={`tel:${business.contact.phoneLink}`}>{business.contact.phone}</a><br />
+            <a href={`mailto:${business.contact.email}`}>{business.contact.email}</a><br />
+            <span class="site-footer__address">
+              {business.contact.address.street}, {business.contact.address.suburb}
+              {business.contact.address.state}
+              {business.contact.address.postcode}
+            </span>
+          </address>
+        </div>
+
+        <div class="site-footer__col">
+          <h2 class="site-footer__heading">Pages</h2>
+          <ul role="list">
+            {primaryNav.map((i) => <li><a href={href(i.path)}>{i.label}</a></li>)}
+            <li><a href={href(routes.contact)}>Contact</a></li>
+            <li><a href={href(routes.checklist)}>Planning checklist</a></li>
+          </ul>
+        </div>
+
+        <div class="site-footer__col site-footer__col--suburbs">
+          <h2 class="site-footer__heading">Where we work</h2>
+          <ul role="list" class="site-footer__suburbs">
+            {
+              suburbs.map((s) => (
+                <li>
+                  <a href={href(routes.suburb(s.slug))}>{s.name}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__legal">
+        <p>
+          {business.credentials.licence.authority} builder's licence
+          {business.credentials.licence.number} · ABN {business.identity.abn}
+        </p>
+        <p>© {year} {business.site.copyrightHolder}</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-block-start: var(--space-section);
+  }
+
+  .site-footer__inner {
+    padding-block: var(--space-l) var(--space-m);
+  }
+
+  .site-footer__cols {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(15rem, 100%), 1fr));
+    gap: var(--space-m);
+  }
+
+  .site-footer__col--wide {
+    grid-column: span 1;
+    max-width: var(--measure-narrow);
+  }
+
+  .site-footer__name {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display-strong);
+    font-size: var(--text-title-s);
+    line-height: 1.2;
+  }
+
+  .site-footer__positioning {
+    font-size: var(--text-caption);
+    color: var(--color-paper);
+    opacity: 0.82;
+    margin-block: var(--space-2xs) var(--space-s);
+  }
+
+  .site-footer__contact {
+    font-style: normal;
+    font-size: var(--text-caption);
+    line-height: 1.7;
+  }
+
+  .site-footer__address {
+    opacity: 0.82;
+  }
+
+  .site-footer__heading {
+    font-size: var(--text-caption);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-weight: var(--font-weight-semibold);
+    font-family: var(--font-text);
+    color: var(--color-gum);
+    margin-block-end: var(--space-2xs);
+  }
+
+  .site-footer ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: var(--space-3xs);
+    font-size: var(--text-caption);
+  }
+
+  .site-footer__suburbs {
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+    gap: var(--space-3xs) var(--space-s);
+  }
+
+  .site-footer__legal {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: var(--space-s);
+    margin-block-start: var(--space-l);
+    padding-block-start: var(--space-s);
+    border-block-start: var(--border-hairline) solid rgb(244 239 231 / 0.2);
+    font-size: var(--text-caption);
+    opacity: 0.82;
+  }
+</style>
