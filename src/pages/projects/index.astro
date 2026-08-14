@@ -32,8 +32,9 @@ const projects = (await getCollection('projects', (p) => !p.data.draft)).sort(
     </div>
   </header>
 
-  <section class="grid-editorial section" aria-label="Projects">
+  <section class="grid-editorial section" aria-labelledby="all-projects">
     <div class="col-wide projects">
+      <h2 id="all-projects" class="visually-hidden">All projects</h2>
       {projects.map((p, i) => <ProjectCard project={p} priority={i === 0} />)}
     </div>
   </section>

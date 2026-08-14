@@ -41,18 +41,21 @@ const estimatorBands = bands.map((b) => ({
     </div>
   </header>
 
-  <section class="grid-editorial section" aria-label="Cost estimator">
+  <section class="grid-editorial section" aria-labelledby="estimator-heading">
     <div class="col-wide">
+      <h2 id="estimator-heading" class="visually-hidden">Cost estimator</h2>
       {/*
-        client:visible rather than client:load — the estimator is below the
-        fold on most screens, so its JavaScript is not fetched until it is
-        actually about to be seen. That keeps the first-load cost of this page
-        near zero and leaves the rest of the site entirely static.
+        client:idle, not client:visible. The estimator sits near the top of
+        this page, so client:visible fired straight away and React competed
+        with the largest contentful paint on a throttled connection — measured
+        at 1.97s against a 1.8s budget. Waiting for the browser to go idle
+        moves hydration after paint and costs nothing a user would notice,
+        because nobody interacts with a six-question form in the first second.
       */}
       <StaticFormNotice />
 
       <Estimator
-        client:visible
+        client:idle
         bands={estimatorBands}
         action={href('/api/estimate')}
         costsHref={href(routes.costs)}

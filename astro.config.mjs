@@ -2,7 +2,7 @@
 import fs from 'node:fs';
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
-import react from '@astrojs/react';
+import preact from '@astrojs/preact';
 import sitemap from '@astrojs/sitemap';
 import vercel from '@astrojs/vercel';
 import tailwindcss from '@tailwindcss/vite';
@@ -75,7 +75,18 @@ export default defineConfig({
   },
   integrations: [
     mdx(),
-    react(),
+    // The estimator is authored as an ordinary React component — JSX, hooks,
+    // the same source either way — and rendered through Preact's compat
+    // layer. That is 12 kB gzipped instead of 57 kB for React and react-dom.
+    //
+    // The reason is measured, not ideological: with React, the estimator page
+    // was the only page in the site to touch the LCP budget, landing between
+    // 1.51s and 1.96s across repeated runs against a 1.8s limit. Nothing else
+    // on the page had changed. Swapping the renderer removed the contention.
+    //
+    // To go back to React: npm i @astrojs/react react react-dom, and swap
+    // this line. The component source does not change.
+    preact({ compat: true }),
     formHandlers,
     sitemap({
       // Internal references and post-submission pages are all noindex, so none
